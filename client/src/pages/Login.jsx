@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
+import classnames from "classnames";
 
 import styled from 'styled-components'
 
@@ -40,29 +44,110 @@ const CancelButton = styled.a.attrs({
 `
 
 class Login extends Component {
+    constructor() {
+        super();
+        this.state = {
+            email: "",
+            password: "",
+            errors: {}
+        };
+    }
+
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/dashboard");
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/dashboard");
+        }
+
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
+        e.preventDefault();
+
+        const userData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        console.log(userData);
+    };
 
     render() {
+        const { errors } = this.state;
         return (
             <Wrapper>
                 <Title>Logowanie</Title>
-                <Label>Email: </Label>
-                <InputText
-                    type="text"
-                    placeholder="jankowalski@gmail.com"
-                />
+                <form noValidate onSubmit={this.onSubmit}>
+                    <Label htmlFor="email">Email</Label>
+                    <InputText
+                        onChange={this.onChange}
+                        value={this.state.email}
+                        error={errors.email}
+                        id="email"
+                        type="email"
+                        placeholder="jankowalski@gmail.com"
+                        className={classnames("", {
+                            invalid: errors.email || errors.emailnotfound
+                        })}
 
-                <Label>Hasło: </Label>
-                <InputText
-                    type="text"
-                    placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
-                />
+                    />
+                    <span className="red-text">
+                        {errors.email}
+                        {errors.emailnotfound}
+                    </span>
+                    <Label htmlFor="password">Password</Label>
+                    <InputText
+                        onChange={this.onChange}
+                        value={this.state.password}
+                        error={errors.password}
+                        id="password"
+                        type="password"
+                        placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
+                        className={classnames("", {
+                            invalid: errors.password || errors.passwordincorrect
+                        })}
+                    />
+                    <span className="red-text">
+                        {errors.password}
+                        {errors.passwordincorrect}
+                    </span>
+                    <Button onClick={this.handleIncludeProduct}>Zaloguj</Button>
+                    <CancelButton href="/users/register">Zarejestruj</CancelButton>
 
-                <Button onClick={this.handleIncludeProduct}>Zaloguj</Button>
-                <CancelButton href="/users/register">Zarejestruj</CancelButton>
+                </form>
 
             </Wrapper>
-        )
+        );
     }
 }
 
-export default Login 
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { loginUser }
+)(Login);

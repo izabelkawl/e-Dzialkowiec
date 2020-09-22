@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import api from '../api'
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/authActions";
+import classnames from "classnames";
 
 import styled from 'styled-components'
 
@@ -22,7 +26,7 @@ const Label = styled.label`
     margin: 5px;
 `
 
-const InputText = styled.input.attrs({
+const Input = styled.input.attrs({
     className: 'form-control',
 })`
     margin: 5px;
@@ -34,121 +38,166 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-
 class Register extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super();
 
         this.state = {
             email: '',
-            password: '',
             firstname: '',
             lastname: '',
             address: '',
             phone: '',
+            password: '',
+            password2: '',
+            errors: {}
+        };
+    }
+
+    componentDidMount() {
+        // If logged in and user navigates to Register page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/dashboard");
         }
     }
 
-    handleChangeInputEmail = async event => {
-        const email = event.target.value
-        this.setState({ email })
-    }
-    handleChangeInputPassword = async event => {
-        const password = event.target.value
-        this.setState({ password })
-    }
-
-    handleChangeInputFirstName = async event => {
-        const firstname = event.target.value
-        this.setState({ firstname })
-    }
-
-    handleChangeInputLastName = async event => {
-        const lastname = event.target.value
-        this.setState({ lastname })
-    }
-    handleChangeInputAddress = async event => {
-        const address = event.target.value
-        this.setState({ address })
-    }
-    handleChangeInputPhone = async event => {
-        const phone = event.target.validity.valid
-            ? event.target.value
-            : this.state.phone
-
-        this.setState({ phone })
-    }
-
-    handleIncludeUser = async () => {
-        const { email, password, firstname, lastname, address, phone } = this.state
-        const payload = { email, password, firstname, lastname, address, phone }
-
-        await api.insertUser(payload).then(res => {
-            window.alert(`User inserted successfully`)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
             this.setState({
-                email: '',
-                password: '',
-                firstname: '',
-                lastname: '',
-                address: '',
-                phone: '',
-            })
-        })
+                errors: nextProps.errors
+            });
+        }
     }
+
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+    onSubmit = e => {
+        e.preventDefault();
+        const newUser = {
+
+            email: this.state.email,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            address: this.state.address,
+            phone: this.state.phone,
+            password: this.state.password,
+            password2: this.state.password2
+        };
+        console.log(newUser);
+    };
+
+
 
     render() {
-        const { email, password, firstname, lastname, address, phone } = this.state
+
+        const { errors } = this.state;
+
         return (
             <Wrapper>
                 <Title>Rejestracja</Title>
-                <Label>Email: </Label>
-                <InputText
-                    type="text"
-                    value={email}
-                    onChange={this.handleChangeInputEmail}
-                />
-                <Label>First Name: </Label>
-                <InputText
-                    type="text"
-                    value={firstname}
-                    onChange={this.handleChangeInputFirstName}
-                />
 
-                <Label>Last Name: </Label>
-                <InputText
-                    type="text"
-                    value={lastname}
-                    onChange={this.handleChangeInputLastName}
-                />
-                <Label>Address: </Label>
-                <InputText
-                    type="text"
-                    value={address}
-                    onChange={this.handleChangeInputAddress}
-                />
-                <Label>Phone: </Label>
-                <InputText
-                    type="text"
-                    value={phone}
-                    onChange={this.handleChangeInputPhone}
-                />
+                <form noValidate onSubmit={this.onSubmit}>
 
-                <Label>Password: </Label>
-                <InputText
-                    type="text"
-                    value={password}
-                    onChange={this.handleChangeInputPassword}
-                />
-                <Label>Repet Password: </Label>
-                <InputText
-                    type="text"
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.email}
+                        error={errors.email}
+                        id="email"
+                        type="email"
+                        className={classnames("", {
+                            invalid: errors.email
+                        })}
+                    />
+                    <Label htmlFor="firstname">FirstName</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.firstname}
+                        error={errors.firstname}
+                        id="firstname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.firstname
+                        })}
+                    />
+                    <Label htmlFor="lastname">LastName</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.lasttname}
+                        error={errors.lastname}
+                        id="lastname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.lastname
+                        })}
+                    />
+                    <Label htmlFor="address">Address</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.address}
+                        error={errors.address}
+                        id="address"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.address
+                        })}
+                    />
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.phone}
+                        error={errors.phone}
+                        id="phone"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.phone
+                        })}
+                    />
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.password}
+                        error={errors.password}
+                        id="password"
+                        type="password"
+                        className={classnames("", {
+                            invalid: errors.password
+                        })}
+                    />
 
-                />
-                <Button onClick={this.handleIncludeUser}>Rejestracja</Button>
-                {/* <CancelButton href={'/users/list'}>Cancel</CancelButton> */}
+                    <Label htmlFor="password2">Confirm Password</Label>
+                    <Input
+                        onChange={this.onChange}
+                        value={this.state.password2}
+                        error={errors.password2}
+                        id="password2"
+                        type="password"
+                        className={classnames("", {
+                            invalid: errors.password2
+                        })}
+                    />
+                    <Button typpe="button" onClick={this.handleIncludeUser}>Rejestracja</Button>
+                </form>
             </Wrapper>
         )
     }
 }
 
-export default Register
+
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { registerUser }
+)(withRouter(Register));
