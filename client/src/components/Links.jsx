@@ -32,6 +32,11 @@ class Links extends Component {
                             </Link>
                         </Item>
                         <Item>
+                            <Link to="/users/list" className="nav-link">
+                                Użytkownicy
+                            </Link>
+                        </Item>
+                        <Item>
                             <Link to="/products/create" className="nav-link">
                                 Dodawanie produktów
                             </Link>
@@ -42,19 +47,15 @@ class Links extends Component {
                             </Link>
                         </Item>
 
-                        <Item>
-                            <Link to="/users/list" className="nav-link">
-                                Lista użytkowników
-                            </Link>
-                        </Item>
+
 
                         <Item>
-                            <Link to="/login" className="nav-link">
+                            <Link to="/users/login" className="nav-link">
                                 Zaloguj
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/register" className="nav-link">
+                            <Link to="/users/register" className="nav-link">
                                 Utwórz konto
                             </Link>
                         </Item>

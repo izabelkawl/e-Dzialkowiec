@@ -24,9 +24,9 @@ function App() {
         <NavBar />
         <Switch>
           <Route path="/" exact component={FrontPage} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/users/login" exact component={Login} />
           <Route path="/users/list" exact component={UsersList} />
-          <Route path="/register" exact component={Register} />
+          <Route path="/users/register" exact component={Register} />
           <Route
             path="/users/update/:id"
             exact

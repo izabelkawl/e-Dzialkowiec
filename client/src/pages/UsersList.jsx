@@ -17,7 +17,7 @@ const ListItem = styled.div`
   width: 60%;
   padding: 1vh 1vw;
   border-bottom: 1px dashed #ccc;
-  
+  background-color:white;
 `;
 const Update = styled.div`
     color: #ef9b0f;
