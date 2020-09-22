@@ -46,9 +46,6 @@ class Links extends Component {
                                 Dodawanie dostawców
                             </Link>
                         </Item>
-
-
-
                         <Item>
                             <Link to="/users/login" className="nav-link">
                                 Zaloguj

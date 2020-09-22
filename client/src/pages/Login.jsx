@@ -58,7 +58,7 @@ class Login extends Component {
                 />
 
                 <Button onClick={this.handleIncludeProduct}>Zaloguj</Button>
-                <CancelButton href="/register">Zarejestruj</CancelButton>
+                <CancelButton href="/users/register">Zarejestruj</CancelButton>
 
             </Wrapper>
         )
