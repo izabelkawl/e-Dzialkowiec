@@ -38,6 +38,12 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
+const Span = styled.span.attrs({
+    className: `red-text`,
+})`
+    color: red;
+`
+
 class Register extends Component {
     constructor() {
         super();
@@ -61,6 +67,13 @@ class Register extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
 
 
     onChange = e => {
@@ -94,6 +107,7 @@ class Register extends Component {
                 <form noValidate onSubmit={this.onSubmit}>
 
                     <Label htmlFor="email">Email</Label>
+                    <Span>{errors.email}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.email}
@@ -104,7 +118,9 @@ class Register extends Component {
                             invalid: errors.email
                         })}
                     />
+
                     <Label htmlFor="firstname">FirstName</Label>
+                    <Span>{errors.firstname}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.firstname}
@@ -116,6 +132,7 @@ class Register extends Component {
                         })}
                     />
                     <Label htmlFor="lastname">LastName</Label>
+                    <Span>{errors.lastname}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.lasttname}
@@ -127,6 +144,7 @@ class Register extends Component {
                         })}
                     />
                     <Label htmlFor="address">Address</Label>
+                    <Span>{errors.address}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.address}
@@ -138,6 +156,7 @@ class Register extends Component {
                         })}
                     />
                     <Label htmlFor="phone">Phone</Label>
+                    <Span>{errors.phone}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.phone}
@@ -149,6 +168,7 @@ class Register extends Component {
                         })}
                     />
                     <Label htmlFor="password">Password</Label>
+                    <Span>{errors.password}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.password}
@@ -161,6 +181,7 @@ class Register extends Component {
                     />
 
                     <Label htmlFor="password2">Confirm Password</Label>
+                    <Span >{errors.password2}</Span>
                     <Input
                         onChange={this.onChange}
                         value={this.state.password2}
@@ -171,7 +192,7 @@ class Register extends Component {
                             invalid: errors.password2
                         })}
                     />
-                    <Button typpe="button" onClick={this.handleIncludeUser}>Rejestracja</Button>
+                    <Button typpe="button">Rejestracja</Button>
                 </form>
             </Wrapper>
         )

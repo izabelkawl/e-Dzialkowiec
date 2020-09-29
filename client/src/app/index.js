@@ -37,13 +37,14 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
+
   // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
     // Redirect to login
-    window.location.href = "./login";
+    window.location.href = "./users/login";
   }
 }
 
@@ -69,7 +70,7 @@ function App() {
             <Route path="/products/list" exact component={ProductsList} />
             <Route path="/products/create" exact component={ProductsInsert} />
             <Route path="/products/update/:id" exact component={ProductsUpdate} />
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" exact component={Dashboard} />
           </Switch>
         </Router>
       </ Container2 >

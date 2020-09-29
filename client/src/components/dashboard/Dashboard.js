@@ -3,42 +3,46 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 
+import styled from 'styled-components'
+
+const Wrapper = styled.div.attrs({
+    className: 'form-group',
+})`
+    margin-left: auto;
+    margin-right: auto; 
+    width: 600px;
+    margin-top: 150px;
+    background-color: white;
+    padding: 50px;
+`
+const Button = styled.button.attrs({
+    className: `btn btn-primary`,
+})`
+    margin: 15px 15px 15px 5px;
+`
+
 class Dashboard extends Component {
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
     };
-
     render() {
 
         const { user } = this.props.auth;
 
         return (
-            <div style={{ height: "75vh" }} className="container valign-wrapper">
-                <div className="row">
-                    <div className="col s12 center-align">
-                        <h4>
-                            <b>Hey there,</b> {user.firstname.split(" ")[0]}
-                            <p className="flow-text grey-text text-darken-1">
-                                You are logged into a full-stack{" "}
-                                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-                        </h4>
-                        <button
-                            style={{
-                                width: "150px",
-                                borderRadius: "3px",
-                                letterSpacing: "1.5px",
-                                marginTop: "1rem"
-                            }}
-                            onClick={this.onLogoutClick}
-                            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                        >
-                            Logout
-            </button>
-                    </div>
-                </div>
-            </div>
+            <Wrapper >
+
+                Hey there,<b> {user.firstname.split(" ")[0]} </b>.
+                <span> You are logged into a E-Market app. Congrats </span>
+
+                <Button
+                    onClick={this.onLogoutClick}
+                >
+                    Logout
+            </Button>
+
+            </Wrapper>
         );
     }
 }
