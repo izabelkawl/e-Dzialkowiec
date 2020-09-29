@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../actions/authActions";
+import { registerUser } from "../api/index";
 import classnames from "classnames";
 
 import styled from 'styled-components'
@@ -61,13 +61,6 @@ class Register extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }
 
 
     onChange = e => {
@@ -85,7 +78,7 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         };
-        console.log(newUser);
+        this.props.registerUser(newUser, this.props.history);
     };
 
 

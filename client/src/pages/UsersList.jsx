@@ -75,17 +75,17 @@ const UsersList = () => {
     }, []);
 
     const UsersTable = users.map((user, index) => {
-        const { _id, email, password, firstname, lastname, address, phone } = user;
+        const { _id, email, firstname, lastname, address, phone, password } = user;
 
         return (
             <ListItem key={_id}>
                 <h5>{index}</h5>
                 <h5>{email}</h5>
-                <h5>{password}</h5>
                 <h5>{firstname}</h5>
                 <h5>{lastname}</h5>
                 <h5>{address}</h5>
                 <h5>{phone}</h5>
+                <h5>{password}</h5>
                 <DeleteUser id={_id} />
                 <UpdateUser id={_id} />
             </ListItem>

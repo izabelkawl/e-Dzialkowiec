@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "../actions/authActions";
+import { setCurrentUser, logoutUser } from "../api/index";
 
 import { Provider } from "react-redux";
 import store from "../store.js";
@@ -12,7 +12,7 @@ import { NavBar } from '../components'
 import { FrontPage, UsersList, Register, UsersUpdate, ProvidersList, ProvidersInsert, ProvidersUpdate, ProductsList, ProductsInsert, ProductsUpdate, Login } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
-import Dashboard from '../dashboard/Dashboard';
+import Dashboard from '../components/dashboard/Dashboard';
 
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -77,4 +77,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

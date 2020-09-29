@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../actions/authActions";
+import { loginUser } from "../api/index";
 import classnames from "classnames";
 
 import styled from 'styled-components'
@@ -60,18 +60,6 @@ class Login extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-            this.props.history.push("/dashboard");
-        }
-
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }
-
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -84,7 +72,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(userData);
+        this.props.loginUser(userData);
     };
 
     render() {

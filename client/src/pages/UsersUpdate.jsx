@@ -44,21 +44,17 @@ class UsersUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             email: '',
-            password: '',
             firstname: '',
             lastname: '',
             address: '',
             phone: '',
+            password: '',
         }
     }
 
     handleChangeInputEmail = async event => {
         const email = event.target.value
         this.setState({ email })
-    }
-    handleChangeInputPassword = async event => {
-        const password = event.target.value
-        this.setState({ password })
     }
 
     handleChangeInputFirstName = async event => {
@@ -81,19 +77,24 @@ class UsersUpdate extends Component {
         this.setState({ phone })
     }
 
+    handleChangeInputPassword = async event => {
+        const password = event.target.value
+        this.setState({ password })
+    }
+
     handleUpdateUser = async () => {
-        const { id, email, password, firstname, lastname, address, phone } = this.state
-        const payload = { email, password, firstname, lastname, address, phone }
+        const { id, email, firstname, lastname, address, phone, password } = this.state
+        const payload = { email, firstname, lastname, address, phone, password }
 
         await api.updateUserById(id, payload).then(res => {
             window.alert(`User updated successfully`)
             this.setState({
                 email: '',
-                password: '',
                 firstname: '',
                 lastname: '',
                 address: '',
                 phone: '',
+                password: ''
             })
         })
     }
@@ -104,16 +105,16 @@ class UsersUpdate extends Component {
 
         this.setState({
             email: user.data.data.email,
-            password: user.data.data.password,
             firstname: user.data.data.firstname,
             lastname: user.data.data.lastname,
             adress: user.data.data.address,
             phone: user.data.data.phone,
+            password: user.data.data.password
         })
     }
 
     render() {
-        const { email, password, firstname, lastname, address, phone } = this.state
+        const { email, firstname, lastname, address, phone, password } = this.state
         return (
             <Wrapper>
                 <Title>Update User</Title>
@@ -125,12 +126,6 @@ class UsersUpdate extends Component {
                     onChange={this.handleChangeInputEmail}
                 />
 
-                <Label>Password: </Label>
-                <InputText
-                    type="text"
-                    value={password}
-                    onChange={this.handleChangeInputPassword}
-                />
 
                 <Label>First Name: </Label>
                 <InputText
@@ -158,6 +153,12 @@ class UsersUpdate extends Component {
                     onChange={this.handleChangeInputPhone}
                 />
 
+                <Label>Password: </Label>
+                <InputText
+                    type="text"
+                    value={password}
+                    onChange={this.handleChangeInputPassword}
+                />
                 <Button onClick={this.handleUpdateUser}>Update User</Button>
                 <CancelButton href={'/users/list'}>Cancel</CancelButton>
             </Wrapper>
