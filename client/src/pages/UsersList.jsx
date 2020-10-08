@@ -79,7 +79,7 @@ const UsersList = () => {
 
         return (
             <ListItem key={_id}>
-                <h5>{index}</h5>
+                <h5>{index + 1}</h5>
                 <h5>{email}</h5>
                 <h5>{firstname}</h5>
                 <h5>{lastname}</h5>

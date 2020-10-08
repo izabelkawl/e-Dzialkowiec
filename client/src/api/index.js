@@ -76,17 +76,17 @@ export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
 
-export const insertProvider = payload => api.post(`/provider`, payload)
-export const getAllProviders = () => api.get(`/providers`)
-export const updateProviderById = (id, payload) => api.put(`/provider/${id}`, payload)
-export const deleteProviderById = id => api.delete(`/provider/${id}`)
-export const getProviderById = id => api.get(`/provider/${id}`)
+export const insertHandyman = payload => api.post(`/handyman`, payload)
+export const getAllHandymans = () => api.get(`/handymans`)
+export const updateHandymanById = (id, payload) => api.put(`/handyman/${id}`, payload)
+export const deleteHandymanById = id => api.delete(`/handyman/${id}`)
+export const getHandymanById = id => api.get(`/handyman/${id}`)
 
-export const insertProduct = payload => api.post(`/product`, payload)
-export const getAllProducts = () => api.get(`/products`)
-export const updateProductById = (id, payload) => api.put(`/product/${id}`, payload)
-export const deleteProductById = id => api.delete(`/product/${id}`)
-export const getProductById = id => api.get(`/product/${id}`)
+export const insertAllotment = payload => api.post(`/allotment`, payload)
+export const getAllAllotments = () => api.get(`/allotments`)
+export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
+export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
+export const getAllotmentById = id => api.get(`/allotment/${id}`)
 
 const apis = {
     registerUser,
@@ -100,17 +100,18 @@ const apis = {
     deleteUserById,
     getUserById,
 
-    insertProvider,
-    getAllProviders,
-    updateProviderById,
-    deleteProviderById,
-    getProviderById,
+    insertAllotment,
+    getAllAllotments,
+    updateAllotmentById,
+    deleteAllotmentById,
+    getAllotmentById,
 
-    insertProduct,
-    getAllProducts,
-    updateProductById,
-    deleteProductById,
-    getProductById,
+    insertHandyman,
+    getAllHandymans,
+    updateHandymanById,
+    deleteHandymanById,
+    getHandymanById,
+
 }
 
 export default apis

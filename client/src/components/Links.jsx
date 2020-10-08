@@ -22,13 +22,13 @@ class Links extends Component {
                 <Collapse>
                     <List>
                         <Item>
-                            <Link to="/products/list" className="nav-link">
-                                Produkty
+                            <Link to="/allotments/list" className="nav-link">
+                                Działki
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/providers/list" className="nav-link">
-                                Dostawcy
+                            <Link to="/handymans/list" className="nav-link">
+                                Złote rączki
                             </Link>
                         </Item>
                         <Item>
@@ -37,13 +37,13 @@ class Links extends Component {
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/products/create" className="nav-link">
-                                Dodawanie produktów
+                            <Link to="/allotments/create" className="nav-link">
+                                Dodawanie działek
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/providers/create" className="nav-link">
-                                Dodawanie dostawców
+                            <Link to="/handymans/create" className="nav-link">
+                                Dodawanie złotychrączek
                             </Link>
                         </Item>
                         <Item>

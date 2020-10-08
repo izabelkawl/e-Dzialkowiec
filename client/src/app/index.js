@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 
 import { NavBar } from '../components'
-import { FrontPage, UsersList, Register, UsersUpdate, ProvidersList, ProvidersInsert, ProvidersUpdate, ProductsList, ProductsInsert, ProductsUpdate, Login } from '../pages'
+import { FrontPage, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, Login } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -63,14 +63,16 @@ function App() {
             <Route path="/users/list" exact component={UsersList} />
             <Route path="/users/update/:id" exact component={UsersUpdate} />
 
-            <Route path="/providers/list" exact component={ProvidersList} />
-            <Route path="/providers/create" exact component={ProvidersInsert} />
-            <Route path="/providers/update/:id" exact component={ProvidersUpdate} />
+            <Route path="/allotments/list" exact component={AllotmentsList} />
+            <Route path="/allotments/create" exact component={AllotmentsInsert} />
+            <Route path="/allotments/update/:id" exact component={AllotmentsUpdate} />
 
-            <Route path="/products/list" exact component={ProductsList} />
-            <Route path="/products/create" exact component={ProductsInsert} />
-            <Route path="/products/update/:id" exact component={ProductsUpdate} />
+            <Route path="/handymans/list" exact component={HandymansList} />
+            <Route path="/handymans/create" exact component={HandymansInsert} />
+            <Route path="/handymans/update/:id" exact component={HandymansUpdate} />
+
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
+
           </Switch>
         </Router>
       </ Container2 >

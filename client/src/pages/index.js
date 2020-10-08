@@ -6,12 +6,13 @@ import UsersList from './UsersList'
 import Register from './Register'
 import UsersUpdate from './UsersUpdate'
 
-import ProductsList from './ProductsList'
-import ProductsInsert from './ProductsInsert'
-import ProductsUpdate from './ProductsUpdate'
+import AllotmentsList from './AllotmentsList'
+import AllotmentsUpdate from './AllotmentsUpdate'
+import AllotmentsInsert from './AllotmentsInsert'
 
-import ProvidersList from './ProvidersList'
-import ProvidersInsert from './ProvidersInsert'
-import ProvidersUpdate from './ProvidersUpdate'
+import HandymansList from './HandymansList'
+import HandymansUpdate from './HandymansUdate'
+import HandymansInsert from './HandymansInsert'
 
-export { FrontPage, Login, UsersList, Register, UsersUpdate, ProvidersList, ProvidersInsert, ProvidersUpdate, ProductsList, ProductsInsert, ProductsUpdate }
+
+export { FrontPage, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate }
