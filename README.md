@@ -1,25 +1,27 @@
-Database name: database
-Users
+Database name:
+<b>database</b>
+  <br>
+<b>Users</b>
 
 _id, email,password, firstname, lastname, address, phone, password
 
 
-Allotments
+<b>Allotments</b>
 
 _id, image, number, size, width, height, status
 
-Handymans
+<b>Handymans</b>
 
 _id, name, price, unit, quanity, Provider
 
-Messages
+<b>Messages</b>
 
 _id, User, Owner, content, date/time
 
-BACKEND
-models:
+<h2>BACKEND</h2>
+<h3>models:</h3>
 
-user:
+<h4>user:</h4>
 email: String
 firstname: String
 lastname: String
@@ -27,7 +29,7 @@ addres: String
 phone: Number 
 passwors: String
 
-allotment:
+<h4>allotment:</h4>
 image: String
 number: Number
 size: Number
@@ -35,20 +37,20 @@ width: Number
 height: Number
 status: String
 
-handyman:
+<h4>handyman:</h4>
 profession: String
 email: String
 firstname: String
 lastname: String
 phone: Number
 
-messages:
+<h4>messages:</h4>
 user:
 owner:
 content: String
 time: Date
 
-controllers:
+<h3>controllers:</h3>
 createUser, POST
 updateUser, PUT
 deleteUser, DELETE
@@ -73,11 +75,11 @@ deleteMessage, DELETE
 getMessages, GET
 getMessageById, GET
 
-routes:
+<h3>routes:</h3>
 user-router
 allotment-router
 handyman-router
 message-router
 
-FRONTEND
+<h2>FRONTEND</h2>
 
