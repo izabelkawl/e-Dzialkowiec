@@ -22,64 +22,65 @@ _id, User, Owner, content, date/time
 <h3>models:</h3>
 
 <h4>user:</h4>
-email: String
-firstname: String
-lastname: String
-addres: String
-phone: Number 
-passwors: String
+<p>email: String</p>
+<p>firstname: String</p>
+<p>lastname: String</p>
+<p>addres: String</p>
+<p>phone: Number </p>
+<p>passwors: String</p>
 
 <h4>allotment:</h4>
-image: String
-number: Number
-size: Number
-width: Number
-height: Number
-status: String
+<p>image: String</p>
+<p>number: Number</p>
+<p>size: Number</p>
+<p>width: Number</p>
+<p>height: Number</p>
+<p>status: String</p>
 
 <h4>handyman:</h4>
-profession: String
-email: String
-firstname: String
-lastname: String
-phone: Number
+<p>profession: String</p>
+<p>email: String</p>
+<p>firstname: String</p>
+<p>lastname: String</p>
+<p>phone: Number</p>
 
 <h4>messages:</h4>
-user:
-owner:
-content: String
-time: Date
-
+<p>user:</p>
+<p>owner:</p>
+<p>content: String</p>
+<p>time: Date</p>
+ <br>
 <h3>controllers:</h3>
-createUser, POST
-updateUser, PUT
-deleteUser, DELETE
-getUsers, GET
-getUserById, GET
+<p>createUser, POST</p>
+<p>updateUser, PUT</p>
+<p>deleteUser, DELETE</p>
+<p>getUsers, GET</p>
+<p>getUserById, GET</p>
 
-createAllotment, POST
-updateAllotment, PUT
-deleteAllotment, DELETE
-getAllotments, GET
-getAllotmentById, GET
+<p>createAllotment, POST</p>
+<p>updateAllotment, PUT</p>
+<p>deleteAllotment, DELETE</p>
+<p>getAllotments, GET</p>
+<p>getAllotmentById, GET</p>
 
-createHandyman, POST
-updateHandyman, PUT
-deleteHandyman, DELETE
-getHandymans, GET
-getHandymanById, GET
+<p>createHandyman, POST</p>
+<p>updateHandyman, PUT</p>
+<p>deleteHandyman, DELETE</p>
+<p>getHandymans, GET</p>
+<p>getHandymanById, GET</p>
 
-createMessage, POST
-updateMessage, PUT
-deleteMessage, DELETE
-getMessages, GET
-getMessageById, GET
-
+<p>createMessage, POST</p>
+<p>updateMessage, PUT</p>
+<p>deleteMessage, DELETE</p>
+<p>getMessages, GET</p>
+<p>getMessageById, GET</p>
+ <br>
 <h3>routes:</h3>
-user-router
-allotment-router
-handyman-router
-message-router
-
+<p>user-router</p>
+<p>allotment-router</p>
+<p>handyman-router</p>
+<p>message-router</p>
+ <br>
+ <hr>
 <h2>FRONTEND</h2>
 
