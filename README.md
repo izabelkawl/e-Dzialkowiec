@@ -56,19 +56,19 @@ _id, User, Owner, content, date/time
 <p>deleteUser, DELETE</p>
 <p>getUsers, GET</p>
 <p>getUserById, GET</p>
-
+ <br>
 <p>createAllotment, POST</p>
 <p>updateAllotment, PUT</p>
 <p>deleteAllotment, DELETE</p>
 <p>getAllotments, GET</p>
 <p>getAllotmentById, GET</p>
-
+ <br>
 <p>createHandyman, POST</p>
 <p>updateHandyman, PUT</p>
 <p>deleteHandyman, DELETE</p>
 <p>getHandymans, GET</p>
 <p>getHandymanById, GET</p>
-
+ <br>
 <p>createMessage, POST</p>
 <p>updateMessage, PUT</p>
 <p>deleteMessage, DELETE</p>
