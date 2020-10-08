@@ -16,7 +16,7 @@ _id, name, price, unit, quanity, Provider
 
 <b>Messages</b>
 
-_id, User, Owner, content, date/time
+_id, User, Owner,Handyman, content, date/time
 
 <h2>BACKEND</h2>
 <h3>models:</h3>
@@ -47,6 +47,7 @@ _id, User, Owner, content, date/time
 <h4>messages:</h4>
 <p>user:</p>
 <p>owner:</p>
+<p>handyman:</p>
 <p>content: String</p>
 <p>time: Date</p>
  <br>
