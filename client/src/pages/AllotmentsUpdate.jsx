@@ -9,10 +9,12 @@ const Title = styled.h1.attrs({
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
-})`
-     margin: 50px;
+})` margin-left: auto;
+    margin-right: auto; 
     background-color: white;
     padding: 50px;
+    width: 600px;
+    margin-top: 50px;
 `
 
 const Label = styled.label`

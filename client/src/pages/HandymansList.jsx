@@ -12,12 +12,19 @@ const Wrapper = styled.div`
 
 const ListItem = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 50%;
   padding: 1vh 1vw;
   border-bottom: 1px dashed #ccc;
   background-color: white;
+`;
+const Lp = styled.div`
+  width: 50px;
+`;
+const Email = styled.div`
+  width: 250px;
+`;
+const Item = styled.div`
+  width: 100px;
 `;
 const Update = styled.div`
     color: #ef9b0f;
@@ -79,19 +86,29 @@ const HandymansList = () => {
 
         return (
             <ListItem key={_id}>
-                <h5>{index + 1}</h5>
-                <h5>{profession}</h5>
-                <h5>{email}</h5>
-                <h5>{firstname}</h5>
-                <h5>{lastname}</h5>
-                <h5>{phone}</h5>
-                <DeleteHandyman id={_id} />
-                <UpdateHandyman id={_id} />
+                <Lp>{index + 1}</Lp>
+                <Item>{profession}</Item>
+                <Email>{email}</Email>
+                <Item>{firstname}</Item>
+                <Item>{lastname}</Item>
+                <Item>{phone}</Item>
+                <Item><DeleteHandyman id={_id} /></Item>
+                <Item><UpdateHandyman id={_id} /></Item>
             </ListItem>
         );
     });
 
-    return <Wrapper>{HandymansTable}</Wrapper>;
+    return <Wrapper>
+        <ListItem>
+            <Lp>Lp</Lp>
+            <Item>profession</Item>
+            <Email>email</Email>
+            <Item>firstname</Item>
+            <Item>lastname</Item>
+            <Item>phone</Item>
+        </ListItem>
+
+        {HandymansTable}</Wrapper>;
 };
 
 export default HandymansList;

@@ -12,13 +12,18 @@ const Wrapper = styled.div`
 
 const ListItem = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 50%;
   padding: 1vh 1vw;
   border-bottom: 1px dashed #ccc;
   background-color: white;
 `;
+const Lp = styled.div`
+  width: 50px;
+`;
+const Item = styled.div`
+  width: 80px;
+`;
+
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
@@ -79,22 +84,34 @@ const AllotmentsList = () => {
 
         return (
             <ListItem key={_id}>
-                <h5>{index + 1}</h5>
-                <h5>{image}</h5>
-                <h5>{number}</h5>
-                <h5>{size}</h5>
-                <h5>{width}</h5>
-                <h5>{height}</h5>
-                <h5>{price}</h5>
-                <h5>{status}</h5>
+                <Lp>{index + 1}</Lp>
+                <Item>{image}</Item>
+                <Item>{number}</Item>
+                <Item>{size}</Item>
+                <Item>{width}</Item>
+                <Item>{height}</Item>
+                <Item>{price}</Item>
+                <Item>{status}</Item>
 
-                <DeleteAllotment id={_id} />
-                <UpdateAllotment id={_id} />
+                <Item><DeleteAllotment id={_id} /></Item>
+                <Item><UpdateAllotment id={_id} /></Item>
             </ListItem>
         );
     });
 
-    return <Wrapper>{AllotmentsTable}</Wrapper>;
+    return <Wrapper>
+        <ListItem >
+            <Lp>Lp</Lp>
+            <Item>Image</Item>
+            <Item>number</Item>
+            <Item>size</Item>
+            <Item>width</Item>
+            <Item>height</Item>
+            <Item>price</Item>
+            <Item>status</Item>
+        </ListItem>
+
+        {AllotmentsTable}</Wrapper>;
 };
 
 export default AllotmentsList;

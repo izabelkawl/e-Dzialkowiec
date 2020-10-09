@@ -12,12 +12,19 @@ const Wrapper = styled.div`
 
 const ListItem = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 60%;
   padding: 1vh 1vw;
   border-bottom: 1px dashed #ccc;
   background-color:white;
+`;
+const Lp = styled.div`
+  width: 50px;
+`;
+const Email = styled.div`
+  width: 250px;
+`;
+const Item = styled.div`
+  width: 100px;
 `;
 const Update = styled.div`
     color: #ef9b0f;
@@ -79,19 +86,30 @@ const UsersList = () => {
 
         return (
             <ListItem key={_id}>
-                <h5>{index + 1}</h5>
-                <h5>{email}</h5>
-                <h5>{firstname}</h5>
-                <h5>{lastname}</h5>
-                <h5>{address}</h5>
-                <h5>{phone}</h5>
-                <DeleteUser id={_id} />
-                <UpdateUser id={_id} />
+                <Lp>{index + 1}</Lp>
+                <Email>{email}</Email>
+                <Item>{firstname}</Item>
+                <Item>{lastname}</Item>
+                <Item>{address}</Item>
+                <Item>{phone}</Item>
+                <Item><DeleteUser id={_id} /></Item>
+                <Item><UpdateUser id={_id} /></Item>
+
             </ListItem>
         );
     });
 
-    return <Wrapper>{UsersTable}</Wrapper>;
+    return <Wrapper>
+        <ListItem >
+            <Lp>Lp</Lp>
+            <Email>email</Email>
+            <Item>firstname</Item>
+            <Item>lastname</Item>
+            <Item>address</Item>
+            <Item>phone</Item>
+        </ListItem>
+        {UsersTable}
+    </Wrapper>;
 };
 
 export default UsersList;

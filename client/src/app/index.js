@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 
 import { NavBar } from '../components'
-import { FrontPage, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, Login } from '../pages'
+import { FrontPage, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Login } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -20,12 +20,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Background from './img/bg.jpg';
 import img from './img/bg.jpg';
 
-const Container2 = styled.div`
+const Container = styled.div`
     background-image: url(${img});
-    width: 100vw;
-    height: 100vh;
     background-repeat: no-repeat;
-  background-attachment: fixed;
+    background-size: 100% auto;
+    height: 100vh;
+    background-position: center top;
+    background-attachment: fixed;
 `;
 
 // Check for token to keep user logged in
@@ -51,7 +52,7 @@ if (localStorage.jwtToken) {
 function App() {
   return (
     <Provider store={store}>
-      <Container2>
+      <Container>
         <Router>
 
           <NavBar />
@@ -71,11 +72,15 @@ function App() {
             <Route path="/handymans/create" exact component={HandymansInsert} />
             <Route path="/handymans/update/:id" exact component={HandymansUpdate} />
 
+            <Route path="/messages/list" exact component={MessagesList} />
+            <Route path="/messages/create" exact component={MessagesInsert} />
+            <Route path="/messages/update/:id" exact component={MessagesUpdate} />
+
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
 
           </Switch>
         </Router>
-      </ Container2 >
+      </ Container >
     </Provider >
   )
 }

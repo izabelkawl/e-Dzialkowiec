@@ -5,14 +5,15 @@ import Logo from './Logo'
 import Links from './Links'
 
 const Container = styled.div.attrs({
-    className: 'container',
-})``
+    className: '',
+})`background-color: white;
+margin-left: auto;
+    margin-right: auto; 
+    width: 65vw;`
 
 const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg navbar-light bg-light',
-})`
-    margin-bottom: 20 px;
-'`
+    className: 'navbar navbar-expand-lg navbar-light bg-white',
+})``
 
 
 class NavBar extends Component {

@@ -13,7 +13,6 @@ const List = styled.div.attrs({
 const Item = styled.div.attrs({
     className: 'collpase navbar-collapse',
 })``
-
 class Links extends Component {
     render() {
         return (
@@ -22,37 +21,47 @@ class Links extends Component {
                 <Collapse>
                     <List>
                         <Item>
-                            <Link to="/allotments/list" className="nav-link">
+                            <Link to="/allotments/list" className="nav-link ">
                                 Działki
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/handymans/list" className="nav-link">
+                            <Link to="/handymans/list" className="nav-link ">
                                 Złote rączki
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/users/list" className="nav-link">
+                            <Link to="/messages/list" className="nav-link ">
+                                Wiadomości
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/users/list" className="nav-link ">
                                 Użytkownicy
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/allotments/create" className="nav-link">
+                            <Link to="/allotments/create" className="nav-link " >
                                 Dodawanie działek
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/handymans/create" className="nav-link">
+                            <Link to="/handymans/create" className="nav-link ">
                                 Dodawanie złotychrączek
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/users/login" className="nav-link">
+                            <Link to="/messages/create" className="nav-link ">
+                                Dodawanie wiadomości
+                            </Link>
+                        </Item>
+                        <Item>
+                            <Link to="/users/login" className="nav-link ">
                                 Zaloguj
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/users/register" className="nav-link">
+                            <Link to="/users/register" className="nav-link ">
                                 Utwórz konto
                             </Link>
                         </Item>

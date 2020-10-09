@@ -14,5 +14,8 @@ import HandymansList from './HandymansList'
 import HandymansUpdate from './HandymansUdate'
 import HandymansInsert from './HandymansInsert'
 
+import MessagesList from './MessagesList'
+import MessagesUpdate from './MessagesUpdate'
+import MessagesInsert from './MessagesInsert'
 
-export { FrontPage, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate }
+export { FrontPage, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }

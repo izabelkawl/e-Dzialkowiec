@@ -42,6 +42,11 @@ const CancelButton = styled.a.attrs({
 })`
     margin: 15px 15px 15px 5px;
 `
+const Span = styled.span.attrs({
+    className: `red-text`,
+})`
+    color: red;
+`
 
 class Login extends Component {
     constructor() {
@@ -93,6 +98,10 @@ class Login extends Component {
                 <Title>Logowanie</Title>
                 <form noValidate onSubmit={this.onSubmit}>
                     <Label htmlFor="email">Email</Label>
+                    <Span>
+                        {errors.email}
+                        {errors.emailnotfound}
+                    </Span>
                     <InputText
                         onChange={this.onChange}
                         value={this.state.email}
@@ -105,11 +114,12 @@ class Login extends Component {
                         })}
 
                     />
-                    <span className="red-text">
-                        {errors.email}
-                        {errors.emailnotfound}
-                    </span>
+
                     <Label htmlFor="password">Password</Label>
+                    <Span>
+                        {errors.password}
+                        {errors.passwordincorrect}
+                    </Span>
                     <InputText
                         onChange={this.onChange}
                         value={this.state.password}
@@ -121,12 +131,9 @@ class Login extends Component {
                             invalid: errors.password || errors.passwordincorrect
                         })}
                     />
-                    <span className="red-text">
-                        {errors.password}
-                        {errors.passwordincorrect}
-                    </span>
+
                     <Button>Zaloguj</Button>
-                    <CancelButton href="/register">Zarejestruj</CancelButton>
+                    <CancelButton href="/users/register">Zarejestruj</CancelButton>
 
                 </form>
 

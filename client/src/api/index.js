@@ -12,10 +12,10 @@ const api = axios.create({
     baseURL: 'http://localhost:3000/api',
 })
 // Register User
-export const registerUser = payload => dispatch => {
+export const registerUser = (userData, history) => dispatch => {
     api
-        .post(`/register`, payload)
-        .then(res => api.push("/login"))
+        .post("/register", userData)
+        .then(res => history.push("/users/login"))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -88,6 +88,13 @@ export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, 
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
 
+
+export const insertMessage = payload => api.post(`/message`, payload)
+export const getAllMessages = () => api.get(`/messages`)
+export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payload)
+export const deleteMessageById = id => api.delete(`/message/${id}`)
+export const getMessageById = id => api.get(`/message/${id}`)
+
 const apis = {
     registerUser,
     loginUser,
@@ -112,6 +119,11 @@ const apis = {
     deleteHandymanById,
     getHandymanById,
 
+    insertMessage,
+    getAllMessages,
+    updateMessageById,
+    deleteMessageById,
+    getMessageById,
 }
 
 export default apis
