@@ -10,7 +10,7 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-      margin-left: auto;
+    margin-left: auto;
     margin-right: auto; 
     background-color: white;
     padding: 50px;
@@ -48,7 +48,7 @@ class MessagesUpdate extends Component {
             id: this.props.match.params.id,
             user: '',
             recipient: '',
-            content: ''
+            content: '',
         }
     }
     handleChangeInputUser = async event => {

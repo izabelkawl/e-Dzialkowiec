@@ -25,6 +25,7 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: 100% auto;
     height: 100vh;
+    width: 100 vw;
     background-position: center top;
     background-attachment: fixed;
 `;
