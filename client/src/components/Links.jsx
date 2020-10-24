@@ -67,6 +67,11 @@ class Links extends Component {
                             </Link>
                         </Item>
                         <Item>
+                            <Link style={center} to="/handymans/list" className="nav-link ">
+                                Handy xD
+                            </Link>
+                        </Item>
+                        <Item>
                             <Link style={center} to="/table" className="nav-link ">
                                 Tablica ogłoszeń
                             </Link>
