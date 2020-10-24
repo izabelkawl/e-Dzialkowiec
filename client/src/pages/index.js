@@ -1,5 +1,5 @@
 import FrontPage from './FrontPage'
-
+import Table from './Table'
 import Login from './Login'
 
 import UsersList from './UsersList'
@@ -18,4 +18,4 @@ import MessagesList from './MessagesList'
 import MessagesUpdate from './MessagesUpdate'
 import MessagesInsert from './MessagesInsert'
 
-export { FrontPage, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Table, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }

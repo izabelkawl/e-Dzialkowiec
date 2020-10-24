@@ -9,7 +9,7 @@ import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
     className: 'h1',
-})``
+})`font-size: 32px`
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
@@ -33,7 +33,7 @@ const Input = styled.input.attrs({
 `
 
 const Button = styled.button.attrs({
-    className: `btn btn-primary`,
+    className: `btn btn-success`,
 })`
     margin: 15px 15px 15px 5px;
 `
@@ -80,6 +80,7 @@ class Register extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
     onSubmit = e => {
+
         e.preventDefault();
         const newUser = {
 
@@ -91,6 +92,8 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         };
+
+
         this.props.registerUser(newUser, this.props.history);
     };
 
@@ -119,7 +122,7 @@ class Register extends Component {
                         })}
                     />
 
-                    <Label htmlFor="firstname">FirstName</Label>
+                    <Label htmlFor="firstname">Imię</Label>
                     <Span>{errors.firstname}</Span>
                     <Input
                         onChange={this.onChange}
@@ -131,7 +134,7 @@ class Register extends Component {
                             invalid: errors.firstname
                         })}
                     />
-                    <Label htmlFor="lastname">LastName</Label>
+                    <Label htmlFor="lastname">Nazwisko</Label>
                     <Span>{errors.lastname}</Span>
                     <Input
                         onChange={this.onChange}
@@ -143,7 +146,7 @@ class Register extends Component {
                             invalid: errors.lastname
                         })}
                     />
-                    <Label htmlFor="address">Address</Label>
+                    <Label htmlFor="address">Adres</Label>
                     <Span>{errors.address}</Span>
                     <Input
                         onChange={this.onChange}
@@ -155,7 +158,7 @@ class Register extends Component {
                             invalid: errors.address
                         })}
                     />
-                    <Label htmlFor="phone">Phone</Label>
+                    <Label htmlFor="phone">Telefon</Label>
                     <Span>{errors.phone}</Span>
                     <Input
                         onChange={this.onChange}
@@ -167,7 +170,7 @@ class Register extends Component {
                             invalid: errors.phone
                         })}
                     />
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Hasło</Label>
                     <Span>{errors.password}</Span>
                     <Input
                         onChange={this.onChange}
@@ -180,7 +183,7 @@ class Register extends Component {
                         })}
                     />
 
-                    <Label htmlFor="password2">Confirm Password</Label>
+                    <Label htmlFor="password2">Powtórz hasło</Label>
                     <Span >{errors.password2}</Span>
                     <Input
                         onChange={this.onChange}

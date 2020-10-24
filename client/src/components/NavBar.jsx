@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-import Logo from './Logo'
+// import Logo from './Logo'
 import Links from './Links'
 
 const Container = styled.div.attrs({
     className: '',
-})`background-color: white;
-margin-left: auto;
+})`
+    margin-left: auto;
     margin-right: auto; 
-    width: 65vw;`
+    background-color: white;
+    text-align: center;
+    
+    `
 
 const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg navbar-light bg-white',
-})``
+    className: 'navbar navbar-expand-xl navbar-light bg-white',
+})`display:inline-flex;`
 
 
 class NavBar extends Component {
@@ -21,7 +24,7 @@ class NavBar extends Component {
         return (
             <Container>
                 <Nav>
-                    <Logo />
+                    {/* <Logo/> */}
                     <Links />
                 </Nav>
             </Container>

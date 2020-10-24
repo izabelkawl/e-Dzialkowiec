@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 
 import { NavBar } from '../components'
-import { FrontPage, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Login } from '../pages'
+import { FrontPage, Table, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Login } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -23,11 +23,12 @@ import img from './img/bg.jpg';
 const Container = styled.div`
     background-image: url(${img});
     background-repeat: no-repeat;
-    background-size: 100% auto;
-    height: 100vh;
-    width: 100 vw;
+    background-size: cover;
     background-position: center top;
     background-attachment: fixed;
+    height: 100vh;
+    
+}
 `;
 
 // Check for token to keep user logged in
@@ -59,7 +60,7 @@ function App() {
           <NavBar />
           <Switch>
             <Route path="/" exact component={FrontPage} />
-
+            <Route path="/table" exact component={Table} />
             <Route path="/users/login" exact component={Login} />
             <Route path="/users/register" exact component={Register} />
             <Route path="/users/list" exact component={UsersList} />

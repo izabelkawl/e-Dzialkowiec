@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
     className: 'h1',
-})``
+})`font-size: 32px`
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
@@ -32,7 +32,7 @@ const InputText = styled.input.attrs({
 `
 
 const Button = styled.button.attrs({
-    className: `btn btn-primary`,
+    className: `btn btn-success`,
 })`
     margin: 15px 15px 15px 5px;
 `
@@ -115,7 +115,7 @@ class Login extends Component {
 
                     />
 
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password">Hasło</Label>
                     <Span>
                         {errors.password}
                         {errors.passwordincorrect}
