@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
-import api from '../api'
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import api, { updateUserById } from '../api';
+import classnames from "classnames";
 
-import styled from 'styled-components'
 
+import styled from 'styled-components';
 const Title = styled.h1.attrs({
     className: 'h1',
-})``
+})`font-size: 32px`
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto; 
     background-color: white;
     padding: 50px;
@@ -40,6 +44,11 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
+const Span = styled.span.attrs({
+    className: `red-text`,
+})`
+    color: red;
+`
 class UsersUpdate extends Component {
     constructor(props) {
         super(props)
@@ -52,6 +61,29 @@ class UsersUpdate extends Component {
             address: '',
             phone: '',
             password: '',
+            password2: '',
+            errors: {}
+        }
+    }
+
+    componentDidMount = async () => {
+        const { id } = this.state
+        const user = await api.getUserById(id)
+
+        this.setState({
+            email: user.data.data.email,
+            firstname: user.data.data.firstname,
+            lastname: user.data.data.lastname,
+            address: user.data.data.address,
+            phone: user.data.data.phone
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
         }
     }
 
@@ -84,83 +116,114 @@ class UsersUpdate extends Component {
         const password = event.target.value
         this.setState({ password })
     }
+    handleChangeInputPassword2 = async event => {
+        const password2 = event.target.value
+        this.setState({ password2 })
+    }
 
     handleUpdateUser = async () => {
-        const { id, email, firstname, lastname, address, phone, password } = this.state
-        const payload = { email, firstname, lastname, address, phone, password }
+        const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
+        const payload = { email, firstname, lastname, address, phone, password, password2 }
 
         await api.updateUserById(id, payload).then(res => {
-            window.alert(`User updated successfully`)
+            window.alert(`Zaaktualizowano pomyślnie!`)
             this.setState({
                 email: '',
                 firstname: '',
                 lastname: '',
                 address: '',
                 phone: '',
-                password: ''
+                password: '',
+                password2: ''
             })
         })
     }
 
-    componentDidMount = async () => {
-        const { id } = this.state
-        const user = await api.getUserById(id)
-
-        this.setState({
-            email: user.data.data.email,
-            firstname: user.data.data.firstname,
-            lastname: user.data.data.lastname,
-            adress: user.data.data.address,
-            phone: user.data.data.phone,
-            password: user.data.data.password
-        })
-    }
-
     render() {
-        const { email, firstname, lastname, address, phone, password } = this.state
+        const { email, firstname, lastname, address, phone, errors } = this.state;
         return (
             <Wrapper>
-                <Title>Update User</Title>
+                <Title>Edycja</Title>
 
-                <Label>Email: </Label>
+                <Label htmlFor="email" >Email: </Label>
+                <Span>{errors.email}</Span>
                 <InputText
-                    type="text"
-                    value={email}
                     onChange={this.handleChangeInputEmail}
+                    error={errors.email}
+                    id="email"
+                    type="email"
+                    className={classnames("", {
+                        invalid: errors.email
+                    })}
+                    value={email}
+
                 />
 
+                <Label htmlFor="firstname" >Imię: </Label>
 
-                <Label>First Name: </Label>
                 <InputText
-                    type="text"
-                    value={firstname}
                     onChange={this.handleChangeInputFirstName}
+
+                    id="firstname"
+                    type="text"
+
+                    value={firstname}
                 />
 
-                <Label>Last Name: </Label>
+                <Label htmlFor="lastname">Nazwisko: </Label>
+
                 <InputText
-                    type="text"
-                    value={lastname}
                     onChange={this.handleChangeInputLastName}
-                />
-                <Label>Address: </Label>
-                <InputText
+
+                    id="lastname"
                     type="text"
-                    value={address}
+
+                    value={lastname}
+                />
+                <Label htmlFor="address">Adres: </Label>
+
+                <InputText
                     onChange={this.handleChangeInputAddress}
-                />
-                <Label>Phone: </Label>
-                <InputText
+
+                    id="address"
                     type="text"
-                    value={phone}
+
+                    value={address}
+                />
+                <Label htmlFor="phone">Telefon: </Label>
+
+                <InputText
                     onChange={this.handleChangeInputPhone}
+
+                    id="phone"
+                    type="text"
+
+                    value={phone}
                 />
 
-                <Label>Password: </Label>
+                <Label htmlFor="password">Hasło: </Label>
+                <Span>{errors.password}</Span>
                 <InputText
-                    type="text"
-                    value={password}
                     onChange={this.handleChangeInputPassword}
+                    error={errors.password}
+                    id="password"
+                    type="password"
+                    className={classnames("", {
+                        invalid: errors.password
+                    })}
+                    placeholder="********"
+                />
+                <Label htmlFor="password2">Powtórz hasło: </Label>
+                <Span>{errors.password2}</Span>
+                <InputText
+                    onChange={this.handleChangeInputPassword2}
+                    error={errors.password2}
+                    id="password2"
+                    type="password"
+                    className={classnames("", {
+                        invalid: errors.password2
+                    })}
+                    placeholder="********"
                 />
                 <Button onClick={this.handleUpdateUser}>Update User</Button>
                 <CancelButton href={'/users/list'}>Cancel</CancelButton>
@@ -169,4 +232,19 @@ class UsersUpdate extends Component {
     }
 }
 
-export default UsersUpdate
+
+UsersUpdate.propTypes = {
+    updateUserById: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { updateUserById }
+)(withRouter(UsersUpdate));

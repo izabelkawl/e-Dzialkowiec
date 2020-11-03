@@ -34,7 +34,7 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-const CancelButton = styled.a.attrs({
+const CancelButton = styled.button.attrs({
     className: `btn btn-danger`,
 })`
     margin: 15px 15px 15px 5px;
@@ -122,11 +122,9 @@ class AllotmentsInsert extends Component {
                 <Title>Create Allotment</Title>
 
                 <Label>Image: </Label>
-                <InputText
-                    type="text"
-                    value={image}
-                    onChange={this.handleChangeInputImage}
-                />
+                <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image}
+                    onChange={this.handleChangeInputImage} ></input>
+
 
                 <Label>Number: </Label>
                 <InputText
@@ -166,7 +164,6 @@ class AllotmentsInsert extends Component {
                     value={status}
                     onChange={this.handleChangeInputStatus}
                 />
-
 
                 <Button onClick={this.handleIncludeAllotment}>Add Allotment</Button>
                 <CancelButton href={'/allotments/list'}>Cancel</CancelButton>

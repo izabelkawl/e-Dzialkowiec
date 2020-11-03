@@ -39,15 +39,11 @@ const AItem = styled.a.attrs({
     className: 'dropdown-item'
 })`
     :focus, :active, :hover{
-        background-color: #002f34;
+    background-color: #E0E0E0;
       outline: none;
-      color: white;
+      color: gray;
     }
 `
-
-const center = {
-    textAlign: "center"
-};
 
 class Links extends Component {
     render() {
@@ -57,23 +53,23 @@ class Links extends Component {
                 <Collapse>
                     <List>
                         <Item>
-                            <Link style={center} to="/" className="nav-link ">
+                            <Link to="/" className="nav-link ">
                                 Strona główna
                             </Link>
                         </Item>
                         <Item>
-                            <Link style={center} to="/allotments/list" className="nav-link ">
+                            <Link to="/allotments/list" className="nav-link ">
                                 Oferty działek
                             </Link>
                         </Item>
                         <Item>
-                            <Link style={center} to="/handymans/list" className="nav-link ">
-                                Handy xD
+                            <Link to="/table" className="nav-link ">
+                                Tablica ogłoszeń
                             </Link>
                         </Item>
                         <Item>
-                            <Link style={center} to="/table" className="nav-link ">
-                                Tablica ogłoszeń
+                            <Link to="/" className="nav-link ">
+                                Forum
                             </Link>
                         </Item>
                         <Item>

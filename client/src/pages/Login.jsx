@@ -131,7 +131,8 @@ class Login extends Component {
                             invalid: errors.password || errors.passwordincorrect
                         })}
                     />
-
+                    <Label><input type="checkbox" />&nbsp;&nbsp;Zapamiętaj mnie</Label>
+                    <br></br>
                     <Button>Zaloguj</Button>
                     <CancelButton href="/users/register">Zarejestruj</CancelButton>
 

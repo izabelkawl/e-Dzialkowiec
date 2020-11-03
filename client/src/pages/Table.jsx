@@ -11,16 +11,7 @@ const Container = styled.div`
 background-color: white;
 padding: 50px;
 `
-const ListItem = styled.div`
-  display: flex;
-  padding: 1vh 1vw;
-  border-bottom: 1px dashed #ccc;
- 
-`;
-const Item = styled.div`
-  width: 90px;
-  padding: 10px;
-`;
+
 
 class Table extends Component {
   render() {
@@ -28,15 +19,26 @@ class Table extends Component {
     return (
       <Wrapper>
         <Container>
-          Tablica ogłoszeń
-                <ListItem>
-            <Item >Soruj wg</Item >
-            <Item >profession</Item>
-            <Item >email</Item >
-            <Item>firstname</Item>
-            <Item>lastname</Item>
-            <Item>phone</Item>
-          </ListItem>
+          <h1>Tablica ogłoszeń</h1>
+          <form><div className="form-group">
+            <label for="exampleFormControlSelect1">Kategoria</label>
+            <select className="form-control" id="exampleFormControlSelect1">
+              <option>Narzędzia</option>
+              <option>Sprzęt</option>
+              <option>Rośliny</option>
+              <option>Rolnictwo</option>
+              <option>Sprzedam</option>
+              <option>Kupię</option>
+            </select>
+            <label for="exampleFormControlSelect1">Sortuj wg</label>
+            <select className="form-control" id="exampleFormControlSelect1">
+              <option>Nazwa</option>
+              <option>Data dodania</option>
+              <option>Najtańsze</option>
+              <option>Najdroższe</option>
+            </select>
+          </div></form>
+
         </Container>
       </Wrapper>
     )

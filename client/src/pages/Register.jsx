@@ -109,7 +109,7 @@ class Register extends Component {
 
                 <form noValidate onSubmit={this.onSubmit}>
 
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">Adres email</Label>
                     <Span>{errors.email}</Span>
                     <Input
                         onChange={this.onChange}
@@ -120,6 +120,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.email
                         })}
+                        placeholder="jankowalski@gmail.com"
                     />
 
                     <Label htmlFor="firstname">Imię</Label>
@@ -133,6 +134,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.firstname
                         })}
+                        placeholder="Jan"
                     />
                     <Label htmlFor="lastname">Nazwisko</Label>
                     <Span>{errors.lastname}</Span>
@@ -145,6 +147,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.lastname
                         })}
+                        placeholder="Kowalski"
                     />
                     <Label htmlFor="address">Adres</Label>
                     <Span>{errors.address}</Span>
@@ -157,6 +160,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.address
                         })}
+                        placeholder="ul. Wspólna 2, Warszawa 00-000"
                     />
                     <Label htmlFor="phone">Telefon</Label>
                     <Span>{errors.phone}</Span>
@@ -169,6 +173,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.phone
                         })}
+                        placeholder="+48 123456789"
                     />
                     <Label htmlFor="password">Hasło</Label>
                     <Span>{errors.password}</Span>
@@ -181,6 +186,7 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.password
                         })}
+                        placeholder="********"
                     />
 
                     <Label htmlFor="password2">Powtórz hasło</Label>
@@ -194,8 +200,9 @@ class Register extends Component {
                         className={classnames("", {
                             invalid: errors.password2
                         })}
+                        placeholder="********"
                     />
-                    <Button typpe="button">Rejestracja</Button>
+                    <Button >Rejestracja</Button>
                 </form>
             </Wrapper>
         )
