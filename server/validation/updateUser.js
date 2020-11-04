@@ -43,7 +43,13 @@ const validateUpdateUser = (data) => {
 
   // Password checks
   if (isEmpty(data.password)) {
+
     if (isEmpty(data.password2)) errors.password2 = "*Potwierdź hasło";
+
+    errors.password = "*Pole nie może być puste";
+
+  }
+  if (!isEmpty(data.password)) {
 
     if (!Validator.isLength(data.password, { min: 8, max: 30 }))
       errors.password = "*Hasło minimum 8 znaków";
@@ -51,6 +57,7 @@ const validateUpdateUser = (data) => {
     if (!Validator.equals(data.password, data.password2))
       errors.password2 = "*Hasła różnią się od siebie";
   }
+
 
   return {
     errors,
