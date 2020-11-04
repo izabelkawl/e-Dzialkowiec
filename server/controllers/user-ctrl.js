@@ -1,213 +1,174 @@
-const express = require('express');
-const User = require('../models/user')
-const router = require('../routes/user-router')
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
+import User from "../models/user.js";
+import { hashPassword, comparePassword } from "../utils/security.js";
+import { generateToken } from "../utils/security.js";
+import { DatabaseInsertError } from "../errors/database.js";
 
 // Load input validation
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
-const validateUpdateUser = require("../validation/updateUser")
+import validateRegisterInput from "../validation/register.js";
+import validateLoginInput from "../validation/login.js";
+import validateUpdateUser from "../validation/updateUser.js";
+import isEmpty from "is-empty";
 
-//same 
+//same
 
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-createUser = (req, res) => {
+const createUser = async (req, res) => {
+  const userData = req.body;
+  const { errors, isValid } = validateRegisterInput(userData);
+  const isEmailUsed = await User.findOne({ email: userData.email });
 
-    const { errors, isValid } = validateRegisterInput(req.body);
+  if (!isValid) return res.status(400).json(errors);
+  if (!!isEmailUsed)
+    return res.status(400).json({ email: "*Adres email jest już zajęty." });
 
-    // Check validation
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user) {
-            return res.status(400).json({ email: "*Adres email jest już zajęty." });
-        } else {
-            const newUser = new User({
-                email: req.body.email,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
-                address: req.body.address,
-                phone: req.body.phone,
-                password: req.body.password
-            });
+  userData.password = await hashPassword(userData.password);
 
+  const processedUser = new User(userData);
 
-            // Hash password before saving in database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err));
-                });
-            });
-        }
-    });
-}
+  try {
+    processedUser.save();
+  } catch (error) {
+    throw new DatabaseInsertError(error.message);
+  }
+};
 
 //Login
 // @route POST api/users/login
 // @desc Login user and return JWT token
 // @access Public
-loginUser = (req, res) => {
-    // Form validation
-    const { errors, isValid } = validateLoginInput(req.body);
-    // Check validation
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-    const email = req.body.email;
-    const password = req.body.password;
-    // Find user by email
-    User.findOne({ email }).then(user => {
-        // Check if user exists
-        if (!user) {
-            return res.status(404).json({ emailnotfound: "*Nieprawidłowy adres email." });
-        }
-        // Check password
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (isMatch) {
-                // User matched
-                // Create JWT Payload
-                const payload = {
-                    id: user.id,
-                    firstname: user.firstname
-                };
-                // Sign token
-                jwt.sign(
-                    payload,
-                    keys.secretOrKey,
-                    {
-                        expiresIn: 31556926 // 1 year in seconds
-                    },
-                    (err, token) => {
-                        res.json({
-                            success: true,
-                            token: "Bearer " + token
-                        });
-                    }
-                );
-            } else {
-                return res
-                    .status(400)
-                    .json({ passwordincorrect: "*Nieprawidłowe hasło" });
-            }
-        });
-    });
+const loginUser = async (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (!isValid) return res.status(400).json(errors);
+
+  const processedUser = await User.findOne({ email });
+
+  if (!processedUser)
+    return res
+      .status(400)
+      .json({ emailnotfound: "*Nieprawidłowy adres email." });
+
+  const isPasswordValid = await comparePassword(
+    password,
+    processedUser.password
+  );
+
+  if (!isPasswordValid)
+    return res.status(400).json({ info: "Nieprawidłowe hasło" });
+  else {
+    const payload = {
+      id: processedUser.id,
+      firstname: processedUser.firstname,
+    };
+
+    return res
+      .status(200)
+      .json({ success: true, token: `Bearer ${generateToken(payload)}` });
+  }
 };
 
+const updateUser = async (req, res) => {
 
-updateUser = async (req, res) => {
+  const fieldsToUpdate = { ...req.body };
 
-    const { errors, isValid } = validateUpdateUser(req.body);
+  const isPasswordPassed =
+    !!fieldsToUpdate?.password?.length && fieldsToUpdate?.password2?.length;
 
-    // Check validation
-    if (!isValid) {
-        return res.status(400).json(errors);
+  const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
+
+  if (isEmpty(fieldsToUpdate))
+    return res.status(400).json({
+      success: false,
+      message: "*Wypełnij puste komórki.",
+    });
+
+  if (!isValid) return res.status(400).json(errors);
+
+  const processedUser = await User.findOne({ _id: req.params.id });
+
+  if (!processedUser)
+    return res.status(404).json({
+      err,
+      message: "*Użytkownik nieistnieje.",
+    });
+
+  if (isPasswordPassed)
+    fieldsToUpdate.password = await hashPassword(fieldsToUpdate.password);
+  else {
+    fieldsToUpdate.password = processedUser.password;
+    delete fieldsToUpdate.password2;
+  }
+
+  for (const field in fieldsToUpdate)
+    processedUser[field] = fieldsToUpdate[field];
+
+  try {
+    await processedUser.save();
+  } catch (error) {
+    console.log(error);
+
+    return res.status(400).json({
+      success: false,
+      id: processedUser._id,
+      message: "*Aktualizacja nie powiodła się!",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: processedUser._id,
+    message: "*Aktualizacja powiodła się!",
+  });
+};
+
+const deleteUser = async (req, res) => {
+  await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
 
-    const body = req.body
-
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            message: '*Wypełnij puste komórki.',
-        })
+    if (!user) {
+      return res.status(404).json({ success: false, error: `user not found` });
     }
 
-    User.findOne({ _id: req.params.id }, (err, user) => {
-        if (err) {
-            return res.status(404).json({
-                err,
-                message: '*Użytkownik nieistnieje.',
-            })
-        }
-        user.email = body.email
-        user.password = body.password
-        user.firstname = body.firstname
-        user.lastname = body.lastname
-        user.address = body.address
-        user.phone = body.phone
-        user.password = body.password
+    return res.status(200).json({ success: true, data: user });
+  }).catch((err) => console.log(err));
+};
 
+const getUserById = async (req, res) => {
+  await User.findOne({ _id: req.params.id }, (err, user) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
+    }
 
-        // Hash password before saving in database
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                if (err) throw err;
-                user.password = hash;
-                user
-                    .save()
-                    .then(() => {
-                        return res.status(200).json({
-                            success: true,
-                            id: user._id,
-                            message: '*Aktualizacja powiodła się!',
-                        })
-                    })
-                    .catch(err => console.log(err));
-            });
-        });
-    })
-}
+    if (!user) {
+      return res.status(404).json({ success: false, error: `user not found` });
+    }
+    return res.status(200).json({ success: true, data: user });
+  }).catch((err) => console.log(err));
+};
 
-deleteUser = async (req, res) => {
-    await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
+const getUsers = async (req, res) => {
+  await User.find({}, (err, users) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
+    }
+    if (!users.length) {
+      return res.status(404).json({ success: false, error: `user not found` });
+    }
+    return res.status(200).json({ success: true, data: users });
+  }).catch((err) => console.log(err));
+};
 
-        if (!user) {
-            return res
-                .status(404)
-                .json({ success: false, error: `user not found` })
-        }
-
-        return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
-}
-
-getUserById = async (req, res) => {
-    await User.findOne({ _id: req.params.id }, (err, user) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!user) {
-            return res
-                .status(404)
-                .json({ success: false, error: `user not found` })
-        }
-        return res.status(200).json({ success: true, data: user })
-    }).catch(err => console.log(err))
-}
-
-getUsers = async (req, res) => {
-    await User.find({}, (err, users) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!users.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `user not found` })
-        }
-        return res.status(200).json({ success: true, data: users })
-    }).catch(err => console.log(err))
-}
-
-module.exports = {
-    createUser,
-    loginUser,
-    updateUser,
-    deleteUser,
-    getUsers,
-    getUserById,
-}
+export default {
+  createUser,
+  loginUser,
+  updateUser,
+  deleteUser,
+  getUsers,
+  getUserById,
+};

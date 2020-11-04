@@ -1,125 +1,125 @@
-const Message = require('../models/message')
+import Message from "../models/message.js";
 
-createMessage = (req, res) => {
-    const body = req.body
+const createMessage = (req, res) => {
+  const body = req.body;
 
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a message',
-        })
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a message",
+    });
+  }
+
+  const message = new Message(body);
+
+  if (!message) {
+    return res.status(400).json({ success: false, error: err });
+  }
+
+  message
+    .save()
+    .then(() => {
+      return res.status(201).json({
+        success: true,
+        id: message._id,
+        message: "message created!",
+      });
+    })
+    .catch((error) => {
+      return res.status(400).json({
+        error,
+        message: "message not created!",
+      });
+    });
+};
+
+const updateMessage = async (req, res) => {
+  const body = req.body;
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
+  }
+
+  Message.findOne({ _id: req.params.id }, (err, message) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "message not found!",
+      });
     }
+    message.user = body.user;
+    message.recipient = body.recipient;
+    message.content = body.content;
+    message
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: message._id,
+          message: "message updated!",
+        });
+      })
+      .catch((error) => {
+        return res.status(404).json({
+          error,
+          message: "message not updated!",
+        });
+      });
+  });
+};
 
-    const message = new Message(body)
+const deleteMessage = async (req, res) => {
+  await Message.findOneAndDelete({ _id: req.params.id }, (err, message) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
+    }
 
     if (!message) {
-        return res.status(400).json({ success: false, error: err })
+      return res
+        .status(404)
+        .json({ success: false, error: `message not found` });
     }
 
-    message
-        .save()
-        .then(() => {
-            return res.status(201).json({
-                success: true,
-                id: message._id,
-                message: 'message created!',
-            })
-        })
-        .catch(error => {
-            return res.status(400).json({
-                error,
-                message: 'message not created!',
-            })
-        })
-}
+    return res.status(200).json({ success: true, data: message });
+  }).catch((err) => console.log(err));
+};
 
-updateMessage = async (req, res) => {
-    const body = req.body
-
-    if (!body) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must provide a body to update',
-        })
+const getMessageById = async (req, res) => {
+  await Message.findOne({ _id: req.params.id }, (err, message) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
     }
 
-    Message.findOne({ _id: req.params.id }, (err, message) => {
-        if (err) {
-            return res.status(404).json({
-                err,
-                message: 'message not found!',
-            })
-        }
-        message.user = body.user
-        message.recipient = body.recipient
-        message.content = body.content
-        message
-            .save()
-            .then(() => {
-                return res.status(200).json({
-                    success: true,
-                    id: message._id,
-                    message: 'message updated!',
-                })
-            })
-            .catch(error => {
-                return res.status(404).json({
-                    error,
-                    message: 'message not updated!',
-                })
-            })
-    })
-}
+    if (!message) {
+      return res
+        .status(404)
+        .json({ success: false, error: `message not found` });
+    }
+    return res.status(200).json({ success: true, data: message });
+  }).catch((err) => console.log(err));
+};
 
-deleteMessage = async (req, res) => {
-    await Message.findOneAndDelete({ _id: req.params.id }, (err, message) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
+const getMessages = async (req, res) => {
+  await Message.find({}, (err, messages) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
+    }
+    if (!messages.length) {
+      return res
+        .status(404)
+        .json({ success: false, error: `message not found` });
+    }
+    return res.status(200).json({ success: true, data: messages });
+  }).catch((err) => console.log(err));
+};
 
-        if (!message) {
-            return res
-                .status(404)
-                .json({ success: false, error: `message not found` })
-        }
-
-        return res.status(200).json({ success: true, data: message })
-    }).catch(err => console.log(err))
-}
-
-getMessageById = async (req, res) => {
-    await Message.findOne({ _id: req.params.id }, (err, message) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-
-        if (!message) {
-            return res
-                .status(404)
-                .json({ success: false, error: `message not found` })
-        }
-        return res.status(200).json({ success: true, data: message })
-    }).catch(err => console.log(err))
-}
-
-getMessages = async (req, res) => {
-    await Message.find({}, (err, messages) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!messages.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: `message not found` })
-        }
-        return res.status(200).json({ success: true, data: messages })
-    }).catch(err => console.log(err))
-}
-
-module.exports = {
-    createMessage,
-    updateMessage,
-    deleteMessage,
-    getMessages,
-    getMessageById,
-}
+export default {
+  createMessage,
+  updateMessage,
+  deleteMessage,
+  getMessages,
+  getMessageById,
+};
