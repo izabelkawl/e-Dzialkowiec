@@ -42,7 +42,7 @@ const validateUpdateUser = (data) => {
   }
 
   // Password checks
-  if (!isEmpty(data.password)) {
+  if (isEmpty(data.password)) {
     if (isEmpty(data.password2)) errors.password2 = "*Potwierdź hasło";
 
     if (!Validator.isLength(data.password, { min: 8, max: 30 }))
