@@ -77,6 +77,7 @@ export const getAllUsers = () => api.get(`/users`)
 export const updateUserById = (id, payload) => dispatch => {
     api
         .put(`/user/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
