@@ -58,7 +58,10 @@ const loginUser = async (req, res) => {
   );
 
   if (!isPasswordValid)
-    return res.status(400).json({ info: "Nieprawidłowe hasło" });
+    return res
+      .status(400)
+      .json({ passwordincorrect: "*Nieprawidłowe hasło" });
+
   else {
     const payload = {
       id: processedUser.id,
