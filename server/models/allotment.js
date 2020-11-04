@@ -10,4 +10,4 @@ const Allotment = mongoose.Schema({
   status: { type: String, required: true },
 });
 
-export default Allotment;
+export default mongoose.model("allotemnts", Allotment);

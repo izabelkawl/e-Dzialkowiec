@@ -37,18 +37,19 @@ const validateUpdateUser = (data) => {
   // Phone checks
   if (isEmpty(data.phone)) {
     errors.phone = "*Pole nie może być puste";
-  } else if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
-    errors.phone = "*Telefon musi mieć 9 cyfr";
+  }
+
+  if (!isEmpty(data.phone)) {
+    if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
+      errors.phone = "*Telefon musi mieć 9 cyfr";
+    }
   }
 
   // Password checks
-  if (isEmpty(data.password)) {
+  if (isEmpty(data.password)) errors.password = "*Pole nie może być puste";
 
-    if (isEmpty(data.password2)) errors.password2 = "*Potwierdź hasło";
+  if (isEmpty(data.password2)) errors.password2 = "*Potwierdź hasło";
 
-    errors.password = "*Pole nie może być puste";
-
-  }
   if (!isEmpty(data.password)) {
 
     if (!Validator.isLength(data.password, { min: 8, max: 30 }))
@@ -56,6 +57,8 @@ const validateUpdateUser = (data) => {
 
     if (!Validator.equals(data.password, data.password2))
       errors.password2 = "*Hasła różnią się od siebie";
+
+
   }
 
 
