@@ -87,60 +87,24 @@ class UsersUpdate extends Component {
         }
     }
 
-    handleChangeInputEmail = async event => {
-        const email = event.target.value
-        this.setState({ email })
-    }
 
-    handleChangeInputFirstName = async event => {
-        const firstname = event.target.value
-        this.setState({ firstname })
-    }
-    handleChangeInputLastName = async event => {
-        const lastname = event.target.value
-        this.setState({ lastname })
-    }
-    handleChangeInputAddress = async event => {
-        const address = event.target.value
-        this.setState({ address })
-    }
-    handleChangeInputPhone = async event => {
-        const phone = event.target.validity.valid
-            ? event.target.value
-            : this.state.phone
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
 
-        this.setState({ phone })
-    }
+    handleUpdateUser = e => {
 
-    handleChangeInputPassword = async event => {
-        const password = event.target.value
-        this.setState({ password })
-    }
-    handleChangeInputPassword2 = async event => {
-        const password2 = event.target.value
-        this.setState({ password2 })
-    }
-
-    handleUpdateUser = async () => {
+        e.preventDefault();
         const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
         const payload = { email, firstname, lastname, address, phone, password, password2 }
 
-        await api.updateUserById(id, payload).then(res => {
-            window.alert(`Zaaktualizowano pomyślnie!`)
-            this.setState({
-                email: '',
-                firstname: '',
-                lastname: '',
-                address: '',
-                phone: '',
-                password: '',
-                password2: ''
-            })
-        })
+        this.props.updateUserById(id, payload)
+
     }
 
+
     render() {
-        const { email, firstname, lastname, address, phone, errors } = this.state;
+        const { errors, email, firstname, lastname, address, phone } = this.state;
         return (
             <Wrapper>
                 <Title>Edycja</Title>
@@ -148,7 +112,7 @@ class UsersUpdate extends Component {
                 <Label htmlFor="email" >Email: </Label>
                 <Span>{errors.email}</Span>
                 <InputText
-                    onChange={this.handleChangeInputEmail}
+                    onChange={this.onChange}
                     error={errors.email}
                     id="email"
                     type="email"
@@ -160,70 +124,77 @@ class UsersUpdate extends Component {
                 />
 
                 <Label htmlFor="firstname" >Imię: </Label>
-
+                <Span>{errors.firstname}</Span>
                 <InputText
-                    onChange={this.handleChangeInputFirstName}
-
+                    onChange={this.onChange}
+                    error={errors.firstname}
                     id="firstname"
                     type="text"
-
+                    className={classnames("", {
+                        invalid: errors.firstname
+                    })}
                     value={firstname}
                 />
 
                 <Label htmlFor="lastname">Nazwisko: </Label>
-
+                <Span>{errors.lastname}</Span>
                 <InputText
-                    onChange={this.handleChangeInputLastName}
-
+                    onChange={this.onChange}
+                    error={errors.lastname}
                     id="lastname"
                     type="text"
-
+                    className={classnames("", {
+                        invalid: errors.lastname
+                    })}
                     value={lastname}
                 />
                 <Label htmlFor="address">Adres: </Label>
-
+                <Span>{errors.address}</Span>
                 <InputText
-                    onChange={this.handleChangeInputAddress}
-
+                    onChange={this.onChange}
+                    error={errors.address}
                     id="address"
                     type="text"
-
+                    className={classnames("", {
+                        invalid: errors.address
+                    })}
                     value={address}
                 />
                 <Label htmlFor="phone">Telefon: </Label>
-
+                <Span>{errors.phone}</Span>
                 <InputText
-                    onChange={this.handleChangeInputPhone}
-
+                    onChange={this.onChange}
+                    error={errors.phone}
                     id="phone"
                     type="text"
-
+                    className={classnames("", {
+                        invalid: errors.phone
+                    })}
                     value={phone}
                 />
 
                 <Label htmlFor="password">Hasło: </Label>
                 <Span>{errors.password}</Span>
                 <InputText
-                    onChange={this.handleChangeInputPassword}
+                    onChange={this.onChange}
                     error={errors.password}
                     id="password"
                     type="password"
                     className={classnames("", {
                         invalid: errors.password
                     })}
-                    placeholder="********"
+
                 />
                 <Label htmlFor="password2">Powtórz hasło: </Label>
                 <Span>{errors.password2}</Span>
                 <InputText
-                    onChange={this.handleChangeInputPassword2}
+                    onChange={this.onChange}
                     error={errors.password2}
                     id="password2"
                     type="password"
                     className={classnames("", {
                         invalid: errors.password2
                     })}
-                    placeholder="********"
                 />
                 <Button onClick={this.handleUpdateUser}>Update User</Button>
                 <CancelButton href={'/users/list'}>Cancel</CancelButton>

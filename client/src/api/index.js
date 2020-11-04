@@ -72,8 +72,18 @@ export const logoutUser = () => dispatch => {
 };
 
 export const getAllUsers = () => api.get(`/users`)
+
 // Update user
-export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
+export const updateUserById = (id, payload) => dispatch => {
+    api
+        .put(`/user/${id}`, payload)
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 
 
 export const deleteUserById = id => api.delete(`/user/${id}`)

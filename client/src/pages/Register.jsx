@@ -79,6 +79,7 @@ class Register extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
+
     onSubmit = e => {
 
         e.preventDefault();
@@ -94,7 +95,7 @@ class Register extends Component {
         };
 
 
-        this.props.registerUser(newUser, this.props.history);
+        this.props.registerUser(newUser, this.props.history)
     };
 
 
