@@ -58,9 +58,7 @@ const validateUpdateUser = (data) => {
     if (!Validator.equals(data.password, data.password2))
       errors.password2 = "*Hasła różnią się od siebie";
 
-
   }
-
 
   return {
     errors,

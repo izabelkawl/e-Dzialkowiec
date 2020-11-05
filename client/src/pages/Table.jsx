@@ -9,6 +9,9 @@ const Wrapper = styled.div`
 `;
 const Container = styled.div`
 background-color: white;
+-webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
+-moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
+box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
 padding: 50px;
 `
 

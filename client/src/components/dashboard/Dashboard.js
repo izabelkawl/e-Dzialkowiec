@@ -33,8 +33,8 @@ class Dashboard extends Component {
         return (
             <Wrapper >
 
-                Hey there,<b> {user.firstname.split(" ")[0]} </b>.
-                <span> You are logged into a E-Garden app. Congrats </span>
+                Hey there,<b> {user.lastname + ' ' + user.firstname}   </b>.
+                <span> You are logged into a  E-Garden app. Congrats {user.phone} </span>
 
                 <Button
                     onClick={this.onLogoutClick}

@@ -66,6 +66,9 @@ const loginUser = async (req, res) => {
     const payload = {
       id: processedUser.id,
       firstname: processedUser.firstname,
+      lastname: processedUser.lastname,
+      address: processedUser.address,
+      phone: processedUser.phone,
     };
 
     return res
