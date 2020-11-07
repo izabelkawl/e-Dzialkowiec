@@ -1,39 +1,15 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../api";
-
+import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 80%;
+    
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: white; 
 `;
-
-const ListItem = styled.div`
-  display: flex;
-  width: 50%;
-  padding: 1vh 1vw;
-  border-bottom: 1px dashed #ccc;
-  background-color: white;
-`;
-const Lp = styled.div`
-  width: 50px;
-`;
-const Item = styled.div`
-  width: 80px;
-`;
-
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`;
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`;;
-
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
@@ -43,7 +19,7 @@ class UpdateAllotment extends Component {
     }
 
     render() {
-        return <Update onClick={this.updateAllotment}>Update</Update>
+        return <Button variant="success" onClick={this.updateAllotment}>Update</Button>
     }
 }
 
@@ -62,7 +38,7 @@ class DeleteAllotment extends Component {
     }
 
     render() {
-        return <Delete onClick={this.deleteAllotment}>Delete</Delete>
+        return <Button variant="danger" onClick={this.deleteAllotment}>Delete</Button>
     }
 }
 
@@ -83,35 +59,47 @@ const AllotmentsList = () => {
         const { _id, image, number, size, width, height, price, status } = allotment;
 
         return (
-            <ListItem key={_id}>
-                <Lp>{index + 1}</Lp>
-                <Item>{image}</Item>
-                <Item>{number}</Item>
-                <Item>{size}</Item>
-                <Item>{width}</Item>
-                <Item>{height}</Item>
-                <Item>{price}</Item>
-                <Item>{status}</Item>
+            <tr key={_id}>
 
-                <Item><DeleteAllotment id={_id} /></Item>
-                <Item><UpdateAllotment id={_id} /></Item>
-            </ListItem>
+                <td>{index + 1}</td>
+                <td>{image}</td>
+                <td>{number}</td>
+                <td>{size}</td>
+                <td>{width}</td>
+                <td>{height}</td>
+                <td>{price}</td>
+                <td>{status}</td>
+
+                <td><DeleteAllotment id={_id} /></td>
+                <td><UpdateAllotment id={_id} /></td>
+
+            </tr>
         );
     });
 
     return <Wrapper>
-        <ListItem >
-            <Lp>Lp</Lp>
-            <Item>Image</Item>
-            <Item>number</Item>
-            <Item>size</Item>
-            <Item>width</Item>
-            <Item>height</Item>
-            <Item>price</Item>
-            <Item>status</Item>
-        </ListItem>
+        <Table striped bordered hover >
+            <thead>
+                <th>Lp</th>
+                <th>Image</th>
+                <th>number</th>
+                <th>size</th>
+                <th>width</th>
+                <th>height</th>
+                <th>price</th>
+                <th>status</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
 
-        {AllotmentsTable}</Wrapper>;
+                {AllotmentsTable}
+
+            </tbody>
+        </Table>
+
+
+    </Wrapper>
 };
 
 export default AllotmentsList;

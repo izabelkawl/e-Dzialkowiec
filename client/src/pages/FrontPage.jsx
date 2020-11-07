@@ -23,7 +23,7 @@ class FrontPage extends Component {
         return (
             <Wrapper>
                 <Image src={img} height="400" alt="tulipan w doniczce" />
-                <Section>cośik</Section>
+                <Section>Mapy, Pogoda, Rozporządzenia, kontakt etc</Section>
             </Wrapper>
         )
     }

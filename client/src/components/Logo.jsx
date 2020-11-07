@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Image } from 'react-bootstrap'
-import logo from './img/lk.png'
+
+import logo from './img/nap.png'
 
 const Wrapper = styled.a.attrs({
     className: 'navbar-header',

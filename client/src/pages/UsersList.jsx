@@ -1,40 +1,15 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../api";
-
+import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vh 0;
+  width: 70%;
+  background-color: white; 
+  
+    margin: 0 auto;
+    margin-top: 50px;
 `;
-
-const ListItem = styled.div`
-  display: flex;
-  width: 60%;
-  padding: 1vh 1vw;
-  border-bottom: 1px dashed #ccc;
-  background-color:white;
-`;
-const Lp = styled.div`
-  width: 50px;
-`;
-const Email = styled.div`
-  width: 250px;
-`;
-const Item = styled.div`
-  width: 100px;
-`;
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`;
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`;;
 
 
 class UpdateUser extends Component {
@@ -45,7 +20,7 @@ class UpdateUser extends Component {
     }
 
     render() {
-        return <Update onClick={this.updateUser}>Update</Update>
+        return <Button variant="success" onClick={this.updateUser}>Update</Button>
     }
 }
 
@@ -64,7 +39,7 @@ class DeleteUser extends Component {
     }
 
     render() {
-        return <Delete onClick={this.deleteUser}>Delete</Delete>
+        return <Button variant="danger" onClick={this.deleteUser}>Delete</Button>
     }
 }
 
@@ -85,31 +60,35 @@ const UsersList = () => {
         const { _id, email, firstname, lastname, address, phone } = user;
 
         return (
-            <ListItem key={_id}>
-                <Lp>{index + 1}</Lp>
-                <Email>{email}</Email>
-                <Item>{firstname}</Item>
-                <Item>{lastname}</Item>
-                <Item>{address}</Item>
-                <Item>{phone}</Item>
-                <Item><DeleteUser id={_id} /></Item>
-                <Item><UpdateUser id={_id} /></Item>
+            <tr key={_id}>
+                <td>{index + 1}</td>
+                <td>{email}</td>
+                <td>{firstname}</td>
+                <td>{lastname}</td>
+                <td>{address}</td>
+                <td>{phone}</td>
+                <td><DeleteUser id={_id} /></td>
+                <td><UpdateUser id={_id} /></td>
 
-            </ListItem>
+            </tr>
         );
     });
 
     return <Wrapper>
-        <ListItem >
-            <Lp>Lp</Lp>
-            <Email>email</Email>
-            <Item>firstname</Item>
-            <Item>lastname</Item>
-            <Item>address</Item>
-            <Item>phone</Item>
-        </ListItem>
-        {UsersTable}
-    </Wrapper>;
+        <Table striped bordered hover>
+            <thead>
+                <th>Lp</th>
+                <th>email</th>
+                <th>firstname</th>
+                <th>lastname</th>
+                <th>address</th>
+                <th>phone</th>
+            </thead>
+            <tbody>
+                {UsersTable}
+            </tbody>
+        </Table>
+    </Wrapper>
 };
 
 export default UsersList;

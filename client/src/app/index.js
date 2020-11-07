@@ -27,6 +27,7 @@ const Container = styled.div`
     background-position: center top;
     background-attachment: fixed;
     height: 100vh;   
+    
 }
 `;
 
