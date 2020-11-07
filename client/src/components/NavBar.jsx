@@ -32,12 +32,10 @@ class NavBar extends Component {
                         <Nav.Link href="/users/list" className="nav-link ">
                             Forum
                             </Nav.Link>
-                        <Nav.Link className="nav-link ">
-
-                        </Nav.Link>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <DropdownButton
                             menuAlign="right"
-                            title=" Konto"
+                            title=" Konto&nbsp;"
                             id="dropdown-menu-align-right"
                             variant="success"
                         >

@@ -15,43 +15,41 @@ const validateRegisterInput = (data) => {
 
   // Email checks
   if (Validator.isEmpty(data.email)) {
-    errors.email = "*Podaj adres email ";
+    errors.email = " *Podaj adres email ";
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = "*Nieprawidłowy adres email";
+    errors.email = " *Nieprawidłowy adres email";
   }
   // Firstname checks
   if (Validator.isEmpty(data.firstname)) {
-    errors.firstname = "*Imię jest wymagane";
+    errors.firstname = " *Podaj imię";
   }
 
   // Lastname checks
   if (Validator.isEmpty(data.lastname)) {
-    errors.lastname = "*Nazwisko jest wymagane";
+    errors.lastname = " *Podaj nazwisko";
   }
   // Address checks
   if (Validator.isEmpty(data.address)) {
-    errors.address = "*Adres jest wymagany";
+    errors.address = " *Adres jest wymagany";
   }
   // Phone checks
   if (Validator.isEmpty(data.phone)) {
-    errors.phone = "*Telefon jest wymagany";
+    errors.phone = " *Telefon jest wymagany";
+  } else if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
+    errors.phone = " *Telefon musi mieć 9 cyfr";
   }
-  if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
-    errors.phone = "*Telefon musi mieć 9 cyfr";
-  }
+
 
   // Password checks
   if (Validator.isEmpty(data.password)) {
-    errors.password = "*Podaj hasło";
+    errors.password = " *Podaj hasło";
+  } else if (!Validator.isLength(data.password, { min: 8, max: 30 })) {
+    errors.password = " *Hasło minimum 8 znaków";
   }
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = "*Potwierdź hasło";
-  }
-  if (!Validator.isLength(data.password, { min: 8, max: 30 })) {
-    errors.password = "*Hasło minimum 8 znaków";
-  }
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = "*Hasła różnią się";
+    errors.password2 = " *Potwierdź hasło";
+  } else if (!Validator.equals(data.password, data.password2)) {
+    errors.password2 = " *Hasła różnią się";
   }
   return {
     errors,

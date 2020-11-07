@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
-
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
@@ -20,22 +20,6 @@ const Wrapper = styled.div.attrs({
     width: 600px;
     background-color: white;
     padding: 50px;
-`
-
-const Label = styled.label`
-    margin: 5px;
-`
-
-const Input = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-success`,
-})`
-    margin: 15px 15px 15px 5px;
 `
 
 const Span = styled.span.attrs({
@@ -108,103 +92,125 @@ class Register extends Component {
             <Wrapper>
                 <Title>Rejestracja</Title>
 
-                <form noValidate onSubmit={this.onSubmit}>
+                <Form noValidate onSubmit={this.onSubmit}>
 
-                    <Label htmlFor="email">Adres email</Label>
-                    <Span>{errors.email}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.email}
-                        error={errors.email}
-                        id="email"
-                        type="email"
-                        className={classnames("", {
-                            invalid: errors.email
-                        })}
-                        placeholder="jankowalski@gmail.com"
-                    />
+                    <Form.Group >
+                        <Form.Label htmlFor="email">Adres email</Form.Label>
+                        <Span>{errors.email}</Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.email}
+                            error={errors.email}
+                            id="email"
+                            type="email"
+                            className={classnames("", {
+                                invalid: errors.email
+                            })}
+                            placeholder="jkowal@gmail.com"
+                        />
+                    </Form.Group>
 
-                    <Label htmlFor="firstname">Imię</Label>
-                    <Span>{errors.firstname}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.firstname}
-                        error={errors.firstname}
-                        id="firstname"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.firstname
-                        })}
-                        placeholder="Jan"
-                    />
-                    <Label htmlFor="lastname">Nazwisko</Label>
-                    <Span>{errors.lastname}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.lasttname}
-                        error={errors.lastname}
-                        id="lastname"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.lastname
-                        })}
-                        placeholder="Kowalski"
-                    />
-                    <Label htmlFor="address">Adres</Label>
-                    <Span>{errors.address}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.address}
-                        error={errors.address}
-                        id="address"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.address
-                        })}
-                        placeholder="ul. Wspólna 2, Warszawa 00-000"
-                    />
-                    <Label htmlFor="phone">Telefon</Label>
-                    <Span>{errors.phone}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.phone}
-                        error={errors.phone}
-                        id="phone"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.phone
-                        })}
-                        placeholder="+48 123456789"
-                    />
-                    <Label htmlFor="password">Hasło</Label>
-                    <Span>{errors.password}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.password}
-                        error={errors.password}
-                        id="password"
-                        type="password"
-                        className={classnames("", {
-                            invalid: errors.password
-                        })}
-                        placeholder="********"
-                    />
+                    <Form.Group >
+                        <Row>
+                            <Col>
+                                <Form.Label htmlFor="firstname">Imię</Form.Label>
+                                <Span>{errors.firstname}</Span>
+                                <Form.Control
+                                    onChange={this.onChange}
+                                    value={this.state.firstname}
+                                    error={errors.firstname}
+                                    id="firstname"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.firstname
+                                    })}
+                                    placeholder="Jan"
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
+                                <Span>{errors.lastname}</Span>
+                                <Form.Control
+                                    onChange={this.onChange}
+                                    value={this.state.lasttname}
+                                    error={errors.lastname}
+                                    id="lastname"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.lastname
+                                    })}
+                                    placeholder="Kowalski"
+                                />
+                            </Col>
+                        </Row>
+                    </Form.Group>
 
-                    <Label htmlFor="password2">Powtórz hasło</Label>
-                    <Span >{errors.password2}</Span>
-                    <Input
-                        onChange={this.onChange}
-                        value={this.state.password2}
-                        error={errors.password2}
-                        id="password2"
-                        type="password"
-                        className={classnames("", {
-                            invalid: errors.password2
-                        })}
-                        placeholder="********"
-                    />
-                    <Button >Rejestracja</Button>
-                </form>
+                    <Form.Group >
+                        <Form.Label htmlFor="address">Adres</Form.Label>
+                        <Span>{errors.address}</Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.address}
+                            error={errors.address}
+                            id="address"
+                            type="text"
+                            className={classnames("", {
+                                invalid: errors.address
+                            })}
+                            placeholder="ul. Wspólna 2, Warszawa 00-000"
+                        />
+                    </Form.Group>
+
+                    <Form.Group >
+                        <Form.Label htmlFor="phone">Telefon</Form.Label>
+                        <Span>{errors.phone}</Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.phone}
+                            error={errors.phone}
+                            id="phone"
+                            type="text"
+                            className={classnames("", {
+                                invalid: errors.phone
+                            })}
+                            placeholder="123 456 789"
+                        />
+                    </Form.Group>
+
+                    <Form.Group >
+                        <Form.Label htmlFor="password">Hasło</Form.Label>
+                        <Span>{errors.password}</Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.password}
+                            error={errors.password}
+                            id="password"
+                            type="password"
+                            className={classnames("", {
+                                invalid: errors.password
+                            })}
+                            placeholder="********"
+                        />
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label htmlFor="password2">Powtórz hasło</Form.Label>
+                        <Span >{errors.password2}</Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.password2}
+                            error={errors.password2}
+                            id="password2"
+                            type="password"
+                            className={classnames("", {
+                                invalid: errors.password2
+                            })}
+                            placeholder="********"
+                        />
+                    </Form.Group>
+
+                    <Button variant="success" type="submit" >Rejestracja</Button>
+                </Form>
             </Wrapper>
         )
     }

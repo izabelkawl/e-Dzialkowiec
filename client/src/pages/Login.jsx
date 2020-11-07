@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../api/index";
 import classnames from "classnames";
+import { Form, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 
-import styled from 'styled-components'
-
+import { loginUser } from "../api/index";
 const Title = styled.h1.attrs({
     className: 'h1',
 })`font-size: 32px`
@@ -21,27 +21,6 @@ const Wrapper = styled.div.attrs({
     padding: 50px;
 `
 
-const Label = styled.label`
-    margin: 5px;
-`
-
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-success`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`
 const Span = styled.span.attrs({
     className: `red-text`,
 })`
@@ -96,47 +75,51 @@ class Login extends Component {
         return (
             <Wrapper>
                 <Title>Logowanie</Title>
-                <form noValidate onSubmit={this.onSubmit}>
-                    <Label htmlFor="email">Email</Label>
-                    <Span>
-                        {errors.email}
-                        {errors.emailnotfound}
-                    </Span>
-                    <InputText
-                        onChange={this.onChange}
-                        value={this.state.email}
-                        error={errors.email}
-                        id="email"
-                        type="email"
-                        placeholder="jankowalski@gmail.com"
-                        className={classnames("", {
-                            invalid: errors.email || errors.emailnotfound
-                        })}
+                <Form noValidate onSubmit={this.onSubmit}>
+                    <Form.Group>
+                        <Form.Label htmlFor="email">Email&nbsp;</Form.Label>
+                        <Span>
+                            {errors.email}
+                            {errors.emailnotfound}
+                        </Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.email}
+                            error={errors.email}
+                            id="email"
+                            type="email"
+                            placeholder="jankowalski@gmail.com"
+                            className={classnames("", {
+                                invalid: errors.email || errors.emailnotfound
+                            })} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label htmlFor="password">Hasło&nbsp;</Form.Label>
+                        <Span>
+                            {errors.password}
+                            {errors.passwordincorrect}
+                        </Span>
+                        <Form.Control
+                            onChange={this.onChange}
+                            value={this.state.password}
+                            error={errors.password}
+                            id="password"
+                            type="password"
+                            placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
+                            className={classnames("", {
+                                invalid: errors.password || errors.passwordincorrect
+                            })}
+                        />
+                    </Form.Group>
 
-                    />
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="Zapamietaj mnie" />
+                    </Form.Group>
 
-                    <Label htmlFor="password">Hasło</Label>
-                    <Span>
-                        {errors.password}
-                        {errors.passwordincorrect}
-                    </Span>
-                    <InputText
-                        onChange={this.onChange}
-                        value={this.state.password}
-                        error={errors.password}
-                        id="password"
-                        type="password"
-                        placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
-                        className={classnames("", {
-                            invalid: errors.password || errors.passwordincorrect
-                        })}
-                    />
-                    <Label><input type="checkbox" />&nbsp;&nbsp;Zapamiętaj mnie</Label>
-                    <br></br>
-                    <Button>Zaloguj</Button>
-                    <CancelButton href="/users/register">Zarejestruj</CancelButton>
+                    <Button variant="success" type="submit" >Zaloguj</Button>&nbsp;&nbsp;
+                    <Button variant="danger" href="/users/register">Zarejestruj</Button>
 
-                </form>
+                </Form>
 
             </Wrapper>
         );

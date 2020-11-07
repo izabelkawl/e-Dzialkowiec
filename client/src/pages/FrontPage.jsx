@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 import img from './img/img.png'
 import styled from 'styled-components'
-
+import { Image } from 'react-bootstrap'
 
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
+margin-top: 50px;
+text-align: center;
 `
-const Image = styled.div.attrs({
-    className: 'center',
-})`padding: 100px;
-    text-align: center;
-`
+
 const Section = styled.div.attrs({
     className: 'form-group',
-})`
+})`margin-top: 50px;
     height:800px;
     background-color: #f2f4f5;
 `
@@ -24,7 +22,7 @@ class FrontPage extends Component {
 
         return (
             <Wrapper>
-                <Image><img src={img} height="500" alt="tulipan w doniczce" /></Image>
+                <Image src={img} height="400" alt="tulipan w doniczce" />
                 <Section>cośik</Section>
             </Wrapper>
         )
