@@ -10,9 +10,8 @@ const Wrapper = styled.div.attrs({
 `
 const Image = styled.div.attrs({
     className: 'center',
-})`
-text-align: center;
-margin: 80px;
+})`padding: 100px;
+    text-align: center;
 `
 const Section = styled.div.attrs({
     className: 'form-group',
@@ -25,7 +24,7 @@ class FrontPage extends Component {
 
         return (
             <Wrapper>
-                <Image><img src={img} height="700" alt="tulipan w doniczce" /></Image>
+                <Image><img src={img} height="500" alt="tulipan w doniczce" /></Image>
                 <Section>cośik</Section>
             </Wrapper>
         )

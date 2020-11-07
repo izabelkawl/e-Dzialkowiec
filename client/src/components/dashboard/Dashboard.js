@@ -34,7 +34,7 @@ class Dashboard extends Component {
             <Wrapper >
 
                 Hey there,<b> {user.lastname + ' ' + user.firstname}   </b>.
-                <span> You are logged into a  E-Garden app. Congrats {user.phone} </span>
+                <span> You are logged into a  E-Garden app. Congrats, this is your phone xD {user.phone} </span>
 
                 <Button
                     onClick={this.onLogoutClick}

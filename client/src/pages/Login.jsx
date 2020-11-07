@@ -12,11 +12,11 @@ const Title = styled.h1.attrs({
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
-})`
+})` 
+    margin: 100px;
     margin-left: auto;
     margin-right: auto; 
     width: 600px;
-    margin-top: 150px;
     background-color: white;
     padding: 50px;
 `

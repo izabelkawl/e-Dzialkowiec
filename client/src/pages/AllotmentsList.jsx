@@ -4,10 +4,10 @@ import api from "../api";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  padding: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5vh 0;
 `;
 
 const ListItem = styled.div`

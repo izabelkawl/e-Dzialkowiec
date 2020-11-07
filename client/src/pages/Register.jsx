@@ -9,15 +9,15 @@ import styled from 'styled-components'
 
 const Title = styled.h1.attrs({
     className: 'h1',
-})`font-size: 32px`
+})`
+font-size: 32px`
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
-})`
- margin-left: auto;
+})` margin: 100px;
+    margin-left: auto;
     margin-right: auto; 
     width: 600px;
-    margin-top: 50px;
     background-color: white;
     padding: 50px;
 `
