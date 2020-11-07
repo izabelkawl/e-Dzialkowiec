@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateUserById } from '../api';
 import classnames from "classnames";
-
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 import styled from 'styled-components';
 const Title = styled.h1.attrs({
@@ -20,28 +20,6 @@ const Wrapper = styled.div.attrs({
     padding: 50px;
     width: 600px;
     margin-top: 50px;
-`
-
-const Label = styled.label`
-    margin: 5px;
-`
-
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
 `
 
 const Span = styled.span.attrs({
@@ -109,95 +87,107 @@ class UsersUpdate extends Component {
             <Wrapper>
                 <Title>Edycja</Title>
 
-                <Label htmlFor="email" >Email: </Label>
-                <Span>{errors.email}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.email}
-                    id="email"
-                    type="email"
-                    className={classnames("", {
-                        invalid: errors.email
-                    })}
-                    value={email}
+                <Form.Group >
+                    <Form.Label htmlFor="email" >Email: </Form.Label >
+                    <Span>{errors.email}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.email}
+                        id="email"
+                        type="email"
+                        className={classnames("", {
+                            invalid: errors.email
+                        })}
+                        value={email}
 
-                />
+                    />
+                </Form.Group >
+                <Form.Group >
+                    <Form.Label htmlFor="firstname" >Imię: </Form.Label >
+                    <Span>{errors.firstname}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.firstname}
+                        id="firstname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.firstname
+                        })}
+                        value={firstname}
+                    />
+                </Form.Group >
+                <Form.Group >
+                    <Form.Label htmlFor="lastname">Nazwisko: </Form.Label >
+                    <Span>{errors.lastname}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.lastname}
+                        id="lastname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.lastname
+                        })}
+                        value={lastname}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="address">Adres: </Form.Label >
+                    <Span>{errors.address}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.address}
+                        id="address"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.address
+                        })}
+                        value={address}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="phone">Telefon: </Form.Label >
+                    <Span>{errors.phone}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.phone}
+                        id="phone"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.phone
+                        })}
+                        value={phone}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="password">Hasło: </Form.Label >
+                    <Span>{errors.password}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.password}
+                        id="password"
+                        type="password"
+                        className={classnames("", {
+                            invalid: errors.password
+                        })}
 
-                <Label htmlFor="firstname" >Imię: </Label>
-                <Span>{errors.firstname}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.firstname}
-                    id="firstname"
-                    type="text"
-                    className={classnames("", {
-                        invalid: errors.firstname
-                    })}
-                    value={firstname}
-                />
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="password2">Powtórz hasło: </Form.Label >
+                    <Span>{errors.password2}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.password2}
+                        id="password2"
+                        type="password"
+                        className={classnames("", {
+                            invalid: errors.password2
+                        })}
+                    />
+                </Form.Group>
 
-                <Label htmlFor="lastname">Nazwisko: </Label>
-                <Span>{errors.lastname}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.lastname}
-                    id="lastname"
-                    type="text"
-                    className={classnames("", {
-                        invalid: errors.lastname
-                    })}
-                    value={lastname}
-                />
-                <Label htmlFor="address">Adres: </Label>
-                <Span>{errors.address}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.address}
-                    id="address"
-                    type="text"
-                    className={classnames("", {
-                        invalid: errors.address
-                    })}
-                    value={address}
-                />
-                <Label htmlFor="phone">Telefon: </Label>
-                <Span>{errors.phone}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.phone}
-                    id="phone"
-                    type="text"
-                    className={classnames("", {
-                        invalid: errors.phone
-                    })}
-                    value={phone}
-                />
-
-                <Label htmlFor="password">Hasło: </Label>
-                <Span>{errors.password}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.password}
-                    id="password"
-                    type="password"
-                    className={classnames("", {
-                        invalid: errors.password
-                    })}
-
-                />
-                <Label htmlFor="password2">Powtórz hasło: </Label>
-                <Span>{errors.password2}</Span>
-                <InputText
-                    onChange={this.onChange}
-                    error={errors.password2}
-                    id="password2"
-                    type="password"
-                    className={classnames("", {
-                        invalid: errors.password2
-                    })}
-                />
-                <Button onClick={this.handleUpdateUser}>Update User</Button>
-                <CancelButton href={'/users/list'}>Cancel</CancelButton>
+                <Button variant="success" type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>&nbsp;&nbsp;
+                <Button variant="danger" href={'/users/list'}>Powrót</Button>
             </Wrapper>
         )
     }

@@ -77,7 +77,7 @@ class Login extends Component {
                 <Title>Logowanie</Title>
                 <Form noValidate onSubmit={this.onSubmit}>
                     <Form.Group>
-                        <Form.Label htmlFor="email">Email&nbsp;</Form.Label>
+                        <Form.Label htmlFor="email">Email</Form.Label>
                         <Span>
                             {errors.email}
                             {errors.emailnotfound}
@@ -94,7 +94,7 @@ class Login extends Component {
                             })} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label htmlFor="password">Hasło&nbsp;</Form.Label>
+                        <Form.Label htmlFor="password">Hasło</Form.Label>
                         <Span>
                             {errors.password}
                             {errors.passwordincorrect}
