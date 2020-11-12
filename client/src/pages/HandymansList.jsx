@@ -1,40 +1,15 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../api";
-
+import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vh 0;
+ width: 70%;
+  background-color: white; 
+  
+    margin: 0 auto;
+    margin-top: 50px;
 `;
-
-const ListItem = styled.div`
-  display: flex;
-  width: 50%;
-  padding: 1vh 1vw;
-  border-bottom: 1px dashed #ccc;
-  background-color: white;
-`;
-const Lp = styled.div`
-  width: 50px;
-`;
-const Email = styled.div`
-  width: 250px;
-`;
-const Item = styled.div`
-  width: 100px;
-`;
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`;
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`;;
 
 
 class UpdateHandyman extends Component {
@@ -45,7 +20,7 @@ class UpdateHandyman extends Component {
     }
 
     render() {
-        return <Update onClick={this.updateHandyman}>Update</Update>
+        return <Button variant="success" onClick={this.updateHandyman}>Update</Button>
     }
 }
 
@@ -64,7 +39,7 @@ class DeleteHandyman extends Component {
     }
 
     render() {
-        return <Delete onClick={this.deleteHandyman}>Delete</Delete>
+        return <Button variant="danger" onClick={this.deleteHandyman}>Delete</Button>
     }
 }
 
@@ -85,30 +60,36 @@ const HandymansList = () => {
         const { _id, profession, email, firstname, lastname, phone } = handyman;
 
         return (
-            <ListItem key={_id}>
-                <Lp>{index + 1}</Lp>
-                <Item>{profession}</Item>
-                <Email>{email}</Email>
-                <Item>{firstname}</Item>
-                <Item>{lastname}</Item>
-                <Item>{phone}</Item>
-                <Item><DeleteHandyman id={_id} /></Item>
-                <Item><UpdateHandyman id={_id} /></Item>
-            </ListItem>
+
+            <tr key={_id}>
+                <td>{profession}</td>
+                <td>{email}</td>
+                <td>{firstname + ' ' + lastname}</td>
+                <td>{phone}</td>
+                <td><DeleteHandyman id={_id} /></td>
+                <td><UpdateHandyman id={_id} /></td>
+
+            </tr>
+
         );
     });
 
     return <Wrapper>
-        <ListItem>
-            <Lp>Lp</Lp>
-            <Item>profession</Item>
-            <Email>email</Email>
-            <Item>firstname</Item>
-            <Item>lastname</Item>
-            <Item>phone</Item>
-        </ListItem>
+        <Table striped bordered hover>
+            <thead>
 
-        {HandymansTable}</Wrapper>;
+                <th>profession</th>
+                <th>email</th>
+                <th>Name</th>
+                <th>phone</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                {HandymansTable}
+            </tbody>
+        </Table>
+    </Wrapper>
 };
 
 export default HandymansList;

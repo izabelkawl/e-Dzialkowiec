@@ -83,6 +83,8 @@ const UsersList = () => {
                 <th>lastname</th>
                 <th>address</th>
                 <th>phone</th>
+                <th></th>
+                <th></th>
             </thead>
             <tbody>
                 {UsersTable}

@@ -1,37 +1,17 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../api";
-
+import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vh 0;
+ width: 70%;
+  background-color: white; 
+  
+    margin: 0 auto;
+    margin-top: 50px; 
+
 `;
 
-const ListItem = styled.div`
-  display: flex;
-  width: 50%;
-  padding: 1vh 1vw;
-  border-bottom: 1px dashed #ccc;
-  background-color: white;
-`;
-const Lp = styled.div`
-  width: 50px;
-`;
-const Item = styled.div`
-  width: 100px;
-`;
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`;
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`;;
 
 
 class UpdateMessage extends Component {
@@ -42,7 +22,7 @@ class UpdateMessage extends Component {
     }
 
     render() {
-        return <Update onClick={this.updateMessage}>Update</Update>
+        return <Button variant="success" onClick={this.updateMessage}>Update</Button>
     }
 }
 
@@ -61,7 +41,7 @@ class DeleteMessage extends Component {
     }
 
     render() {
-        return <Delete onClick={this.deleteMessage}>Delete</Delete>
+        return <Button variant="danger" onClick={this.deleteMessage}>Delete</Button>
     }
 }
 
@@ -82,25 +62,33 @@ const MessagesList = () => {
         const { _id, user, recipient, content } = message;
 
         return (
-            <ListItem key={_id}>
-                <Lp>{index + 1}</Lp>
-                <Item>{user}</Item>
-                <Item>{recipient}</Item>
-                <Item>{content}</Item>
-                <Item><DeleteMessage id={_id} /></Item>
-                <Item><UpdateMessage id={_id} /></Item>
-            </ListItem>
+            <tr key={_id}>
+                <td>{index + 1}</td>
+                <td>{user}</td>
+                <td>{recipient}</td>
+                <td>{content}</td>
+                <td><DeleteMessage id={_id} /></td>
+                <td><UpdateMessage id={_id} /></td>
+
+            </tr>
         );
     });
 
     return <Wrapper>
-        <ListItem>
-            <Lp>Lp</Lp>
-            <Item>user</Item>
-            <Item>recipient</Item>
-            <Item>content</Item>
-        </ListItem >
-        {MessagesTable}</Wrapper>;
+        <Table striped bordered hover>
+            <thead>
+                <th>Lp</th>
+                <th>User</th>
+                <th>Recipient</th>
+                <th>Content</th>
+                {/* Date */}
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                {MessagesTable}
+            </tbody>
+        </Table></Wrapper>;
 };
 
 export default MessagesList;

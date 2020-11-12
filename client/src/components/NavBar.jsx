@@ -8,21 +8,22 @@ import Logo from './Logo';
 class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="white" expand="lg" sticky="top">
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" >
 
                     <Nav className="mr-auto">
                         <Logo />
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/" className="nav-link ">
-                            Strona główna
+
+                        <Nav.Link href="/about" className="nav-link ">
+                            O nas
                             </Nav.Link>
 
                         <Nav.Link href="/allotments/list" className="nav-link ">
-                            Oferty działek
+                            Działki
                             </Nav.Link>
 
                         <Nav.Link href="/table" className="nav-link ">
@@ -30,13 +31,24 @@ class NavBar extends Component {
                             </Nav.Link>
 
                         <Nav.Link href="/users/list" className="nav-link ">
+                            Lista użytkowników
+                            </Nav.Link>
+                        <Nav.Link href="/" className="nav-link ">
                             Forum
+                            </Nav.Link>
+                        <Nav.Link href="/messages/list" className="nav-link ">
+                            Wiadomości
+                            </Nav.Link>
+                        <Nav.Link href="/" className="nav-link ">
+                            Opłaty
+                            </Nav.Link>
+                        <Nav.Link href="/handymans/list" className="nav-link ">
+                            Złota rączka
                             </Nav.Link>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <DropdownButton
                             menuAlign="right"
                             title=" Konto&nbsp;"
-                            id="dropdown-menu-align-right"
                             variant="success"
                         >
                             <Dropdown.Item href="/users/login" eventKey="1">Logowanie</Dropdown.Item>

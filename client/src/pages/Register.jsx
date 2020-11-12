@@ -22,11 +22,6 @@ const Wrapper = styled.div.attrs({
     padding: 50px;
 `
 
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 
 class Register extends Component {
     constructor() {
@@ -96,7 +91,7 @@ class Register extends Component {
 
                     <Form.Group >
                         <Form.Label htmlFor="email">Adres email</Form.Label>
-                        <Span>{errors.email}</Span>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.email}
@@ -106,15 +101,19 @@ class Register extends Component {
                             className={classnames("", {
                                 invalid: errors.email
                             })}
-                            placeholder="jkowal@gmail.com"
+                            placeholder="jankowal@gmail.com"
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.email}
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group >
                         <Row>
                             <Col>
-                                <Form.Label htmlFor="firstname">Imię</Form.Label>
-                                <Span>{errors.firstname}</Span>
+                                <Form.Label htmlFor="firstname">Imię
+                                </Form.Label>
+
                                 <Form.Control
                                     onChange={this.onChange}
                                     value={this.state.firstname}
@@ -126,10 +125,13 @@ class Register extends Component {
                                     })}
                                     placeholder="Jan"
                                 />
+                                <Form.Text style={{ color: "red" }}>
+                                    {errors.firstname}
+                                </Form.Text>
                             </Col>
                             <Col>
                                 <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
-                                <Span>{errors.lastname}</Span>
+
                                 <Form.Control
                                     onChange={this.onChange}
                                     value={this.state.lasttname}
@@ -141,13 +143,16 @@ class Register extends Component {
                                     })}
                                     placeholder="Kowalski"
                                 />
+                                <Form.Text style={{ color: "red" }}>
+                                    {errors.lastname}
+                                </Form.Text>
                             </Col>
                         </Row>
                     </Form.Group>
 
                     <Form.Group >
                         <Form.Label htmlFor="address">Adres</Form.Label>
-                        <Span>{errors.address}</Span>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.address}
@@ -159,11 +164,14 @@ class Register extends Component {
                             })}
                             placeholder="ul. Wspólna 2, Warszawa 00-000"
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.address}
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group >
                         <Form.Label htmlFor="phone">Telefon</Form.Label>
-                        <Span>{errors.phone}</Span>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.phone}
@@ -175,11 +183,14 @@ class Register extends Component {
                             })}
                             placeholder="123 456 789"
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.phone}
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group >
                         <Form.Label htmlFor="password">Hasło</Form.Label>
-                        <Span>{errors.password}</Span>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.password}
@@ -191,11 +202,14 @@ class Register extends Component {
                             })}
                             placeholder="********"
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.password}
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label htmlFor="password2">Powtórz hasło</Form.Label>
-                        <Span >{errors.password2}</Span>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.password2}
@@ -207,9 +221,13 @@ class Register extends Component {
                             })}
                             placeholder="********"
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.password2}
+                        </Form.Text>
                     </Form.Group>
-
-                    <Button variant="success" type="submit" >Rejestracja</Button>
+                    <Form.Group>
+                        <Button variant="success" type="submit" >Rejestracja</Button>
+                    </Form.Group>
                 </Form>
             </Wrapper>
         )

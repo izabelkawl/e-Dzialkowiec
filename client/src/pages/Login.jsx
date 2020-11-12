@@ -21,11 +21,6 @@ const Wrapper = styled.div.attrs({
     padding: 50px;
 `
 
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 
 class Login extends Component {
     constructor() {
@@ -77,11 +72,9 @@ class Login extends Component {
                 <Title>Logowanie</Title>
                 <Form noValidate onSubmit={this.onSubmit}>
                     <Form.Group>
-                        <Form.Label htmlFor="email">Email</Form.Label>
-                        <Span>
-                            {errors.email}
-                            {errors.emailnotfound}
-                        </Span>
+                        <Form.Label htmlFor="email">Email
+                        </Form.Label>
+
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.email}
@@ -92,13 +85,16 @@ class Login extends Component {
                             className={classnames("", {
                                 invalid: errors.email || errors.emailnotfound
                             })} />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.email}
+                            {errors.emailnotfound}
+                        </Form.Text>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor="password">Hasło</Form.Label>
-                        <Span>
-                            {errors.password}
-                            {errors.passwordincorrect}
-                        </Span>
+                        <Form.Text style={{ float: "right" }}>
+                            <a href="/"> Nie pamiętasz hasła?</a>
+                        </Form.Text>
                         <Form.Control
                             onChange={this.onChange}
                             value={this.state.password}
@@ -110,6 +106,10 @@ class Login extends Component {
                                 invalid: errors.password || errors.passwordincorrect
                             })}
                         />
+                        <Form.Text style={{ color: "red" }}>
+                            {errors.password}
+                            {errors.passwordincorrect}
+                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicCheckbox">
@@ -117,7 +117,7 @@ class Login extends Component {
                     </Form.Group>
 
                     <Button variant="success" type="submit" >Zaloguj</Button>&nbsp;&nbsp;
-                    <Button variant="danger" href="/users/register">Zarejestruj</Button>
+                    <Button variant="danger" href="/users/register">Rejestracja</Button>
 
                 </Form>
 
