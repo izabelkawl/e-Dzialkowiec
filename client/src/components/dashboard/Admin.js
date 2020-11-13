@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import LoggedNavBar from '../LoggedNavBar'
 import styled from 'styled-components'
+import AdminNavBar from "../AdminNavBar";
+
 
 
 const Wrapper = styled.div.attrs({
@@ -31,7 +32,8 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class Dashboard extends Component {
+class Admin extends Component {
+
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
@@ -39,25 +41,31 @@ class Dashboard extends Component {
     render() {
 
         const { user } = this.props.auth;
+        if (user.email === "izabelawlazlo9@gmail.com") {
+            return (
+                <Wrapper >
+                    <AdminNavBar />
+                    <Container>
 
-        return (
+                        Hey there, this is your email <b> {user.email}   </b>.
+                    <span> You are logged into a Admin page  </span>
+
+                        <Button
+                            onClick={this.onLogoutClick}
+                        >
+                            Logout
+            </Button>
+                    </Container>
+                </Wrapper>
+            );
+        } else return (
             <Wrapper >
-                <LoggedNavBar />
-                <Container>
-                    Hey there,<b> {user.lastname + ' ' + user.firstname}   </b>.
-                <span> You are logged into a  E-Garden app. Congrats, this is your phone xD {user.phone} </span>
-
-                    <Button
-                        onClick={this.onLogoutClick}
-                    >
-                        Logout
-           </Button>
-                </Container>
-            </Wrapper >
+                Page not found
+            </Wrapper>
         );
     }
 }
-Dashboard.propTypes = {
+Admin.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -69,4 +77,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { logoutUser }
-)(Dashboard);
+)(Admin);

@@ -6,7 +6,7 @@ import About from './About'
 import UsersList from './UsersList'
 import Register from './Register'
 import UsersUpdate from './UsersUpdate'
-
+import Garden from './Garden'
 import AllotmentsList from './AllotmentsList'
 import AllotmentsUpdate from './AllotmentsUpdate'
 import AllotmentsInsert from './AllotmentsInsert'
@@ -19,4 +19,4 @@ import MessagesList from './MessagesList'
 import MessagesUpdate from './MessagesUpdate'
 import MessagesInsert from './MessagesInsert'
 
-export { FrontPage, Table, About, Login, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Table, About, Login, Garden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }

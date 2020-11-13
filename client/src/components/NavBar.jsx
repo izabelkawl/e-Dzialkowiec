@@ -18,32 +18,14 @@ class NavBar extends Component {
                     </Nav>
                     <Nav>
 
+                        <Nav.Link href="/" className="nav-link ">
+                            Strona główna
+                            </Nav.Link>
                         <Nav.Link href="/about" className="nav-link ">
                             O nas
                             </Nav.Link>
-
-                        <Nav.Link href="/allotments/list" className="nav-link ">
-                            Działki
-                            </Nav.Link>
-
-                        <Nav.Link href="/table" className="nav-link ">
-                            Tablica ogłoszeń
-                            </Nav.Link>
-
-                        <Nav.Link href="/users/list" className="nav-link ">
-                            Lista użytkowników
-                            </Nav.Link>
-                        <Nav.Link href="/" className="nav-link ">
-                            Forum
-                            </Nav.Link>
-                        <Nav.Link href="/messages/list" className="nav-link ">
-                            Wiadomości
-                            </Nav.Link>
-                        <Nav.Link href="/" className="nav-link ">
-                            Opłaty
-                            </Nav.Link>
-                        <Nav.Link href="/handymans/list" className="nav-link ">
-                            Złota rączka
+                        <Nav.Link href="/garden" className="nav-link ">
+                            Plan ogrodu
                             </Nav.Link>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <DropdownButton

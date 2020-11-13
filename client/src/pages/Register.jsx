@@ -6,13 +6,18 @@ import { registerUser } from "../api/index";
 import classnames from "classnames";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components'
+import { NavBar } from '../components';
+
+const Wrapper = styled.div`
+ 
+`;
 
 const Title = styled.h1.attrs({
     className: 'h1',
 })`
 font-size: 32px`
 
-const Wrapper = styled.div.attrs({
+const Container = styled.div.attrs({
     className: 'form-group',
 })` margin: 100px;
     margin-left: auto;
@@ -85,150 +90,153 @@ class Register extends Component {
 
         return (
             <Wrapper>
-                <Title>Rejestracja</Title>
+                <NavBar />
+                <Container>
+                    <Title>Rejestracja</Title>
 
-                <Form noValidate onSubmit={this.onSubmit}>
+                    <Form noValidate onSubmit={this.onSubmit}>
 
-                    <Form.Group >
-                        <Form.Label htmlFor="email">Adres email</Form.Label>
+                        <Form.Group >
+                            <Form.Label htmlFor="email">Adres email</Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.email}
-                            error={errors.email}
-                            id="email"
-                            type="email"
-                            className={classnames("", {
-                                invalid: errors.email
-                            })}
-                            placeholder="jankowal@gmail.com"
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.email}
-                        </Form.Text>
-                    </Form.Group>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.email}
+                                error={errors.email}
+                                id="email"
+                                type="email"
+                                className={classnames("", {
+                                    invalid: errors.email
+                                })}
+                                placeholder="jankowal@gmail.com"
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.email}
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group >
-                        <Row>
-                            <Col>
-                                <Form.Label htmlFor="firstname">Imię
+                        <Form.Group >
+                            <Row>
+                                <Col>
+                                    <Form.Label htmlFor="firstname">Imię
                                 </Form.Label>
 
-                                <Form.Control
-                                    onChange={this.onChange}
-                                    value={this.state.firstname}
-                                    error={errors.firstname}
-                                    id="firstname"
-                                    type="text"
-                                    className={classnames("", {
-                                        invalid: errors.firstname
-                                    })}
-                                    placeholder="Jan"
-                                />
-                                <Form.Text style={{ color: "red" }}>
-                                    {errors.firstname}
-                                </Form.Text>
-                            </Col>
-                            <Col>
-                                <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
+                                    <Form.Control
+                                        onChange={this.onChange}
+                                        value={this.state.firstname}
+                                        error={errors.firstname}
+                                        id="firstname"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.firstname
+                                        })}
+                                        placeholder="Jan"
+                                    />
+                                    <Form.Text style={{ color: "red" }}>
+                                        {errors.firstname}
+                                    </Form.Text>
+                                </Col>
+                                <Col>
+                                    <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
 
-                                <Form.Control
-                                    onChange={this.onChange}
-                                    value={this.state.lasttname}
-                                    error={errors.lastname}
-                                    id="lastname"
-                                    type="text"
-                                    className={classnames("", {
-                                        invalid: errors.lastname
-                                    })}
-                                    placeholder="Kowalski"
-                                />
-                                <Form.Text style={{ color: "red" }}>
-                                    {errors.lastname}
-                                </Form.Text>
-                            </Col>
-                        </Row>
-                    </Form.Group>
+                                    <Form.Control
+                                        onChange={this.onChange}
+                                        value={this.state.lasttname}
+                                        error={errors.lastname}
+                                        id="lastname"
+                                        type="text"
+                                        className={classnames("", {
+                                            invalid: errors.lastname
+                                        })}
+                                        placeholder="Kowalski"
+                                    />
+                                    <Form.Text style={{ color: "red" }}>
+                                        {errors.lastname}
+                                    </Form.Text>
+                                </Col>
+                            </Row>
+                        </Form.Group>
 
-                    <Form.Group >
-                        <Form.Label htmlFor="address">Adres</Form.Label>
+                        <Form.Group >
+                            <Form.Label htmlFor="address">Adres</Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.address}
-                            error={errors.address}
-                            id="address"
-                            type="text"
-                            className={classnames("", {
-                                invalid: errors.address
-                            })}
-                            placeholder="ul. Wspólna 2, Warszawa 00-000"
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.address}
-                        </Form.Text>
-                    </Form.Group>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.address}
+                                error={errors.address}
+                                id="address"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.address
+                                })}
+                                placeholder="ul. Wspólna 2, Warszawa 00-000"
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.address}
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group >
-                        <Form.Label htmlFor="phone">Telefon</Form.Label>
+                        <Form.Group >
+                            <Form.Label htmlFor="phone">Telefon</Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.phone}
-                            error={errors.phone}
-                            id="phone"
-                            type="text"
-                            className={classnames("", {
-                                invalid: errors.phone
-                            })}
-                            placeholder="123 456 789"
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.phone}
-                        </Form.Text>
-                    </Form.Group>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.phone}
+                                error={errors.phone}
+                                id="phone"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.phone
+                                })}
+                                placeholder="123 456 789"
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.phone}
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group >
-                        <Form.Label htmlFor="password">Hasło</Form.Label>
+                        <Form.Group >
+                            <Form.Label htmlFor="password">Hasło</Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.password}
-                            error={errors.password}
-                            id="password"
-                            type="password"
-                            className={classnames("", {
-                                invalid: errors.password
-                            })}
-                            placeholder="********"
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.password}
-                        </Form.Text>
-                    </Form.Group>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.password}
+                                error={errors.password}
+                                id="password"
+                                type="password"
+                                className={classnames("", {
+                                    invalid: errors.password
+                                })}
+                                placeholder="********"
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.password}
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label htmlFor="password2">Powtórz hasło</Form.Label>
+                        <Form.Group>
+                            <Form.Label htmlFor="password2">Powtórz hasło</Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.password2}
-                            error={errors.password2}
-                            id="password2"
-                            type="password"
-                            className={classnames("", {
-                                invalid: errors.password2
-                            })}
-                            placeholder="********"
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.password2}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group>
-                        <Button variant="success" type="submit" >Rejestracja</Button>
-                    </Form.Group>
-                </Form>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.password2}
+                                error={errors.password2}
+                                id="password2"
+                                type="password"
+                                className={classnames("", {
+                                    invalid: errors.password2
+                                })}
+                                placeholder="********"
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.password2}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group>
+                            <Button variant="success" type="submit" >Rejestracja</Button>
+                        </Form.Group>
+                    </Form>
+                </Container>
             </Wrapper>
         )
     }

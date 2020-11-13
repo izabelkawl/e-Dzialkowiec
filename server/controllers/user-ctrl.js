@@ -65,6 +65,7 @@ const loginUser = async (req, res) => {
   else {
     const payload = {
       id: processedUser.id,
+      email: processedUser.email,
       firstname: processedUser.firstname,
       lastname: processedUser.lastname,
       address: processedUser.address,

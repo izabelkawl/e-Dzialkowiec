@@ -8,11 +8,11 @@ import { setCurrentUser, logoutUser } from "../api/index";
 import { Provider } from "react-redux";
 import store from "../store.js";
 
-import { NavBar } from '../components'
-import { FrontPage, Table, About, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Login } from '../pages'
+import { FrontPage, Table, About, Garden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Login } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
+import Admin from '../components/dashboard/Admin';
 
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,35 +49,39 @@ function App() {
       <Container>
         <Router>
 
-          <NavBar />
           <Switch>
             <Route path="/" exact component={FrontPage} />
+
             <Route path="/about" exact component={About} />
             <Route path="/table" exact component={Table} />
+
             <Route path="/users/login" exact component={Login} />
             <Route path="/users/register" exact component={Register} />
-            <Route path="/users/list" exact component={UsersList} />
-            <Route path="/users/update/:id" exact component={UsersUpdate} />
+            <Route path="/garden" exact component={Garden} />
+            <PrivateRoute path="/users/list" exact component={UsersList} />
+            <PrivateRoute path="/users/update/:id" exact component={UsersUpdate} />
 
             <Route path="/allotments/list" exact component={AllotmentsList} />
-            <Route path="/allotments/create" exact component={AllotmentsInsert} />
-            <Route path="/allotments/update/:id" exact component={AllotmentsUpdate} />
+            <PrivateRoute path="/allotments/create" exact component={AllotmentsInsert} />
+            <PrivateRoute path="/allotments/update/:id" exact component={AllotmentsUpdate} />
 
             <Route path="/handymans/list" exact component={HandymansList} />
-            <Route path="/handymans/create" exact component={HandymansInsert} />
-            <Route path="/handymans/update/:id" exact component={HandymansUpdate} />
+            <PrivateRoute path="/handymans/create" exact component={HandymansInsert} />
+            <PrivateRoute path="/handymans/update/:id" exact component={HandymansUpdate} />
 
-            <Route path="/messages/list" exact component={MessagesList} />
-            <Route path="/messages/create" exact component={MessagesInsert} />
+            <PrivateRoute path="/messages/list" exact component={MessagesList} />
+            <PrivateRoute path="/messages/create" exact component={MessagesInsert} />
             <Route path="/messages/update/:id" exact component={MessagesUpdate} />
 
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
+            <PrivateRoute path="/admin" exact component={Admin} />
 
           </Switch>
         </Router>
       </ Container >
     </Provider >
   )
+
 }
 
 export default App;

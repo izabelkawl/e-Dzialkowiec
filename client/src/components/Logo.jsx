@@ -6,7 +6,8 @@ import logo from './img/nap.png'
 
 const Wrapper = styled.a.attrs({
     className: 'navbar-header',
-})``
+})`padding-top: 5px;
+padding-bottom: 5px;`
 
 
 class Logo extends Component {

@@ -4,13 +4,19 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import { NavBar } from '../components';
 
 import { loginUser } from "../api/index";
+
+const Wrapper = styled.div`
+ 
+`;
+
 const Title = styled.h1.attrs({
     className: 'h1',
 })`font-size: 32px`
 
-const Wrapper = styled.div.attrs({
+const Container = styled.div.attrs({
     className: 'form-group',
 })` 
     margin: 100px;
@@ -40,7 +46,11 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            this.props.history.push("/dashboard");
+            if (this.state.email === "izabelawlazlo9@gmail.com" && this.state.password === "Zaqwsxcde3@1") {
+                this.props.history.push("/admin");
+            } else
+
+                this.props.history.push("/dashboard");
         }
 
         if (nextProps.errors) {
@@ -69,58 +79,61 @@ class Login extends Component {
         const { errors } = this.state;
         return (
             <Wrapper>
-                <Title>Logowanie</Title>
-                <Form noValidate onSubmit={this.onSubmit}>
-                    <Form.Group>
-                        <Form.Label htmlFor="email">Email
+                <NavBar />
+                <Container>
+                    <Title>Logowanie</Title>
+                    <Form noValidate onSubmit={this.onSubmit}>
+                        <Form.Group>
+                            <Form.Label htmlFor="email">Email
                         </Form.Label>
 
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.email}
-                            error={errors.email}
-                            id="email"
-                            type="email"
-                            placeholder="jankowalski@gmail.com"
-                            className={classnames("", {
-                                invalid: errors.email || errors.emailnotfound
-                            })} />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.email}
-                            {errors.emailnotfound}
-                        </Form.Text>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label htmlFor="password">Hasło</Form.Label>
-                        <Form.Text style={{ float: "right" }}>
-                            <a href="/"> Nie pamiętasz hasła?</a>
-                        </Form.Text>
-                        <Form.Control
-                            onChange={this.onChange}
-                            value={this.state.password}
-                            error={errors.password}
-                            id="password"
-                            type="password"
-                            placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
-                            className={classnames("", {
-                                invalid: errors.password || errors.passwordincorrect
-                            })}
-                        />
-                        <Form.Text style={{ color: "red" }}>
-                            {errors.password}
-                            {errors.passwordincorrect}
-                        </Form.Text>
-                    </Form.Group>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.email}
+                                error={errors.email}
+                                id="email"
+                                type="email"
+                                placeholder="jankowalski@gmail.com"
+                                className={classnames("", {
+                                    invalid: errors.email || errors.emailnotfound
+                                })} />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.email}
+                                {errors.emailnotfound}
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor="password">Hasło</Form.Label>
+                            <Form.Text style={{ float: "right" }}>
+                                <a href="/"> Nie pamiętasz hasła?</a>
+                            </Form.Text>
+                            <Form.Control
+                                onChange={this.onChange}
+                                value={this.state.password}
+                                error={errors.password}
+                                id="password"
+                                type="password"
+                                placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
+                                className={classnames("", {
+                                    invalid: errors.password || errors.passwordincorrect
+                                })}
+                            />
+                            <Form.Text style={{ color: "red" }}>
+                                {errors.password}
+                                {errors.passwordincorrect}
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Zapamietaj mnie" />
-                    </Form.Group>
+                        <Form.Group controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Zapamietaj mnie" />
+                        </Form.Group>
 
-                    <Button variant="success" type="submit" >Zaloguj</Button>&nbsp;&nbsp;
+                        <Button variant="success" type="submit" >Zaloguj</Button>&nbsp;&nbsp;
                     <Button variant="danger" href="/users/register">Rejestracja</Button>
 
-                </Form>
+                    </Form>
 
+                </Container>
             </Wrapper>
         );
     }
