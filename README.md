@@ -5,13 +5,10 @@
 <p>Dla właściciela ogrodu - uproszczenie przekazywania informacji dla działkowiczów, prosty wgląd i weryfikacja finansów oraz zarządzanie ogrodami działkowymi
  </p></em> 
  <hr>
-<b>Użyte technologie</b> 
-MongoDB
-Express
-React JS
-Node JS
+ 
+<b>Użyte technologie:</b> MongoDB, Express, React JS, Node JS
 
-
+<br>
 Database name:
 <b>database</b>
   <br>
