@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import img from './img/img.png'
 import styled from 'styled-components'
 import { Button, Row, Col, Form, Jumbotron } from 'react-bootstrap'
-// import Background from './img/bg.jpg';
+import NavBar from '../components/NavBar'
 import bg from './img/bg.jpg';
-import { NavBar } from '../components';
 
 const Wrapper = styled.div.attrs({
 })`

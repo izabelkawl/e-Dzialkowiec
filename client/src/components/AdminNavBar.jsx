@@ -3,6 +3,7 @@ import { Navbar, Nav, } from 'react-bootstrap';
 import { Image } from 'react-bootstrap'
 import styled from 'styled-components'
 import logo from './img/nap1.png'
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -29,28 +30,25 @@ class AdminNavBar extends Component {
                         <Nav.Link href="/admin" className="nav-link ">
                             Panel
                             </Nav.Link>
-                        <Nav.Link href="/users/list" className="nav-link ">
+                        <Nav.Link href="/admin/users/list" className="nav-link ">
                             Użytkownicy
                             </Nav.Link>
 
-                        <Nav.Link href="/allotments/list" className="nav-link ">
+                        <Nav.Link href="/admin/allotments/list" className="nav-link ">
                             Działki
                             </Nav.Link>
-                        <Nav.Link href="/handyman/list" className="nav-link ">
+                        <Nav.Link href="/admin/handymans/list" className="nav-link ">
                             Fochowcy
                             </Nav.Link>
-                        <Nav.Link href="/messages/list" className="nav-link ">
+                        <Nav.Link href="/admin/messages/list" className="nav-link ">
                             Wiadomości
                             </Nav.Link>
-
-
-                        <Nav.Link href="/table" className="nav-link ">
+                        <Nav.Link href="/admin/table" className="nav-link ">
                             Tablica ogłoszeń
                             </Nav.Link>
-                        <Nav.Link href="/messages/list" className="nav-link ">
+                        <Nav.Link href="/admin/messages/list" className="nav-link ">
                             Finanse
                             </Nav.Link>
-
                     </Nav>
 
                 </Navbar.Collapse>

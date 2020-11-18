@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById } from '../api';
+import api, { updateUserById } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 

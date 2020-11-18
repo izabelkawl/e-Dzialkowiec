@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../api'
+import api from '../../api'
 
 import styled from 'styled-components'
 
@@ -40,17 +40,16 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class HandymansUpdate extends Component {
+class HandymansInsert extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
             profession: '',
             email: '',
             firstname: '',
             lastname: '',
-            phone: '',
+            phone: ''
         }
     }
     handleChangeInputProfession = async event => {
@@ -77,33 +76,19 @@ class HandymansUpdate extends Component {
         this.setState({ phone })
     }
 
-
-    handleUpdateHandyman = async () => {
-        const { id, profession, email, firstname, lastname, phone } = this.state
+    handleIncludeHandyman = async () => {
+        const { profession, email, firstname, lastname, phone } = this.state
         const payload = { profession, email, firstname, lastname, phone }
 
-        await api.updateHandymanById(id, payload).then(res => {
-            window.alert(`Handyman updated successfully`)
+        await api.insertHandyman(payload).then(res => {
+            window.alert(`Handyman inserted successfully`)
             this.setState({
                 profession: '',
                 email: '',
                 firstname: '',
                 lastname: '',
-                phone: '',
+                phone: ''
             })
-        })
-    }
-
-    componentDidMount = async () => {
-        const { id } = this.state
-        const handyman = await api.getHandymanById(id)
-
-        this.setState({
-            profession: handyman.data.data.profession,
-            email: handyman.data.data.email,
-            firstname: handyman.data.data.firstname,
-            lastname: handyman.data.data.lastname,
-            phone: handyman.data.data.phone,
         })
     }
 
@@ -111,7 +96,7 @@ class HandymansUpdate extends Component {
         const { profession, email, firstname, lastname, phone } = this.state
         return (
             <Wrapper>
-                <Title>Update Handyman</Title>
+                <Title>Create Handyman</Title>
                 <Label>Profession: </Label>
                 <InputText
                     type="text"
@@ -139,7 +124,7 @@ class HandymansUpdate extends Component {
                     value={lastname}
                     onChange={this.handleChangeInputLastname}
                 />
-                <Label>Provider Id: </Label>
+                <Label>Phone: </Label>
                 <InputText
                     type="text"
                     value={phone}
@@ -147,11 +132,12 @@ class HandymansUpdate extends Component {
                 />
 
 
-                <Button onClick={this.handleUpdateHandyman}>Update Handyman</Button>
+
+                <Button onClick={this.handleIncludeHandyman}>Add Handyman</Button>
                 <CancelButton href={'/handymans/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
 }
 
-export default HandymansUpdate
+export default HandymansInsert

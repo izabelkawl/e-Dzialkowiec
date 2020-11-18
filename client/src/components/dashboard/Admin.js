@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import styled from 'styled-components'
-import AdminNavBar from "../AdminNavBar";
-
-
+import styled from 'styled-components';
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
@@ -44,7 +41,6 @@ class Admin extends Component {
         if (user.email === "izabelawlazlo9@gmail.com") {
             return (
                 <Wrapper >
-                    <AdminNavBar />
                     <Container>
 
                         Hey there, this is your email <b> {user.email}   </b>.
@@ -58,13 +54,10 @@ class Admin extends Component {
                     </Container>
                 </Wrapper>
             );
-        } else return (
-            <Wrapper >
-                Page not found
-            </Wrapper>
-        );
+        }
     }
 }
+
 Admin.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired

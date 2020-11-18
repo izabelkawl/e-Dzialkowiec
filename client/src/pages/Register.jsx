@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import styled from 'styled-components'
-import { NavBar } from '../components';
-
+import styled from 'styled-components';
+import NavBar from '../components/NavBar'
 const Wrapper = styled.div`
  
 `;

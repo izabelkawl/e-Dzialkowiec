@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../api'
+import api from '../../api'
 
 import styled from 'styled-components'
 
@@ -9,8 +9,7 @@ const Title = styled.h1.attrs({
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
-})`
-  margin-left: auto;
+})` margin-left: auto;
     margin-right: auto; 
     background-color: white;
     padding: 50px;
@@ -34,17 +33,18 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-const CancelButton = styled.button.attrs({
+const CancelButton = styled.a.attrs({
     className: `btn btn-danger`,
 })`
     margin: 15px 15px 15px 5px;
 `
 
-class AllotmentsInsert extends Component {
+class AllotmentsUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             image: '',
             number: '',
             size: '',
@@ -54,6 +54,7 @@ class AllotmentsInsert extends Component {
             status: ''
         }
     }
+
     handleChangeInputImage = async event => {
         const image = event.target.value
         this.setState({ image })
@@ -97,12 +98,12 @@ class AllotmentsInsert extends Component {
         this.setState({ status })
     }
 
-    handleIncludeAllotment = async () => {
-        const { image, number, size, width, height, price, status } = this.state
+    handleUpdateAllotment = async () => {
+        const { id, image, number, size, width, height, price, status } = this.state
         const payload = { image, number, size, width, height, price, status }
 
-        await api.insertAllotment(payload).then(res => {
-            window.alert(`Allotment inserted successfully`)
+        await api.updateAllotmentById(id, payload).then(res => {
+            window.alert(`Allotment updated successfully`)
             this.setState({
                 image: '',
                 number: '',
@@ -115,16 +116,33 @@ class AllotmentsInsert extends Component {
         })
     }
 
+    componentDidMount = async () => {
+        const { id } = this.state
+        const allotment = await api.getAllotmentById(id)
+
+        this.setState({
+            image: allotment.data.data.image,
+            number: allotment.data.data.number,
+            size: allotment.data.data.size,
+            width: allotment.data.data.width,
+            height: allotment.data.data.height,
+            price: allotment.data.data.price,
+            status: allotment.data.data.status,
+        })
+    }
+
     render() {
         const { image, number, size, width, height, price, status } = this.state
         return (
             <Wrapper>
-                <Title>Create Allotment</Title>
+                <Title>Update Allotment</Title>
 
                 <Label>Image: </Label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image}
-                    onChange={this.handleChangeInputImage} ></input>
-
+                <InputText
+                    type="text"
+                    value={image}
+                    onChange={this.handleChangeInputImage}
+                />
 
                 <Label>Number: </Label>
                 <InputText
@@ -165,11 +183,11 @@ class AllotmentsInsert extends Component {
                     onChange={this.handleChangeInputStatus}
                 />
 
-                <Button onClick={this.handleIncludeAllotment}>Add Allotment</Button>
+                <Button onClick={this.handleUpdateAllotment}>Update Allotment</Button>
                 <CancelButton href={'/allotments/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
 }
 
-export default AllotmentsInsert
+export default AllotmentsUpdate

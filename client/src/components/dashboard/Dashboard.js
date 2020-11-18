@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import LoggedNavBar from '../LoggedNavBar'
 import styled from 'styled-components'
 
 
@@ -42,7 +41,6 @@ class Dashboard extends Component {
 
         return (
             <Wrapper >
-                <LoggedNavBar />
                 <Container>
                     Hey there,<b> {user.lastname + ' ' + user.firstname}   </b>.
                 <span> You are logged into a  E-Garden app. Congrats, this is your phone xD {user.phone} </span>

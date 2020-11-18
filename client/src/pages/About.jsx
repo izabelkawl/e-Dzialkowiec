@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
-import { NavBar } from '../components';
-
+import NavBar from '../components/NavBar'
 const Wrapper = styled.div`
  
 `;

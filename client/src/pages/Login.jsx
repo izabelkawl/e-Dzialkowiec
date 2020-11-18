@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { NavBar } from '../components';
-
+import NavBar from '../components/NavBar'
 import { loginUser } from "../api/index";
 
 const Wrapper = styled.div`
@@ -46,7 +45,7 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            if (this.state.email === "izabelawlazlo9@gmail.com" && this.state.password === "Zaqwsxcde3@1") {
+            if (this.state.email === "izabelawlazlo9@gmail.com") {
                 this.props.history.push("/admin");
             } else
 

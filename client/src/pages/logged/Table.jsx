@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
-import img1 from './photos/img1.png'
-import img2 from './photos/img2.png'
-import img3 from './photos/img3.png'
+import img1 from '../photos/img1.png'
+import img2 from '../photos/img2.png'
+import img3 from '../photos/img3.png'
 
 const Wrapper = styled.div`
   margin: 0 auto;

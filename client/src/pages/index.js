@@ -1,22 +1,24 @@
 import FrontPage from './FrontPage'
-import Table from './Table'
-import Login from './Login'
 import About from './About'
-
-import UsersList from './UsersList'
-import Register from './Register'
-import UsersUpdate from './UsersUpdate'
 import Garden from './Garden'
-import AllotmentsList from './AllotmentsList'
-import AllotmentsUpdate from './AllotmentsUpdate'
-import AllotmentsInsert from './AllotmentsInsert'
+import Login from './Login'
+import Register from './Register'
 
-import HandymansList from './HandymansList'
-import HandymansUpdate from './HandymansUdate'
-import HandymansInsert from './HandymansInsert'
+import Table from './logged/Table'
 
-import MessagesList from './MessagesList'
-import MessagesUpdate from './MessagesUpdate'
-import MessagesInsert from './MessagesInsert'
+import UsersList from './admin/UsersList'
+import UsersUpdate from './admin/UsersUpdate'
+
+import AllotmentsList from './admin/AllotmentsList'
+import AllotmentsUpdate from './admin/AllotmentsUpdate'
+import AllotmentsInsert from './admin/AllotmentsInsert'
+
+import HandymansList from './admin/HandymansList'
+import HandymansUpdate from './admin/HandymansUdate'
+import HandymansInsert from './admin/HandymansInsert'
+
+import MessagesList from './admin/MessagesList'
+import MessagesUpdate from './admin/MessagesUpdate'
+import MessagesInsert from './admin/MessagesInsert'
 
 export { FrontPage, Table, About, Login, Garden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }

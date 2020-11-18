@@ -3,7 +3,14 @@ import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import Logo from './Logo';
+import styled from 'styled-components'
+import logo from './img/nap.png'
+import { Image } from 'react-bootstrap'
+
+const Logo = styled.a.attrs({
+    className: 'navbar-header',
+})`padding-top: 5px;
+padding-bottom: 5px;`
 
 class NavBar extends Component {
     render() {
@@ -14,7 +21,10 @@ class NavBar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav" >
 
                     <Nav className="mr-auto">
-                        <Logo />
+                        <Logo href="/" className="navbar-header">
+                            <Image src={logo} height="30" alt="tulipan" />
+                        </Logo>
+
                     </Nav>
                     <Nav>
 

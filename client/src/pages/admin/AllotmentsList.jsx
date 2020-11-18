@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import api from "../api";
+import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
