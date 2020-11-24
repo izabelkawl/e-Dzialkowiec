@@ -13,13 +13,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import { FrontPage, About, Garden, Login, Register } from '../pages';
-
+import bg from './img/bg.png';
 import AdminApp from './adminrouter';
 import LoggedApp from './loggedrouter';
 
 const Container = styled.div`
-    background-color: #f2f4f5;
-    font-family: Century Gothic;
+    background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    font-size: 20px;
 `;
 
 // Check for token to keep user logged in

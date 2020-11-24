@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
     width: 80%;
-    
     margin: 0 auto;
     margin-top: 50px;
     background-color: white; 
@@ -15,7 +14,7 @@ class UpdateAllotment extends Component {
     updateAllotment = event => {
         event.preventDefault()
 
-        window.location.href = `/allotments/update/${this.props.id}`
+        window.location.href = `/admin/allotments/update/${this.props.id}`
     }
 
     render() {

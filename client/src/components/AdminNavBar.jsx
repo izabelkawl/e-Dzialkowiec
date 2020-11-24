@@ -30,6 +30,9 @@ class AdminNavBar extends Component {
                         <Nav.Link href="/admin" className="nav-link ">
                             Panel
                             </Nav.Link>
+                        <Nav.Link href="/admin/management" className="nav-link ">
+                            Zarząd
+                            </Nav.Link>
                         <Nav.Link href="/admin/users/list" className="nav-link ">
                             Użytkownicy
                             </Nav.Link>

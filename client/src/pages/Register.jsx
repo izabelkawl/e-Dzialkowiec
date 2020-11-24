@@ -8,7 +8,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar'
 const Wrapper = styled.div`
- 
+  height: 100vh;
 `;
 
 const Title = styled.h1.attrs({
@@ -18,7 +18,8 @@ font-size: 32px`
 
 const Container = styled.div.attrs({
     className: 'form-group',
-})` margin: 100px;
+})` border-radius: 25px;
+    margin: 100px;
     margin-left: auto;
     margin-right: auto; 
     width: 600px;

@@ -1,53 +1,52 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import styled from 'styled-components'
-import logo from './img/nap.png'
+import logo from './img/nap1.png'
 import { Image } from 'react-bootstrap'
 
 const Logo = styled.a.attrs({
     className: 'navbar-header',
-})`padding-top: 5px;
-padding-bottom: 5px;`
+})`
+    padding: 20px 0 0 50px;
+`
+Nav.Link = styled.a`
+    margin-top: 30px;
+    margin-right: 50px;
+`
 
 class NavBar extends Component {
     render() {
         return (
-            <Navbar bg="white" expand="lg" sticky="top">
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar expand="lg">
+
+                <Navbar.Toggle />
                 <Navbar.Collapse id="basic-navbar-nav" >
 
                     <Nav className="mr-auto">
                         <Logo href="/" className="navbar-header">
-                            <Image src={logo} height="30" alt="tulipan" />
+                            <Image src={logo} height="60" alt="e-dzialka" />
                         </Logo>
 
                     </Nav>
                     <Nav>
 
-                        <Nav.Link href="/" className="nav-link ">
+                        <Nav.Link href="/" className="nav-link text-white">
                             Strona główna
                             </Nav.Link>
-                        <Nav.Link href="/about" className="nav-link ">
-                            O nas
-                            </Nav.Link>
-                        <Nav.Link href="/garden" className="nav-link ">
+                        <Nav.Link href="/garden" className="nav-link  text-white">
                             Plan ogrodu
                             </Nav.Link>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <DropdownButton
-                            menuAlign="right"
-                            title=" Konto&nbsp;"
-                            variant="success"
-                        >
-                            <Dropdown.Item href="/users/login" eventKey="1">Logowanie</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item href="/users/register" eventKey="2">Rejestracja</Dropdown.Item>
+                        <Nav.Link href="/about" className="nav-link  text-white">
+                            O nas / Zarząd
+                            </Nav.Link>
+                        <Nav.Link href="/about" className="nav-link  text-white">
+                            Kontakt
+                            </Nav.Link>
 
-                        </DropdownButton>
 
                     </Nav>
 

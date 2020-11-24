@@ -8,7 +8,7 @@ import { setCurrentUser, logoutUser } from "../api/index";
 import { Provider } from "react-redux";
 import store from "../store.js";
 
-import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert } from '../pages'
+import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management } from '../pages'
 import { Button } from 'react-bootstrap';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Admin from '../components/dashboard/Admin';
@@ -23,6 +23,7 @@ import { connect } from "react-redux";
 const Container = styled.div`
     background-color: #f2f4f5;
     font-family: Century Gothic;
+    height: 100vh;
 `;
 
 const ErrContainer = styled.div`
@@ -68,7 +69,7 @@ class AdminApp extends Component {
               <AdminNavBar />
               <Switch>
                 <PrivateRoute path="/admin" exact component={Admin} />
-
+                <PrivateRoute path="/admin/management" exact component={Management} />
                 <PrivateRoute path="/admin/users/list" exact component={UsersList} />
                 <PrivateRoute path="/admin/users/update/:id" exact component={UsersUpdate} />
 

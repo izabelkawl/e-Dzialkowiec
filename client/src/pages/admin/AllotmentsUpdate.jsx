@@ -184,7 +184,7 @@ class AllotmentsUpdate extends Component {
                 />
 
                 <Button onClick={this.handleUpdateAllotment}>Update Allotment</Button>
-                <CancelButton href={'/allotments/list'}>Cancel</CancelButton>
+                <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

@@ -38,9 +38,6 @@ class LoggedNavBar extends Component {
                             Tablica ogłoszeń
                             </Nav.Link>
                         <Nav.Link href="/dashboard/messages/list" className="nav-link ">
-                            Forum
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/messages/list" className="nav-link ">
                             Płatności
                             </Nav.Link>
                         <Nav.Link href="/dashboard/messages/list" className="nav-link ">

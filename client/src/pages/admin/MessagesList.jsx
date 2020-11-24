@@ -18,7 +18,7 @@ class UpdateMessage extends Component {
     updateMessage = event => {
         event.preventDefault()
 
-        window.location.href = `/messages/update/${this.props.id}`
+        window.location.href = `/admin/messages/update/${this.props.id}`
     }
 
     render() {

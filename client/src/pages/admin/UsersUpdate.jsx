@@ -187,7 +187,7 @@ class UsersUpdate extends Component {
                 </Form.Group>
 
                 <Button variant="success" type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>&nbsp;&nbsp;
-                <Button variant="danger" href={'/users/list'}>Powrót</Button>
+                <Button variant="danger" href={'/admin/users/list'}>Powrót</Button>
             </Wrapper>
         )
     }

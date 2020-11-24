@@ -16,7 +16,7 @@ class UpdateHandyman extends Component {
     updateHandyman = event => {
         event.preventDefault()
 
-        window.location.href = `/handymans/update/${this.props.id}`
+        window.location.href = `/admin/handymans/update/${this.props.id}`
     }
 
     render() {

@@ -1,48 +1,46 @@
-import React, { Component } from 'react'
-import img from './img/img.png'
-import styled from 'styled-components'
-import { Button, Row, Col, Form, Jumbotron } from 'react-bootstrap'
-import NavBar from '../components/NavBar'
-import bg from './img/bg.jpg';
-
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Image, Button, Row, Col, Form, Jumbotron } from 'react-bootstrap';
+import NavBar from '../components/NavBar';
+import bg from './img/bg.png';
+import btn from './img/button.png'
 const Wrapper = styled.div.attrs({
 })`
     background-image: url(${bg});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
-    background-attachment: fixed;
-     text-align: center;
 `
+const Content = styled.div.attrs({
+
+})``
 
 const Section = styled.div.attrs({
 
-})`  
-   
-padding: 50px;
+})` height: 80vh;
+    margin-top: 150px;
+    padding: 5vw;    
+    font-style: 'Gill Sans MT';
 `
+const Contact = styled.div.attrs({
+
+})` height: 80vh;
+    margin-top: 250px;
+`
+
 const Tittle = styled.h1.attrs({
 
-})` text-align: center;
-padding-bottom: 20px;`
-
-const Imagesection = styled.img.attrs({
-
-})` margin: 50px;
-    
+})` color: #008379;
+    padding-bottom: 50px;
+    font-size: 4em;
 `
 
 const Footer = styled.footer.attrs({
 
-})`
+})`text-align: center;
+color: #008379;
+padding: 10px;
 `
-const Contact = styled.div.attrs({
-
-})`text-align: left`
-
-const Content = styled.div.attrs({
-
-})`background-color: white`
 
 class FrontPage extends Component {
     render() {
@@ -50,61 +48,57 @@ class FrontPage extends Component {
         return (
             <Wrapper>
                 <NavBar />
-                <Imagesection src={img} height="400" alt="logo tulipan" />
                 <Content>
-                    <Jumbotron>
 
-
-                        <Tittle>Hello, world!</Tittle>
-                        <p>
-                            Tutaj będzie:  Mapa, Pogoda, Rozporządzenia, Ustawy o pobrania , kontakt etc
-  </p>
-                        <Button variant="primary">Pobierz</Button>
-
-                    </Jumbotron>
-                    <Section>
-                        <Tittle>Sekcja</Tittle>
-                        <p>
-                            Tutaj będzie:  Mapa, Pogoda, Rozporządzenia, Ustawy o pobrania , kontakt etc
-  </p>
-                        <Button variant="primary">Pobierz</Button>
+                    <Section style={{ width: '50vw' }}>
+                        <Tittle>Witaj w e-Działce!</Tittle>
+                        <h4><b>Kupno • Sprzedaż • Opłaty • Aktualności • Tablica ogłoszeń</b></h4>
+                        <br></br>
+                        <h5>Aplikacja pozwoli Ci zarządzać swoim ogrodem działkowym na odległość. <br></br>Możesz kupić / sprzedać działkę, opłacić rachunki, integrować się z działkowacami.<br></br>To wszystko bez wychodzenia z domu!
+                        </h5>
+                        <br></br>
+                        <br></br>
+                        <a href="/users/login">
+                            <Image src={btn} height="70px" alt="dołącz do nas" />
+                        </a>
                     </Section>
                     <Contact>
                         <Jumbotron>
-                            <Tittle>Kontakt</Tittle>
+                            <Tittle style={{ textAlign: 'center' }}>Kontakt</Tittle>
                             <Row>
-                                <Col sm={{ offset: 3, span: 3 }}>
-                                    <p>Rodzinny Ogród Działkowy „Nadwiślański” w Płocku
-                                 </p>
-                                    <p>Adres: 09-400 Płock <br></br>ul. Dobrzykowska 59</p>
+                                <Col lg={{ offset: 3, span: 3 }} >
+                                    <p><b>Rodzinny Ogród Działkowy „Nadwiślański”<br></br> w Płocku</b>
+                                    </p>
+                                    <p><b>Adres:</b><br></br> 09-400 Płock <br></br>ul. Dobrzykowska 59</p>
+                                    <p><b>Telefon: </b><i>+48 113 563 467 </i></p>
                                     <p>
                                         Ilość działek: 835<br></br>
                                 Powierzchnia ogrodu:  60,7831 ha
                                     </p>
                                 </Col>
-                                <Col sm={{ span: 3 }}>
+                                <Col lg={{ span: 3 }}>
                                     <Form>
                                         <Form.Group controlId="exampleForm.ControlInput1">
                                             <Form.Label>Adres email:</Form.Label>
-                                            <Form.Control type="email" placeholder="name@example.com" />
+                                            <Form.Control type="email" />
                                         </Form.Group>
                                         <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label>Treść wiadomości:</Form.Label>
                                             <Form.Control as="textarea" rows={3} />
                                         </Form.Group>
-                                        <Button variant="primary">Wyślij</Button>
+                                        <Button className="float-right" variant="dark" size="lg" block>Wyślij</Button>
                                     </Form>
                                 </Col>
-                            </Row>
+                            </Row >
                         </Jumbotron>
                     </Contact>
 
 
-                    <Footer>Copyright © IW</Footer>
-                </Content>
+                    <Footer>Copyright © IW <a href="http://www.freepik.com">Designed by Freepik</a></Footer>
+                </Content >
 
 
-            </Wrapper>
+            </Wrapper >
         )
     }
 }

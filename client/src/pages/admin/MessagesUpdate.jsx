@@ -116,7 +116,7 @@ class MessagesUpdate extends Component {
                 />
 
                 <Button onClick={this.handleUpdateMessage}>Update Message</Button>
-                <CancelButton href={'/messages/list'}>Cancel</CancelButton>
+                <CancelButton href={'/admin/messages/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

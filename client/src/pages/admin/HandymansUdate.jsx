@@ -148,7 +148,7 @@ class HandymansUpdate extends Component {
 
 
                 <Button onClick={this.handleUpdateHandyman}>Update Handyman</Button>
-                <CancelButton href={'/handymans/list'}>Cancel</CancelButton>
+                <CancelButton href={'/admin/handymans/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

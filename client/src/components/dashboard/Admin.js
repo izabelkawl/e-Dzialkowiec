@@ -2,32 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})`
-    background-color: white;
-    text-align: center;
-`
-
-const Container = styled.div.attrs({
-    className: 'form-group',
-})`
-    margin-left: auto;
-    margin-right: auto; 
-    width: 600px;
-    margin-top: 150px;
-    background-color: white;
+const Wrapper = styled.div`
+    width: 80%;
+    margin: 0 auto;
     padding: 50px;
-    text-align: center;
+    margin-top: 50px;
+    background-color: white; 
 `
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
+const Title = styled.h1.attrs({
+    className: 'h1',
+})`font-size: 32px;
+padding-bottom: 20px;`
 
 class Admin extends Component {
 
@@ -41,17 +28,83 @@ class Admin extends Component {
         if (user.email === "izabelawlazlo9@gmail.com") {
             return (
                 <Wrapper >
-                    <Container>
+                    <Title>Panet Adminstratora</Title>
+                    <Form noValidate onSubmit={this.onSubmit}>
+                        <Form.Group>
+                            <Row>
+                                <Col sm={{ span: 3 }}>
+                                    <Form.Label htmlFor="email">Liczba zarejestrowanych
+                        </Form.Label>
+                                </Col>
+                                <Col sm={{ span: 1, offset: 3 }}>
+                                    <Form.Control
+                                        type="text"
+                                        value="164"
+                                        disabled
+                                    />
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                        <Form.Group>
+                            <Row>
+                                <Col sm={3}>
+                                    <Form.Label htmlFor="email">Wolne działki
+                        </Form.Label>
+                                </Col>
+                                <Col sm={{ span: 1, offset: 3 }}>
+                                    <Form.Control
+                                        type="text"
+                                        value="54"
+                                        disabled
+                                    />
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                        <Form.Group>
+                            <Row>
+                                <Col sm={3}>
+                                    <Form.Label htmlFor="email">Działki na sprzedaż
+                        </Form.Label>
+                                </Col>
+                                <Col sm={{ span: 1, offset: 3 }}>
+                                    <Form.Control
+                                        type="text"
+                                        value="12"
+                                        disabled
+                                    />
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                        <Form.Group>
+                            <Row>
+                                <Col sm={3}>
+                                    <Form.Label htmlFor="email">Liczba ogłoszeń
+                        </Form.Label>
+                                </Col>
+                                <Col sm={{ span: 1, offset: 3 }}>
+                                    <Form.Control
+                                        type="text"
+                                        value="17"
+                                        disabled
+                                    />
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Form>
+                    <Title>Dane administratora</Title>
+                    <Row>
+                        <Col><p>Email <b> {user.email}  </b></p>
+                            {/* <p>Imię <b> {user.firstname}  </b></p>
+                    <p>Nazwisko <b> {user.lastname}  </b></p> */}
 
-                        Hey there, this is your email <b> {user.email}   </b>.
-                    <span> You are logged into a Admin page  </span>
-
-                        <Button
+                            <p>Telefon <b> {user.phone}  </b></p></Col>
+                        <Col><Button
                             onClick={this.onLogoutClick}
                         >
-                            Logout
+                            Wyloguj
             </Button>
-                    </Container>
+                        </Col>
+                    </Row>
                 </Wrapper>
             );
         }

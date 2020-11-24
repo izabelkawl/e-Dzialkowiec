@@ -6,7 +6,6 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 70%;
   background-color: white; 
-  
     margin: 0 auto;
     margin-top: 50px;
 `;
@@ -16,7 +15,7 @@ class UpdateUser extends Component {
     updateUser = event => {
         event.preventDefault()
 
-        window.location.href = `/users/update/${this.props.id}`
+        window.location.href = `/admin/users/update/${this.props.id}`
     }
 
     render() {

@@ -54,7 +54,6 @@ const Title = styled.h1.attrs({
   className: 'h1',
 })`font-size: 32px;
 padding: 20px;
-color: #28a745;
 `
 
 
@@ -64,7 +63,7 @@ class Table extends Component {
     return (
       <Wrapper>
 
-        < Title>Tablica ogłoszeń</ Title>
+        <Title>Tablica ogłoszeń</ Title>
         <Container>
           <Image src={img1} />
           <Content>

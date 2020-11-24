@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar'
 import { loginUser } from "../api/index";
 
 const Wrapper = styled.div`
- 
+ height: 100vh;
 `;
 
 const Title = styled.h1.attrs({
@@ -17,7 +17,7 @@ const Title = styled.h1.attrs({
 
 const Container = styled.div.attrs({
     className: 'form-group',
-})` 
+})` border-radius: 25px;
     margin: 100px;
     margin-left: auto;
     margin-right: auto; 

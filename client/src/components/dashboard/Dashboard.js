@@ -2,32 +2,33 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import styled from 'styled-components'
+import { Card, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-    background-color: white;
-    text-align: center;
+    margin: 0 auto;
+    width: 70%;
 `
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
-    margin-left: auto;
-    margin-right: auto; 
-    width: 600px;
-    margin-top: 150px;
     background-color: white;
     padding: 50px;
-    text-align: center;
 `
 
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
+const UserContainer = styled.div`
+    text-align: right;
+    padding: 20px;
+`
+
+const Title = styled.h1.attrs({
+    className: 'h1',
+})`font-size: 32px;
+padding: 20px;
 `
 
 class Dashboard extends Component {
@@ -41,15 +42,49 @@ class Dashboard extends Component {
 
         return (
             <Wrapper >
-                <Container>
-                    Hey there,<b> {user.lastname + ' ' + user.firstname}   </b>.
-                <span> You are logged into a  E-Garden app. Congrats, this is your phone xD {user.phone} </span>
+                <UserContainer>
+                <p>Witaj <b> {user.firstname}</b>!</p>
 
-                    <Button
-                        onClick={this.onLogoutClick}
-                    >
-                        Logout
+                    <Button variant="success"
+                    onClick={this.onLogoutClick}
+                >
+                        Wyloguj
            </Button>
+                </UserContainer>
+                <Title>Aktualności</ Title>
+                <Container>
+                    <Card border="success">
+                        <Card.Header as="h5">Featured</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Special title treatment</Card.Title>
+                            <Card.Text>
+                                With supporting text below as a natural lead-in to additional content.
+    </Card.Text> </Card.Body>
+                    </Card>
+                    <br></br>
+                    <Card border="success">
+                        <Card.Header as="h5">Featured</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Special title treatment</Card.Title>
+                            <Card.Text>
+                                Lorem luptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.
+                                Lorem luptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.
+                                Lorem luptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.
+                                            
+                            </Card.Text> </Card.Body>
+                    </Card>
+                    <br></br>
+                    <Card border="success">
+                        <Card.Header>Header</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Secondary Card Title</Card.Title>
+                            <Card.Text>
+                                Some quick example text to build on the card title and make up the bulk
+                                of the card's content.
+      </Card.Text>
+                        </Card.Body>
+                    </Card>
+
                 </Container>
             </Wrapper >
         );
