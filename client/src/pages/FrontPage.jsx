@@ -18,7 +18,7 @@ const Content = styled.div.attrs({
 const Section = styled.div.attrs({
 
 })` height: 80vh;
-    margin-top: 150px;
+    margin-top: 170px;
     padding: 5vw;    
     font-style: 'Gill Sans MT';
 `
@@ -31,9 +31,10 @@ const Title = styled.h1.attrs({
 
 const Footer = styled.footer.attrs({
 
-})`text-align: center;
-color: #008379;
-padding: 15px;
+})`
+    text-align: center;
+    color: #008379;
+    padding: 15px;
 `
 
 class FrontPage extends Component {

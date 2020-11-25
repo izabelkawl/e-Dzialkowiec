@@ -35,16 +35,16 @@ class About extends Component {
             <Row>
               <Col sm={{ span: 2 }} align="center" >
                 <ListGroup >
-                  <ListGroup.Item variant="success" action href="#link1">
+                  <ListGroup.Item action href="#link1">
                     O nas
               </ListGroup.Item>
-                  <ListGroup.Item variant="success" action href="#link2" >
+                  <ListGroup.Item action href="#link2" >
                     Skład zarządu
               </ListGroup.Item>
-                  <ListGroup.Item variant="success" action href="#link3" >
+                  <ListGroup.Item action href="#link3" >
                     Ogłoszenia zarządu
               </ListGroup.Item>
-                  <ListGroup.Item variant="success" action href="#link4">
+                  <ListGroup.Item action href="#link4">
                     RODO
               </ListGroup.Item>
                 </ListGroup>
