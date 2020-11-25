@@ -6,25 +6,32 @@ import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar'
 import { loginUser } from "../api/index";
+import bg from './img/bglr.png';
 
 const Wrapper = styled.div`
  height: 100vh;
+  background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
 `;
 
 const Title = styled.h1.attrs({
     className: 'h1',
-})`font-size: 32px`
+})`font-size: 50px;
+    padding-bottom:10px; `
 
 const Container = styled.div.attrs({
     className: 'form-group',
-})` border-radius: 25px;
-    margin: 100px;
+})` 
+    margin-top: 150px;
     margin-left: auto;
     margin-right: auto; 
-    width: 600px;
-    background-color: white;
-    padding: 50px;
+    width: 500px;
 `
+const Span = styled.span`
+    color: red;
+    font-size: 80%;`
 
 
 class Login extends Component {
@@ -84,7 +91,10 @@ class Login extends Component {
                     <Form noValidate onSubmit={this.onSubmit}>
                         <Form.Group>
                             <Form.Label htmlFor="email">Email
-                        </Form.Label>
+                        </Form.Label><Span>
+                                {errors.email}
+                                {errors.emailnotfound}
+                            </Span>
 
                             <Form.Control
                                 onChange={this.onChange}
@@ -96,13 +106,14 @@ class Login extends Component {
                                 className={classnames("", {
                                     invalid: errors.email || errors.emailnotfound
                                 })} />
-                            <Form.Text style={{ color: "red" }}>
-                                {errors.email}
-                                {errors.emailnotfound}
-                            </Form.Text>
+
                         </Form.Group>
                         <Form.Group>
                             <Form.Label htmlFor="password">Hasło</Form.Label>
+                            <Span>
+                                {errors.password}
+                                {errors.passwordincorrect}
+                            </Span>
                             <Form.Text style={{ float: "right" }}>
                                 <a href="/"> Nie pamiętasz hasła?</a>
                             </Form.Text>
@@ -117,18 +128,15 @@ class Login extends Component {
                                     invalid: errors.password || errors.passwordincorrect
                                 })}
                             />
-                            <Form.Text style={{ color: "red" }}>
-                                {errors.password}
-                                {errors.passwordincorrect}
-                            </Form.Text>
                         </Form.Group>
 
                         <Form.Group controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Zapamietaj mnie" />
                         </Form.Group>
 
-                        <Button variant="success" type="submit" >Zaloguj</Button>&nbsp;&nbsp;
-                    <Button variant="danger" href="/users/register">Rejestracja</Button>
+                        <Button variant="success" type="submit" size="lg" block>Zaloguj</Button>
+                        <br></br>
+                        <Button variant="danger" href="/users/register" size="lg" block>Nie masz konta? Zarejestruj się</Button>
 
                     </Form>
 
