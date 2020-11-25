@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
-import { FrontPage, About, Garden, Login, Register } from '../pages';
+import { FrontPage, About, Garden, Login, Register, Contact } from '../pages';
 import bg from './img/bg.png';
 import AdminApp from './adminrouter';
 import LoggedApp from './loggedrouter';
@@ -57,6 +57,7 @@ function App() {
             <Route path="/" exact component={FrontPage} />
             <Route path="/about" exact component={About} />
             <Route path="/garden" exact component={Garden} />
+            <Route path="/contact" exact component={Contact} />
 
             <Route path="/users/login" exact component={Login} />
             <Route path="/users/register" exact component={Register} />

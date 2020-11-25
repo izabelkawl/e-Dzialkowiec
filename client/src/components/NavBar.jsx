@@ -43,7 +43,7 @@ class NavBar extends Component {
                         <Nav.Link href="/about" className="nav-link  text-white">
                             O nas / Zarząd
                             </Nav.Link>
-                        <Nav.Link href="/about" className="nav-link  text-white">
+                        <Nav.Link href="/contact" className="nav-link  text-white">
                             Kontakt
                             </Nav.Link>
 

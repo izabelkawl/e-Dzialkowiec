@@ -1554,3 +1554,5 @@
 ::1 - - [25/Nov/2020:22:23:05 +0000] "POST /api/login HTTP/1.1" 400 59 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
 ::1 - - [25/Nov/2020:22:23:08 +0000] "POST /api/register HTTP/1.1" 400 220 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
 ::1 - - [25/Nov/2020:22:30:30 +0000] "POST /api/login HTTP/1.1" 400 59 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+::1 - - [25/Nov/2020:22:34:56 +0000] "POST /api/login HTTP/1.1" 400 59 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+::1 - - [25/Nov/2020:22:40:32 +0000] "POST /api/login HTTP/1.1" 200 350 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"

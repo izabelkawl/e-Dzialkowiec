@@ -9,8 +9,8 @@ import { loginUser } from "../api/index";
 import bg from './img/bglr.png';
 
 const Wrapper = styled.div`
- height: 100vh;
-  background-image: url(${bg});
+    height: 100vh;
+    background-image: url(${bg});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;

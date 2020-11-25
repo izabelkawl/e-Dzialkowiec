@@ -4,6 +4,7 @@ import Garden from './Garden'
 import Login from './Login'
 import Register from './Register'
 import Table from './logged/Table'
+import Contact from './Contact'
 
 import Management from './admin/Management'
 import UsersList from './admin/UsersList'
@@ -21,4 +22,4 @@ import MessagesList from './admin/MessagesList'
 import MessagesUpdate from './admin/MessagesUpdate'
 import MessagesInsert from './admin/MessagesInsert'
 
-export { FrontPage, Table, Management, About, Login, Garden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Table, Management, About, Contact, Login, Garden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }
