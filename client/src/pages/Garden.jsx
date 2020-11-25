@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar'
 const Wrapper = styled.div`
- 
+ height: 100vh;
 `;
 
 const Container = styled.div`
