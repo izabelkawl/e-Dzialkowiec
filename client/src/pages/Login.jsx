@@ -129,13 +129,13 @@ class Login extends Component {
                                 })}
                             />
                         </Form.Group>
-
+                        {/* 
                         <Form.Group controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Zapamietaj mnie" />
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Button variant="success" type="submit" size="lg" block>Zaloguj</Button>
-                        <br></br>
+
                         <Button variant="danger" href="/users/register" size="lg" block>Nie masz konta? Zarejestruj się</Button>
 
                     </Form>

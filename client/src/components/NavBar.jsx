@@ -28,7 +28,7 @@ class NavBar extends Component {
 
                     <Nav className="mr-auto">
                         <Logo href="/" className="navbar-header">
-                            <Image src={logo} height="60" alt="e-dzialka" />
+                            <Image src={logo} height="60" alt="e-działkowiec" />
                         </Logo>
 
                     </Nav>

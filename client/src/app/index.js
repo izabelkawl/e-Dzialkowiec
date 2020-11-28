@@ -22,6 +22,7 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
+    background-attachment: fixed;
     font-size: 20px;
 `;
 

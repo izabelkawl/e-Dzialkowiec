@@ -8,11 +8,10 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-
 const Logo = styled.a.attrs({
     className: 'navbar-header',
-})`padding-top: 5px;
-padding-bottom: 5px;`
+})`
+`
 
 class LoggedNavBar extends Component {
     render() {
@@ -22,9 +21,9 @@ class LoggedNavBar extends Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
 
-                    <Nav className="mr-auto">
-                        <Logo className="navbar-header">
-                            <Image src={logo} height="30" alt="tulipan" /></Logo>
+                    <Nav className="mr-auto" >
+                        <Logo className="navbar-header" href="/dashboard/">
+                            <Image src={logo} height="40" alt="e-działkowiec" /></Logo>
 
                     </Nav>
                     <Nav>
@@ -46,7 +45,7 @@ class LoggedNavBar extends Component {
                         <Nav.Link href="/dashboard/handyman/list" className="nav-link ">
                             Fochowcy
                             </Nav.Link>
-                        <Nav.Link href="/dashboard/users/list" className="nav-link ">
+                        <Nav.Link href="/dashboard/account" className="nav-link ">
                             Konto
                             </Nav.Link>
                     </Nav>

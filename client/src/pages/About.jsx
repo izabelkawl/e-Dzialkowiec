@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar';
+
 const Wrapper = styled.div`
- 
+min-height: 100vh;
 `;
 
 const Container = styled.div`
- margin: 100px;
- padding:50px;
-background-color: white;
-`;
-
-const Announcements = styled.div`
- 
- margin:10px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding:50px;
+  width: 80vw;
+  background-color: white;
 `;
 
 const Title = styled.h1.attrs({
   className: 'h1',
 })`
-font-size: 32px`
-
+  font-size: 32px;
+  padding-bottom: 50px;
+  `
 
 class About extends Component {
   render() {
@@ -35,16 +34,16 @@ class About extends Component {
             <Row>
               <Col sm={{ span: 2 }} align="center" >
                 <ListGroup >
-                  <ListGroup.Item action href="#link1">
+                  <ListGroup.Item action href="#link1" variant="warning">
                     O nas
               </ListGroup.Item>
-                  <ListGroup.Item action href="#link2" >
+                  <ListGroup.Item action href="#link2" variant="warning">
                     Skład zarządu
               </ListGroup.Item>
-                  <ListGroup.Item action href="#link3" >
+                  <ListGroup.Item action href="#link3" variant="warning" >
                     Ogłoszenia zarządu
               </ListGroup.Item>
-                  <ListGroup.Item action href="#link4">
+                  <ListGroup.Item action href="#link4" variant="warning">
                     RODO
               </ListGroup.Item>
                 </ListGroup>
@@ -108,39 +107,38 @@ class About extends Component {
                   </Tab.Pane>
                   <Tab.Pane eventKey="#link3">
                     <Title>Ogłoszenia</Title>
-                    <Announcements>
-                      <Card>
-                        <Card.Header>Quote</Card.Header>
-                        <Card.Body>
-                          <blockquote className="blockquote mb-0">
-                            <p>
-                              {' '}
+
+                    <Card>
+                      <Card.Header>Quote</Card.Header>
+                      <Card.Body>
+                        <blockquote className="blockquote mb-0">
+                          <p>
+                            {' '}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
         erat a ante.{' '}
-                            </p>
-                            <footer className="blockquote-footer">
-                              Someone famous in <cite title="Source Title">Source Title</cite>
-                            </footer>
-                          </blockquote>
-                        </Card.Body>
-                      </Card>
-                    </Announcements>
-                    <Announcements>
-                      <Card>
-                        <Card.Header>Quote</Card.Header>
-                        <Card.Body>
-                          <blockquote className="blockquote mb-0">
-                            <p>
-                              {' '}
+                          </p>
+                          <footer className="blockquote-footer">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                          </footer>
+                        </blockquote>
+                      </Card.Body>
+                    </Card>
+                    <br></br>
+                    <Card>
+                      <Card.Header>Quote</Card.Header>
+                      <Card.Body>
+                        <blockquote className="blockquote mb-0">
+                          <p>
+                            {' '}
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur maxime deserunt optio adipisci, laudantium maiores officia error, odit vero consequatur ea obcaecati! Vitae, eum iure impedit ducimus soluta animi hic quas illo enim, mollitia quibusdam unde odio. Tempora eum quaerat optio, culpa praesentium esse ipsa veniam! Nesciunt, placeat ratione officia, dolorem, veniam tenetur illum obcaecati quis ad dolore similique eius itaque eum excepturi cum exercitationem omnis ex ab ipsa velit sequi repellat nostrum. Voluptas vero necessitatibus repellendus, odit tempora corrupti repudiandae dolore est vitae eius recusandae sapiente blanditiis corporis quaerat suscipit perferendis quidem ea consectetur exercitationem. Quae fugit velit modi.{' '}
-                            </p>
-                            <footer className="blockquote-footer">
-                              Someone famous in <cite title="Source Title">Source Title</cite>
-                            </footer>
-                          </blockquote>
-                        </Card.Body>
-                      </Card>
-                    </Announcements>
+                          </p>
+                          <footer className="blockquote-footer">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                          </footer>
+                        </blockquote>
+                      </Card.Body>
+                    </Card>
+
                   </Tab.Pane>
                   <Tab.Pane eventKey="#link4">
                     <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>

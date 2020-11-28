@@ -22,8 +22,8 @@ class AdminNavBar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav" >
 
                     <Nav className="mr-auto">
-                        <Logo className="navbar-header">
-                            <Image src={logo} height="30" alt="tulipan" /></Logo>
+                        <Logo className="navbar-header" href="/admin" >
+                            <Image src={logo} height="30" alt="e-działkowiec" /></Logo>
 
                     </Nav>
                     <Nav>
