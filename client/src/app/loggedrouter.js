@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoggedNavBar from '../components/LoggedNavBar';
 import Dashboard from '../components/dashboard/Dashboard';
-import bg from './img/bg.png';
+import bg from './img/bg.svg';
 
 const Container = styled.div`
   background-image: url(${bg});

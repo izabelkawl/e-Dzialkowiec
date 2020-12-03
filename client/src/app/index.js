@@ -25,6 +25,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
+  font-size: 20px;
 `;
 
 // Check for token to keep user logged in

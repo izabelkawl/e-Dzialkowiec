@@ -3,13 +3,11 @@ import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
 
-
 const Wrapper = styled.div`
   background-position: center top;
 `;
 
 const Container = styled.div`
-  margin: 0 auto;
   margin-top: 100px;
   padding:50px;
   width: 80vw;
@@ -52,7 +50,7 @@ class About extends Component {
                 <Tab.Content>
                   <Tab.Pane eventKey="#link1">
                     <Title>O nas</Title>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta cupiditate quibusdam voluptate. Tempore amet quo magnam dicta quam? Non accusamus, unde, ullam dolorum id ipsum deserunt quibusdam earum fugiat nesciunt harum sapiente autem doloribus odit sit mollitia nobis commodi hic pariatur atque molestias veritatis? Accusantium facere autem explicabo eveniet voluptatem, commodi accusamus ex ea error. Ea odio nostrum eveniet ratione eius quo quam numquam ullam, aliquid earum id doloribus sit perspiciatis neque culpa voluptatibus labore nemo aperiam! Harum saepe doloribus numquam sunt commodi culpa, rem quaerat alias corrupti ab dolores vel voluptas laboriosam voluptatem placeat? Quisquam ducimus suscipit in voluptatibus, nobis est rerum voluptas numquam quas nostrum quo eius et veritatis tempore earum, eveniet, labore consequatur? Fugiat hic aliquid recusandae quisquam tempore tempora delectus tenetur rerum! Facere deleniti, et labore magni dolore provident, cum ab repellat ex eos ad impedit quasi rem cupiditate quas, corrupti fuga excepturi quia maiores! Facere, soluta ab laudantium quod neque ullam quibusdam sapiente beatae dolor eum inventore officiis. Recusandae saepe eos necessitatibus aut repellat eum, magni vero vel exercitationem fugit, libero nulla quod molestias voluptate deserunt cum quasi. Cumque corrupti a non, minima cum ullam rem pariatur ea temporibus quaerat, saepe neque quis ipsum atque, quas expedita quod commodi aspernatur! Sit odio odit quae corporis facere, ipsa iure commodi delectus, possimus in aperiam asperiores sapiente rerum! Ullam, libero nesciunt! Optio ipsum, ipsam nisi illum praesentium sequi, commodi iste tenetur est pariatur corporis a, beatae ducimus? Adipisci distinctio illo sapiente fugiat, quam repellendus amet harum sit molestias reprehenderit voluptas ut expedita reiciendis. Repellendus in alias placeat, optio sed ullam mollitia, enim et distinctio assumenda ipsum aperiam ratione perspiciatis. Distinctio ut voluptatum commodi, dolore quisquam, reiciendis recusandae molestias vero fugiat quam sit magnam accusantium consectetur nobis voluptatibus debitis enim rem harum, delectus velit consequuntur sequi saepe exercitationem.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta cupiditate quibusdam voluptate. Tempore amet quo magnam dicta quam? Non accusamus, unde, ullam dolorum id ipsum deserunt quibusdam earum fugiat nesciunt harum sapiente autem doloribus odit sit mollitia nobis commodi hic pariatur atque molestias veritatis? Accusantium facere autem explicabo eveniet voluptatem, commodi accusamus ex ea error. Ea odio nostrum eveniet ratione eius quo quam numquam ullam, aliquid earum id doloribus sit perspiciatis neque culpa voluptatibus labore nemo aperiam! Harum saepe doloribus numquam sunt commodi culpa, rem quaerat alias corrupti ab dolores vel voluptas laboriosam voluptatem placeat? Quisquam ducimus suscipit in voluptatibus, nobis est rerum voluptas numquam quas nostrum quo eius et veritatis tempore earum, eveniet, labore consequatur? Fugiat hic aliquid recusandae quisquam tempore tempora delectus tenetur rerum! Facere deleniti, et labore magni dolore provident, cum ab repellat ex eos ad impedit quasi rem cupiditate quas, corr.
                 </Tab.Pane>
                   <Tab.Pane eventKey="#link2">
                     <Title>Zarząd</Title>
@@ -155,54 +153,7 @@ class About extends Component {
 
                   Administrator będzie przetwarzać dane w celu udziału w projektach, skorzystania z innej formy wsparcia oferowanej przez ROD Wisła  lub uzyskania odpowiedzi na pytanie zadane drogą elektroniczną. Podanie danych ma charakter dobrowolny, ale jest konieczne do wzięcia udziału w danym projekcie, skorzystania z innef formy wsparcia lub uzyskania odpowiedzi na pytanie zadane drogą elektroniczną. Każdy kogo dane osobowe przetwarzamy ma prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych, gdy uzna iż przetwarzanie jego danych osobowych narusza przepisy RODO.
                   Dzięki RODO:
-                  ● wiesz, jakie dane przetwarzamy – i co z nimi robimy
-                  ● korygujesz swoje dane – gdybyś znalazł błędy
-                  ● możesz przenieść swoje dane tam, gdzie będziesz chciał
-                  ● możesz zostać zapomnianym
 
-                  Stosując RODO:
-                  ● przetwarzamy dane zawsze zgodnie z prawemi w dany celu
-                  ● przetwarzamy tylko te dane które są koniecznie potrzebne
-
-
-                  ● uaktualnimy Twoje dane, monitorujemty ich rzetelność i prawdziwość
-                  ● chronimy Twoje dane, dbamy o ich poufność
-
-                  Jakie dane przetwarzamy?
-                  W zależności od specyfiki danego działania: czy jest to projekt, grant, kwestie związane z zatrudnieniem , przetwarzamy wyłącznie dane, które nam podałeś i na których przetwarzanie wyraziłeś zgodę. Są to:
-                  ● imię i nazwisko, płeć,
-                  ● numer PESEL, data urodzenia,
-                  ● adres zamieszkania, mail, telefon, adres
-                  ● dane z dokumentów (dowód osobisty, paszport), NIP, REGON,
-                  ● dane dotyczące zdrowia w zakresie niepełnosprawności (tylko za zgodą).
-                  ● inne dane które wymagane są np. przy realizacji projektów finansowanych z UE ( np. sytuacja na rynku pracy, wykształcenie, wiek itp.)
-
-                  Przetwarzamy Twoje dane gdy:
-                  ● gdy wyraziłeś na to zgodę,
-                  ● gdy rozpatrujemy Twój wniosek lub inną formę aplikowania (np. o udział w projekcie)
-                  ● gdy mamy ku temu podstawę prawną, jak np. ustawa o ubezpieczeniach, kodeks pracy itp.
-                  ● gdy wymaga tego nasz (jako administratora danych) prawnie uzasadniony interes (np. oceniamy Twoją aplikację, kandydaturę, wniosek, badamy satysfakcję, dostarczamy produkty i usługi dostosowane do Twoich potrzeb).
-
-                  RODO formułuje 6 zasad przetwarzania danych osobowych, którymi kieruje się nasza Fundacja, gdy przetwarza dane osobowe. Są nimi:
-                  ● zasada zgodności z prawem, rzetelności i przejrzystości:
-
-                  przetwarzamy dane osobowe w sposób zgodny z prawem. O wszystkich kwestiach z tym związanych informujemy powszechnymi sposobami komunikacji i jak najprostszym językiem, by osoby, których dane dotyczą, miały jasność, że zbieramy, przechowujemy lub w inny sposób przetwarzamy ich określone dane osobowe;
-                  ● zasada minimalizacji i adekwatności danych:
-
-                  przetwarzamy tylko te dane, które są rzeczywiście potrzebne, by zrealizować dany cel;
-                  ● zasada prawidłowości danych:
-
-                  dbamy o to, by dane, które przetwarzamy, były zgodne z prawdą i aktualne. Dlatego możemy co jakiś czas prosić osoby, których dane przetwarzamy, o to, by sprawdziły i zaktualizowały swoje dane. Prosimy ich też o to, by osoby których dane przetwarzamy informowali nas o wszelkich zmianach swoich danych osobowych (imię i nazwisko, adres itp.);
-                  ● zasada ograniczenia celu oraz przechowywania przetwarzanych danych:
-
-                  dane osobowe zbieramy jedynie w konkretnym, wyraźnym i uzasadnionym celu, którego nie moglibyśmy osiągnąć w inny sposób. Przechowujemy dane w formie, która umożliwia identyfikację osoby, której dane dotyczą. Przetwarzamy je tylko tak długo, jak jest to niezbędne, by zrealizować cel, dla którego je pozyskaliśmy (chyba, że do dalszego przetwarzania zobowiązują nas przepisy prawa, np. po zakończeniu projektu przechowujemy formularze zgłoszeniowe tak długo jak wymaga tego umowa o dofinansowanie);
-                  ● zasada integralności i poufności danych:
-
-                  zapewniamy takie rozwiązania, dzięki którym dane osobowe, które przetwarzamy, są bezpieczne. Chronimy dane przed niedozwolonym lub niezgodnym z prawem przetwarzaniem oraz przypadkową utratą, zniszczeniem lub uszkodzeniem;
-                  ● zasada rozliczalności:
-
-                  jesteśmy w stanie wykazać że w odniesieniu do danych osobowych działamy zgodnie z przepisami prawa, uwzględniamy ochronę danych w różnych etapach (np. przy aplikowania o środki, przygotowaniu rekrutacji do zadania itp.) oraz zapewniamy domyślną ochronę danych osobowych.
-                  Dane przetwarzamy przez czas, jaki jest niezbędny, aby osiągnąć cel przetwarzania. Konkretny okres wskazujemy w dokumentacji, którą przekazujemy osobom, których dane dotyczą
                 </Tab.Pane>
                 </Tab.Content>
               </Col>

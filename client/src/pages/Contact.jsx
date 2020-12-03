@@ -7,10 +7,10 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-
+  margin: 0 auto;
+  margin-top: 150px;
+  padding:50px;
   width: 40vw;
-    
-  MARGIN:200px;
 `;
 
 const Title = styled.h1.attrs({
