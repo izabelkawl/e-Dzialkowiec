@@ -13,17 +13,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import { FrontPage, About, Garden, Login, Register, Contact } from '../pages';
-import bg from './img/bg.png';
+
 import AdminApp from './adminrouter';
 import LoggedApp from './loggedrouter';
 
+import bg from './img/bg.svg';
+
 const Container = styled.div`
-    background-image: url(${bg});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
-    font-size: 20px;
+ min-height: 100vh;
+  background-image: url(${bg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
 `;
 
 // Check for token to keep user logged in

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Image } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
-import bg from './img/bg.png';
+import bg from './img/hbg.svg';
 import btn from './img/button.png';
 
 const Wrapper = styled.div.attrs({
@@ -12,8 +12,7 @@ const Wrapper = styled.div.attrs({
     background-size: cover;
     background-position: center top;
 `
-const Content = styled.div.attrs({
-})``
+
 
 const Section = styled.div.attrs({
 })` 
@@ -23,6 +22,9 @@ const Section = styled.div.attrs({
     padding: 5vw;    
     font-style: 'Gill Sans MT';
 `
+const Content = styled.div.attrs({
+})``
+
 const Title = styled.h1.attrs({
 })` color: #008379;
     padding-bottom: 50px;

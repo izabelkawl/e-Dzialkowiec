@@ -7,14 +7,9 @@ import classnames from "classnames";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import bg from './img/bglr.png';
+
 
 const Wrapper = styled.div`
-  height: 100vh;
-   background-image: url(${bg});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
 `;
 
 const Title = styled.h1.attrs({

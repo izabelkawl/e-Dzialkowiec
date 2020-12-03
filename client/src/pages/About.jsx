@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
 
+
 const Wrapper = styled.div`
-min-height: 100vh;
+  background-position: center top;
 `;
 
 const Container = styled.div`
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 100px;
   padding:50px;
   width: 80vw;
-  background-color: white;
 `;
 
 const Title = styled.h1.attrs({
