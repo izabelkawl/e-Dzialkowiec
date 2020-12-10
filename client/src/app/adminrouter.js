@@ -58,7 +58,7 @@ class AdminApp extends Component {
   render() {
 
     const { user } = this.props.auth;
-    if (user.email === "izabelawlazlo9@gmail.com") {
+    if (user.email === "edzialkowiec@gmail.com") {
       return (
         <Provider store={store}>
           <Container>

@@ -77,6 +77,7 @@ const AllotmentsList = () => {
     });
 
     return <Wrapper>
+         <Button variant="success" href="/admin/allotments/create" >Dodaj działkę</Button>
         <Table striped bordered hover >
             <thead>
             <tr>

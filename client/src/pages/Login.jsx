@@ -46,11 +46,12 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            if (this.state.email === "izabelawlazlo9@gmail.com") {
+            if (this.state.email === "edzialkowiec@gmail.com") {
                 this.props.history.push("/admin");
+               
             } else
-
-                this.props.history.push("/dashboard");
+            this.props.history.push("/dashboard");
+                
         }
 
         if (nextProps.errors) {

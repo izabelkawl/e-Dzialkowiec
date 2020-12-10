@@ -40,7 +40,6 @@ class Dashboard extends Component {
     };
     render() {
 
-
         return (
             <Wrapper >
                 <Title>Aktualności</ Title>
@@ -101,6 +100,7 @@ class Dashboard extends Component {
         );
     }
 }
+
 Dashboard.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired

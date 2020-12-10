@@ -25,7 +25,7 @@ class Admin extends Component {
     render() {
 
         const { user } = this.props.auth;
-        if (user.email === "izabelawlazlo9@gmail.com") {
+        if (user.email === "edzialkowiec@gmail.com") {
             return (
                 <Wrapper >
                     <Title>Panet Adminstratora</Title>
@@ -91,6 +91,7 @@ class Admin extends Component {
                             </Row>
                         </Form.Group>
                     </Form>
+                   
                     <Title>Dane administratora</Title>
                     <Row>
                         <Col><p>Email <b> {user.email}  </b></p>
@@ -105,10 +106,11 @@ class Admin extends Component {
             </Button>
                         </Col>
                     </Row>
+                    <Button href="/dashboard" > Strona e-działkowiec </Button>
                 </Wrapper>
             );
-        }
     }
+}
 }
 
 Admin.propTypes = {
