@@ -7,24 +7,20 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div.attrs({
 })`
-    margin: 0 auto;
-    width: 80vw;
+padding: 80px;
+    width: 70vw;
 `
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
-    background-color: white;
-    padding: 50px;
 `
 
 const Title = styled.h1.attrs({
     className: 'h1',
 })`
-      text-align: center;
   font-size: 32px;
   padding: 30px;
-  color: white;
 `
 
 const Footer = styled.footer.attrs({

@@ -6,7 +6,9 @@ import Register from './Register'
 import Contact from './Contact'
 
 import Table from './logged/Table'
+import Forum from './logged/Forum'
 import Account from './logged/Account'
+import Allotment from './logged/Allotment'
 
 import Management from './admin/Management'
 import UsersList from './admin/UsersList'
@@ -16,12 +18,8 @@ import AllotmentsList from './admin/AllotmentsList'
 import AllotmentsUpdate from './admin/AllotmentsUpdate'
 import AllotmentsInsert from './admin/AllotmentsInsert'
 
-import HandymansList from './admin/HandymansList'
-import HandymansUpdate from './admin/HandymansUdate'
-import HandymansInsert from './admin/HandymansInsert'
-
 import MessagesList from './admin/MessagesList'
 import MessagesUpdate from './admin/MessagesUpdate'
 import MessagesInsert from './admin/MessagesInsert'
 
-export { FrontPage, Table, Management, About, Contact, Login, Garden, Account, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Table, Management, About, Contact, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }

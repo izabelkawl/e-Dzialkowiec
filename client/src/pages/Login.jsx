@@ -10,19 +10,19 @@ import { loginUser } from "../api/index";
 const Wrapper = styled.div`
 `;
 
-const Title = styled.h1.attrs({
-    className: 'h1',
-})`font-size: 50px;
-    padding-bottom:10px; `
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    margin-top: 150px;
-    margin-left: auto;
-    margin-right: auto; 
-    width: 500px;
+  margin: 200px 350px;
+  padding:50px;
+  width: 40vw;
 `
+
+const Title = styled.h2.attrs({
+})`
+    padding-bottom:10px; `
+
 const Span = styled.span`
     color: red;
     font-size: 80%;`
@@ -130,7 +130,7 @@ class Login extends Component {
 
                         <Button variant="success" type="submit" size="lg" block>Zaloguj</Button>
 
-                        <Button variant="danger" href="/users/register" size="lg" block>Nie masz konta? Zarejestruj się</Button>
+                        <Form.Text><a href="/users/register">Nie masz konta? Zarejestruj się </a></Form.Text>
 
                     </Form>
 

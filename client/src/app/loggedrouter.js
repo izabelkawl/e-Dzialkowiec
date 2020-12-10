@@ -5,7 +5,9 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 
 import Table from '../pages/logged/Table';
+import Forum from '../pages/logged/Forum';
 import Account from '../pages/logged/Account';
+import Allotment from '../pages/logged/Allotment';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +20,6 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  font-family: Century Gothic;
   min-height: 100vh;
 `;
 
@@ -34,7 +35,8 @@ function LoggedApp() {
 
             <PrivateRoute path="/dashboard/table" exact component={Table} />
             <PrivateRoute path="/dashboard/account" exact component={Account} />
-
+            <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />
+            <PrivateRoute path="/dashboard/forum" exact component={Forum} />
           </Switch>
         </Router>
       </ Container >

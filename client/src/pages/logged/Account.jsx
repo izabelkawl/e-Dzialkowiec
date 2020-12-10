@@ -12,9 +12,8 @@ const Wrapper = styled.div.attrs({
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
-    margin: 0 auto;
-    width: 80vw;
-    background-color: white;
+    margin-top: 80px;
+    width: 70vw;
     padding: 50px;
 `
 
@@ -43,9 +42,9 @@ class Account extends Component {
                         >
                             Wyloguj
            </Button></Col>
+
                     </Row>
-
-
+                    <hr></hr>
                     <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
                         <Row>
                             <Col sm={{ span: 3 }} align="center" >

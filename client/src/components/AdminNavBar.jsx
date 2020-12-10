@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navbar, Nav, } from 'react-bootstrap';
 import { Image } from 'react-bootstrap'
 import styled from 'styled-components'
-import logo from './img/nap1.png'
+import logo from './img/img.svg'
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -39,9 +39,6 @@ class AdminNavBar extends Component {
 
                         <Nav.Link href="/admin/allotments/list" className="nav-link ">
                             Działki
-                            </Nav.Link>
-                        <Nav.Link href="/admin/handymans/list" className="nav-link ">
-                            Fochowcy
                             </Nav.Link>
                         <Nav.Link href="/admin/messages/list" className="nav-link ">
                             Wiadomości

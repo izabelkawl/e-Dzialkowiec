@@ -90,12 +90,6 @@ export const updateUserById = (id, payload) => dispatch => {
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
 
-export const insertHandyman = payload => api.post(`/handyman`, payload)
-export const getAllHandymans = () => api.get(`/handymans`)
-export const updateHandymanById = (id, payload) => api.put(`/handyman/${id}`, payload)
-export const deleteHandymanById = id => api.delete(`/handyman/${id}`)
-export const getHandymanById = id => api.get(`/handyman/${id}`)
-
 export const insertAllotment = payload => api.post(`/allotment`, payload)
 export const getAllAllotments = () => api.get(`/allotments`)
 export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
@@ -126,12 +120,6 @@ const apis = {
     updateAllotmentById,
     deleteAllotmentById,
     getAllotmentById,
-
-    insertHandyman,
-    getAllHandymans,
-    updateHandymanById,
-    deleteHandymanById,
-    getHandymanById,
 
     insertMessage,
     getAllMessages,

@@ -104,7 +104,7 @@ class MessagesInsert extends Component {
                 />
 
                 <Button onClick={this.handleIncludeMessage}>Add Message</Button>
-                <CancelButton href={'/messages/list'}>Cancel</CancelButton>
+                <CancelButton href={'/admin/messages/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

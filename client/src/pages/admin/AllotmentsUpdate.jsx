@@ -47,11 +47,11 @@ class AllotmentsUpdate extends Component {
             id: this.props.match.params.id,
             image: '',
             number: '',
-            size: '',
             width: '',
             height: '',
             price: '',
-            status: ''
+            status: '',
+            user_id: ''
         }
     }
 
@@ -66,13 +66,11 @@ class AllotmentsUpdate extends Component {
 
         this.setState({ number })
     }
-    handleChangeInputSize = async event => {
-        const size = event.target.validity.valid
-            ? event.target.value
-            : this.state.size
-
-        this.setState({ size })
+    handleChangeInputUserId = async event => {
+        const user_id =  event.target.value
+        this.setState({ user_id })
     }
+
     handleChangeInputWidth = async event => {
         const width = event.target.validity.valid
             ? event.target.value
@@ -99,19 +97,19 @@ class AllotmentsUpdate extends Component {
     }
 
     handleUpdateAllotment = async () => {
-        const { id, image, number, size, width, height, price, status } = this.state
-        const payload = { image, number, size, width, height, price, status }
+        const { id, image, number, width, height, price, status, user_id } = this.state
+        const payload = { image, number, width, height, price, status, user_id }
 
         await api.updateAllotmentById(id, payload).then(res => {
             window.alert(`Allotment updated successfully`)
             this.setState({
                 image: '',
                 number: '',
-                size: '',
                 width: '',
                 height: '',
                 price: '',
-                status: ''
+                status: '',
+                user_id: '',
             })
         })
     }
@@ -123,16 +121,16 @@ class AllotmentsUpdate extends Component {
         this.setState({
             image: allotment.data.data.image,
             number: allotment.data.data.number,
-            size: allotment.data.data.size,
             width: allotment.data.data.width,
             height: allotment.data.data.height,
             price: allotment.data.data.price,
             status: allotment.data.data.status,
+            user_id: allotment.data.data.user_id
         })
     }
 
     render() {
-        const { image, number, size, width, height, price, status } = this.state
+        const { image, number, width, height, price, status, user_id } = this.state
         return (
             <Wrapper>
                 <Title>Update Allotment</Title>
@@ -151,12 +149,6 @@ class AllotmentsUpdate extends Component {
                     onChange={this.handleChangeInputNumber}
                 />
 
-                <Label>Size: </Label>
-                <InputText
-                    type="text"
-                    value={size}
-                    onChange={this.handleChangeInputSize}
-                />
                 <Label>Width: </Label>
                 <InputText
                     type="text"
@@ -181,6 +173,13 @@ class AllotmentsUpdate extends Component {
                     type="text"
                     value={status}
                     onChange={this.handleChangeInputStatus}
+                />
+                
+                <Label>User Id: </Label>
+                <InputText
+                    type="text"
+                    value={user_id}
+                    onChange={this.handleChangeInputUserId}
                 />
 
                 <Button onClick={this.handleUpdateAllotment}>Update Allotment</Button>

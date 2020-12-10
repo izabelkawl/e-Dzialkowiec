@@ -52,11 +52,11 @@ const updateAllotment = async (req, res) => {
     }
     allotment.image = body.image;
     allotment.number = body.number;
-    allotment.size = body.size;
     allotment.width = body.width;
     allotment.height = body.height;
     allotment.price = body.price;
     allotment.status = body.status;
+    allotment.user_id = body.user_id;
     allotment
       .save()
       .then(() => {

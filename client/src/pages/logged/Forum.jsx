@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
-import img1 from '../photos/img1.png'
-import img2 from '../photos/img2.png'
-import img3 from '../photos/img3.png'
 
 const Wrapper = styled.div`
   width: 80vw;
@@ -15,13 +12,14 @@ const Container = styled.div`
     -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
+
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 0.2fr 2fr 0.2fr;
+    grid-template-columns: 2fr 0.2fr;
     grid-template-rows: 1fr;
     gap: 25px 25px;
-    grid-template-areas:"Image Content About";`
+    grid-template-areas:"Content About";`
 
 const Content = styled.div`
   display: grid;
@@ -43,12 +41,6 @@ const About = styled.div`
     ".";
   grid-area: About;
 `
-const Image = styled.img.attrs({
-
-})`
-  grid-area: Image;
-  height: 200px
-`
 
 const Title = styled.h1.attrs({
   className: 'h1',
@@ -58,15 +50,14 @@ const Title = styled.h1.attrs({
 `
 
 
-class Table extends Component {
+class Forum extends Component {
   render() {
 
     return (
       <Wrapper>
 
-        <Title>Tablica ogłoszeń</ Title>
+        <Title>Forum</ Title>
         <Container>
-          <Image src={img1} />
           <Content>
             <div>
               <h3>Sprzedam kwiaty</h3><p>Mariusz Nowak</p>
@@ -85,7 +76,6 @@ class Table extends Component {
 
         </Container>
         <Container>
-          <Image src={img2} />
           <Content>
             <div>
               <h3>Sprzedam kwiaty</h3><p>Maria Kwalska</p>
@@ -104,7 +94,6 @@ class Table extends Component {
 
         </Container>
         <Container>
-          <Image src={img3} />
           <Content>
             <div>
               <h3>Sprzedam kwiaty</h3><p>Paweł Żak</p>
@@ -127,4 +116,4 @@ class Table extends Component {
   }
 }
 
-export default Table
+export default Forum

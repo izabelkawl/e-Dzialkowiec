@@ -8,7 +8,7 @@ import { setCurrentUser, logoutUser } from "../api/index";
 import { Provider } from "react-redux";
 import store from "../store.js";
 
-import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, HandymansList, HandymansInsert, HandymansUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management } from '../pages'
+import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management } from '../pages'
 import { Button } from 'react-bootstrap';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Admin from '../components/dashboard/Admin';
@@ -22,7 +22,6 @@ import { connect } from "react-redux";
 
 const Container = styled.div`
     background-color: #f2f4f5;
-    font-family: Century Gothic;
     height: 100vh;
 `;
 
@@ -32,7 +31,6 @@ const ErrContainer = styled.div`
     text-align: center;
     padding: 50px;
     font-size: 26px;
-    font-family: Century Gothic;
 `;
 
 // Check for token to keep user logged in
@@ -76,10 +74,6 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/allotments/list" exact component={AllotmentsList} />
                 <PrivateRoute path="/admin/allotments/create" exact component={AllotmentsInsert} />
                 <PrivateRoute path="/admin/allotments/update/:id" exact component={AllotmentsUpdate} />
-
-                <PrivateRoute path="/admin/handymans/list" exact component={HandymansList} />
-                <PrivateRoute path="/admin/handymans/create" exact component={HandymansInsert} />
-                <PrivateRoute path="/admin/handymans/update/:id" exact component={HandymansUpdate} />
 
                 <PrivateRoute path="/admin/messages/list" exact component={MessagesList} />
                 <PrivateRoute path="/admin/messages/create" exact component={MessagesInsert} />

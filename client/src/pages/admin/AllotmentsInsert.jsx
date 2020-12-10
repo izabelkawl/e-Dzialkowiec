@@ -34,7 +34,7 @@ const Button = styled.button.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-const CancelButton = styled.button.attrs({
+const CancelButton = styled.a.attrs({
     className: `btn btn-danger`,
 })`
     margin: 15px 15px 15px 5px;
@@ -47,11 +47,11 @@ class AllotmentsInsert extends Component {
         this.state = {
             image: '',
             number: '',
-            size: '',
             width: '',
             height: '',
             price: '',
-            status: ''
+            status: '',
+            user_id: '',
         }
     }
     handleChangeInputImage = async event => {
@@ -96,27 +96,31 @@ class AllotmentsInsert extends Component {
         const status = event.target.value
         this.setState({ status })
     }
+    handleChangeInputUserId = async event => {
+        const user_id = event.target.value
+        this.setState({ user_id })
+    }
 
     handleIncludeAllotment = async () => {
-        const { image, number, size, width, height, price, status } = this.state
-        const payload = { image, number, size, width, height, price, status }
+        const { image, number, width, height, price, status, user_id } = this.state
+        const payload = { image, number,  width, height, price, status, user_id }
 
         await api.insertAllotment(payload).then(res => {
             window.alert(`Allotment inserted successfully`)
             this.setState({
                 image: '',
                 number: '',
-                size: '',
                 width: '',
                 height: '',
                 price: '',
-                status: ''
+                status: '',
+                user_id: '',
             })
         })
     }
 
     render() {
-        const { image, number, size, width, height, price, status } = this.state
+        const { image, number, width, height, price, status, user_id } = this.state
         return (
             <Wrapper>
                 <Title>Create Allotment</Title>
@@ -133,12 +137,6 @@ class AllotmentsInsert extends Component {
                     onChange={this.handleChangeInputNumber}
                 />
 
-                <Label>Size: </Label>
-                <InputText
-                    type="text"
-                    value={size}
-                    onChange={this.handleChangeInputSize}
-                />
                 <Label>Width: </Label>
                 <InputText
                     type="text"
@@ -165,8 +163,14 @@ class AllotmentsInsert extends Component {
                     onChange={this.handleChangeInputStatus}
                 />
 
+                <Label>User Id: </Label>
+                <InputText
+                    type="text"
+                    value={user_id}
+                    onChange={this.handleChangeInputUserId}
+                />
                 <Button onClick={this.handleIncludeAllotment}>Add Allotment</Button>
-                <CancelButton href={'/allotments/list'}>Cancel</CancelButton>
+                <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }

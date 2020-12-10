@@ -12,10 +12,8 @@ import NavBar from '../components/NavBar';
 const Wrapper = styled.div`
 `;
 
-const Title = styled.h1.attrs({
-    className: 'h2',
+const Title = styled.h2.attrs({
 })`
-    font-size: 50px;
     padding-bottom:10px; `
 
 const Span = styled.span`
@@ -25,10 +23,9 @@ const Span = styled.span`
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    margin: 100px;
-    margin-left: auto;
-    margin-right: auto; 
-    width: 500px;
+    margin: 80px 350px;
+  padding:50px;
+  width: 40vw;
 `
 
 class Register extends Component {

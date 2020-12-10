@@ -8,7 +8,6 @@ import { ServerRuntimeError } from "../errors/server.js";
 
 // routes
 import userRouter from "../routes/user-router.js";
-import handymanRouter from "../routes/handyman-router.js";
 import allotmentRouter from "../routes/allotment-router.js";
 import messageRouter from "../routes/message-router.js";
 
@@ -23,7 +22,6 @@ app.use(logger);
 // Routing definition
 app.use("/api", userRouter);
 app.use("/api", allotmentRouter);
-app.use("/api", handymanRouter);
 app.use("/api", messageRouter);
 
 export const startHTTPServer = async () =>

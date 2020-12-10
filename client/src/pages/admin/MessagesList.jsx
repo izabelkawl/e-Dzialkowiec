@@ -77,6 +77,7 @@ const MessagesList = () => {
     return <Wrapper>
         <Table striped bordered hover>
             <thead>
+            <tr>
                 <th>Lp</th>
                 <th>User</th>
                 <th>Recipient</th>
@@ -84,6 +85,7 @@ const MessagesList = () => {
                 {/* Date */}
                 <th></th>
                 <th></th>
+                </tr>
             </thead>
             <tbody>
                 {MessagesTable}

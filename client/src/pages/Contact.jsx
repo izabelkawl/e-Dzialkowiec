@@ -7,8 +7,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 0 auto;
-  margin-top: 150px;
+
+  margin: 150px 350px;
   padding:50px;
   width: 40vw;
 `;

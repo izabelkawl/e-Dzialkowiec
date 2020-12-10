@@ -68,7 +68,6 @@ const UsersList = () => {
                 <td>{phone}</td>
                 <td><DeleteUser id={_id} /></td>
                 <td><UpdateUser id={_id} /></td>
-
             </tr>
         );
     });
@@ -76,6 +75,7 @@ const UsersList = () => {
     return <Wrapper>
         <Table striped bordered hover>
             <thead>
+            <tr>
                 <th>Lp</th>
                 <th>email</th>
                 <th>firstname</th>
@@ -84,9 +84,11 @@ const UsersList = () => {
                 <th>phone</th>
                 <th></th>
                 <th></th>
+                </tr>
             </thead>
             <tbody>
                 {UsersTable}
+               
             </tbody>
         </Table>
     </Wrapper>

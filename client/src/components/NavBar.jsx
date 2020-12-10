@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import styled from 'styled-components';
+import logo from './img/img.svg';
+import { Image } from 'react-bootstrap';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import styled from 'styled-components'
-import logo from './img/nap1.png'
-import { Image } from 'react-bootstrap'
 
 const Logo = styled.a.attrs({
     className: 'navbar-header',
@@ -28,7 +29,7 @@ class NavBar extends Component {
 
                     <Nav className="mr-auto">
                         <Logo href="/" className="navbar-header">
-                            <Image src={logo} height="60" alt="e-działkowiec" />
+                            <Image src={logo} width="300px" alt="e-działkowiec" />
                         </Logo>
 
                     </Nav>
