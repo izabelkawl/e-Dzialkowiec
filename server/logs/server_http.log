@@ -1873,3 +1873,6 @@
 ::1 - - [10/Dec/2020:18:54:04 +0000] "POST /api/login HTTP/1.1" 200 355 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 ::1 - - [10/Dec/2020:18:54:47 +0000] "POST /api/register HTTP/1.1" - - "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 ::1 - - [10/Dec/2020:18:54:56 +0000] "POST /api/login HTTP/1.1" 200 343 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+::1 - - [10/Dec/2020:18:58:19 +0000] "POST /api/register HTTP/1.1" - - "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+::1 - - [10/Dec/2020:18:58:23 +0000] "POST /api/login HTTP/1.1" 200 359 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+::1 - - [10/Dec/2020:19:29:57 +0000] "POST /api/login HTTP/1.1" 200 359 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"

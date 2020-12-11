@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import jwt_decode from "jwt-decode";
-import setAuthToken from "../utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "../api/index";
-
 import { Provider } from "react-redux";
 import store from "../store.js";
 
@@ -17,7 +13,6 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminNavBar from '../components/AdminNavBar';
 
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 const Container = styled.div`
@@ -33,25 +28,6 @@ const ErrContainer = styled.div`
     font-size: 26px;
 `;
 
-// Check for token to keep user logged in
-if (localStorage.jwtToken) {
-  // Set auth token header auth
-  const token = localStorage.jwtToken;
-  setAuthToken(token);
-  // Decode token and get user info and exp
-  const decoded = jwt_decode(token);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-
-  // Check for expired token
-  const currentTime = Date.now() / 1000; // to get in milliseconds
-  if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
-    // Redirect to login
-    window.location.href = "./users/login";
-  }
-}
 
 class AdminApp extends Component {
 
@@ -93,10 +69,6 @@ class AdminApp extends Component {
     );
   }
 }
-Admin.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
   auth: state.auth

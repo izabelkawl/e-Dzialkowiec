@@ -6,7 +6,7 @@ const Forum = mongoose.Schema({
   content: { type: String, required: true },
   timestamps: true,
   comment: { 
-    user_id: { type: String, required: true },
+    userid: { type: String, required: true },
     content: {type: String, required: true },
     timestamps: true,
   },
