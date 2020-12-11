@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const Message = mongoose.Schema(
-  {
-    user: { type: String, required: true },
-    recipient: { type: String, required: true },
-    content: { type: String, required: true },
+const Message = new Schema({
+
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+  recipient: { type: Schema.Types.ObjectId, ref: "User"},
+  content: { type: String, required: true },
   },
   { timestamps: true }
 );

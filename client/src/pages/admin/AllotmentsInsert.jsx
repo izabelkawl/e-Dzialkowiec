@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import api from '../../api'
-
+import {Form }from 'react-bootstrap';
 import styled from 'styled-components'
+
+import UsersID from './UsersID';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -54,6 +56,7 @@ class AllotmentsInsert extends Component {
             user_id: '',
         }
     }
+
     handleChangeInputImage = async event => {
         const image = event.target.value
         this.setState({ image })
@@ -119,8 +122,10 @@ class AllotmentsInsert extends Component {
         })
     }
 
+
+    
     render() {
-        const { image, number, width, height, price, status, user_id } = this.state
+        const { image, number, width, height, price} = this.state
         return (
             <Wrapper>
                 <Title>Create Allotment</Title>
@@ -157,18 +162,22 @@ class AllotmentsInsert extends Component {
                     onChange={this.handleChangeInputPrice}
                 />
                 <Label>Status: </Label>
-                <InputText
-                    type="text"
-                    value={status}
-                    onChange={this.handleChangeInputStatus}
-                />
+
+                <Form.Control as="select"  onChange={this.handleChangeInputStatus}>
+                <option>Status działki</option> 
+                    <option>Wolna</option> 
+                    <option>Zajęta</option> 
+                    <option>Na sprzedaż</option> 
+                </Form.Control>
 
                 <Label>User Id: </Label>
-                <InputText
-                    type="text"
-                    value={user_id}
-                    onChange={this.handleChangeInputUserId}
-                />
+
+                <Form.Control as="select" onChange={this.handleChangeInputUserId}>
+                    <option>Wybierz działkowicza</option>
+                    <UsersID/>
+                </Form.Control>
+
+
                 <Button onClick={this.handleIncludeAllotment}>Add Allotment</Button>
                 <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
             </Wrapper>

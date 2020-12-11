@@ -1,21 +1,23 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const Management = mongoose.Schema({
+const Management = new Schema({
+  
   description: { type: String, required: true },
-  members: {
+  members: [{
     role: {type: String, required: true },
     firstname: {type: String, required: true },
     lastname: {type: String, required: true },
-    },
-    classifieds: { 
+    }],
+  classifieds: [{ 
       title: {type: String, required: true },
       content: {type: String, required: true },
       timestamps: true,
-    },
-    rodo: { 
+    }],
+  rodo: [{ 
       content: {type: String, required: true },
       timestamps: true,
-    },
+    }],
 });
 
 export default mongoose.model("managements", Management);

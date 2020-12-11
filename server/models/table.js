@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const NoticeBoard = mongoose.Schema({
-  user_id: {  
-    firstname: { type: String, required: true },
-    lastname: {type: String, required: true }, 
-  },
+const Table = new Schema({
+
   title: { type: String, required: true },
+  user_id: {  type: Schema.Types.ObjectId, ref: "User"},
   content: { type: String, required: true },
   image: {  type: String, required: true },
   price: {  type: String, required: true },
   timestamps: true,
 });
 
-export default mongoose.model("noticeboards", NoticeBoard);
+export default mongoose.model("tables", Table);

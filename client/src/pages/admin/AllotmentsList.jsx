@@ -3,6 +3,8 @@ import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
+
+
 const Wrapper = styled.div`
     width: 80%;
     margin: 0 auto;
@@ -77,7 +79,7 @@ const AllotmentsList = () => {
     });
 
     return <Wrapper>
-         <Button variant="success" href="/admin/allotments/create" >Dodaj działkę</Button>
+         <Button variant="success" href="/admin/allotments/create" >Dodaj działke</Button>
         <Table striped bordered hover >
             <thead>
             <tr>
