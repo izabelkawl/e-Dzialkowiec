@@ -10,6 +10,7 @@ import { ServerRuntimeError } from "../errors/server.js";
 import userRouter from "../routes/user-router.js";
 import allotmentRouter from "../routes/allotment-router.js";
 import messageRouter from "../routes/message-router.js";
+import tableRouter from "../routes/table-router.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(logger);
 app.use("/api", userRouter);
 app.use("/api", allotmentRouter);
 app.use("/api", messageRouter);
+app.use("/api", tableRouter);
 
 export const startHTTPServer = async () =>
   app.listen(keys.httpPort, (error) => {

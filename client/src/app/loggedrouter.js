@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "../store.js";
 
-import Table from '../pages/logged/Table';
+import NoticeBoard from '../pages/logged/NoticeBoard';
 import Forum from '../pages/logged/Forum';
 import Account from '../pages/logged/Account';
 import Allotment from '../pages/logged/Allotment';
@@ -33,7 +33,7 @@ function LoggedApp() {
           <Switch>
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
 
-            <PrivateRoute path="/dashboard/table" exact component={Table} />
+            <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/account" exact component={Account} />
             <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />
             <PrivateRoute path="/dashboard/forum" exact component={Forum} />

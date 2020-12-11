@@ -1,130 +1,141 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
-import img1 from '../photos/img1.png'
-import img2 from '../photos/img2.png'
-import img3 from '../photos/img3.png'
-
-const Wrapper = styled.div`
-  width: 80vw;
-  padding: 100px;
-`;
-
-const Container = styled.div`
-    background-color: white;
-    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    padding: 20px;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 0.2fr 2fr 0.2fr;
-    grid-template-rows: 1fr;
-    gap: 25px 25px;
-    grid-template-areas:"Image Content About";`
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
-  grid-template-areas:
-    "."
-    "."
-    ".";
-  grid-area: Content;
-`
-const About = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.8fr 0.1fr;
-  grid-template-areas:
-    "."
-    "."
-    ".";
-  grid-area: About;
-`
-const Image = styled.img.attrs({
-
-})`
-  grid-area: Image;
-  height: 200px
-`
+import React, { Component } from 'react'
+import api from '../../api'
+import styled from 'styled-components'
+import {Form }from 'react-bootstrap';
+import UsersID from '../admin/UsersID';
 
 const Title = styled.h1.attrs({
-  className: 'h1',
+    className: 'h1',
+})``
+
+const Wrapper = styled.div.attrs({
+    className: 'form-group',
 })`
-  font-size: 32px;
-  padding: 30px;
+  margin-left: auto;
+    margin-right: auto; 
+    background-color: white;
+    padding: 50px;
+    width: 600px;
+    margin-top: 50px;
 `
 
+const Label = styled.label`
+    margin: 5px;
+`
 
-class Table extends Component {
-  render() {
+const InputText = styled.input.attrs({
+    className: 'form-control',
+})`
+    margin: 5px;
+`
 
-    return (
-      <Wrapper>
+const Button = styled.button.attrs({
+    className: `btn btn-primary`,
+})`
+    margin: 15px 15px 15px 5px;
+`
 
-        <Title>Tablica ogłoszeń</ Title>
-        <Container>
-          <Image src={img1} />
-          <Content>
-            <div>
-              <h3>Sprzedam kwiaty</h3><p>Mariusz Nowak</p>
-              <hr></hr>
+const CancelButton = styled.a.attrs({
+    className: `btn btn-danger`,
+})`
+    margin: 15px 15px 15px 5px;
+`
 
-            </div>
-            <p>Lorem luptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.</p>
+class TablesInsert extends Component {
+    constructor(props) {
+        super(props)
 
-            <Form.Text muted>27.11.2020</Form.Text>
-          </Content>
-          <About>
-            <p>20zł</p>
-            <p></p>
-            <Button variant="success" >Wiadomość</Button>
-          </About>
+        this.state = {
+            title: '',
+            user: '',
+            content: '',
+            image: '',
+            price: ''
+        }
+    }
 
-        </Container>
-        <Container>
-          <Image src={img2} />
-          <Content>
-            <div>
-              <h3>Sprzedam kwiaty</h3><p>Maria Kwalska</p>
-              <hr></hr>
-
-            </div>
-            <p>uptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.</p>
-
-            <Form.Text muted>20.11.2020</Form.Text>
-          </Content>
-          <About>
-            <p>350z/ szt</p>
-            <p></p>
-            <Button variant="success" >Wiadomość</Button>
-          </About>
-
-        </Container>
-        <Container>
-          <Image src={img3} />
-          <Content>
-            <div>
-              <h3>Sprzedam kwiaty</h3><p>Paweł Żak</p>
-              <hr></hr>
-
-            </div>
-            <p>Lorem placeat quo.</p>
-
-            <Form.Text muted>09.10.2020</Form.Text>
-          </Content>
-          <About>
-            <p>350z/ szt</p>
-            <p></p>
-            <Button variant="success" >Wiadomość</Button>
-          </About>
-
-        </Container>
-      </Wrapper>
-    )
+    handleChangeInputTitle = async event => {
+        const title = event.target.value
+        this.setState({ title })
+    }
+    handleChangeInputUser = async event => {
+      const user = event.target.value
+      this.setState({ user })
   }
+  handleChangeInputContent = async event => {
+    const content = event.target.value
+    this.setState({ content })
+}
+handleChangeInputImage = async event => {
+  const image = event.target.value
+  this.setState({  image })
+}
+    handleChangeInputPrice = async event => {
+        const price = event.target.validity.valid
+            ? event.target.value
+            : this.state.price
+        this.setState({ price })
+    }
+   
+
+    handleIncludeTable = async () => {
+        const { title, user, content, image, price } = this.state
+        const payload = { title, user, content, image, price }
+
+        await api.insertTable(payload).then(res => {
+            window.alert(`Table inserted successfully`)
+            this.setState({
+              title: '',
+              user: '',
+              content: '',
+              image: '',
+              price: ''
+            })
+        })
+    }
+
+    render() {
+        const { title,  content, image, price} = this.state
+        return (
+            <Wrapper>
+                <Title>Create Table</Title>
+
+                <Label>Image: </Label>
+
+                <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image.value}
+                    onChange={this.handleChangeInputImage} ></input>
+
+                <Label>Title: </Label>
+                <InputText
+                    type="text"
+                    value={title}
+                    onChange={this.handleChangeInputTitle}
+                />
+
+                <Label>Tutaj twoje imię funkcja: </Label>
+                <Form.Control as="select" onChange={this.handleChangeInputUser}>
+                    <option>do zmiany </option>
+                    <UsersID/>
+                </Form.Control>
+
+                <Label>Content: </Label>
+                <InputText
+                    type="text"
+                    value={content}
+                    onChange={this.handleChangeInputContent}
+                />
+                <Label>Price: </Label>
+                <InputText
+                    type="text"
+                    value={price}
+                    onChange={this.handleChangeInputPrice}
+                />
+
+                <Button onClick={this.handleIncludeTable}>Add Table</Button>
+                <CancelButton href={'/admin/tables/list'}>Cancel</CancelButton>
+            </Wrapper>
+        )
+    }
 }
 
-export default Table
+export default TablesInsert

@@ -96,12 +96,18 @@ export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, 
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
 
-
 export const insertMessage = payload => api.post(`/message`, payload)
 export const getAllMessages = () => api.get(`/messages`)
 export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payload)
 export const deleteMessageById = id => api.delete(`/message/${id}`)
 export const getMessageById = id => api.get(`/message/${id}`)
+
+export const insertTable = payload => api.post(`/table`, payload)
+export const getAllTables = () => api.get(`/tables`)
+export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
+export const deleteTableById = id => api.delete(`/table/${id}`)
+export const getTableById = id => api.get(`/table/${id}`)
+
 
 const apis = {
     registerUser,
@@ -126,6 +132,12 @@ const apis = {
     updateMessageById,
     deleteMessageById,
     getMessageById,
+
+    insertTable,
+    getAllTables,
+    updateTableById,
+    deleteTableById,
+    getTableById,
 }
 
 export default apis
