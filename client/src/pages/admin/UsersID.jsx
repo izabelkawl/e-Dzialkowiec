@@ -15,8 +15,8 @@ const UsersID = () => {
     }, []);
 
     const UsersTable = users.map((user) => {
-        const { _id, email} = user;
-        return  <option key={_id}>{email}</option>
+        const { _id, firstname, lastname} = user;
+        return  <option key={_id}>{firstname+' '+lastname}</option>
     
     });
 

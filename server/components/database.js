@@ -5,6 +5,8 @@ import colors from "colors";
 
 const connectionConfig = {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
   useUnifiedTopology: true,
 };
 

@@ -47,7 +47,7 @@ class TablesInsert extends Component {
 
         this.state = {
             title: '',
-            user: '',
+            user_id: '',
             content: '',
             image: ''
         }
@@ -57,9 +57,9 @@ class TablesInsert extends Component {
         const title = event.target.value
         this.setState({ title })
     }
-    handleChangeInputUser = async event => {
-      const user = event.target.value
-      this.setState({ user })
+    handleChangeInputUserId = async event => {
+      const user_id = event.target.value
+      this.setState({ user_id })
     }
     handleChangeInputContent = async event => {
         const content = event.target.value
@@ -69,16 +69,16 @@ class TablesInsert extends Component {
     const image = event.target.value
     this.setState({  image })
     }
-    
+
     handleIncludeTable = async () => {
-        const { title, user, content, image } = this.state
-        const payload = { title, user, content, image }
+        const { title, user_id, content, image } = this.state
+        const payload = { title, user_id, content, image }
 
         await api.insertTable(payload).then(res => {
             window.alert(`Table inserted successfully`)
             this.setState({
               title: '',
-              user: '',
+              user_id: '',
               content: '',
               image: ''
             })
@@ -104,7 +104,7 @@ class TablesInsert extends Component {
                 />
 
                 <Label>Tutaj twoje imię funkcja: </Label>
-                <Form.Control as="select" onChange={this.handleChangeInputUser}>
+                <Form.Control as="select" onChange={this.handleChangeInputUserId}>
                     <option>do zmiany </option>
                     <UsersID/>
                 </Form.Control>
