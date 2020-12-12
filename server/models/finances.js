@@ -9,7 +9,7 @@ const Finance = new Schema({
   status: { type: String, required: true },
   account: { type: String, required: true },
   payment_date: { type: String, required: true },
-  
-});
-
+},
+{ timestamps: true }
+);
 export default mongoose.model("finances", Finance);

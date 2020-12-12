@@ -18,6 +18,8 @@ const Management = new Schema({
       content: {type: String, required: true },
       timestamps: true,
     }],
-});
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("managements", Management);

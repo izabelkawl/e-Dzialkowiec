@@ -49,8 +49,7 @@ class TablesInsert extends Component {
             title: '',
             user: '',
             content: '',
-            image: '',
-            price: ''
+            image: ''
         }
     }
 
@@ -61,26 +60,19 @@ class TablesInsert extends Component {
     handleChangeInputUser = async event => {
       const user = event.target.value
       this.setState({ user })
-  }
-  handleChangeInputContent = async event => {
-    const content = event.target.value
-    this.setState({ content })
-}
-handleChangeInputImage = async event => {
-  const image = event.target.value
-  this.setState({  image })
-}
-    handleChangeInputPrice = async event => {
-        const price = event.target.validity.valid
-            ? event.target.value
-            : this.state.price
-        this.setState({ price })
     }
-   
-
+    handleChangeInputContent = async event => {
+        const content = event.target.value
+        this.setState({ content })
+    }
+    handleChangeInputImage = async event => {
+    const image = event.target.value
+    this.setState({  image })
+    }
+    
     handleIncludeTable = async () => {
-        const { title, user, content, image, price } = this.state
-        const payload = { title, user, content, image, price }
+        const { title, user, content, image } = this.state
+        const payload = { title, user, content, image }
 
         await api.insertTable(payload).then(res => {
             window.alert(`Table inserted successfully`)
@@ -88,14 +80,13 @@ handleChangeInputImage = async event => {
               title: '',
               user: '',
               content: '',
-              image: '',
-              price: ''
+              image: ''
             })
         })
     }
 
     render() {
-        const { title,  content, image, price} = this.state
+        const { title,  content, image} = this.state
         return (
             <Wrapper>
                 <Title>Create Table</Title>
@@ -123,12 +114,6 @@ handleChangeInputImage = async event => {
                     type="text"
                     value={content}
                     onChange={this.handleChangeInputContent}
-                />
-                <Label>Price: </Label>
-                <InputText
-                    type="text"
-                    value={price}
-                    onChange={this.handleChangeInputPrice}
                 />
 
                 <Button onClick={this.handleIncludeTable}>Add Table</Button>

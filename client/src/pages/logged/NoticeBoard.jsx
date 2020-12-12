@@ -3,7 +3,6 @@ import api from "../../api";
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 
-
 const Wrapper = styled.div`
   width: 80vw;
   padding: 100px;
@@ -11,36 +10,38 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     background-color: white;
+    padding: 20px;
+    margin-top: 20px;
     -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    padding: 20px;
-    margin-top: 20px;
+
     display: grid;
-    grid-template-columns: 0.2fr 2fr 0.2fr;
+    grid-template-columns: 0.2fr 0.6fr 0.2fr;
     grid-template-rows: 1fr;
     gap: 25px 25px;
     grid-template-areas:"Image Content About";`
 
 const Content = styled.div`
   display: grid;
+  grid-area: Content;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     "."
     "."
     ".";
-  grid-area: Content;
+
 `
 const About = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.8fr 0.1fr;
+  grid-template-rows: 2fr 1fr;
   grid-template-areas:
-    "."
     "."
     ".";
   grid-area: About;
+  text-align: right;
 `
 const Image = styled.img.attrs({
 
@@ -53,6 +54,9 @@ const Title = styled.h1.attrs({
 })`
   font-size: 32px;
   padding: 30px;
+`
+const HeaderDiv = styled.div`
+  font-size: 26px;
 `
 
 const NoticeBoard = () => {
@@ -69,26 +73,24 @@ const NoticeBoard = () => {
     }, []);
 
     const TableList = tables.map((table, index) => {
-        const { _id, title, user, content, image,  price } = table;
+        const { _id, title, user, content, image} = table;
+        //date from timestap
+        const timestamp = _id.toString().substring(0,8);
+        const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+
         return (
             <Container key={_id}>
                 <Image src={image}/>
                 <Content>
-            <div>
-              <h3>{title}</h3><p>{user}</p>
-              <hr></hr>
-
-            </div>
-            <p>{content}</p>
-
-            <Form.Text muted>21.11.2020</Form.Text>
-          </Content>
-          <About>
-            <p>{price}</p>
-            <p></p>
-            <Button variant="success" >Wiadomość</Button>
-          </About>
-                </Container> 
+                  <HeaderDiv>{title}</HeaderDiv>
+                  <Form.Text>{content}</Form.Text>
+                  <Form.Text muted>{date}</Form.Text>
+                </Content>
+                <About>
+                  <Form.Text muted>{user}</Form.Text>
+                  <Button variant="success" >Wiadomość</Button>
+                </About>
+            </Container> 
         );
     });
     return (

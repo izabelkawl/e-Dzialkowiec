@@ -54,7 +54,6 @@ const updateTable = async (req, res) => {
     table.user_id = body.user_id;
     table.content = body.content;
     table.image = body.image;
-    table.price = body.price;
     table
       .save()
       .then(() => {

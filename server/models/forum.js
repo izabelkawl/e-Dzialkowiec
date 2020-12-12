@@ -7,7 +7,8 @@ const Forum = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   comment: [{  type: Schema.Types.ObjectId, ref: "Comment"}],
-  timestamps: true,
-});
+},
+{ timestamps: true }
+);
 
 export default mongoose.model("forums", Forum);

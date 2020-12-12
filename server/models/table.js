@@ -8,7 +8,6 @@ const Table = new Schema({
   // user_id: { type: Schema.Types.ObjectId, ref: "User"},
   content: { type: String, required: true },
   image: {  type: String, required: true },
-  price: {  type: Number, required: true },
  },
  { 
    timestamps: true,

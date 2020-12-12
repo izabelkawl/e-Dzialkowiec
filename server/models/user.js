@@ -10,6 +10,7 @@ const User = new Schema({
   phone: { type: String, required: true },
   password: { type: String, required: true },
 //pesel?
-});
-
+},
+{ timestamps: true }
+);
 export default mongoose.model("users", User);

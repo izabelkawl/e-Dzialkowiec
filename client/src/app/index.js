@@ -20,7 +20,7 @@ import LoggedApp from './loggedrouter';
 import bg from './img/bg.svg';
 
 const Container = styled.div`
- min-height: 100vh;
+  min-height: 100vh;
   background-image: url(${bg});
   background-repeat: no-repeat;
   background-size: cover;
