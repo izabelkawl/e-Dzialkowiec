@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
+
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import NavBar from '../components/NavBar'
+
 import { loginUser } from "../api/index";
+import NavBar from '../components/NavBar'
 
 const Wrapper = styled.div`
 `;
-
 
 const Container = styled.div.attrs({
     className: 'form-group',

@@ -86,11 +86,23 @@ export const updateUserById = (id, payload) => dispatch => {
         );
 }
 
-
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
 
-export const insertAllotment = payload => api.post(`/allotment`, payload)
+// Register Allotment
+export const insertAllotment = (allotmentData, history) => dispatch => {
+    api
+        .post("/allotments", allotmentData)
+        .then(res => history.push("/allotments/list"))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+// export const insertAllotment = payload => api.post(`/allotment`, payload)
 export const getAllAllotments = () => api.get(`/allotments`)
 export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
