@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: white;
+  background-color: #f8f9fa;
   font-family: Verdana, Geneva, sans-serif;
   line-height: 15px;
 `;

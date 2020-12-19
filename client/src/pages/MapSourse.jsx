@@ -11,8 +11,8 @@ const mapSource = `<?xml version="1.0" encoding="utf-8"?>
 	.st5{fill:#CCCaCC;}
 	.st6{fill:#cc0033;}
 	.st7{fill:#0071BC;}
-	.st8{fill:#99CC00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st8a{fill:#99CC00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st8{fill:#7fbc5e;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st8a{fill:#7fbc5e;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.st8:hover{fill:#0071BC;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.st9{fill:#FF9900;}
 	.st10{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:15;}

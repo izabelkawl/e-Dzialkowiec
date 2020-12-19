@@ -9,8 +9,8 @@ import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 
 import bg from './img/bgo.svg';
+
 const Wrapper = styled.div`
-    background-color: #f8f9fa;
     background-image: url(${bg});
     background-repeat: no-repeat;
     background-size: cover;
