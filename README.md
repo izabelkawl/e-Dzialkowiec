@@ -1,4 +1,4 @@
-<h1>Aplikacja e-Działka</h1> 
+<h1>Aplikacja e-Działkowiec</h1> 
  <em> 
 
 <p>Pozwala użytkownikowi zarządzać swoim ogrodem działkowym na odległość. Umożliwia kupno i sprzedaż działki, opłacanie rachunków, kontakt z zarządem oraz integrację z innymi działkowcami. </p>
