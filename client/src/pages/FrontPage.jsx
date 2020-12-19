@@ -29,7 +29,6 @@ const Button = styled.button`
     background: #0071BC;
     border: 20px solid #0071BC;
     border-radius: 30px;
-    font-size: 20px;
 `
 const H5 = styled.h5`
     line-height: 1.8;

@@ -8,23 +8,21 @@ import { Form, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 
+import bg from './img/bgo.svg';
 const Wrapper = styled.div`
     background-color: #f8f9fa;
+    background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
     height: 100vh;
 `;
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    background-color: white;
     width: 40vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    padding: 50px;
-    margin-top: 50px;
+    margin: 50px 300px;
 `
 const Title = styled.h3.attrs({
 })`

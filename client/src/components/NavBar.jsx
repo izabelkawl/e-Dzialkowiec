@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 const Link = styled.a`
-    font-size: 20px;
     margin-left: 70px;
     margin-top: 20px;
     
