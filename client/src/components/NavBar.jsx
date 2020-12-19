@@ -1,57 +1,65 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
-import logo from './img/img.svg';
-import { Image } from 'react-bootstrap';
+import logo from './img/logo.png';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-const Logo = styled.a.attrs({
-    className: 'navbar-header',
-})`
-    padding: 20px 0 0 50px;
+const Link = styled.a`
+    font-size: 20px;
+    margin-left: 70px;
+    margin-top: 20px;
+    
 `
-Nav.Link = styled.a`
-    margin-top: 30px;
-    margin-right: 50px;
+const NavigationItem = styled.p`
+    border-top: 20px solid rgba(0, 0, 0, 0);
+    color: black;
+    :hover{
+        color: gray;
+    }
+`
+const Contact = styled.p`
+    padding:0 20px;
+    color: white;
+    background: #0071BC;
+    background-clip: border-box;
+    border: 20px solid #0071BC;
+    border-radius: 30px;
 `
 
 class NavBar extends Component {
     render() {
         return (
+            <Navbar collapseOnSelect expand="lg">
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"  className="nav-link"/>
+                    <Navbar.Collapse id="responsive-navbar-nav" >
+                        <Nav className="mr-auto">
+                            <Link href="/" className="nav-link" >
+                                <NavigationItem>Strona główna</NavigationItem>
+                                    </Link>
 
-            <Navbar expand="lg">
+                            <Link href="/about" className="nav-link">
+                                <NavigationItem>O nas</NavigationItem>
+                                    </Link>
 
-                <Navbar.Toggle />
-                <Navbar.Collapse id="basic-navbar-nav" >
+                            <Link href="/garden" className="nav-link">
+                                <NavigationItem>Plan ogrodu</NavigationItem>
+                                    </Link>
 
-                    <Nav className="mr-auto">
-                        <Logo href="/" className="navbar-header">
-                            <Image src={logo} width="300px" alt="e-działkowiec" />
-                        </Logo>
-
-                    </Nav>
-                    <Nav>
-
-                        <Nav.Link href="/" className="nav-link text-white">
-                            Strona główna
-                            </Nav.Link>
-                        <Nav.Link href="/garden" className="nav-link  text-white">
-                            Plan ogrodu
-                            </Nav.Link>
-                        <Nav.Link href="/about" className="nav-link  text-white">
-                            O nas / Zarząd
-                            </Nav.Link>
-                        <Nav.Link href="/contact" className="nav-link  text-white">
-                            Kontakt
-                            </Nav.Link>
-
-
-                    </Nav>
-
-                </Navbar.Collapse>
+                            <Link href="/contact" className="nav-link">
+                               <Contact> Kontakt</Contact>
+                                </Link>
+                        </Nav>
+                        <Nav style={{paddingRight: '70px'}}>
+                                <NavigationItem>
+                                 <img src={logo} height="60" alt="e-działkowiec" />
+                                    </NavigationItem>
+                                    
+                        </Nav> 
+                        
+                    </Navbar.Collapse>
             </Navbar>
         )
     }

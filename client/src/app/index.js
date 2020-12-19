@@ -1,31 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import jwt_decode from "jwt-decode";
-import setAuthToken from "../utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "../api/index";
-
 import { Provider } from "react-redux";
 import store from "../store.js";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "../utils/setAuthToken";
 
-import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { setCurrentUser, logoutUser } from "../api/index";
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import { FrontPage, About, Garden, Login, Register, Contact } from '../pages';
 
 import AdminApp from './adminrouter';
 import LoggedApp from './loggedrouter';
 
-import bg from './img/bg.svg';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Container = styled.div`
   min-height: 100vh;
-  background-image: url(${bg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  font-size: 20px;
+  background-color: white;
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 15px;
 `;
 
 // Check for token to keep user logged in

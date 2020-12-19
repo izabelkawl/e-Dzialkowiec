@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const Wrapper = styled.div`
+background-color: #f8f9fa;
+height: 100vh;
 `;
 
 const Container = styled.div`
-
-  margin: 150px 350px;
-  padding:50px;
-  width: 40vw;
+  width:  50vw;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 60px 100px;
+    
+  background-color: white;
 `;
-
-const Title = styled.h1.attrs({
-  className: 'h1',
-})`
-  font-size: 50px;
-  padding-bottom:50px;
+const Title = styled.h3`
+  padding-bottom: 30px;
+  color: #0071BC;
   `
-
+const Label = styled(Form.Label)`
+    padding-bottom: 10px;
+`
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
+`
 class Contact extends Component {
   render() {
 
@@ -31,15 +43,15 @@ class Contact extends Component {
 
           <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Adres email:</Form.Label>
+              <Label>Adres email:</Label>
               <Form.Control type="email" />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Label>Treść wiadomości:</Form.Label>
-              <Form.Control as="textarea" rows={5} />
+              <Label>Treść wiadomości:</Label>
+              <Form.Control as="textarea" rows={6} />
             </Form.Group>
             <br></br>
-            <Button className="float-right" variant="dark" size="lg" block>Wyślij</Button>
+            <Button className="float-right">Wyślij</Button>
           </Form>
 
         </Container>

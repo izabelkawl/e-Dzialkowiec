@@ -2,31 +2,50 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar'
 import { loginUser } from "../api/index";
 
 const Wrapper = styled.div`
+background-color: #f8f9fa;
+height: 100vh;
 `;
-
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-  margin: 200px 350px;
-  padding:50px;
-  width: 40vw;
+    width: 30vw;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 60px 100px;
+    background-color: white;
 `
-
-const Title = styled.h2.attrs({
-})`
-    padding-bottom:10px; `
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
+`
 
 const Span = styled.span`
     color: red;
-    font-size: 80%;`
-
+    font-size: 80%;
+`
+const Link = styled.a`
+    color: #0071BC;
+`
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
+`
+const Label = styled(Form.Label)`
+    padding-bottom: 10px;
+`
 
 class Login extends Component {
     constructor() {
@@ -85,8 +104,9 @@ class Login extends Component {
                     <Title>Logowanie</Title>
                     <Form noValidate onSubmit={this.onSubmit}>
                         <Form.Group>
-                            <Form.Label htmlFor="email">Email
-                        </Form.Label><Span>
+                            <Label htmlFor="email">Email:
+                        </Label>
+                        <Span>
                                 {errors.email}
                                 {errors.emailnotfound}
                             </Span>
@@ -97,20 +117,19 @@ class Login extends Component {
                                 error={errors.email}
                                 id="email"
                                 type="email"
-                                placeholder="jankowalski@gmail.com"
                                 className={classnames("", {
                                     invalid: errors.email || errors.emailnotfound
                                 })} />
 
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label htmlFor="password">Hasło</Form.Label>
+                            <Label htmlFor="password">Hasło:</Label>
                             <Span>
                                 {errors.password}
                                 {errors.passwordincorrect}
                             </Span>
                             <Form.Text style={{ float: "right" }}>
-                                <a href="/"> Nie pamiętasz hasła?</a>
+                                <Link href="/"> Nie pamiętasz hasła?</Link>
                             </Form.Text>
                             <Form.Control
                                 onChange={this.onChange}
@@ -118,23 +137,19 @@ class Login extends Component {
                                 error={errors.password}
                                 id="password"
                                 type="password"
-                                placeholder="&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;"
                                 className={classnames("", {
                                     invalid: errors.password || errors.passwordincorrect
                                 })}
                             />
+                            <Form.Text style={{ paddingTop: '10px' }}><Link href="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
                         </Form.Group>
                         {/* 
                         <Form.Group controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Zapamietaj mnie" />
                         </Form.Group> */}
 
-                        <Button variant="success" type="submit" size="lg" block>Zaloguj</Button>
-
-                        <Form.Text><a href="/users/register">Nie masz konta? Zarejestruj się </a></Form.Text>
-
+                        <Button className="float-right" type="submit" size="lg">Zaloguj</Button>
                     </Form>
-
                 </Container>
             </Wrapper>
         );

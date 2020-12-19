@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Image } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
-import bg from './img/hbg.svg';
-import btn from './img/button.png';
+import bg from './img/bg.svg';
+import logo from './img/logo.svg';
 
 const Wrapper = styled.div.attrs({
 })`
@@ -11,57 +10,53 @@ const Wrapper = styled.div.attrs({
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
+    height: 100vh;
 `
-
-
-const Section = styled.div.attrs({
+const Section = styled.section.attrs({
 })` 
-    width: 50vw;
-    height: 70vh;
-    margin-top: 170px;
-    padding: 5vw;    
-    font-style: 'Gill Sans MT';
+    width: 60vw;
+    margin-top: 30px;
+    padding: 100px;
 `
-const Content = styled.div.attrs({
-})``
 
-const Title = styled.h1.attrs({
-})` color: #008379;
-    padding-bottom: 50px;
-    font-size: 50px;
+const Image = styled.img.attrs({
+})`
+    margin-bottom: 50px;
+`
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 20px solid #0071BC;
+    border-radius: 30px;
+    font-size: 20px;
+`
+const H5 = styled.h5`
+    line-height: 1.8;
 `
 const Footer = styled.footer.attrs({
-})`
-    text-align: center;
-    padding: 15px;
+})` 
+    padding-left: 100px;
 `
-
 class FrontPage extends Component {
     render() {
 
         return (
             <Wrapper>
                 <NavBar />
-                <Content>
-
-                    <Section>
-                        <Title>Internetowa obsługa działki</Title>
+                <Section>
+                        <Image src={logo} height="160" alt="e-działkowiec" />
                         <h4><b>Kupno • Sprzedaż • Opłaty • Aktualności • Tablica ogłoszeń</b></h4>
-                        <br></br>
-                        <h5>Aplikacja pozwoli Ci zarządzać swoim ogrodem działkowym na odległość. <br></br>Możesz kupić / sprzedać działkę, opłacić rachunki, integrować się z działkowacami.<br></br>To wszystko bez wychodzenia z domu!
-                        </h5>
-                        <br></br>
-                        <br></br>
+                        <br /><br />
+                        <H5>Aplikacja pozwoli Ci zarządzać swoim ogrodem działkowym na odległość. <br></br>Możesz kupić / sprzedać działkę, opłacić rachunki, integrować się z działkowacami.<br></br>To wszystko bez wychodzenia z domu!
+                        </H5>
+                        <br /><br />
                         <a href="/users/login">
-                            <Image src={btn} height="70px" alt="dołącz do nas" />
+                            <Button>Dołącz do nas </Button>
                         </a>
-                    </Section>
-
-                    <Footer>Copyright © IW <a href="http://www.freepik.com">BG Designed by Freepik</a></Footer>
-                </Content >
-
-
-            </Wrapper >
+                </Section>
+                <Footer>Copyright © IW <a href="http://www.freepik.com">BG Designed by Freepik</a></Footer>
+            </Wrapper>
         )
     }
 }

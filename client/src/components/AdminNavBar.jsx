@@ -1,56 +1,58 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Navbar, Nav, } from 'react-bootstrap';
-import { Image } from 'react-bootstrap'
-import styled from 'styled-components'
-import logo from './img/img.svg'
+import logo from './img/img.svg';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import styled from "styled-components";
 
-const Logo = styled.a.attrs({
-    className: 'navbar-header',
-})`padding-top: 5px;
-padding-bottom: 5px;`
+const Link = styled.a`
+    margin: 0 ;
+    margin-left: 30px;
+`
 
 class AdminNavBar extends Component {
     render() {
         return (
-            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
+                    <Navbar.Brand href="/admin" >
+                        <img
+                            src={logo}
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="e-działkowiec"
+                        />
+                    </Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav" >
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav"  className="nav-link "/>
 
-                    <Nav className="mr-auto">
-                        <Logo className="navbar-header" href="/admin" >
-                            <Image src={logo} height="30" alt="e-działkowiec" /></Logo>
+                    <Navbar.Collapse id="responsive-navbar-nav" >
+                        <Nav className="mr-auto"></Nav>
+                        <Nav>
+                            <Link href="/admin" className="nav-link ">
+                                Panel
+                                </Link>
+                            <Link href="/admin/management" className="nav-link ">
+                                Zarząd
+                                </Link>
+                            <Link href="/admin/users/list" className="nav-link ">
+                                Użytkownicy
+                                </Link>
 
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="/admin" className="nav-link ">
-                            Panel
-                            </Nav.Link>
-                        <Nav.Link href="/admin/management" className="nav-link ">
-                            Zarząd
-                            </Nav.Link>
-                        <Nav.Link href="/admin/users/list" className="nav-link ">
-                            Użytkownicy
-                            </Nav.Link>
-
-                        <Nav.Link href="/admin/allotments/list" className="nav-link ">
-                            Działki
-                            </Nav.Link>
-                        <Nav.Link href="/admin/messages/list" className="nav-link ">
-                            Wiadomości
-                            </Nav.Link>
-                        <Nav.Link href="/admin/table" className="nav-link ">
-                            Tablica ogłoszeń
-                            </Nav.Link>
-                        <Nav.Link href="/admin/messages/list" className="nav-link ">
-                            Finanse
-                            </Nav.Link>
-                    </Nav>
-
+                            <Link href="/admin/allotments/list" className="nav-link ">
+                                Działki
+                                </Link>
+                            <Link href="/admin/messages/list" className="nav-link ">
+                                Wiadomości
+                                </Link>
+                            <Link href="/admin/table" className="nav-link ">
+                                Tablica ogłoszeń
+                                </Link>
+                            <Link href="/admin/messages/list" className="nav-link ">
+                                Finanse
+                                </Link>
+                        </Nav>
                 </Navbar.Collapse>
             </Navbar>
         )

@@ -6,14 +6,14 @@ const mapSource = `<?xml version="1.0" encoding="utf-8"?>
 	.st0{fill:#E2E2E2;}
 	.st1{fill:#EFEDAC;}
 	.st2{fill:#CCCC99;}
-	.st3{fill:#cc0033;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st3{fill:#fed905;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.st4{fill:#C4C080;}
-	.st5{fill:#CCCCCC;}
-	.st6{fill:#3399FF;}
-	.st7{fill:#fed905;}
+	.st5{fill:#CCCaCC;}
+	.st6{fill:#cc0033;}
+	.st7{fill:#0071BC;}
 	.st8{fill:#99CC00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.st8a{fill:#99CC00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st8:hover{fill:#fed905;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st8:hover{fill:#0071BC;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.st9{fill:#FF9900;}
 	.st10{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:15;}
 	.st11{fill:#666666;}

@@ -1,59 +1,57 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Navbar, Nav, } from 'react-bootstrap';
-import { Image } from 'react-bootstrap'
-import logo from './img/img.svg'
-import styled from 'styled-components'
+import logo from './img/img.svg';
+import styled from 'styled-components';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-const Logo = styled.a.attrs({
-    className: 'navbar-header',
-})`
-    padding: 20px 0 0 50px;
+const Link = styled.a`
+    margin: 0 ;
+    margin-left: 30px;
 `
-Nav.Link = styled.a`
-    margin-top: 30px;
-    margin-right: 50px;`
 
 class LoggedNavBar extends Component {
     render() {
         return (
-            <Navbar bexpand="lg" >
+            <Navbar collapseOnSelect expand="lg" sticky="top" >
+                <Navbar.Brand href="/dashboard" >
+                    <img
+                        src={logo}
+                        height="30"
+                        className="d-inline-block align-top"
+                        alt="e-działkowiec"
+                    />
+                </Navbar.Brand>
 
-                <Navbar.Toggle  />
-                <Navbar.Collapse id="basic-navbar-nav" >
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"  className="nav-link"/>
 
-                    <Nav className="mr-auto" >
-                        <Logo className="navbar-header" href="/dashboard/">
-                            <Image src={logo} height="40" alt="e-działkowiec" /></Logo>
-
-                    </Nav>
-                    <Nav>
-                        <Nav.Link href="/dashboard/" className="nav-link text-white">
-                            Aktualności
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/allotment" className="nav-link  text-white">
-                            Działka
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/table" className="nav-link  text-white">
-                            Tablica ogłoszeń
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/messages/list" className="nav-link  text-white">
-                            Płatności
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/messages/list" className="nav-link  text-white">
-                            Wiadomości
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/forum" className="nav-link  text-white">
-                            Forum
-                            </Nav.Link>
-                        <Nav.Link href="/dashboard/account" className="nav-link  text-white">
-                            Konto
-                            </Nav.Link>
-                    </Nav>
-
+                <Navbar.Collapse id="responsive-navbar-nav" >
+                <Nav className="mr-auto"></Nav>
+                        <Nav>
+                            <Link href="/dashboard/" className="nav-link text-white">
+                                Aktualności
+                                </Link>
+                            <Link href="/dashboard/allotment" className="nav-link  text-white">
+                                Działka
+                                </Link>
+                            <Link href="/dashboard/table" className="nav-link  text-white">
+                                Tablica ogłoszeń
+                                </Link>
+                            <Link href="/dashboard/messages/list" className="nav-link  text-white">
+                                Płatności
+                                </Link>
+                            <Link href="/dashboard/messages/list" className="nav-link  text-white">
+                                Wiadomości
+                                </Link>
+                            <Link href="/dashboard/forum" className="nav-link  text-white">
+                                Forum
+                                </Link>
+                            <Link href="/dashboard/account" className="nav-link  text-white">
+                                Konto
+                                </Link>
+                        </Nav>
                 </Navbar.Collapse>
             </Navbar>
         )

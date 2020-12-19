@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+
 const Wrapper = styled.div`
     width: 80%;
     margin: 0 auto;
@@ -11,10 +12,9 @@ const Wrapper = styled.div`
     margin-top: 50px;
     background-color: white; 
 `
-const Title = styled.h1.attrs({
-    className: 'h1',
-})`font-size: 32px;
-padding-bottom: 20px;`
+const Title = styled.h1`
+    font-size: 32px;
+`;
 
 class Admin extends Component {
 

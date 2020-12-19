@@ -4,28 +4,48 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 
-
 const Wrapper = styled.div`
+    background-color: #f8f9fa;
+    height: 100vh;
 `;
-
-const Title = styled.h2.attrs({
-})`
-    padding-bottom:10px; `
-
-const Span = styled.span`
-    color: red;
-    font-size: 80%;`
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    margin: 80px 350px;
-  padding:50px;
-  width: 40vw;
+    background-color: white;
+    width: 40vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    margin-top: 50px;
+`
+const Title = styled.h3.attrs({
+})`
+    color: #0071BC;
+    padding-bottom: 30px;
+`
+
+const Span = styled.span`
+    color: red;
+    font-size: 80%;
+`
+const Label = styled(Form.Label)`
+    padding-bottom: 10px;
+`
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
+    width: 100%;
+    margin-top: 10px;
 `
 
 class Register extends Component {
@@ -59,7 +79,6 @@ class Register extends Component {
         }
     }
 
-
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -77,12 +96,8 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         };
-
-
         this.props.registerUser(newUser, this.props.history)
     };
-
-
 
     render() {
 
@@ -97,7 +112,7 @@ class Register extends Component {
                     <Form noValidate onSubmit={this.onSubmit}>
 
                         <Form.Group >
-                            <Form.Label htmlFor="email">Adres email </Form.Label>
+                            <Label htmlFor="email">Adres email: </Label>
                             <Span>
                                 {errors.email}
                             </Span>
@@ -118,8 +133,8 @@ class Register extends Component {
                         <Form.Group >
                             <Row>
                                 <Col>
-                                    <Form.Label htmlFor="firstname">Imię
-                                </Form.Label>
+                                    <Label htmlFor="firstname">Imię:
+                                </Label>
 
                                     <Span>
                                         {errors.firstname}
@@ -137,7 +152,7 @@ class Register extends Component {
                                     />
                                 </Col>
                                 <Col>
-                                    <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
+                                    <Label htmlFor="lastname">Nazwisko:</Label>
                                     <Span>
                                         {errors.lastname}
                                     </Span>
@@ -158,7 +173,7 @@ class Register extends Component {
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label htmlFor="address">Adres</Form.Label>
+                            <Label htmlFor="address">Adres:</Label>
                             <Span>
                                 {errors.address}
                             </Span>
@@ -177,7 +192,7 @@ class Register extends Component {
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label htmlFor="phone">Telefon</Form.Label>
+                            <Label htmlFor="phone">Telefon:</Label>
                             <Span>
                                 {errors.phone}
                             </Span>
@@ -196,7 +211,7 @@ class Register extends Component {
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label htmlFor="password">Hasło</Form.Label>
+                            <Label htmlFor="password">Hasło:</Label>
                             <Span>
                                 {errors.password}
                             </Span>
@@ -215,7 +230,7 @@ class Register extends Component {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label htmlFor="password2">Powtórz hasło</Form.Label>
+                            <Label htmlFor="password2">Powtórz hasło:</Label>
                             <Span>
                                 {errors.password2}
                             </Span>
@@ -232,7 +247,7 @@ class Register extends Component {
                             />
 
                         </Form.Group>
-                        <Button variant="warning" block size="lg" type="submit" >Rejestracja</Button>
+                        <Button variant="info" block size="lg" type="submit" >Rejestracja</Button>
 
                     </Form>
                 </Container>

@@ -3,6 +3,7 @@ import api from '../../api'
 import styled from 'styled-components'
 import {Form }from 'react-bootstrap';
 import UsersID from '../admin/UsersID';
+import ImageUpload from '../ImageUpload';
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -86,15 +87,12 @@ class TablesInsert extends Component {
     }
 
     render() {
-        const { title,  content, image} = this.state
+        const { title,  content} = this.state
         return (
             <Wrapper>
                 <Title>Create Table</Title>
-
-                <Label>Image: </Label>
-
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image.value}
-                    onChange={this.handleChangeInputImage} ></input>
+<ImageUpload/>
+                
 
                 <Label>Title: </Label>
                 <InputText

@@ -3,17 +3,17 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { Provider } from "react-redux";
 import store from "../store.js";
+import { connect } from "react-redux";
 
 import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management } from '../pages'
-import { Button } from 'react-bootstrap';
+
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Admin from '../components/dashboard/Admin';
-
-import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AdminNavBar from '../components/AdminNavBar';
 
-import { connect } from "react-redux";
+import { Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Container = styled.div`
     background-color: #f2f4f5;
@@ -28,7 +28,6 @@ const ErrContainer = styled.div`
     font-size: 26px;
 `;
 
-
 class AdminApp extends Component {
 
   render() {
@@ -38,7 +37,6 @@ class AdminApp extends Component {
       return (
         <Provider store={store}>
           <Container>
-
             <Router>
               <AdminNavBar />
               <Switch>
@@ -54,8 +52,6 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/messages/list" exact component={MessagesList} />
                 <PrivateRoute path="/admin/messages/create" exact component={MessagesInsert} />
                 <PrivateRoute path="/admin/messages/update/:id" exact component={MessagesUpdate} />
-
-
               </Switch>
             </Router>
           </ Container >

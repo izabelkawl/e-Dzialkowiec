@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { DatabaseConnectionError } from "../errors/database.js";
 import keys from "../config/keys.js";
-import colors from "colors";
 
 const connectionConfig = {
   useNewUrlParser: true,

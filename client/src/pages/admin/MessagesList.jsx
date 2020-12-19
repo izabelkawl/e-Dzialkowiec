@@ -4,23 +4,18 @@ import { Table, Button } from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
- width: 70%;
-  background-color: white; 
-  
+    width: 70%;
+    background-color: white;
+    padding: 50px;
     margin: 0 auto;
-    margin-top: 50px; 
-
+    margin-top: 50px;
 `;
-
-
 
 class UpdateMessage extends Component {
     updateMessage = event => {
         event.preventDefault()
-
         window.location.href = `/admin/messages/update/${this.props.id}`
     }
-
     render() {
         return <Button variant="success" onClick={this.updateMessage}>Update</Button>
     }
@@ -29,7 +24,6 @@ class UpdateMessage extends Component {
 class DeleteMessage extends Component {
     deleteMessage = event => {
         event.preventDefault()
-
         if (
             window.confirm(
                 `Do tou want to delete the message ${this.props.id} permanently?`,
@@ -39,7 +33,6 @@ class DeleteMessage extends Component {
             window.location.reload()
         }
     }
-
     render() {
         return <Button variant="danger" onClick={this.deleteMessage}>Delete</Button>
     }
@@ -47,14 +40,12 @@ class DeleteMessage extends Component {
 
 const MessagesList = () => {
     const [messages, setMessages] = useState([]);
-
     useEffect(() => {
         const requestMessagesList = async () => {
             const messagesList = await api.getAllMessages();
             const { data } = messagesList;
             setMessages(data.data);
         };
-
         requestMessagesList();
     }, []);
 
@@ -67,24 +58,25 @@ const MessagesList = () => {
                 <td>{user}</td>
                 <td>{recipient}</td>
                 <td>{content}</td>
+
                 <td><DeleteMessage id={_id} /></td>
                 <td><UpdateMessage id={_id} /></td>
-
             </tr>
         );
     });
 
     return <Wrapper>
-        <Table striped bordered hover>
+       <Table striped bordered hover size="sm"  responsive>
             <thead>
-            <tr>
-                <th>Lp</th>
-                <th>User</th>
-                <th>Recipient</th>
-                <th>Content</th>
-                {/* Date */}
-                <th></th>
-                <th></th>
+                <tr>
+                    <th>Lp</th>
+                    <th>User</th>
+                    <th>Recipient</th>
+                    <th>Content</th>
+                    {/* Date */}
+                    
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

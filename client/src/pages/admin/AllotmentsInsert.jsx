@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import api from '../../api'
+import React, { Component } from 'react';
+import api from '../../api';
 import {Form }from 'react-bootstrap';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import UsersID from './UsersID';
 
-const Title = styled.h1.attrs({
-    className: 'h1',
-})``
+const Title = styled.h1`
+    font-size: 32px;
+`;
 
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-  margin-left: auto;
+    margin-left: auto;
     margin-right: auto; 
     background-color: white;
     padding: 50px;
@@ -122,8 +122,6 @@ class AllotmentsInsert extends Component {
         })
     }
 
-
-    
     render() {
         const { image, number, width, height, price} = this.state
         return (
@@ -133,7 +131,6 @@ class AllotmentsInsert extends Component {
                 <Label>Image: </Label>
                 <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image}
                     onChange={this.handleChangeInputImage} ></input>
-
 
                 <Label>Number: </Label>
                 <InputText

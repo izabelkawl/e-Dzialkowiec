@@ -4,14 +4,13 @@ import NavBar from '../components/NavBar';
 import InlineSVG from 'svg-inline-react';
 import MapSource from './MapSourse';
 
-
 const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
   width: 80vw;
-  margin-top: 50px;
-  padding:50px;
+  margin: 0 auto;
+  padding: 50px;
 `;
 
 class Garden extends Component {

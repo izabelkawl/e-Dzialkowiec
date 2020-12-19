@@ -22,4 +22,6 @@ import MessagesList from './admin/MessagesList'
 import MessagesUpdate from './admin/MessagesUpdate'
 import MessagesInsert from './admin/MessagesInsert'
 
-export { FrontPage, Table, Management, About, Contact, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+import ImageUpload from './ImageUpload';
+
+export { FrontPage, Table, Management, About, Contact, ImageUpload, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
