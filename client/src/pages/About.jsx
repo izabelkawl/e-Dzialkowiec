@@ -11,7 +11,6 @@ const Container = styled.div`
   width: 80vw;
   margin: 0 auto;
   padding: 100px;
-  line-height: 2;
 `;
 
 const Title = styled.h1`

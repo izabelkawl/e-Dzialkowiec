@@ -19,7 +19,6 @@ const Container = styled.div`
   min-height: 100vh;
   background-color: #f8f9fa;
   font-family: Verdana, Geneva, sans-serif;
-  line-height: 15px;
 `;
 
 // Check for token to keep user logged in

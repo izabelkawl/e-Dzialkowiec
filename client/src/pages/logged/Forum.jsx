@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const Wrapper = styled.div` 
     width: 70vw;
@@ -45,7 +45,12 @@ const Title = styled.h3`
     padding-bottom:30px; 
     color: #0071BC;
 `
-
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
+`
 
 class Forum extends Component {
   render() {
@@ -68,7 +73,7 @@ class Forum extends Component {
           <About>
             <p>20zł</p>
             <p></p>
-            <Button variant="success" >Wiadomość</Button>
+            <Button>Wiadomość</Button>
           </About>
 
         </Container>
@@ -86,7 +91,7 @@ class Forum extends Component {
           <About>
             <p>350z/ szt</p>
             <p></p>
-            <Button variant="success" >Wiadomość</Button>
+            <Button  >Wiadomość</Button>
           </About>
 
         </Container>
@@ -104,7 +109,7 @@ class Forum extends Component {
           <About>
             <p>350z/ szt</p>
             <p></p>
-            <Button variant="success" >Wiadomość</Button>
+            <Button  >Wiadomość</Button>
           </About>
 
         </Container>
