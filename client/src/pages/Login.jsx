@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
+<<<<<<< HEAD
 import { Form } from 'react-bootstrap';
+=======
+
+import { Form, Button } from 'react-bootstrap';
+>>>>>>> a3b76dea8b6058784fbd9129aafd1b6eb6f9f40f
 import styled from 'styled-components';
-import NavBar from '../components/NavBar'
+
 import { loginUser } from "../api/index";
+import NavBar from '../components/NavBar'
 
 import bg from './img/bgo.svg';
 const Wrapper = styled.div`

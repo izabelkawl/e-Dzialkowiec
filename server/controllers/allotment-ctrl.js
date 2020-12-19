@@ -1,36 +1,57 @@
 import Allotment from "../models/allotment.js";
+// Load input validation
+import validateAllotmentInput from "../validation/allotment.js";
+import isEmpty from "is-empty";
 
-const createAllotment = (req, res) => {
-  const body = req.body;
 
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a allotment",
-    });
+const createAllotment = async (req, res) => {
+
+  // const body = req.body;
+  // const { errors, isValid } = validateRegisterInput(allotmentData);
+  // if (!body) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     error: "You must provide a allotment",
+  //   });
+  // }
+
+  // const allotment = new Allotment(body);
+
+  // if (!allotment) {
+  //   return res.status(400).json({ success: false, error: err });
+  // }
+
+  // allotment
+  //   .save()
+  //   .then(() => {
+  //     return res.status(201).json({
+  //       success: true,
+  //       id: allotment._id,
+  //       message: "allotment created!",
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     return res.status(400).json({
+  //       error,
+  //       message: "allotment not created!",
+  //     });
+  //   });
+
+const allotmentData = req.body;
+  const { errors, isValid } = validateAllotmentInput(allotmentData);
+  const isAllotment = await Allotment.findOne({ number: allotmentData.number });
+
+  if (!isValid) return res.status(400).json(errors);
+  if (!!isAllotment)
+    return res.status(400).json({ email: " *Działka o podanym numerze już istnieje." });
+
+  const processedAllotment = new Allotment(allotmentData);
+
+  try {
+    processedAllotment.save();
+  } catch (error) {
+    throw new DatabaseInsertError(error.message);
   }
-
-  const allotment = new Allotment(body);
-
-  if (!allotment) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  allotment
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: allotment._id,
-        message: "allotment created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "allotment not created!",
-      });
-    });
 };
 
 const updateAllotment = async (req, res) => {
