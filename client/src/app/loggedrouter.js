@@ -10,7 +10,7 @@ import LoggedNavBar from '../components/LoggedNavBar';
 import Dashboard from '../components/dashboard/Dashboard';
 import {ImageUpload , Forum, Account, Allotment } from '../pages';
 
-import bg from './img/bg.svg';
+import bg from './img/bgo.svg';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

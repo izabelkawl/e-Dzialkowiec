@@ -4,13 +4,13 @@ import InlineSVG from 'svg-inline-react';
 import MapSource from '../MapSourse';
 
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div` 
+    width: 70vw;
+    padding: 100px;
+`
 
 const Container = styled.div`
-  width: 80vw;
-  margin-top: 50px;
-  padding:50px;
+ 
 `;
 
 class Allotment extends Component {

@@ -5,19 +5,14 @@ import {Form }from 'react-bootstrap';
 import UsersID from '../admin/UsersID';
 import ImageUpload from '../ImageUpload';
 
-const Title = styled.h1.attrs({
-    className: 'h1',
-})``
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
+`
 
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})`
-  margin-left: auto;
-    margin-right: auto; 
-    background-color: white;
-    padding: 50px;
-    width: 600px;
-    margin-top: 50px;
+const Wrapper = styled.div` 
+    width: 70vw;
+    padding: 100px;
 `
 
 const Label = styled.label`

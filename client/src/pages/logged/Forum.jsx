@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 
-const Wrapper = styled.div`
-  width: 80vw;
-  padding: 100px;
-`;
+const Wrapper = styled.div` 
+    width: 70vw;
+    padding: 100px;
+`
 
 const Container = styled.div`
     background-color: white;
-    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
+    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
 
     padding: 20px;
     margin-top: 20px;
@@ -41,12 +41,9 @@ const About = styled.div`
     ".";
   grid-area: About;
 `
-
-const Title = styled.h1.attrs({
-  className: 'h1',
-})`
-  font-size: 32px;
-  padding: 30px;
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
 `
 
 

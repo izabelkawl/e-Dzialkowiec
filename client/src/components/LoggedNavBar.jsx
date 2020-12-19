@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, } from 'react-bootstrap';
-import logo from './img/img.svg';
+import logo from '../pages/img/logo.svg';
 import styled from 'styled-components';
 
 import 'bootstrap';
@@ -19,7 +19,7 @@ class LoggedNavBar extends Component {
                 <Navbar.Brand href="/dashboard" >
                     <img
                         src={logo}
-                        height="30"
+                        height="40"
                         className="d-inline-block align-top"
                         alt="e-działkowiec"
                     />
@@ -30,25 +30,25 @@ class LoggedNavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
                         <Nav>
-                            <Link href="/dashboard/" className="nav-link text-white">
+                            <Link href="/dashboard/" className="nav-link ">
                                 Aktualności
                                 </Link>
-                            <Link href="/dashboard/allotment" className="nav-link  text-white">
+                            <Link href="/dashboard/allotment" className="nav-link ">
                                 Działka
                                 </Link>
-                            <Link href="/dashboard/table" className="nav-link  text-white">
+                            <Link href="/dashboard/table" className="nav-link">
                                 Tablica ogłoszeń
                                 </Link>
-                            <Link href="/dashboard/messages/list" className="nav-link  text-white">
+                            <Link href="/dashboard/messages/list" className="nav-link ">
                                 Płatności
                                 </Link>
-                            <Link href="/dashboard/messages/list" className="nav-link  text-white">
+                            <Link href="/dashboard/messages/list" className="nav-link">
                                 Wiadomości
                                 </Link>
-                            <Link href="/dashboard/forum" className="nav-link  text-white">
+                            <Link href="/dashboard/forum" className="nav-link">
                                 Forum
                                 </Link>
-                            <Link href="/dashboard/account" className="nav-link  text-white">
+                            <Link href="/dashboard/account" className="nav-link">
                                 Konto
                                 </Link>
                         </Nav>

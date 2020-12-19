@@ -5,22 +5,16 @@ import { logoutUser } from "../../api/index";
 import { Card } from 'react-bootstrap';
 import styled from 'styled-components';
 
-const Wrapper = styled.div.attrs({
-})`
-padding: 80px;
+const Wrapper = styled.div` 
     width: 70vw;
+    padding: 100px;
 `
-
-const Container = styled.div.attrs({
-    className: 'form-group',
-})`
+const Container = styled.div`
+   
 `
-
-const Title = styled.h1.attrs({
-    className: 'h1',
-})`
-  font-size: 32px;
-  padding: 30px;
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
 `
 
 const Footer = styled.footer.attrs({

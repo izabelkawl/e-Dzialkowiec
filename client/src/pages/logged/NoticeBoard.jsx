@@ -3,10 +3,10 @@ import api from "../../api";
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 
-const Wrapper = styled.div`
-  width: 80vw;
-  padding: 100px;
-`;
+const Wrapper = styled.div` 
+    width: 70vw;
+    padding: 100px;
+`
 
 const Container = styled.div`
     background-color: white;
@@ -49,11 +49,9 @@ const Image = styled.img.attrs({
   grid-area: Image;
 `
 
-const Title = styled.h1.attrs({
-  className: 'h1',
-})`
-  font-size: 32px;
-  padding: 30px;
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
 `
 const HeaderDiv = styled.div`
   font-size: 26px;

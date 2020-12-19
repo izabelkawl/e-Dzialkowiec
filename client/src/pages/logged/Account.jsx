@@ -2,26 +2,27 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import { Form, Tab, Col, Row, ListGroup, Button } from 'react-bootstrap';
+import { Form, Tab, Col, Row, ListGroup } from 'react-bootstrap';
 import styled from 'styled-components';
 
-const Wrapper = styled.div.attrs({
-})`
-
+const Wrapper = styled.div` 
+    width: 70vw;
+    padding: 100px;
 `
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
-    margin-top: 80px;
-    width: 70vw;
-    padding: 50px;
+   
 `
-
-const Title = styled.h1.attrs({
-    className: 'h1',
-})`
-    font-size: 32px;
-    padding-bottom: 50px;
+const Title = styled.h3`
+    padding-bottom:30px; 
+    color: #0071BC;
+`
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
 `
 
 class Account extends Component {
@@ -37,7 +38,7 @@ class Account extends Component {
                 <Container>
                     <Row>
                         <Col><Title>Konto</ Title></Col>
-                        <Col><Button className="float-right" size="lg" variant="success"
+                        <Col><Button className="float-right" size="lg" 
                             onClick={this.onLogoutClick}
                         >
                             Wyloguj
@@ -49,13 +50,13 @@ class Account extends Component {
                         <Row>
                             <Col sm={{ span: 3 }} align="center" >
                                 <ListGroup >
-                                    <ListGroup.Item action href="#link1" variant="success" >
+                                    <ListGroup.Item action href="#link1" >
                                         Zmień e-mail
               </ListGroup.Item>
-                                    <ListGroup.Item action href="#link2" variant="success">
+                                    <ListGroup.Item action href="#link2" >
                                         Zmień hasło
               </ListGroup.Item>
-                                    <ListGroup.Item action href="#link3" variant="success">
+                                    <ListGroup.Item action href="#link3" >
                                         Edytuj dane
               </ListGroup.Item>
 
@@ -102,7 +103,7 @@ class Account extends Component {
                                                 />
                                             </Form.Group>
 
-                                            <Button variant="success" type="submit" size="lg" className="float-right">Zapisz</Button>
+                                            <Button  type="submit" size="lg" className="float-right">Zapisz</Button>
 
                                         </Form>  </Tab.Pane>
                                     <Tab.Pane eventKey="#link2">
@@ -136,7 +137,7 @@ class Account extends Component {
                                                 />
                                             </Form.Group>
 
-                                            <Button variant="success" type="submit" size="lg" className="float-right">Zapisz</Button>
+                                            <Button type="submit" size="lg" className="float-right">Zapisz</Button>
 
                                         </Form>
 
@@ -211,7 +212,7 @@ class Account extends Component {
 
                                             </Form.Group>
 
-                                            <Button variant="success" block size="lg" type="submit" >Zapisz</Button>
+                                            <Button  block size="lg" type="submit" className="float-right">Zapisz</Button>
 
                                         </Form>
 
