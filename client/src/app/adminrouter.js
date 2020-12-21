@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 import { connect } from "react-redux";
 
-import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management } from '../pages'
+import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management, Finanse, FinancesInsert } from '../pages'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Admin from '../components/dashboard/Admin';
@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Container = styled.div`
     background-color: #f2f4f5;
-    height: 100vh;
+    min-height: 100vh;
 `;
 
 const ErrContainer = styled.div`
@@ -52,6 +52,9 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/messages/list" exact component={MessagesList} />
                 <PrivateRoute path="/admin/messages/create" exact component={MessagesInsert} />
                 <PrivateRoute path="/admin/messages/update/:id" exact component={MessagesUpdate} />
+
+                <PrivateRoute path="/admin/finance" exact component={Finanse} />
+                <PrivateRoute path="/admin/finance/create" exact component={FinancesInsert} />
               </Switch>
             </Router>
           </ Container >

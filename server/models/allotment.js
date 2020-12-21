@@ -9,7 +9,6 @@ const Allotment = new Schema({
   height: { type: Number, required: true },
   price: { type: Number, require: true },
   status: { type: String, required: true },
-  //or allotment in user ? pesel?
   user_id: { type: String, required: true },
   // user_id: { type: Schema.Types.ObjectId, ref: "User"},
 },

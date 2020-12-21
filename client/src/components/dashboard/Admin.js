@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -15,6 +15,13 @@ const Wrapper = styled.div`
 const Title = styled.h1`
     font-size: 32px;
 `;
+
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
+`
 
 class Admin extends Component {
 

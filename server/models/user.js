@@ -9,7 +9,6 @@ const User = new Schema({
   address: { type: String, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
-//pesel?
 },
 { timestamps: true }
 );

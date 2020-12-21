@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Form, Tab, Col, Row, ListGroup, Button} from 'react-bootstrap';
+import { Table, Form, Tab, Col, Row, ListGroup} from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -12,6 +12,13 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
     font-size: 32px
+`;
+
+const Button = styled.button`
+    padding: 0 20px;
+    color: white;
+    background: #0071BC;
+    border: 10px solid #0071BC;
 `;
 
 class Management extends Component {

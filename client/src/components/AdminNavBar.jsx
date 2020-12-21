@@ -49,7 +49,7 @@ class AdminNavBar extends Component {
                             <Link href="/admin/table" className="nav-link ">
                                 Tablica ogłoszeń
                                 </Link>
-                            <Link href="/admin/messages/list" className="nav-link ">
+                            <Link href="/admin/finance" className="nav-link ">
                                 Finanse
                                 </Link>
                         </Nav>

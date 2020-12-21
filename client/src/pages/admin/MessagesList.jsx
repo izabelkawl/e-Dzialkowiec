@@ -66,23 +66,24 @@ const MessagesList = () => {
     });
 
     return <Wrapper>
-       <Table striped bordered hover size="sm"  responsive>
-            <thead>
-                <tr>
-                    <th>Lp</th>
-                    <th>User</th>
-                    <th>Recipient</th>
-                    <th>Content</th>
-                    {/* Date */}
-                    
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {MessagesTable}
-            </tbody>
-        </Table></Wrapper>;
+            <Table striped bordered hover size="sm"  responsive>
+                    <thead>
+                        <tr>
+                            <th>Lp</th>
+                            <th>User</th>
+                            <th>Recipient</th>
+                            <th>Content</th>
+                            {/* Date */}
+                            
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {MessagesTable}
+                    </tbody>
+                </Table>
+            </Wrapper>;
 };
 
 export default MessagesList;
