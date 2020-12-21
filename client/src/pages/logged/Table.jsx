@@ -86,9 +86,7 @@ class TablesInsert extends Component {
         return (
             <Wrapper>
                 <Title>Create Table</Title>
-<ImageUpload/>
-                
-
+                <ImageUpload/>
                 <Label>Title: </Label>
                 <InputText
                     type="text"

@@ -169,7 +169,7 @@ class Management extends Component {
                                         <hr></hr>
                     <Form>
                         <Form.Group><Form.Label><b>Wzór upomnienia</b></Form.Label>
-                        <Form.Control as="textarea" rows={6} placeholder="Szanowni Państwo
+                        <Form.Control as="textarea" rows={6} value="Szanowni Państwo
     Zarząd ROD Wisła w Rzeszowie pragnie przypomnieć o opłacie ogrodowej za 2020 r. Wysokość opłat, które należy wnieść, można sprawdzić na naszej stronie logując się na swoje konto.
     Pozdrawiamy zarząd ROW Rzeszów"/>
     </Form.Group>

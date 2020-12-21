@@ -8,11 +8,12 @@ import PrivateRoute from '../components/private-route/PrivateRoute';
 import LoggedNavBar from '../components/LoggedNavBar';
 
 import Dashboard from '../components/dashboard/Dashboard';
-import {ImageUpload , Forum, Account, Allotment } from '../pages';
+import { Forum, Account, Allotment } from '../pages';
 
 import bg from './img/bgo.svg';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NoticeBoard from '../pages/logged/NoticeBoard.jsx';
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -30,7 +31,8 @@ function LoggedApp() {
           <LoggedNavBar />
           <Switch>
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
-            <PrivateRoute path="/dashboard/table" exact component={ImageUpload} />
+            {/* <PrivateRoute path="/dashboard/table" exact component={Table} /> */}
+            <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/account" exact component={Account} />
             <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />
             <PrivateRoute path="/dashboard/forum" exact component={Forum} />

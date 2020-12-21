@@ -120,8 +120,7 @@ export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
 export const deleteTableById = id => api.delete(`/table/${id}`)
 export const getTableById = id => api.get(`/table/${id}`)
 
-// export const insertImage = payload => api.post(`/category`, payload)
-
+export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
     loginUser,
@@ -152,7 +151,7 @@ const apis = {
     deleteTableById,
     getTableById,
 
-    // insertImage
+    insertImage
 }
 
 export default apis

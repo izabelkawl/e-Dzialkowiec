@@ -94,6 +94,7 @@ const NoticeBoard = () => {
     return (
       <Wrapper>
         <Title>Tablica ogłoszeń</ Title>
+        <Button variant="success">Dodaj ogłoszenie</Button>
        {TableList}
       </Wrapper>
     )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
-import { Table} from 'react-bootstrap';
+import { Table, Button} from 'react-bootstrap';
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -10,13 +10,6 @@ const Wrapper = styled.div`
     margin-top: 50px;
     background-color: white; 
 `;
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`;
-
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
