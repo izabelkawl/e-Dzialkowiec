@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoticeBoard from '../pages/logged/NoticeBoard.jsx';
 import Commitment from '../pages/logged/Commitment.jsx';
+import Messages from '../pages/logged/Messages.jsx';
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -38,6 +39,7 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />
             <PrivateRoute path="/dashboard/forum" exact component={Forum} />
             <PrivateRoute path="/dashboard/commitment" exact component={Commitment} />
+            <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
           </Switch>
         </Router>
       </ Container >

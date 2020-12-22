@@ -18,6 +18,7 @@ import UsersUpdate from './admin/UsersUpdate'
 import AllotmentsList from './admin/AllotmentsList'
 import AllotmentsUpdate from './admin/AllotmentsUpdate'
 import AllotmentsInsert from './admin/AllotmentsInsert'
+import Messages from './logged/Messages'
 
 import MessagesList from './admin/MessagesList'
 import MessagesUpdate from './admin/MessagesUpdate'
@@ -26,4 +27,4 @@ import Finanse from './admin/Finance'
 import FinancesInsert from './admin/FinancesInsert'
 import ImageUpload from './ImageUpload';
 
-export { FrontPage, Table, Management, About, Contact, ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Table, Management, About, Contact,Messages,  ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
