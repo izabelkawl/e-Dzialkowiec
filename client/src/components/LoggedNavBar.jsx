@@ -40,10 +40,10 @@ class LoggedNavBar extends Component {
                                 Tablica ogłoszeń
                                 </Link>
                             <Link href="/dashboard/messages/list" className="nav-link ">
-                                Płatności
+                            Wiadomości
                                 </Link>
-                            <Link href="/dashboard/messages/list" className="nav-link">
-                                Wiadomości
+                            <Link href="/dashboard/commitment" className="nav-link">
+                                Zobowiązania
                                 </Link>
                             <Link href="/dashboard/forum" className="nav-link">
                                 Forum

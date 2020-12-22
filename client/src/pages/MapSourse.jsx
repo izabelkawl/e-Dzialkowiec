@@ -25,6 +25,7 @@ const mapSource = `<?xml version="1.0" encoding="utf-8"?>
 	.st17{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.7887,14.7887;}
 	.st18{fill:#FFFFFF;}
 </style>
+
 <g id="Warstwa_4">
 	<polygon id="cien" class="st0" points="1063.6,432.8 1054.9,447 1048.4,457.4 1023.1,498.4 982.2,502.5 946.1,506.1 912,509.5 
 		872.3,504.4 781.7,474.5 738.5,460.2 727.8,456.7 684.4,459 636.9,461.6 617.4,462.6 574.6,461.3 574.3,461.3 536.8,460.1 

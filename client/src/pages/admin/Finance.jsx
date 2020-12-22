@@ -32,7 +32,8 @@ class Management extends Component {
              <Title>Opłaty</Title>
 < br/>
             <Row>
-            <Col sm={{ span: 7 }}> <Form noValidate onSubmit={this.onSubmit}>
+            <Col sm={{ span: 7 }}> 
+            <Form noValidate onSubmit={this.onSubmit}>
                     <Form.Group>
                             
                             <Row>
