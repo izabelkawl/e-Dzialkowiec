@@ -143,7 +143,7 @@ class Commitment extends Component {
                                 <Col sm={{ span: 2, offset: 3 }}>
                                     <Form.Control disabled
                                         type="text"
-                                        value="370,55"
+                                        value="358.55"
                                         
                                     />
                                 </Col><Col sm={{ span: 1 }}>
@@ -178,7 +178,7 @@ class Commitment extends Component {
                     <td>2020</td>
                     <td>23</td>
                     <td>120</td>
-                    <td>370,55</td>
+                    <td>358.55</td>
                     <td>31.12.2020</td>
                     <td>Nieopłacona</td>
                     <td><Button>Pobierz</Button></td>
@@ -189,7 +189,7 @@ class Commitment extends Component {
                     <td>2019</td>
                     <td>12</td>
                     <td>240</td>
-                    <td>478,55</td>
+                    <td>370,55</td>
                     <td>31.12.2019</td>
                     <td>Opłacona</td>
                     <td><Button>Pobierz</Button></td>

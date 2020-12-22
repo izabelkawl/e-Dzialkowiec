@@ -157,7 +157,21 @@ class Management extends Component {
                             </Row>
                             
                         </Form.Group>
-                         
+                        <Form.Group>
+                            <Row>
+                                <Col sm={7}>
+                                    <Form.Label htmlFor="email">Tytuł przelewu(lub w pliku fakturze z daty i działki)
+                        </Form.Label>
+                                </Col>
+                                <Col sm={{ span: 4 }}>
+                                    <Form.Control
+                                        type="text"
+                                        value="2020 / nr działki"
+                                    />
+                                </Col>
+                            </Row>
+                            
+                        </Form.Group>
                              
     <Button>Zapisz</Button>               
                     </Form>
@@ -165,8 +179,6 @@ class Management extends Component {
                 <Col sm={{ span: 5 }}>
                                         <b>Dla stałej powierzchni działki 240m2:</b> 
                                         <p>działka o powierzchni 240 m2 = 240 x 1,00 zł x = 240,00 zł</p>
-                                        <p>Dla działki o powierzchni 240 m2 z wodomierzem roczna opłata wynosi 370,55 zł</p>
-                                        <p>Dla działki o powierzchni 240 m2 bez wodomierza roczna opłata wynosi 478,55 zł</p>
                                         <hr></hr>
                     <Form>
                         <Form.Group><Form.Label><b>Wzór upomnienia</b></Form.Label>
