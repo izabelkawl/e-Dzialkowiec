@@ -3,6 +3,8 @@ import api from "../../api";
 import styled from 'styled-components';
 import { Button, Form, Modal } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
+import {RedButtonStyle, BlueButtonStyle } from '../constants'
+import Title from '../../components/Title'
 
 const Container = styled.div`
     background-color: white;
@@ -44,11 +46,6 @@ const Image = styled.img.attrs({
 })`
   grid-area: Image;
 `
-
-const Title = styled.h3`
-    padding-bottom:30px; 
-    color: #0071BC;
-`
 const HeaderDiv = styled.div`
   font-size: 26px;
 `
@@ -86,8 +83,8 @@ function AddAnnouncement(props) {
 </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="success">Dodaj</Button>
-        <Button variant="danger" onClick={props.onHide}>Zamknij</Button>
+        <Button style={BlueButtonStyle} >Dodaj</Button>
+        <Button style={RedButtonStyle} onClick={props.onHide}>Zamknij</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -123,9 +120,9 @@ const NoticeBoard = () => {
                 </Content>
                 <About>
                   <Form.Text muted>{user}</Form.Text>
-                  <Button variant="success" >Wiadomość</Button>
+                  <Button style={BlueButtonStyle} >Wiadomość</Button>
                   {/* dla swoich postów tylko usuwanie*/}
-                  <Button variant="danger" >Usuń</Button>
+                  <Button style={RedButtonStyle} >Usuń</Button>
                 </About>
             </Container> 
         );
@@ -133,7 +130,7 @@ const NoticeBoard = () => {
     return (
       <Wrapper>
         <Title>Tablica ogłoszeń</ Title>
-        <Button variant="success" onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
+        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
         <AddAnnouncement show={modalShow}
         onHide={() => setModalShow(false)}
       />

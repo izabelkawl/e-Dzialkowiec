@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, Button } from 'react-bootstrap';
+import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-
+import Title from '../components/Title'
 import bg from './img/bgo.svg';
 
 const Wrapper = styled.div`
@@ -24,26 +25,12 @@ const Container = styled.div.attrs({
     width: 40vw;
     margin: 50px 300px;
 `
-const Title = styled.h3.attrs({
-})`
-    color: #0071BC;
-    padding-bottom: 30px;
-`
-
 const Span = styled.span`
     color: red;
     font-size: 80%;
 `
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
-`
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-    width: 100%;
-    margin-top: 10px;
 `
 
 class Register extends Component {
@@ -245,7 +232,7 @@ class Register extends Component {
                             />
 
                         </Form.Group>
-                        <Button variant="info" block size="lg" type="submit" >Rejestracja</Button>
+                        <Button style={ BlueButtonStyle } variant="info" block  type="submit" >Rejestracja</Button>
 
                     </Form>
                 </Container>

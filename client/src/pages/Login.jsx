@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
+import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
-
+import Title from '../components/Title'
 import { loginUser } from "../api/index";
 import NavBar from '../components/NavBar'
 
@@ -24,23 +25,12 @@ const Container = styled.div.attrs({
     width: 30vw;
     margin: 200px 400px;
 `
-const Title = styled.h3`
-    padding-bottom:30px; 
-    color: #0071BC;
-`
-
 const Span = styled.span`
     color: red;
     font-size: 80%;
 `
 const Link = styled.a`
     color: #0071BC;
-`
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
 `
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
@@ -147,7 +137,7 @@ class Login extends Component {
                             <Form.Check type="checkbox" label="Zapamietaj mnie" />
                         </Form.Group> */}
 
-                        <Button className="float-right" type="submit" size="lg">Zaloguj</Button>
+                        <Button  style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
                     </Form>
                 </Container>
             </Wrapper>

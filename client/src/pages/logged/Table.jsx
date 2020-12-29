@@ -5,11 +5,7 @@ import {Form }from 'react-bootstrap';
 import UsersID from '../admin/UsersID';
 import ImageUpload from '../ImageUpload';
 import Wrapper from '../../components/Wrapper/Wrapper';
-
-const Title = styled.h3`
-    padding-bottom:30px; 
-    color: #0071BC;
-`
+import Title from '../../components/Title'
 
 const Label = styled.label`
     margin: 5px;

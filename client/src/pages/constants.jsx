@@ -7,6 +7,6 @@ export const BlueButtonStyle = {
 export const RedButtonStyle = {
   padding: '0 20px',
   color: 'white',
-  background: 'tomato',
-  border: '10px solid tomato'
+  background: 'red',
+  border: '10px solid red'
 }

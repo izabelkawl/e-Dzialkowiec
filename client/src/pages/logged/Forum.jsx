@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Modal } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
+import  {RedButtonStyle, BlueButtonStyle } from '../constants'
+import Title from '../../components/Title'
 
 const Container = styled.div`
     background-color: white;
@@ -37,18 +39,58 @@ const About = styled.div`
     ".";
   grid-area: About;
 `
-const Title = styled.h3`
-    padding-bottom:30px; 
-    color: #0071BC;
-`
 
-class Forum extends Component {
-  render() {
+function AddThread(props) {
+ 
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Dodaj wątek
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <Form>
+  <Form.Group controlId="exampleForm.ControlInput1">
+    <Form.Label>Tytuł</Form.Label>
+    <Form.Control type="text"/>
+  </Form.Group>
+  <Form.Group controlId="exampleForm.ControlInput1">
+    <Form.Label>Użytkownik</Form.Label>
+    <Form.Control type="text" placeholder="karol@example.com" disabled/>
+  </Form.Group>
+  <Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Label>Treść</Form.Label>
+    <Form.Control as="textarea" rows={3} />
+  </Form.Group>
+ 
+</Form>
+      </Modal.Body>
+      <Modal.Footer>
+        
+        <Button style={RedButtonStyle} onClick={props.onHide}>Zamknij</Button>
+        <Button style={BlueButtonStyle} >Dodaj</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+const Forum = () => {
+    const [modalShow, setModalShow] = React.useState(false);
 
     return (
       <Wrapper>
 
         <Title>Forum</ Title>
+        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
+        <AddThread show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
         <Container>
           <Content>
             <div>
@@ -63,7 +105,7 @@ class Forum extends Component {
           <About>
              <p></p>
             <p></p>
-            <Button href="/dashboard/forum/thread">Otwórz</Button>
+            <Button style={BlueButtonStyle} href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>
@@ -81,7 +123,7 @@ class Forum extends Component {
           <About>
           <p></p>
             <p></p>
-            <Button href="/dashboard/forum/thread">Otwórz</Button>
+            <Button style={BlueButtonStyle} href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>
@@ -99,13 +141,12 @@ class Forum extends Component {
           <About>
           <p></p>
             <p></p>
-            <Button href="/dashboard/forum/thread">Otwórz</Button>
+            <Button style={BlueButtonStyle} href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>
       </Wrapper>
     )
   }
-}
 
 export default Forum

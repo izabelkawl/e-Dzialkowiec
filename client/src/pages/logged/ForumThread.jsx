@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Form, Modal, Button } from 'react-bootstrap';
 import {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Wrapper from '../../components/Wrapper/Wrapper'
+import Title from '../../components/Title'
 
 const Content = styled.div`
   background-color: white;
@@ -20,15 +21,12 @@ const Content = styled.div`
     "content"
     "date";
 `
-const Title = styled.p`
-    padding-top:30px; 
-    color: #0071BC;
-`
+
 const Person = styled.p`
     color: #0071BC;
 `
 
-function AddThread(props) {
+function AddComment(props) {
   return (
     <Modal
       {...props}
@@ -64,7 +62,7 @@ const ForumThread = () => {
     const [modalShow, setModalShow] = React.useState(false);
     return (
       <Wrapper>
-        <Button href="/dashboard/forum">Powrót</Button>
+        <Button style={BlueButtonStyle} href="/dashboard/forum">Powrót</Button>
           <Content>
             <div>
               <h3>Sprzedam kwiaty</h3><p>Mariusz Nowak</p>
@@ -76,7 +74,7 @@ const ForumThread = () => {
             <Form.Text muted>27.11.2020</Form.Text>
             
           </Content>
-          <Button  className="float-right" variant="success" onClick={() => setModalShow(true)}>Dodaj Komentarz</Button>
+          <Button style={BlueButtonStyle} className="float-right" variant="success" onClick={() => setModalShow(true)}>Dodaj Komentarz</Button>
           <Title>Komentarze</Title>
           <Content>
           <Person>Karol Nowak</Person>
@@ -93,7 +91,7 @@ const ForumThread = () => {
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam minus obcaecati recusandae consequuntur voluptatibus quae at suscipit expedita error consequatur. </p>
           <p>07.01.2011</p>
           </Content>
-        <AddThread show={modalShow}
+        <AddComment show={modalShow}
         onHide={() => setModalShow(false)}
       />
       </Wrapper>

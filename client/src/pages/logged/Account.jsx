@@ -2,24 +2,16 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import { Form, Tab, Col, Row, ListGroup } from 'react-bootstrap';
+import { Form, Tab, Col, Row, ListGroup, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import Wrapper from '../../components/Wrapper/Wrapper'
+import Wrapper from '../../components/Wrapper/Wrapper';
+import Title from '../../components/Title'
+import {BlueButtonStyle} from '../constants';
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
    
-`
-const Title = styled.h3`
-    padding-bottom:30px; 
-    color: #0071BC;
-`
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
 `
 
 class Account extends Component {
@@ -35,7 +27,7 @@ class Account extends Component {
                 <Container>
                     <Row>
                         <Col><Title>Konto</ Title></Col>
-                        <Col><Button className="float-right" size="lg" 
+                        <Col><Button style={BlueButtonStyle} className="float-right"  
                             onClick={this.onLogoutClick}
                         >
                             Wyloguj
@@ -100,7 +92,7 @@ class Account extends Component {
                                                 />
                                             </Form.Group>
 
-                                            <Button  type="submit" size="lg" className="float-right">Zapisz</Button>
+                                            <Button style={BlueButtonStyle} type="submit"  className="float-right">Zapisz</Button>
 
                                         </Form>  </Tab.Pane>
                                     <Tab.Pane eventKey="#link2">
@@ -134,7 +126,7 @@ class Account extends Component {
                                                 />
                                             </Form.Group>
 
-                                            <Button type="submit" size="lg" className="float-right">Zapisz</Button>
+                                            <Button type="submit" style={BlueButtonStyle} className="float-right">Zapisz</Button>
 
                                         </Form>
 
@@ -209,7 +201,7 @@ class Account extends Component {
 
                                             </Form.Group>
 
-                                            <Button  block size="lg" type="submit" className="float-right">Zapisz</Button>
+                                            <Button style={BlueButtonStyle}  type="submit" className="float-right">Zapisz</Button>
 
                                         </Form>
 

@@ -1,17 +1,10 @@
 import React, { Component } from "react";
-import { Table, Form, Row, Col} from 'react-bootstrap';
+import { Table, Form, Row, Col, Button} from 'react-bootstrap';
 import styled from "styled-components";
-import Wrapper from '../../components/Wrapper/Wrapper'
+import Wrapper from '../../components/Wrapper/Wrapper';
+import {BlueButtonStyle} from '../constants';
+import Title from '../../components/Title'
 
-const Title = styled.h1`
-    font-size: 32px
-`;
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`
 const Label = styled(Form.Label)`
     margin-top: 8px;
 `
@@ -177,7 +170,7 @@ class Commitment extends Component {
                     <td>358.55</td>
                     <td>31.12.2020</td>
                     <td>Nieopłacona</td>
-                    <td><Button>Pobierz</Button></td>
+                    <td><Button style={BlueButtonStyle}>Pobierz</Button></td>
                     
                 </tr>
                 <tr>
@@ -188,7 +181,7 @@ class Commitment extends Component {
                     <td>370,55</td>
                     <td>31.12.2019</td>
                     <td>Opłacona</td>
-                    <td><Button>Pobierz</Button></td>
+                    <td><Button style={BlueButtonStyle}>Pobierz</Button></td>
                 </tr>
             </tbody>
         </Table>

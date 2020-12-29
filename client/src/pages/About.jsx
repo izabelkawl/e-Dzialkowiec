@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
+import Title from '../components/Title'
 
 const Wrapper = styled.div`
   min-width: 100vh;
@@ -11,10 +12,6 @@ const Container = styled.div`
   width: 80vw;
   margin: 0 auto;
   padding: 100px;
-`;
-
-const Title = styled.h1`
-  padding-bottom: 50px;
 `;
 
 class About extends Component {

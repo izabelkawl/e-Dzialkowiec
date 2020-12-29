@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import { Form } from 'react-bootstrap';
 import bg from './img/bgo.svg';
+import Title from '../components/Title'
 
 const Wrapper = styled.div`
     background-image: url(${bg});
@@ -22,10 +23,7 @@ const Container = styled.div`
     padding: 60px 100px;
     
 `;
-const Title = styled.h3`
-  padding-bottom: 30px;
-  color: #0071BC;
-  `
+
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
 `
