@@ -4,15 +4,11 @@ import styled from 'styled-components'
 import {Form }from 'react-bootstrap';
 import UsersID from '../admin/UsersID';
 import ImageUpload from '../ImageUpload';
+import Wrapper from '../../components/Wrapper/Wrapper';
 
 const Title = styled.h3`
     padding-bottom:30px; 
     color: #0071BC;
-`
-
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
 `
 
 const Label = styled.label`

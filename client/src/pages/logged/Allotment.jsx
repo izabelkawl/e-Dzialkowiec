@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import InlineSVG from 'svg-inline-react';
 import MapSource from '../MapSourse';
-
-
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
-`
+import Wrapper from '../../components/Wrapper/Wrapper'
 
 const Container = styled.div`
  

@@ -11,11 +11,14 @@ const Link = styled.a`
     margin: 0 ;
     margin-left: 30px;
 `
+const Navigation = {
+    background: '#f8f9fa'
+}
 
 class LoggedNavBar extends Component {
     render() {
         return (
-            <Navbar collapseOnSelect expand="lg" sticky="top" >
+            <Navbar collapseOnSelect expand="lg" sticky="top" style={Navigation} >
                 <Navbar.Brand href="/dashboard" >
                     <img
                         src={logo}

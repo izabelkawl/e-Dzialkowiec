@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Form } from 'react-bootstrap';
-
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
-`
+import { Form, Button } from 'react-bootstrap';
+import Wrapper from '../../components/Wrapper/Wrapper'
 
 const Container = styled.div`
     background-color: white;
@@ -45,12 +41,6 @@ const Title = styled.h3`
     padding-bottom:30px; 
     color: #0071BC;
 `
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`
 
 class Forum extends Component {
   render() {
@@ -71,9 +61,9 @@ class Forum extends Component {
             <Form.Text muted>27.11.2020</Form.Text>
           </Content>
           <About>
-            <p>20zł</p>
+             <p></p>
             <p></p>
-            <Button>Wiadomość</Button>
+            <Button href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>
@@ -89,9 +79,9 @@ class Forum extends Component {
             <Form.Text muted>20.11.2020</Form.Text>
           </Content>
           <About>
-            <p>350z/ szt</p>
+          <p></p>
             <p></p>
-            <Button  >Wiadomość</Button>
+            <Button href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>
@@ -107,9 +97,9 @@ class Forum extends Component {
             <Form.Text muted>09.10.2020</Form.Text>
           </Content>
           <About>
-            <p>350z/ szt</p>
+          <p></p>
             <p></p>
-            <Button  >Wiadomość</Button>
+            <Button href="/dashboard/forum/thread">Otwórz</Button>
           </About>
 
         </Container>

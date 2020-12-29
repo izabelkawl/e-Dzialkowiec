@@ -1,12 +1,8 @@
 import React, { useState, useEffect} from "react";
 import api from "../../api";
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
-
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
-`
+import { Button, Form, Modal } from 'react-bootstrap';
+import Wrapper from '../../components/Wrapper/Wrapper'
 
 const Container = styled.div`
     background-color: white;
@@ -57,8 +53,49 @@ const HeaderDiv = styled.div`
   font-size: 26px;
 `
 
+function AddAnnouncement(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Dodaj ogłoszenie
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <Form>
+  <Form.Group controlId="exampleForm.ControlInput1">
+    <Form.Label>Tytuł</Form.Label>
+    <Form.Control type="text"/>
+  </Form.Group>
+  <Form.Group controlId="exampleForm.ControlInput1">
+    <Form.Label>Użytkownik</Form.Label>
+    <Form.Control type="text" placeholder="karol@example.com" disabled/>
+  </Form.Group>
+  <Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Label>Treść</Form.Label>
+    <Form.Control as="textarea" rows={3} />
+  </Form.Group>
+  <Form.Group>
+    <Form.File id="exampleFormControlFile1" label="Dodaj zdjęcie*" />
+  </Form.Group>
+</Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="success">Dodaj</Button>
+        <Button variant="danger" onClick={props.onHide}>Zamknij</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
 const NoticeBoard = () => {
     const [tables, setTables] = useState([]);
+    const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
         const requestTablesList = async () => {
@@ -87,6 +124,8 @@ const NoticeBoard = () => {
                 <About>
                   <Form.Text muted>{user}</Form.Text>
                   <Button variant="success" >Wiadomość</Button>
+                  {/* dla swoich postów tylko usuwanie*/}
+                  <Button variant="danger" >Usuń</Button>
                 </About>
             </Container> 
         );
@@ -94,7 +133,10 @@ const NoticeBoard = () => {
     return (
       <Wrapper>
         <Title>Tablica ogłoszeń</ Title>
-        <Button variant="success">Dodaj ogłoszenie</Button>
+        <Button variant="success" onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
+        <AddAnnouncement show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
        {TableList}
       </Wrapper>
     )

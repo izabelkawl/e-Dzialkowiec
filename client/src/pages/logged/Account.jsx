@@ -4,11 +4,8 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 import { Form, Tab, Col, Row, ListGroup } from 'react-bootstrap';
 import styled from 'styled-components';
+import Wrapper from '../../components/Wrapper/Wrapper'
 
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
-`
 const Container = styled.div.attrs({
     className: 'form-group',
 })`

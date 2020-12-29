@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { Table, Form, Row, Col} from 'react-bootstrap';
 import styled from "styled-components";
-
-const Wrapper = styled.div` 
-    width: 70vw;
-    padding: 100px;
-`
+import Wrapper from '../../components/Wrapper/Wrapper'
 
 const Title = styled.h1`
     font-size: 32px

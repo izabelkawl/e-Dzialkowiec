@@ -28,15 +28,16 @@ class About extends Component {
             <Row>
               <Col sm={{ span: 2 }} align="center" >
                 <ListGroup >
-                  <ListGroup.Item action href="#link1"  >
+                <ListGroup.Item action href="#link1">
+                    Aktualności
+              </ListGroup.Item>
+                  <ListGroup.Item action href="#link2"  >
                     O nas
               </ListGroup.Item>
-                  <ListGroup.Item action href="#link2" >
+                  <ListGroup.Item action href="#link3" >
                     Skład zarządu
               </ListGroup.Item>
-                  <ListGroup.Item action href="#link3">
-                    Ogłoszenia zarządu
-              </ListGroup.Item>
+                  
                   <ListGroup.Item action href="#link4">
                     RODO
               </ListGroup.Item>
@@ -44,11 +45,11 @@ class About extends Component {
               </Col>
               <Col sm={{ offset: 1, span: 9 }}>
                 <Tab.Content>
-            <Tab.Pane eventKey="#link1">
+            <Tab.Pane eventKey="#link2">
                     <Title>O nas</Title>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta cupiditate quibusdam voluptate. Tempore amet quo magnam dicta quam? Non accusamus, unde, ullam dolorum id ipsum deserunt quibusdam earum fugiat nesciunt harum sapiente autem doloribus odit sit mollitia nobis commodi hic pariatur atque molestias veritatis? Accusantium facere autem explicabo eveniet voluptatem, commodi accusamus ex ea error. Ea odio nostrum eveniet ratione eius quo quam numquam ullam, aliquid earum id doloribus sit perspiciatis neque culpa voluptatibus labore nemo aperiam! Harum saepe doloribus numquam sunt commodi culpa, rem quaerat alias corrupti ab dolores vel voluptas laboriosam voluptatem placeat? Quisquam ducimus suscipit in voluptatibus, nobis est rerum voluptas numquam quas nostrum quo eius et veritatis tempore earum, eveniet, labore consequatur? Fugiat hic aliquid recusandae quisquam tempore tempora delectus tenetur rerum! Facere deleniti, et labore magni dolore provident, cum ab repellat ex eos ad impedit quasi rem cupiditate quas, corr.
                       </Tab.Pane>
-            <Tab.Pane eventKey="#link2">
+            <Tab.Pane eventKey="#link3">
                     <Title>Zarząd</Title>
                     <CardColumns>
                       <Card>
@@ -94,8 +95,8 @@ class About extends Component {
                     </CardColumns>
                   </Tab.Pane>
 
-            <Tab.Pane eventKey="#link3">
-                    <Title>Ogłoszenia</Title>
+            <Tab.Pane eventKey="#link1">
+                    <Title>Aktualności</Title>
                     <Card>
                       <Card.Header>Quote</Card.Header>
                         <Card.Body>

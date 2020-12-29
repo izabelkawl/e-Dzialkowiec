@@ -31,7 +31,7 @@ const Contact = styled.p`
 class NavBar extends Component {
     render() {
         return (
-            <Navbar collapseOnSelect expand="lg">
+            <Navbar collapseOnSelect expand="lg" >
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"  className="nav-link"/>
                     <Navbar.Collapse id="responsive-navbar-nav" >
                         <Nav className="mr-auto">
@@ -40,7 +40,7 @@ class NavBar extends Component {
                                     </Link>
 
                             <Link href="/about" className="nav-link">
-                                <NavigationItem>O nas</NavigationItem>
+                                <NavigationItem>Zarząd</NavigationItem>
                                     </Link>
 
                             <Link href="/garden" className="nav-link">
