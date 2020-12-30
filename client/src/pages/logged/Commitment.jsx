@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { Table, Form, Row, Col, Button} from 'react-bootstrap';
 import styled from "styled-components";
 import Wrapper from '../../components/Wrapper/Wrapper';
-import {BlueButtonStyle} from '../constants';
 import Title from '../../components/Title'
-
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import MyDocument from './pdf.jsx';
+import { BlueButtonStyle } from '../constants';
 const Label = styled(Form.Label)`
     margin-top: 8px;
 `
-
 class Commitment extends Component {
     render() {
         return (
@@ -143,11 +143,6 @@ class Commitment extends Component {
                         </Form.Group>
 </Form>
 
-{/* <p><b>Dla stałej powierzchni działki 240m2:</b> </p>
-            <p>działka o powierzchni 240 m2 = 240 x 1,00 zł x = 240,00 zł</p>
-            <p>Dla działki o powierzchni 240 m2 z wodomierzem roczna opłata wynosi 370,55 zł</p>
-            <p>Dla działki o powierzchni 240 m2 bez wodomierza roczna opłata wynosi 478,55 zł</p>
-            */}
             <Table striped bordered hover responsive>
             <thead>
                 <tr>
@@ -162,7 +157,7 @@ class Commitment extends Component {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr >
                     <td>1</td>
                     <td>2020</td>
                     <td>23</td>
@@ -170,7 +165,11 @@ class Commitment extends Component {
                     <td>358.55</td>
                     <td>31.12.2020</td>
                     <td>Nieopłacona</td>
-                    <td><Button style={BlueButtonStyle}>Pobierz</Button></td>
+                    <td>
+                    <PDFDownloadLink document={<MyDocument />} fileName="faktura.pdf">
+      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' : <Button style={BlueButtonStyle}>Pobierz</Button>)}
+    </PDFDownloadLink>
+                        </td>
                     
                 </tr>
                 <tr>
@@ -181,7 +180,9 @@ class Commitment extends Component {
                     <td>370,55</td>
                     <td>31.12.2019</td>
                     <td>Opłacona</td>
-                    <td><Button style={BlueButtonStyle}>Pobierz</Button></td>
+                    <td> <PDFDownloadLink document={<MyDocument />} fileName="faktura.pdf">
+      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button style={BlueButtonStyle}>Pobierz</Button>)}
+    </PDFDownloadLink></td>
                 </tr>
             </tbody>
         </Table>
@@ -189,5 +190,4 @@ class Commitment extends Component {
         )
     }
 };
-
 export default Commitment;

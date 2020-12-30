@@ -43,7 +43,7 @@ class LoggedNavBar extends Component {
                                 Tablica ogłoszeń
                                 </Link>
                             <Link href="/dashboard/messages" className="nav-link ">
-                            Wiadomości
+                                Wiadomości
                                 </Link>
                             <Link href="/dashboard/commitment" className="nav-link">
                                 Zobowiązania
