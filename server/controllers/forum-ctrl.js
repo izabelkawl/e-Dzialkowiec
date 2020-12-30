@@ -50,10 +50,10 @@ const updateForum = async (req, res) => {
         forum: "forum not found!",
       });
     }
-    forum.user_id = body.user_id;
     forum.title = body.title;
+    forum.user = body.user;
     forum.content = body.content;
-    forum.comment.userid = body.comment.userid;
+    forum.comment = body.comment;
     // forum.comment.userid = body.comment.userid;
     forum
       .save()

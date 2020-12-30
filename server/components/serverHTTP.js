@@ -12,6 +12,7 @@ import allotmentRouter from "../routes/allotment-router.js";
 import messageRouter from "../routes/message-router.js";
 import tableRouter from "../routes/table-router.js";
 import imageRouter from "../routes/category-router.js";
+import forumRouter from "../routes/forum-router.js";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api", allotmentRouter);
 app.use("/api", messageRouter);
 app.use("/api", tableRouter);
 app.use('/api', imageRouter);
+app.use('/api', forumRouter);
 
 export const startHTTPServer = async () =>
   app.listen(keys.httpPort, (error) => {

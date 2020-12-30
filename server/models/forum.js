@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const Forum = new Schema({
 
-  user_id: { type: Schema.Types.ObjectId, ref: "User"},
+  user:  { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
-  comment: [{  type: Schema.Types.ObjectId, ref: "Comment"}],
+  comment: { type: String, required: true },
 },
 { timestamps: true }
 );

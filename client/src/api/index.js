@@ -120,6 +120,12 @@ export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
 export const deleteTableById = id => api.delete(`/table/${id}`)
 export const getTableById = id => api.get(`/table/${id}`)
 
+export const insertForum = payload => api.post(`/forum`, payload)
+export const getAllForums = () => api.get(`/forums`)
+export const updateForumById = (id, payload) => api.put(`/forum/${id}`, payload)
+export const deleteForumById = id => api.delete(`/forum/${id}`)
+export const getForumById = id => api.get(`/forum/${id}`)
+
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
@@ -150,6 +156,12 @@ const apis = {
     updateTableById,
     deleteTableById,
     getTableById,
+
+    insertForum,
+    getAllForums,
+    updateForumById,
+    deleteForumById,
+    getForumById,
 
     insertImage
 }
