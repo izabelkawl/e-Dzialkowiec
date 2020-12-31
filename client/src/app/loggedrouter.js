@@ -34,7 +34,6 @@ function LoggedApp() {
           <LoggedNavBar />
           <Switch>
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
-            {/* <PrivateRoute path="/dashboard/table" exact component={Table} /> */}
             <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/account" exact component={Account} />
             <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />

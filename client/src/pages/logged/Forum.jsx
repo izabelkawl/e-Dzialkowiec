@@ -1,140 +1,70 @@
 import React, { useState, useEffect, Component} from 'react';
+import { connect } from "react-redux";
 import api from '../../api';
 import styled from 'styled-components';
-import { Form, Button, Modal } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
+import AddThread from './AddThread'
 
 const Container = styled.div`
     background-color: white;
     -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 2fr 0.2fr;
-    grid-template-rows: 1fr;
+
+    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-rows:  3(1fr);
     gap: 25px 25px;
-    grid-template-areas:"Content About";`
+    grid-template-areas:
+    "Content User"
+    "Content ."
+    "Content  Footer";`
 
 const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
-  grid-template-areas:
-    "."
-    "."
-    ".";
   grid-area: Content;
 `
-const About = styled.div`
+const FooterButton = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.8fr 0.1fr;
-  grid-template-areas:
-    "."
-    "."
-    ".";
-  grid-area: About;
+  grid-area: Footer;
+`
+const UserSection = styled.div`
+  display: grid;
+  grid-area: User;
+  text-align: right;
 `
 const HeaderDiv = styled.div`
   font-size: 26px;
 `
-class AddThread extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      user: '',
-      content: '',
-      comment: ''
-  }
-    this.handleChangeInputTitle = this.handleChangeInputTitle.bind(this);
-    this.handleChangeInputUser = this.handleChangeInputUser.bind(this);
-    this.handleChangeInputContent = this.handleChangeInputContent.bind(this);
-    this.handleChangeInputComment = this.handleChangeInputComment.bind(this);
 
+//tylko dla swoich zrobić
+class DeleteForum extends Component {
+  deleteForum = event => {
+      event.preventDefault()
+      if (
+          window.confirm(
+              `Do you want to delete the Forum ${this.props.id} permanently?`,
+          )
+      ) {
+          api.deleteForumById(this.props.id)
+          window.location.reload()
+      }
   }
-  handleChangeInputTitle = async event => {
-    const title = event.target.value
-    this.setState({ title: title })
+  render() {
+      return <Button style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   }
-  handleChangeInputUser = async event => {
-      const user = event.target.value
-      this.setState({ user:user })
-  }
-  handleChangeInputContent = async event => {
-    const content = event.target.value
-    this.setState({ content:content })
-  }
-  handleChangeInputComment = async event => {
-    const comment = event.target.value
-    this.setState({ comment:comment })
-  }
-
-  handleIncludeForum = async () => {
-    const { title, user, content, comment } = this.state
-    const payload = { title, user, content, comment  }
-  console.log(payload)
-    await api.insertForum(payload).then(res => {
-        window.alert(`Forum inserted successfully`)
-        this.setState({
-          title: '',
-          user: '',
-          content: '',
-          comment: ''
-        })
-    })
-  }
-  render(){ 
-    const { title, user, content, comment } = this.state
- return (
-    <Modal
-      {...this.props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Dodaj wątek
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-      <Form>
-  <Form.Group controlId="exampleForm.ControlInput1">
-    <Form.Label>Tytuł</Form.Label>
-    <Form.Control type="text" value={title} onChange={this.handleChangeInputTitle}/>
-  </Form.Group>
-  <Form.Group controlId="exampleForm.ControlInput1">
-    <Form.Label>Użytkownik</Form.Label>
-    <Form.Control type="text"value={user}  onChange={this.handleChangeInputUser} />
-  </Form.Group>
-  <Form.Group controlId="exampleForm.ControlTextarea1">
-    <Form.Label>Treść</Form.Label>
-    <Form.Control as="textarea" value={content} onChange={this.handleChangeInputContent} rows={3} />
-  </Form.Group>
-  <Form.Group controlId="exampleForm.ControlTextarea1">
-    <Form.Label>Treść</Form.Label>
-    <Form.Control as="textarea"value={comment}  onChange={this.handleChangeInputComment} rows={3} />
-  </Form.Group>
- 
-</Form>
-      </Modal.Body>
-      <Modal.Footer>
-        
-        <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={this.handleIncludeForum}>Dodaj</Button>
-      </Modal.Footer>
-    </Modal>
-  )
- }
 }
-const Forum = () => {
+function Forum (){
+  
     const [forums, setForums] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
+    const {user} = this.props.auth;
 
     useEffect(() => {
       const requestForumsList = async () => {
@@ -147,39 +77,61 @@ const Forum = () => {
   }, []);
 
   const ForumList = forums.map((forum, index) => {
-      const { _id, title, user, content, comment } = forum;
-      //date from timestap
+      const { _id, title, user_id, content } = forum;
       const timestamp = _id.toString().substring(0,8);
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-
       return (
         <Container key={_id}>
             <Content>
               <HeaderDiv>{title}</HeaderDiv>
-              <Form.Text muted>{user}</Form.Text>
-              <Form.Text >{content}</Form.Text>
-              <Form.Text >{comment}</Form.Text>
-              <Form.Text >{date}</Form.Text>
+              <Form.Text>{content}</Form.Text>
+              <Form.Text muted>{date}</Form.Text>
             </Content>
-            <About>
-              
-              <Button style={BlueButtonStyle} >Otwórz</Button>
-              {/* dla swoich postów tylko usuwanie*/}
-              <Button style={RedButtonStyle} >Usuń</Button>
-            </About>
+            <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+            <FooterButton>
+              <Button style={BlueButtonStyle} href="/dashboard/forum/thread">Otwórz</Button>
+            </FooterButton>
         </Container> 
-    );
+      )
 });
 
+  const MyForumList = forums.map((forum, index) => {
+  const { _id, title, user_id, content } = forum;
+  const timestamp = _id.toString().substring(0,8);
+  const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+  
+  return (
+    <Container key={user.id}>
+        <Content>
+          <HeaderDiv>{title}</HeaderDiv>
+          <Form.Text>{content}</Form.Text>
+          <Form.Text muted>{date}</Form.Text>
+        </Content>
+        <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+        <FooterButton>
+          {/* dla swoich postów tylko usuwanie*/}
+          <DeleteForum id={_id}/>
+        </FooterButton>
+    </Container> 
+  )
+});
+const [swt, setSwt] = React.useState(true);
     return (
       <Wrapper>
         <Title>Forum</ Title>
         <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
+        <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
+        {swt===true ? ForumList : MyForumList}
         <AddThread show={modalShow} onHide={() => setModalShow(false)}
       />
-        {ForumList}
       </Wrapper>
     )
   }
+  
+  const mapStateToProps = state => ({
+    auth: state.auth
+  });
 
-export default Forum
+export default connect(
+  mapStateToProps
+  )(Forum)

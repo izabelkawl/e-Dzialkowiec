@@ -8,47 +8,56 @@ import Title from '../../components/Title'
 
 const Container = styled.div`
     background-color: white;
+    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+
     padding: 20px;
     margin-top: 20px;
-    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.44);
-
     display: grid;
-    grid-template-columns: 0.2fr 0.6fr 0.2fr;
-    grid-template-rows: 1fr;
+
+    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-rows:  4(1fr);
     gap: 25px 25px;
-    grid-template-areas:"Image Content About";`
+    grid-template-areas:
+    "Content ."
+    "Content ."
+    "Content ."
+    "Content Footer";`
 
 const Content = styled.div`
   display: grid;
   grid-area: Content;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas:
-    "."
-    "."
-    ".";
-
 `
-const About = styled.div`
+const FooterButton = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr 1fr;
-  grid-template-areas:
-    "."
-    ".";
-  grid-area: About;
-  text-align: right;
-`
-const Image = styled.img.attrs({
-
-})`
-  grid-area: Image;
+  grid-area: Footer;
 `
 const HeaderDiv = styled.div`
   font-size: 26px;
 `
+// const Image = styled.img.attrs({
+
+// })`
+//   grid-area: Image;
+// `
+//tylko dla swoich zrobić
+class DeleteTable extends Component {
+  deleteTable = event => {
+      event.preventDefault()
+      if (
+          window.confirm(
+              `Do you want to delete the table ${this.props.id} permanently?`,
+          )
+      ) {
+          api.deleteTableById(this.props.id)
+          window.location.reload()
+      }
+  }
+  render() {
+      return <Button style={RedButtonStyle} onClick={this.deleteTable}>Usuń</Button>
+  }
+}
 
   class AddAnnouncement extends Component {
     constructor(props) {
@@ -94,11 +103,12 @@ const HeaderDiv = styled.div`
             content: '',
             image: ''
           })
+          window.location.reload()
       })
   }
 
     render(){ 
-      const { title, user_id, content } = this.state
+      const { title, user_id, content, image } = this.state
    return (
       <Modal
         {...this.props}
@@ -113,7 +123,7 @@ const HeaderDiv = styled.div`
         </Modal.Header>
         <Modal.Body>
         <Form>
-    <Form.Group controlId="exampleForm.ControlInput1">
+    <Form.Group controlId="exampleForm.ControlInput">
       <Form.Label>Tytuł</Form.Label>
       <Form.Control type="text" value={title} onChange={this.handleChangeInputTitle}/>
     </Form.Group>
@@ -125,10 +135,10 @@ const HeaderDiv = styled.div`
       <Form.Label>Treść</Form.Label>
       <Form.Control as="textarea" value={content} onChange={this.handleChangeInputContent} rows={3} />
     </Form.Group>
-    {/* <Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Group controlId="exampleForm.ControlTextarea2">
       <Form.Label>Treść</Form.Label>
       <Form.Control as="textarea"value={image}  onChange={this.handleChangeInputImage} rows={3} />
-    </Form.Group> */}
+    </Form.Group>
    
   </Form>
         </Modal.Body>
@@ -157,25 +167,25 @@ const NoticeBoard = () => {
     }, []);
 
     const TableList = tables.map((table, index) => {
-        const { _id, title, user, content, image} = table;
+        const { _id, title, user, content} = table;
         //date from timestap
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
 
         return (
             <Container key={_id}>
-                <Image src={image}/>
+                {/* <Image src={image}/> */}
                 <Content>
                   <HeaderDiv>{title}</HeaderDiv>
                   <Form.Text>{content}</Form.Text>
                   <Form.Text muted>{date}</Form.Text>
                 </Content>
-                <About>
+                <FooterButton>
                   <Form.Text muted>{user}</Form.Text>
                   <Button style={BlueButtonStyle} >Wiadomość</Button>
                   {/* dla swoich postów tylko usuwanie*/}
-                  <Button style={RedButtonStyle} >Usuń</Button>
-                </About>
+                  <DeleteTable id={_id}/>
+                </FooterButton>
             </Container> 
         );
     });
@@ -186,6 +196,7 @@ const NoticeBoard = () => {
         <AddAnnouncement show={modalShow}
         onHide={() => setModalShow(false)}
       />
+      <Form.Check type="checkbox" label="Pokaż moje ogłoszenia" />
        {TableList}
       </Wrapper>
     )

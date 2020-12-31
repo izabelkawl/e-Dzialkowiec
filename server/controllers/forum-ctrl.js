@@ -51,10 +51,10 @@ const updateForum = async (req, res) => {
       });
     }
     forum.title = body.title;
-    forum.user = body.user;
+    forum.user_id = body.user_id;
     forum.content = body.content;
     forum.comment = body.comment;
-    // forum.comment.userid = body.comment.userid;
+    // forum.comment.user_id = body.comment.user_id;
     forum
       .save()
       .then(() => {

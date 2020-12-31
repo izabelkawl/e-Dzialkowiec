@@ -117,7 +117,7 @@ class Admin extends Component {
                 </Wrapper>
             );
     }
-}
+  }
 }
 
 Admin.propTypes = {
