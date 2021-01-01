@@ -70,7 +70,6 @@ class DeleteForum extends Component {
 const Forum = () => {
     const [forums, setForums] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
-    // const []
     useEffect(() => {
       const requestForumsList = async () => {
           const forumsList = await api.getAllForums();
@@ -80,6 +79,7 @@ const Forum = () => {
 
       requestForumsList();
   }, []);
+
   const ForumsList = forums.map((forum, index) => {
       const { _id, title, user_id, content } = forum;
       const timestamp = _id.toString().substring(0,8);
@@ -132,6 +132,4 @@ const [swt, setSwt] = React.useState(true);
     )
   }
   
-
-  export default Forum
-  
+export default Forum

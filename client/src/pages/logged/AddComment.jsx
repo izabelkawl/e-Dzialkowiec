@@ -37,25 +37,17 @@ const Button = styled.button.attrs({
 class AllotmentsInsert extends Component {
     constructor(props) {
         super(props)
-
+        const {user} = this.props.auth
         this.state = {
-            commenter: '',
+            commenter:  user.firstname + ' '+ user.lastname,
             comment_content: '',
-            forum_id: '',
+            forum_id: this.props.match.params.id,
         }
     }
 
-    handleChangeInputCommenter = async event => {
-        const commenter = event.target.value
-        this.setState({ commenter })
-    }
     handleChangeInputCommentContent = async event => {
         const comment_content = event.target.value
         this.setState({ comment_content })
-    }
-    handleChangeInputForumId = async event => {
-        const forum_id = event.target.value
-        this.setState({ forum_id })
     }
 
     handleIncludeComment = async () => {
