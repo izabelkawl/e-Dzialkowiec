@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component} from 'react';
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import api from '../../api';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
@@ -13,11 +13,9 @@ const Container = styled.div`
     -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-
     padding: 20px;
     margin-top: 20px;
     display: grid;
-
     grid-template-columns: 0.8fr 0.2fr;
     grid-template-rows:  3(1fr);
     gap: 25px 25px;
@@ -43,6 +41,15 @@ const HeaderDiv = styled.div`
   font-size: 26px;
 `
 
+class UpdateForum extends Component {
+  updateForum = event => {
+      event.preventDefault()
+      window.location.href = `/dashboard/forums/update/${this.props.id}`
+  }
+  render() {
+      return <Button style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
+  }
+}
 //tylko dla swoich zrobić
 class DeleteForum extends Component {
   deleteForum = event => {
@@ -60,12 +67,9 @@ class DeleteForum extends Component {
       return <Button style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   }
 }
-function Forum (){
-  
+const Forum = () => {
     const [forums, setForums] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
-    const {user} = this.props.auth;
-
     useEffect(() => {
       const requestForumsList = async () => {
           const forumsList = await api.getAllForums();
@@ -76,7 +80,7 @@ function Forum (){
       requestForumsList();
   }, []);
 
-  const ForumList = forums.map((forum, index) => {
+  const ForumsList = forums.map((forum, index) => {
       const { _id, title, user_id, content } = forum;
       const timestamp = _id.toString().substring(0,8);
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
@@ -89,19 +93,19 @@ function Forum (){
             </Content>
             <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
             <FooterButton>
-              <Button style={BlueButtonStyle} href="/dashboard/forum/thread">Otwórz</Button>
+              <UpdateForum id={_id}/>
             </FooterButton>
         </Container> 
       )
 });
 
-  const MyForumList = forums.map((forum, index) => {
+  const MyForumsList = forums.map((forum, index) => {
   const { _id, title, user_id, content } = forum;
   const timestamp = _id.toString().substring(0,8);
   const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
   
   return (
-    <Container key={user.id}>
+    <Container key={_id}>
         <Content>
           <HeaderDiv>{title}</HeaderDiv>
           <Form.Text>{content}</Form.Text>
@@ -121,17 +125,11 @@ const [swt, setSwt] = React.useState(true);
         <Title>Forum</ Title>
         <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
         <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
-        {swt===true ? ForumList : MyForumList}
+        {swt===true ? ForumsList : MyForumsList}
         <AddThread show={modalShow} onHide={() => setModalShow(false)}
       />
       </Wrapper>
     )
   }
   
-  const mapStateToProps = state => ({
-    auth: state.auth
-  });
-
-export default connect(
-  mapStateToProps
-  )(Forum)
+export default Forum

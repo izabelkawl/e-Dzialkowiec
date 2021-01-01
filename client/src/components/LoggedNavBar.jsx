@@ -48,7 +48,7 @@ class LoggedNavBar extends Component {
                             <Link href="/dashboard/commitment" className="nav-link">
                                 Zobowiązania
                                 </Link>
-                            <Link href="/dashboard/forum" className="nav-link">
+                            <Link href="/dashboard/forums" className="nav-link">
                                 Forum
                                 </Link>
                             <Link href="/dashboard/account" className="nav-link">

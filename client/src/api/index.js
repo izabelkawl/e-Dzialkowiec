@@ -126,6 +126,12 @@ export const updateForumById = (id, payload) => api.put(`/forum/${id}`, payload)
 export const deleteForumById = id => api.delete(`/forum/${id}`)
 export const getForumById = id => api.get(`/forum/${id}`)
 
+export const insertComment = payload => api.post(`/comment`, payload)
+export const getAllComments = () => api.get(`/comments`)
+export const updateCommentById = (id, payload) => api.put(`/comment/${id}`, payload)
+export const deleteCommentById = id => api.delete(`/comment/${id}`)
+export const getCommentById = id => api.get(`/comment/${id}`)
+
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
@@ -162,6 +168,12 @@ const apis = {
     updateForumById,
     deleteForumById,
     getForumById,
+
+    insertComment,
+    getAllComments,
+    updateCommentById,
+    deleteCommentById,
+    getCommentById,
 
     insertImage
 }

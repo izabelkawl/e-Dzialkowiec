@@ -22,13 +22,13 @@ const createForum = (req, res) => {
       return res.status(201).json({
         success: true,
         id: forum._id,
-        forum: "forum created!",
+        message: "forum created!",
       });
     })
     .catch((error) => {
       return res.status(400).json({
         error,
-        forum: "forum not created!",
+        message: "forum not created!",
       });
     });
 };
@@ -47,27 +47,26 @@ const updateForum = async (req, res) => {
     if (err) {
       return res.status(404).json({
         err,
-        forum: "forum not found!",
+        message: "forum not found!",
       });
     }
     forum.title = body.title;
     forum.user_id = body.user_id;
     forum.content = body.content;
     forum.comment = body.comment;
-    // forum.comment.user_id = body.comment.user_id;
     forum
       .save()
       .then(() => {
         return res.status(200).json({
           success: true,
           id: forum._id,
-          forum: "forum updated!",
+          message: "forum updated!",
         });
       })
       .catch((error) => {
         return res.status(404).json({
           error,
-          forum: "forum not updated!",
+          message: "forum not updated!",
         });
       }); 
   });

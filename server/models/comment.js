@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const Comment = new Schema({
 
-  user_id: { type: Schema.Types.ObjectId, ref: "User"},
-  content: {type: String, required: true },
+  commenter: {type: String, required: true },
+  comment_content: {type: String, required: true },
+  forum_id: {type: String, required: true },
 },
 { timestamps: true }
 );

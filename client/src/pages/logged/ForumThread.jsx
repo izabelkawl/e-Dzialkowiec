@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
+import api from '../../api';
+import Wrapper from '../../components/Wrapper/Wrapper';
+import { Form, Button } from 'react-bootstrap';
+import { BlueButtonStyle } from '../constants';
+
 import styled from 'styled-components';
-import { Form, Modal, Button } from 'react-bootstrap';
-import {RedButtonStyle, BlueButtonStyle } from '../constants'
-import Wrapper from '../../components/Wrapper/Wrapper'
-import Title from '../../components/Title'
 
 const Content = styled.div`
   background-color: white;
@@ -12,90 +13,75 @@ const Content = styled.div`
   -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
-  grid-template-areas:
-    "title"
-    "content"
-    "date";
 `
-
+const AddComment = styled.div`
+    background-color: #ffffff;
+    padding: 20px ;
+    min-height: content; 
+`
 const Person = styled.p`
     color: #0071BC;
 `
 
-function AddComment(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-       Dodaj komentarz 
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-      <Form>
-  <Form.Group controlId="exampleForm.ControlInput1">
-  <Form.Label>Adresat:</Form.Label>
-    <Form.Control type="text" placeholder="Karol Nowak" disabled/>
-  </Form.Group>
-  <Form.Group controlId="exampleForm.ControlTextarea1">
-    <Form.Label>Treść:</Form.Label>
-    <Form.Control as="textarea" rows={3} />
-  </Form.Group>
-</Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button style={RedButtonStyle} onClick={props.onHide}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={props.onHide}>Dodaj</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
-const ForumThread = () => {
-    const [modalShow, setModalShow] = React.useState(false);
+class ForumThread extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        id: this.props.match.params.id,
+        user_id: '',
+        title: '',
+        content: '',
+        commenter: '',
+        comment_content: '',
+        forum_id: '',
+    }
+  }
+  
+
+  componentDidMount = async () => {
+    const { id } = this.state
+    const form = await api.getForumById(id)
+
+    this.setState({
+        user_id: form.data.data.user_id,
+        title: form.data.data.title,
+        content: form.data.data.content,
+    })
+  
+  }
+
+  render() {
+    const { user_id, title, content} = this.state
     return (
       <Wrapper>
-        <Button style={BlueButtonStyle} href="/dashboard/forum">Powrót</Button>
+        <Button style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
           <Content>
-            <div>
-              <h3>Sprzedam kwiaty</h3><p>Mariusz Nowak</p>
+            <h3>{title}</h3><p>{user_id}</p>
+           
               <hr></hr>
-
-            </div>
-            <p>Lorem luptatem sapiente dolores quia minus hic eius cumque possimus quaerat deserunt quas officia? Quam debitis eligendi nam vero voluptas cupiditate, ad eum accusantium iure placeat quo.</p>
+            <p>{content}</p>
 
             <Form.Text muted>27.11.2020</Form.Text>
-            
           </Content>
-          <Button style={BlueButtonStyle} className="float-right" variant="success" onClick={() => setModalShow(true)}>Dodaj Komentarz</Button>
-          <Title>Komentarze</Title>
-          <Content>
+ <AddComment>
+              <Form>
+              <Form.Group>
+              <Form.Label muted> Karol Cośtam</Form.Label>
+                <Form.Control as="textarea" placeholder="Treść komantarza.." rows={3} />
+              </Form.Group>
+              <Button style={BlueButtonStyle} size="sm" type="submit">Dodaj Komentarz</Button>
+            </Form>
+            
+          </AddComment>
+<Content>
           <Person>Karol Nowak</Person>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam minus obcaecati recusandae consequuntur voluptatibus quae at suscipit expedita error consequatur. </p>
           <p>28.09.2019</p>
           </Content>
-          <Content>
-          <Person>Maria Nowak</Person>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam  </p>
-          <p>12.03.2019</p>
-          </Content>
-          <Content>
-          <Person>Anna Maria Jopek</Person>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam minus obcaecati recusandae consequuntur voluptatibus quae at suscipit expedita error consequatur. </p>
-          <p>07.01.2011</p>
-          </Content>
-        <AddComment show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
       </Wrapper>
     )
+}
 }
 
 export default ForumThread
