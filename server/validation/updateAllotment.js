@@ -1,7 +1,7 @@
 import Validator from "validator";
 import isEmpty from "is-empty";
 
-const validateAllotmentInput = (data) => {
+const validateUpdateAllotment= (data) => {
   let errors = {};
 
   // Convert empty fields to an empty string so we can use validator functions
@@ -13,21 +13,17 @@ const validateAllotmentInput = (data) => {
   data.user_id = !isEmpty(data.user_id) ? data.user_id : "";
 
   // Width checks
-  if (Validator.isEmpty(data.allotment_width)) {
+  if (isEmpty(data.allotment_width)) {
     errors.allotment_width = " *Podaj szerokość";
   }
   // length checks
-  if (Validator.isEmpty(data.allotment_length)) {
+  if (isEmpty(data.allotment_length)) {
     errors.allotment_length = " *Długość jest wymagana";
   }
   // Price checks
-  if (Validator.isEmpty(data.price)) {
+  if (isEmpty(data.price)) {
     errors.price = " *Cena jest wymagana";
   }
-  // Status checks
-  if (Validator.isEmpty(data.status)) {
-    errors.status = " *Podaj status";
-  } 
   // User_id empty or someone
 
   return {
@@ -36,4 +32,4 @@ const validateAllotmentInput = (data) => {
   };
 };
 
-export default validateAllotmentInput;
+export default validateUpdateAllotment;

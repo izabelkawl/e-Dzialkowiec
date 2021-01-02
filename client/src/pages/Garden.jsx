@@ -12,16 +12,23 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 50px;
 `;
-
-
 class Garden extends Component {
-  render() {
 
+  render() {
+    
     return (
       <Wrapper>
         <NavBar />
         <Container>
           <InlineSVG src={MapSource} />
+          <div id="a54" >
+           <p ><b>Numer działki: </b></p > 
+            <p>Szerokość:</p>
+            <p>Długość:</p>
+            <p>Cena:</p>
+            <p>Status:</p>
+            <p>Właściciel:</p>
+          </div>
         </Container>
       </Wrapper>
     )

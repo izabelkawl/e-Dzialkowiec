@@ -70,6 +70,8 @@ const AllotmentsList = () => {
 
     return <Wrapper>
          <Button variant="success" href="/admin/allotments/create" >Dodaj działke</Button>
+         <br></br>
+         <br></br>
         <Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>

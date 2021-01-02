@@ -91,16 +91,26 @@ class AllotmentsUpdate extends Component {
         const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
         return (
             <Wrapper>
-                <Title>Edycja działki nr. {number} </Title>
+                <Title>Edycja działki</Title>
+                    <Label htmlFor="number">Numer:</Label>
+                    <Form.Control 
+                        onChange={this.onChange}
+                        error={errors.number}
+                        id="number"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.number
+                        })}
+                        value={number}
+                    />
 
                     <Label htmlFor="allotment_width">Szerokość: </Label>
                     <Span>{errors.allotment_width}</Span>
                     <Form.Control
                         onChange={this.onChange}
-                        
                         error={errors.allotment_width}
-                        type="text"
                         id="allotment_width"
+                        type="text"
                         className={classnames("", {
                             invalid: errors.allotment_width
                         })}
@@ -111,38 +121,38 @@ class AllotmentsUpdate extends Component {
                     <Span>{errors.allotment_length}</Span>
                     <Form.Control
                         onChange={this.onChange}
-                        value={allotment_length}
                         error={errors.allotment_length}
-                        type="text"
                         id="allotment_length"
+                        type="text"
                         className={classnames("", {
                             invalid: errors.allotment_length
                         })}
+                        value={allotment_length}
                     />
                     <Label htmlFor="price">Cena: </Label>
                     <Span>{errors.price}</Span>
                     <Form.Control
                         onChange={this.onChange}
-                        value={price}
                         error={errors.price}
-                        type="text"
                         id="price"
+                        type="text"
                         className={classnames("", {
                             invalid: errors.price
                         })}
+                        value={price}
                     />
                     <Label htmlFor="status">Status: </Label>
                     <Span>{errors.status}</Span>
                     <Form.Control
                         onChange={this.onChange}
                         error={errors.status} 
-                        as="select"
                         id="status"
-                        value={status}
+                        as="select"
                         className={classnames("", {
                             invalid: errors.status
-                        })}>
-                    <option>Status działki</option> 
+                        })}value={status}
+                        defaultChecked={status}>
+
                         <option>Wolna</option> 
                         <option>Zajęta</option> 
                         <option>Na sprzedaż</option> 
@@ -153,19 +163,20 @@ class AllotmentsUpdate extends Component {
                     <Form.Control
                         onChange={this.onChange}
                         error={errors.user_id}
-                        as="select"
                         id="user_id"
-                        value={user_id}
+                        as="select"
                         className={classnames("", {
                         invalid: errors.user_id
-                    })}>
-                        <option>Wybierz działkowicza</option>
+                    })}value={user_id}
+                    defaultChecked={user_id}>
+
+                        <option>Brak</option>
                         <UsersID/>
                     </Form.Control>
 
 
-                    <Button type="submit" onClick={this.handleUpdateAllotment}>Add Allotment</Button>
-                    <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    <Button type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
+                    <CancelButton href={'/admin/allotments/list'}>Zamknij</CancelButton>
                     
             </Wrapper>
         )

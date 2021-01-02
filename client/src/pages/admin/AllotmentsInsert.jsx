@@ -152,7 +152,7 @@ class AllotmentsInsert extends Component {
                         id="status"
                         className={classnames("", {
                             invalid: errors.status
-                        })}>
+                        })}defaultChecked="Status działki">
                     <option>Status działki</option> 
                         <option>Wolna</option> 
                         <option>Zajęta</option> 
@@ -168,14 +168,15 @@ class AllotmentsInsert extends Component {
                         id="user_id"
                         className={classnames("", {
                         invalid: errors.user_id
-                    })}>
+                    })}defaultChecked="Wybierz działkowicza">
                         <option>Wybierz działkowicza</option>
+                        <option>Brak</option>
                         <UsersID/>
                     </Form.Control>
 
 
-                    <Button type="submit">Add Allotment</Button>
-                    <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    <Button type="submit">Dodaj działkę</Button>
+                    <CancelButton href={'/admin/allotments/list'}>Zamknij</CancelButton>
                     </Form>
             </Wrapper>
         )

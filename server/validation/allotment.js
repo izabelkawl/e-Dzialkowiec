@@ -32,6 +32,10 @@ const validateAllotmentInput = (data) => {
   if (Validator.isEmpty(data.status)) {
     errors.status = " *Podaj status";
   } 
+  // Status checks
+  if (Validator.isEmpty(data.user_id)) {
+    errors.user_id = " *Wybierz działkowicza";
+  } 
   // User_id empty or someone
 
   return {
