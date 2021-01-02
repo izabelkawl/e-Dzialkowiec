@@ -5,37 +5,32 @@ const validateAllotmentInput = (data) => {
   let errors = {};
 
   // Convert empty fields to an empty string so we can use validator functions
-  data.image = !isEmpty(data.email) ? data.email : "";
-  data.number = !isEmpty(data.firstname) ? data.firstname : "";
-  data.width = !isEmpty(data.width) ? data.width : "";
-  data.height = !isEmpty(data.height) ? data.height : "";
+  data.number = !isEmpty(data.number) ? data.number : "";
+  data.allotment_width = !isEmpty(data.allotment_width) ? data.allotment_width : "";
+  data.allotment_length = !isEmpty(data.allotment_length) ? data.allotment_length : "";
   data.price = !isEmpty(data.price) ? data.price : "";
   data.status = !isEmpty(data.status) ? data.status : "";
   data.user_id = !isEmpty(data.user_id) ? data.user_id : "";
 
-  // Image checks
-  if (Validator.isEmpty(data.image)) {
-    errors.image = " *Podaj adres image ";
-  } 
   // Number checks
   if (Validator.isEmpty(data.number)) {
     errors.number = " *Podaj numer działki";
   }
   // Width checks
-  if (Validator.isEmpty(data.width)) {
-    errors.width = " *Podaj szerokość";
+  if (Validator.isEmpty(data.allotment_width)) {
+    errors.allotment_width = " *Podaj szerokość";
   }
-  // Height checks
-  if (Validator.isEmpty(data.height)) {
-    errors.height = " *Wysokość jest wymagana";
+  // length checks
+  if (Validator.isEmpty(data.allotment_length)) {
+    errors.allotment_length = " *Długość jest wymagana";
   }
   // Price checks
   if (Validator.isEmpty(data.price)) {
-    errors.price = " *Telefon jest wymagany";
+    errors.price = " *Cena jest wymagana";
   }
   // Status checks
   if (Validator.isEmpty(data.status)) {
-    errors.status = " *Podaj hasło";
+    errors.status = " *Podaj status";
   } 
   // User_id empty or someone
 

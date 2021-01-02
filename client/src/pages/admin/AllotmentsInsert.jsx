@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import api from '../../api';
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { insertAllotment } from "../../api/index";
 import {Form }from 'react-bootstrap';
-import styled from 'styled-components';
 
+import styled from 'styled-components';
+import classnames from "classnames";
 import UsersID from './UsersID';
 
 const Title = styled.h1`
@@ -24,12 +28,6 @@ const Label = styled.label`
     margin: 5px;
 `
 
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
 const Button = styled.button.attrs({
     className: `btn btn-primary`,
 })`
@@ -41,145 +39,160 @@ const CancelButton = styled.a.attrs({
 })`
     margin: 15px 15px 15px 5px;
 `
-
+const Span = styled.span`
+    color: red;
+    font-size: 80%;
+`
 class AllotmentsInsert extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
-            image: '',
             number: '',
-            width: '',
-            height: '',
+            allotment_width: '',
+            allotment_length: '',
             price: '',
             status: '',
             user_id: '',
+            errors: {}
         }
     }
 
-    handleChangeInputImage = async event => {
-        const image = event.target.value
-        this.setState({ image })
-    }
-    handleChangeInputNumber = async event => {
-        const number = event.target.validity.valid
-            ? event.target.value
-            : this.state.number
-
-        this.setState({ number })
-    }
-    handleChangeInputSize = async event => {
-        const size = event.target.validity.valid
-            ? event.target.value
-            : this.state.size
-
-        this.setState({ size })
-    }
-    handleChangeInputWidth = async event => {
-        const width = event.target.validity.valid
-            ? event.target.value
-            : this.state.width
-
-        this.setState({ width })
-    }
-    handleChangeInputHeight = async event => {
-        const height = event.target.validity.valid
-            ? event.target.value
-            : this.state.height
-
-        this.setState({ height })
-    }
-    handleChangeInputPrice = async event => {
-        const price = event.target.validity.valid
-            ? event.target.value
-            : this.state.price
-        this.setState({ price })
-    }
-    handleChangeInputStatus = async event => {
-        const status = event.target.value
-        this.setState({ status })
-    }
-    handleChangeInputUserId = async event => {
-        const user_id = event.target.value
-        this.setState({ user_id })
-    }
-
-    handleIncludeAllotment = async () => {
-        const { image, number, width, height, price, status, user_id } = this.state
-        const payload = { image, number,  width, height, price, status, user_id }
-
-        await api.insertAllotment(payload).then(res => {
-            window.alert(`Allotment inserted successfully`)
+    
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
             this.setState({
-                image: '',
-                number: '',
-                width: '',
-                height: '',
-                price: '',
-                status: '',
-                user_id: '',
-            })
-        })
+                errors: nextProps.errors
+            });
+        }
     }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
+
+        e.preventDefault();
+        const newAllotment = {
+
+            number: this.state.number,
+            allotment_width: this.state.allotment_width,
+            allotment_length: this.state.allotment_length,
+            price: this.state.price,
+            status: this.state.status,
+            user_id: this.state.user_id,
+        };
+        this.props.insertAllotment(newAllotment, this.props.history)
+    };
 
     render() {
-        const { image, number, width, height, price} = this.state
+        const { errors } = this.state;
         return (
             <Wrapper>
-                <Title>Create Allotment</Title>
+                <Title>Stwórz działkę</Title>
+                <Form noValidate onSubmit={this.onSubmit}>
+                    <Label htmlFor="numer">Numer:</Label>
+                    <Span>{errors.number}
+                    {errors.numberexists}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.number}
+                        error={errors.number}
+                        id="number"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.number
+                        })}
+                    />
 
-                <Label>Image: </Label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" value={image}
-                    onChange={this.handleChangeInputImage} ></input>
+                    <Label htmlFor="allotment_width">Szerokość: </Label>
+                    <Span>{errors.allotment_width}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.allotment_width}
+                        error={errors.allotment_width}
+                        type="text"
+                        id="allotment_width"
+                        className={classnames("", {
+                            invalid: errors.allotment_width
+                        })}
+                    />
 
-                <Label>Number: </Label>
-                <InputText
-                    type="text"
-                    value={number}
-                    onChange={this.handleChangeInputNumber}
-                />
+                    <Label htmlFor="allotment_length">Długość: </Label>
+                    <Span>{errors.allotment_length}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.allotment_length}
+                        error={errors.allotment_length}
+                        type="text"
+                        id="allotment_length"
+                        className={classnames("", {
+                            invalid: errors.allotment_length
+                        })}
+                    />
+                    <Label htmlFor="price">Cena: </Label>
+                    <Span>{errors.price}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.price}
+                        error={errors.price}
+                        type="text"
+                        id="price"
+                        className={classnames("", {
+                            invalid: errors.price
+                        })}
+                    />
+                    <Label htmlFor="status">Status: </Label>
+                    <Span>{errors.status}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.status} 
+                        as="select"
+                        id="status"
+                        className={classnames("", {
+                            invalid: errors.status
+                        })}>
+                    <option>Status działki</option> 
+                        <option>Wolna</option> 
+                        <option>Zajęta</option> 
+                        <option>Na sprzedaż</option> 
+                    </Form.Control>
 
-                <Label>Width: </Label>
-                <InputText
-                    type="text"
-                    value={width}
-                    onChange={this.handleChangeInputWidth}
-                />
-
-                <Label>Height: </Label>
-                <InputText
-                    type="text"
-                    value={height}
-                    onChange={this.handleChangeInputHeight}
-                />
-                <Label>Price: </Label>
-                <InputText
-                    type="text"
-                    value={price}
-                    onChange={this.handleChangeInputPrice}
-                />
-                <Label>Status: </Label>
-
-                <Form.Control as="select"  onChange={this.handleChangeInputStatus}>
-                <option>Status działki</option> 
-                    <option>Wolna</option> 
-                    <option>Zajęta</option> 
-                    <option>Na sprzedaż</option> 
-                </Form.Control>
-
-                <Label>User Id: </Label>
-
-                <Form.Control as="select" onChange={this.handleChangeInputUserId}>
-                    <option>Wybierz działkowicza</option>
-                    <UsersID/>
-                </Form.Control>
+                    <Label htmlFor="user_id">Użytkownik: </Label>
+                    <Span>{errors.user_id}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.user_id}
+                        as="select"
+                        id="user_id"
+                        className={classnames("", {
+                        invalid: errors.user_id
+                    })}>
+                        <option>Wybierz działkowicza</option>
+                        <UsersID/>
+                    </Form.Control>
 
 
-                <Button onClick={this.handleIncludeAllotment}>Add Allotment</Button>
-                <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    <Button type="submit">Add Allotment</Button>
+                    <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    </Form>
             </Wrapper>
         )
     }
 }
 
-export default AllotmentsInsert
+
+AllotmentsInsert.propTypes = {
+    insertAllotment: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { insertAllotment }
+)(withRouter(AllotmentsInsert));

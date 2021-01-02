@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from '../constants';
-
 import styled from 'styled-components';
 
 const Content = styled.div`
@@ -52,7 +51,6 @@ class ForumThread extends Component {
     })
   }
 
-  
 handleChangeInputCommentContent = async event => {
     const comment_content = event.target.value
     this.setState({ comment_content })
@@ -83,6 +81,7 @@ handleIncludeComment = async () => {
             const commentsList = await api.getAllComments();
             const { data } = commentsList;
             setComments(data.data);
+
         };
         requestCommentsList();
     }, []);

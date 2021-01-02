@@ -41,15 +41,28 @@ const HeaderDiv = styled.div`
   font-size: 26px;
 `
 
-class UpdateForum extends Component {
-  updateForum = event => {
-      event.preventDefault()
-      window.location.href = `/dashboard/forums/update/${this.props.id}`
-  }
-  render() {
-      return <Button style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
+class MyForumsList extends Form {
+  //constructor and states
+  constructor(props) {
+    super(props);
+    const {user} = this.props.auth
+    this.state = {
+      
+      user_id: user.id,
+      title: '',
+      content: '',
+      comment: ''
   }
 }
+render(){ 
+    
+  const { title,  content, comment } = this.state
+  return (
+    <Wrapper></Wrapper>
+  )
+  }
+}
+
 //tylko dla swoich zrobić
 class DeleteForum extends Component {
   deleteForum = event => {
@@ -67,6 +80,7 @@ class DeleteForum extends Component {
       return <Button style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   }
 }
+
 const Forum = () => {
     const [forums, setForums] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
@@ -80,27 +94,9 @@ const Forum = () => {
       requestForumsList();
   }, []);
 
-  const ForumsList = forums.map((forum, index) => {
-      const { _id, title, user_id, content } = forum;
-      const timestamp = _id.toString().substring(0,8);
-      const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-      return (
-        <Container key={_id}>
-            <Content>
-              <HeaderDiv>{title}</HeaderDiv>
-              <Form.Text>{content}</Form.Text>
-              <Form.Text muted>{date}</Form.Text>
-            </Content>
-            <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
-            <FooterButton>
-              <UpdateForum id={_id}/>
-            </FooterButton>
-        </Container> 
-      )
-});
-
   const MyForumsList = forums.map((forum, index) => {
   const { _id, title, user_id, content } = forum;
+
   const timestamp = _id.toString().substring(0,8);
   const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
   

@@ -43,7 +43,7 @@ const allotmentData = req.body;
 
   if (!isValid) return res.status(400).json(errors);
   if (!!isAllotment)
-    return res.status(400).json({ email: " *Działka o podanym numerze już istnieje." });
+    return res.status(400).json({ numberexists: " *Działka o podanym numerze już istnieje." });
 
   const processedAllotment = new Allotment(allotmentData);
 
@@ -55,8 +55,16 @@ const allotmentData = req.body;
 };
 
 const updateAllotment = async (req, res) => {
+  const fieldsToUpdate = { ...req.body };
   const body = req.body;
 
+  if (isEmpty(fieldsToUpdate))
+    return res.status(400).json({
+      success: false,
+      message: "*Wypełnij puste komórki.",
+    });
+  if (!isValid) return res.status(400).json(errors);
+  
   if (!body) {
     return res.status(400).json({
       success: false,
@@ -71,10 +79,9 @@ const updateAllotment = async (req, res) => {
         message: "allotment not found!",
       });
     }
-    allotment.image = body.image;
     allotment.number = body.number;
-    allotment.width = body.width;
-    allotment.height = body.height;
+    allotment.allotment_width = body.allotment_width;
+    allotment.allotment_length = body.allotment_length;
     allotment.price = body.price;
     allotment.status = body.status;
     allotment.user_id = body.user_id;

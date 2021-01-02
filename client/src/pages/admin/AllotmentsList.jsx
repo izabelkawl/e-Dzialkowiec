@@ -51,15 +51,13 @@ const AllotmentsList = () => {
     }, []);
 
     const AllotmentsTable = allotments.map((allotment, index) => {
-        const { _id, image, number, width, height, price, status, user_id } = allotment;
+        const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
 
         return (
             <tr key={_id}>
-                <td>{index + 1}</td>
-                <td>{image}</td>
                 <td>{number}</td>
-                <td>{width}</td>
-                <td>{height}</td>
+                <td>{allotment_width}</td>
+                <td>{allotment_length}</td>
                 <td>{price}</td>
                 <td>{status}</td>
                 <td>{user_id}</td>
@@ -75,14 +73,12 @@ const AllotmentsList = () => {
         <Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
-                    <th>Lp</th>
-                    <th>Image</th>
-                    <th>number</th>
-                    <th>width</th>
-                    <th>height</th>
-                    <th>price</th>
-                    <th>status</th>
-                    <th>user_id</th>
+                    <th>Numer</th>
+                    <th>Szerokość</th>
+                    <th>Długość</th>
+                    <th>Cena</th>
+                    <th>Status</th>
+                    <th>Użytkkownik</th>
 
                     <th></th>
                     <th></th>

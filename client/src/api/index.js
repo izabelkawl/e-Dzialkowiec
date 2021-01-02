@@ -89,10 +89,10 @@ export const updateUserById = (id, payload) => dispatch => {
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
 
-// Register Allotment
+// Insert Allotment
 export const insertAllotment = (allotmentData, history) => dispatch => {
     api
-        .post("/allotments", allotmentData)
+        .post("/allotment", allotmentData)
         .then(res => history.push("/allotments/list"))
         .catch(err =>
             dispatch({
