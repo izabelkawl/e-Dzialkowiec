@@ -1,6 +1,7 @@
 import Allotment from "../models/allotment.js";
 // Load input validation
 import validateAllotmentInput from "../validation/allotment.js";
+import validateUpdateAllotment from "../validation/updateAllotment.js";
 import isEmpty from "is-empty";
 
 
@@ -55,51 +56,46 @@ const allotmentData = req.body;
 };
 
 const updateAllotment = async (req, res) => {
+
   const fieldsToUpdate = { ...req.body };
-  const body = req.body;
+
+  const { errors, isValid } = validateUpdateAllotment(fieldsToUpdate);
 
   if (isEmpty(fieldsToUpdate))
     return res.status(400).json({
       success: false,
       message: "*Wypełnij puste komórki.",
     });
+
   if (!isValid) return res.status(400).json(errors);
-  
-  if (!body) {
+
+  const processedAllotment = await Allotment.findOne({ _id: req.params.id });
+
+  if (!processedAllotment)
+    return res.status(404).json({
+      err,
+      message: "*Działka nieistnieje.",
+    });
+
+    for (const field in fieldsToUpdate)
+    processedAllotment[field] = fieldsToUpdate[field];
+
+  try {
+    await processedAllotment.save();
+  } catch (error) {
+    console.log(error);
+
     return res.status(400).json({
       success: false,
-      error: "You must provide a body to update",
+      id: processedAllotment._id,
+      message: "*Aktualizacja nie powiodła się!",
     });
   }
 
-  Allotment.findOne({ _id: req.params.id }, (err, allotment) => {
-    if (err) {
-      return res.status(404).json({
-        err,
-        message: "allotment not found!",
-      });
-    }
-    allotment.number = body.number;
-    allotment.allotment_width = body.allotment_width;
-    allotment.allotment_length = body.allotment_length;
-    allotment.price = body.price;
-    allotment.status = body.status;
-    allotment.user_id = body.user_id;
-    allotment
-      .save()
-      .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: allotment._id,
-          message: "allotment updated!",
-        });
-      })
-      .catch((error) => {
-        return res.status(404).json({
-          error,
-          message: "allotment not updated!",
-        });
-      });
+  return res.status(200).json({
+    success: true,
+    id: processedAllotment._id,
+    message: "*Aktualizacja powiodła się!",
   });
 };
 

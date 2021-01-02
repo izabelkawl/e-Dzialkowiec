@@ -92,7 +92,7 @@ class AllotmentsInsert extends Component {
             <Wrapper>
                 <Title>Stwórz działkę</Title>
                 <Form noValidate onSubmit={this.onSubmit}>
-                    <Label htmlFor="numer">Numer:</Label>
+                    <Label htmlFor="number">Numer:</Label>
                     <Span>{errors.number}
                     {errors.numberexists}</Span>
                     <Form.Control

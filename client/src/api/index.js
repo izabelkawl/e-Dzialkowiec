@@ -101,10 +101,22 @@ export const insertAllotment = (allotmentData, history) => dispatch => {
             })
         );
 };
+// Update user
+export const updateAllotmentById = (id, payload) => dispatch => {
+    api
+        .put(`/allotment/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 
 // export const insertAllotment = payload => api.post(`/allotment`, payload)
 export const getAllAllotments = () => api.get(`/allotments`)
-export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
+// export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
 

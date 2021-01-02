@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import api from '../../api';
-
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import api, { updateAllotmentById } from '../../api';
+import classnames from "classnames";
+import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import UsersID from './UsersID';
 
 const Title = styled.h1`
     font-size: 32px;
@@ -21,172 +26,164 @@ const Label = styled.label`
     margin: 5px;
 `;
 
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`;
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`;
-
 const CancelButton = styled.a.attrs({
     className: `btn btn-danger`,
 })`
     margin: 15px 15px 15px 5px;
 `;
 
+const Span = styled.span.attrs({
+    className: `red-text`,
+})`
+    color: red;
+`
 class AllotmentsUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             id: this.props.match.params.id,
-            image: '',
             number: '',
-            width: '',
-            height: '',
+            allotment_width: '',
+            allotment_length: '',
             price: '',
             status: '',
-            user_id: ''
+            user_id: '',
+            errors: {}
         }
     }
-
-    handleChangeInputImage = async event => {
-        const image = event.target.value
-        this.setState({ image })
-    }
-    handleChangeInputNumber = async event => {
-        const number = event.target.validity.valid
-            ? event.target.value
-            : this.state.number
-
-        this.setState({ number })
-    }
-    handleChangeInputUserId = async event => {
-        const user_id =  event.target.value
-        this.setState({ user_id })
-    }
-
-    handleChangeInputWidth = async event => {
-        const width = event.target.validity.valid
-            ? event.target.value
-            : this.state.width
-
-        this.setState({ width })
-    }
-    handleChangeInputHeight = async event => {
-        const height = event.target.validity.valid
-            ? event.target.value
-            : this.state.height
-
-        this.setState({ height })
-    }
-    handleChangeInputPrice = async event => {
-        const price = event.target.validity.valid
-            ? event.target.value
-            : this.state.price
-        this.setState({ price })
-    }
-    handleChangeInputStatus = async event => {
-        const status = event.target.value
-        this.setState({ status })
-    }
-
-    handleUpdateAllotment = async () => {
-        const { id, image, number, width, height, price, status, user_id } = this.state
-        const payload = { image, number, width, height, price, status, user_id }
-
-        await api.updateAllotmentById(id, payload).then(res => {
-            window.alert(`Allotment updated successfully`)
-            this.setState({
-                image: '',
-                number: '',
-                width: '',
-                height: '',
-                price: '',
-                status: '',
-                user_id: '',
-            })
-        })
-    }
-
     componentDidMount = async () => {
         const { id } = this.state
         const allotment = await api.getAllotmentById(id)
 
         this.setState({
-            image: allotment.data.data.image,
             number: allotment.data.data.number,
-            width: allotment.data.data.width,
-            height: allotment.data.data.height,
+            allotment_width: allotment.data.data.allotment_width,
+            allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
             status: allotment.data.data.status,
-            user_id: allotment.data.data.user_id
+            user_id: allotment.data.data.user_id,
         })
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    handleUpdateAllotment = e => {
+
+        e.preventDefault();
+        const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
+        const payload = { number, allotment_width, allotment_length, price, status, user_id }
+
+        this.props.updateAllotmentById(id, payload)
+    }
+
     render() {
-        const { image, number, width, height, price, status, user_id } = this.state
+        const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
         return (
             <Wrapper>
-                <Title>Update Allotment</Title>
+                <Title>Edycja działki nr. {number} </Title>
 
-                <Label>Image: </Label>
-                <InputText
-                    type="text"
-                    value={image}
-                    onChange={this.handleChangeInputImage}
-                />
+                    <Label htmlFor="allotment_width">Szerokość: </Label>
+                    <Span>{errors.allotment_width}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        
+                        error={errors.allotment_width}
+                        type="text"
+                        id="allotment_width"
+                        className={classnames("", {
+                            invalid: errors.allotment_width
+                        })}
+                        value={allotment_width}
+                    />
 
-                <Label>Number: </Label>
-                <InputText
-                    type="text"
-                    value={number}
-                    onChange={this.handleChangeInputNumber}
-                />
+                    <Label htmlFor="allotment_length">Długość: </Label>
+                    <Span>{errors.allotment_length}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={allotment_length}
+                        error={errors.allotment_length}
+                        type="text"
+                        id="allotment_length"
+                        className={classnames("", {
+                            invalid: errors.allotment_length
+                        })}
+                    />
+                    <Label htmlFor="price">Cena: </Label>
+                    <Span>{errors.price}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={price}
+                        error={errors.price}
+                        type="text"
+                        id="price"
+                        className={classnames("", {
+                            invalid: errors.price
+                        })}
+                    />
+                    <Label htmlFor="status">Status: </Label>
+                    <Span>{errors.status}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.status} 
+                        as="select"
+                        id="status"
+                        value={status}
+                        className={classnames("", {
+                            invalid: errors.status
+                        })}>
+                    <option>Status działki</option> 
+                        <option>Wolna</option> 
+                        <option>Zajęta</option> 
+                        <option>Na sprzedaż</option> 
+                    </Form.Control>
 
-                <Label>Width: </Label>
-                <InputText
-                    type="text"
-                    value={width}
-                    onChange={this.handleChangeInputWidth}
-                />
+                    <Label htmlFor="user_id">Użytkownik: </Label>
+                    <Span>{errors.user_id}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.user_id}
+                        as="select"
+                        id="user_id"
+                        value={user_id}
+                        className={classnames("", {
+                        invalid: errors.user_id
+                    })}>
+                        <option>Wybierz działkowicza</option>
+                        <UsersID/>
+                    </Form.Control>
 
-                <Label>Height: </Label>
-                <InputText
-                    type="text"
-                    value={height}
-                    onChange={this.handleChangeInputHeight}
-                />
-                <Label>Price: </Label>
-                <InputText
-                    type="text"
-                    value={price}
-                    onChange={this.handleChangeInputPrice}
-                />
-                <Label>Status: </Label>
-                <InputText
-                    type="text"
-                    value={status}
-                    onChange={this.handleChangeInputStatus}
-                />
-                
-                <Label>User Id: </Label>
-                <InputText
-                    type="text"
-                    value={user_id}
-                    onChange={this.handleChangeInputUserId}
-                />
 
-                <Button onClick={this.handleUpdateAllotment}>Update Allotment</Button>
-                <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    <Button type="submit" onClick={this.handleUpdateAllotment}>Add Allotment</Button>
+                    <CancelButton href={'/admin/allotments/list'}>Cancel</CancelButton>
+                    
             </Wrapper>
         )
     }
 }
 
-export default AllotmentsUpdate
+AllotmentsUpdate.propTypes = {
+    updateAllotmentById: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { updateAllotmentById }
+)(withRouter( AllotmentsUpdate));
