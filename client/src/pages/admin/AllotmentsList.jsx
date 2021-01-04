@@ -80,7 +80,7 @@ const AllotmentsList = () => {
                     <th>Długość</th>
                     <th>Cena</th>
                     <th>Status</th>
-                    <th>Użytkkownik</th>
+                    <th>Użytkownik</th>
 
                     <th></th>
                     <th></th>

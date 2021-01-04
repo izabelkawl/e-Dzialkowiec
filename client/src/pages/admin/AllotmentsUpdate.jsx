@@ -102,6 +102,7 @@ class AllotmentsUpdate extends Component {
                             invalid: errors.number
                         })}
                         value={number}
+                        readOnly
                     />
 
                     <Label htmlFor="allotment_width">Szerokość: </Label>
