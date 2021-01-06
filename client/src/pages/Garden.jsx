@@ -68,6 +68,9 @@ function generateTooltipContent(provinceName) {
   }
   return html;
 }
+//Układ tooltipa
+
+
     // Add Event Listener and Tooltip on st8 clas items
     useEffect(() => {
       const requestAllotmentsList = async () => {
@@ -79,13 +82,27 @@ function generateTooltipContent(provinceName) {
     
 }, []);
     const paths = document.querySelectorAll('.st8');
-
+    console.log(tooltipData[this.id])
 	for (const path of paths) {
+    const json = tooltipData[path.id]
+      for (let key in json) {
+          if ( (json[key]) === "Wolna") {
+            path.style.fill="#7FBC5E";
+      }else if( (json[key]) === "Zajęta") {
+            path.style.fill="#0071BC";
+    }else if((json[key]) === "Na sprzedaż") {
+      path.style.fill="#CC0033";
+    }else if((json[key]) === "") {
+      path.style.fill="#222222";
+    }
+  }
 		path.addEventListener('mouseover', function(e) {
       if (typeof tooltipData !== "undefined") {
         let tooltipHTML = tooltipTemplate;
-
         const content = generateTooltipContent(this.id);
+
+        
+        
         tooltipHTML = tooltipHTML.replace("{{number}}", this.id);
         console.log(tooltipData[this.id])
         tooltipHTML = tooltipHTML.replace("{{Content}}", content);
@@ -107,7 +124,7 @@ function generateTooltipContent(provinceName) {
   }
 
 return(<div>
-      <svg xmlns="http://www.w3.org/2000/svg" fill={props.fill} version="1.1" id="Warstwa_1" x="0px" y="0px" viewBox="-89 134 1100 533" >
+      <svg xmlns="http://www.w3.org/2000/svg"  version="1.1" id="Warstwa_1" x="0px" y="0px" viewBox="-89 134 1100 533" >
       <polygon id="cien" className="st0" points="974.6,566.8 965.9,581 959.4,591.4 934.1,632.4 893.2,636.5 857.1,640.1 823,643.5 
         783.3,638.4 692.7,608.5 649.5,594.2 638.8,590.7 595.4,593 547.9,595.6 528.4,596.6 485.6,595.3 485.3,595.3 447.8,594.1 
         447.8,594.1 410.6,592.9 375.3,591.7 341.8,590.7 340.9,590.7 304.5,592.3 270.3,593.7 234.4,595.3 202.1,596.6 165.2,602.3 
@@ -344,7 +361,7 @@ return(<div>
           </g>
         </g>
         <g>
-          <rect x="-53" y="261.5" className="st8" width="18.7" height="13.5"/>
+          <rect x="-53" y="261.5" className="ast8" width="18.7" height="13.5"/>
           <g>
             <path d="M-17.7,272l-2.1-8.1h1.1l1,4.1c0.2,1,0.5,2,0.6,2.8l0,0c0.1-0.8,0.4-1.8,0.7-2.8l1.1-4.1h1.1l1,4.1
               c0.2,1,0.4,1.9,0.6,2.8l0,0c0.2-0.9,0.4-1.8,0.6-2.8l1.1-4.1h1.1l-2.3,8.1h-1.1l-1-4.2c-0.3-1-0.4-1.8-0.5-2.6l0,0
@@ -494,138 +511,138 @@ return(<div>
         </g>
       </g>
       <g id="Dziaki">
-        <polygon id="118"  className="st8" fill={this.props.color} points="506,282.4 478.3,302.5 457.8,242.6 491,231.9 	"/>
-        <polygon id="pusta" fill={this.props.color} points="530.2,274.5 506,282.4 491,231.9 512.3,225.1 513.1,224.7 	"/>
-        <polygon id="127" className="st8" fill={this.props.color} points="562.1,264.1 530.2,274.5 513.1,224.7 549.6,208.9 553.5,208 	"/>
-        <polygon id="41" className="st8" fill={this.props.color} points="593.1,254.7 589.9,255.1 562.1,264.1 553.5,208 590.3,199 	"/>
-        <polygon id="42" className="st8" fill={this.props.color} points="631.8,250.4 593.1,254.7 590.3,199 591.7,198.7 627,195.1 	"/>
-        <polygon id="43" className="st8" fill={this.props.color} points="666.4,246.4 631.8,250.4 627,195.1 658.3,192 	"/>
-        <polygon id="44" className="st8" fill={this.props.color} points="702,242.4 666.4,246.4 658.3,192 659.2,191.9 697.3,185.9 697.8,185.9 	"/>
-        <polygon id="45" className="st8" fill={this.props.color} points="736.8,238.5 736.8,238.5 702,242.4 697.8,185.9 734.4,181.9 	"/>
-        <polygon id="46" className="st8" fill={this.props.color} points="770.7,234.6 736.8,238.5 734.4,181.9 767.5,178.4 	"/>
-        <polygon id="47" className="st8" fill={this.props.color} points="807.6,230.5 770.7,234.6 767.5,178.4 799.4,175 	"/>
-        <polygon id="48" className="st8" fill={this.props.color} points="837.8,227.1 807.6,230.5 799.4,175 834.2,171.2 	"/>
-        <polygon id="49" className="st8" fill={this.props.color} points="877.6,222.6 837.8,227.1 834.2,171.2 871.5,167.2 	"/>
-        <polygon id="50" className="st8" fill={this.props.color} points="914.1,218.4 877.6,222.6 871.5,167.2 907,163.4 	"/>
-        <polygon id="51" className="st8" fill={this.props.color} points="949,214.5 914.1,218.4 907,163.4 943.4,159.5 	"/>
-        <polygon id="1" className="st8" fill={this.props.color} points="439,301.6 369.5,300 362.7,273 419.9,254.7 	"/>
-        <polygon id="40" className="st8" fill={this.props.color} points="478.3,302.5 439,301.6 419.9,254.7 457.8,242.6 	"/>
-        <polygon id="2" className="st8" fill={this.props.color} points="373.2,359.6 335.7,359.6 334.5,338.8 332.9,311 362.7,273 369.5,300 370,307.8 	"/>
-        <polygon id="109" className="st8" fill={this.props.color} points="148.7,529.5 79.4,541.2 72.4,515.2 101.6,505.8 127.4,490.4 	"/>
-        <polygon id="18" className="st8" fill={this.props.color} points="184.2,523.4 148.7,529.5 127.4,490.4 173.4,450.2 181.2,471 	"/>
-        <polygon id="10" className="st8" fill={this.props.color} points="234.3,417.9 230.9,470.6 218.6,471 181.2,471 173.4,450.2 227.6,403 230.9,410.4 	"/>
-        <polygon id="3" className="st8" fill={this.props.color} points="409,308 405.2,359.6 373.2,359.6 370,307.8 	"/>
-        <polygon id="6" className="st8" fill={this.props.color} points="354.4,408.8 317.6,408.8 316.4,338.8 334.5,338.8 335.7,359.6 352,359.6 	"/>
-        <polygon id="7" className="st8" fill={this.props.color} points="407.1,408.8 354.4,408.8 352,359.6 405.2,359.6 	"/>
-        <polygon id="9" className="st8" fill={this.props.color} points="460.7,358.3 459.5,408.8 407.1,408.8 405.2,359.6 444.9,359.6 	"/>
-        <polygon id="63" className="st8" fill={this.props.color} points="514.5,408.8 459.5,408.8 460.7,358.3 483.7,356.3 506,349.9 	"/>
-        <polygon id="14" className="st8" fill={this.props.color} points="373.2,417.9 373.2,467.7 339.3,467.7 338.1,417.9 	"/>
-        <polygon id="11" className="st8" fill={this.props.color} points="268.7,469.4 253,469.9 230.9,470.6 234.3,417.9 265.8,417.9 	"/>
-        <polygon id="129" className="st8" fill={this.props.color} points="526.5,467.7 479.4,467.7 479.4,416.2 517.5,416.6 	"/>
-        <polygon id="19" className="st8" fill={this.props.color} points="221.6,522.9 184.2,523.4 181.2,471 218.6,471 	"/>
-        <polygon id="20" className="st8" fill={this.props.color} points="253.6,522.5 221.6,522.9 218.6,471 230.9,470.6 253,469.9 	"/>
-        <polygon id="21" className="st8" fill={this.props.color} points="289.9,468.8 289.2,522.1 253.6,522.5 253,469.9 268.7,469.4 	"/>
-        <polygon id="22" className="st8" fill={this.props.color} points="325.5,467.7 325.5,521.6 289.2,522.1 289.9,468.8 	"/>
-        <polygon id="23" className="st8" fill={this.props.color} points="362.7,467.7 362.7,521.1 325.5,521.6 325.5,467.7 	"/>
-        <polygon id="24" className="st8" fill={this.props.color} points="398.5,520.7 362.7,521.1 362.7,467.7 397.3,467.7 	"/>
-        <polygon id="25" className="st8" fill={this.props.color} points="433.5,467.7 432.9,520.2 398.5,520.7 397.3,467.7 	"/>
-        <polygon id="26" className="st8" fill={this.props.color} points="465.4,467.7 465.4,519.8 432.9,520.2 433.5,467.7 	"/>
-        <polygon id="27" className="st8" fill={this.props.color} points="514.5,467.7 514.5,519.2 465.4,519.8 465.4,467.7 	"/>
-        <polygon id="5" className="st8" fill={this.props.color} points="317.6,408.8 280.6,409.5 275.8,369.5 316.7,357.6 	"/>
-        <polygon id="8" className="st8" fill={this.props.color} points="316.7,357.6 275.8,369.5 280.6,409.5 230.9,410.4 227.6,403 332.9,311 334.5,338.8 
+        <polygon id="118"  className="st8"  points="506,282.4 478.3,302.5 457.8,242.6 491,231.9 	"/>
+        <polygon className="ast8"  points="530.2,274.5 506,282.4 491,231.9 512.3,225.1 513.1,224.7 	"/>
+        <polygon id="127" className="st8"  points="562.1,264.1 530.2,274.5 513.1,224.7 549.6,208.9 553.5,208 	"/>
+        <polygon id="41" className="st8"  points="593.1,254.7 589.9,255.1 562.1,264.1 553.5,208 590.3,199 	"/>
+        <polygon id="42" className="st8"  points="631.8,250.4 593.1,254.7 590.3,199 591.7,198.7 627,195.1 	"/>
+        <polygon id="43" className="st8"  points="666.4,246.4 631.8,250.4 627,195.1 658.3,192 	"/>
+        <polygon id="44" className="st8"  points="702,242.4 666.4,246.4 658.3,192 659.2,191.9 697.3,185.9 697.8,185.9 	"/>
+        <polygon id="45" className="st8"  points="736.8,238.5 736.8,238.5 702,242.4 697.8,185.9 734.4,181.9 	"/>
+        <polygon id="46" className="st8"  points="770.7,234.6 736.8,238.5 734.4,181.9 767.5,178.4 	"/>
+        <polygon id="47" className="st8"  points="807.6,230.5 770.7,234.6 767.5,178.4 799.4,175 	"/>
+        <polygon id="48" className="st8"  points="837.8,227.1 807.6,230.5 799.4,175 834.2,171.2 	"/>
+        <polygon id="49" className="st8"  points="877.6,222.6 837.8,227.1 834.2,171.2 871.5,167.2 	"/>
+        <polygon id="50" className="st8"  points="914.1,218.4 877.6,222.6 871.5,167.2 907,163.4 	"/>
+        <polygon id="51" className="st8"  points="949,214.5 914.1,218.4 907,163.4 943.4,159.5 	"/>
+        <polygon id="1" className="st8"  points="439,301.6 369.5,300 362.7,273 419.9,254.7 	"/>
+        <polygon id="40" className="st8"  points="478.3,302.5 439,301.6 419.9,254.7 457.8,242.6 	"/>
+        <polygon id="2" className="st8"  points="373.2,359.6 335.7,359.6 334.5,338.8 332.9,311 362.7,273 369.5,300 370,307.8 	"/>
+        <polygon id="109" className="st8"  points="148.7,529.5 79.4,541.2 72.4,515.2 101.6,505.8 127.4,490.4 	"/>
+        <polygon id="18" className="st8"  points="184.2,523.4 148.7,529.5 127.4,490.4 173.4,450.2 181.2,471 	"/>
+        <polygon id="10" className="st8"  points="234.3,417.9 230.9,470.6 218.6,471 181.2,471 173.4,450.2 227.6,403 230.9,410.4 	"/>
+        <polygon id="3" className="st8"  points="409,308 405.2,359.6 373.2,359.6 370,307.8 	"/>
+        <polygon id="6" className="st8"  points="354.4,408.8 317.6,408.8 316.4,338.8 334.5,338.8 335.7,359.6 352,359.6 	"/>
+        <polygon id="7" className="st8"  points="407.1,408.8 354.4,408.8 352,359.6 405.2,359.6 	"/>
+        <polygon id="9" className="st8"  points="460.7,358.3 459.5,408.8 407.1,408.8 405.2,359.6 444.9,359.6 	"/>
+        <polygon id="63" className="st8"  points="514.5,408.8 459.5,408.8 460.7,358.3 483.7,356.3 506,349.9 	"/>
+        <polygon id="14" className="st8"  points="373.2,417.9 373.2,467.7 339.3,467.7 338.1,417.9 	"/>
+        <polygon id="11" className="st8"  points="268.7,469.4 253,469.9 230.9,470.6 234.3,417.9 265.8,417.9 	"/>
+        <polygon id="129" className="st8"  points="526.5,467.7 479.4,467.7 479.4,416.2 517.5,416.6 	"/>
+        <polygon id="19" className="st8"  points="221.6,522.9 184.2,523.4 181.2,471 218.6,471 	"/>
+        <polygon id="20" className="st8"  points="253.6,522.5 221.6,522.9 218.6,471 230.9,470.6 253,469.9 	"/>
+        <polygon id="21" className="st8"  points="289.9,468.8 289.2,522.1 253.6,522.5 253,469.9 268.7,469.4 	"/>
+        <polygon id="22" className="st8"  points="325.5,467.7 325.5,521.6 289.2,522.1 289.9,468.8 	"/>
+        <polygon id="23" className="st8"  points="362.7,467.7 362.7,521.1 325.5,521.6 325.5,467.7 	"/>
+        <polygon id="24" className="st8"  points="398.5,520.7 362.7,521.1 362.7,467.7 397.3,467.7 	"/>
+        <polygon id="25" className="st8"  points="433.5,467.7 432.9,520.2 398.5,520.7 397.3,467.7 	"/>
+        <polygon id="26" className="st8"  points="465.4,467.7 465.4,519.8 432.9,520.2 433.5,467.7 	"/>
+        <polygon id="27" className="st8"  points="514.5,467.7 514.5,519.2 465.4,519.8 465.4,467.7 	"/>
+        <polygon id="5" className="st8"  points="317.6,408.8 280.6,409.5 275.8,369.5 316.7,357.6 	"/>
+        <polygon id="8" className="st8"  points="316.7,357.6 275.8,369.5 280.6,409.5 230.9,410.4 227.6,403 332.9,311 334.5,338.8 
           316.4,338.8 	"/>
-        <polygon id="38" className="st8" fill={this.props.color} points="494.6,582.3 457.1,581.1 457,581.1 456.5,529.1 491.2,529 	"/>
-        <polygon id="39" className="st8" fill={this.props.color} points="537.7,583.6 494.8,582.3 494.6,582.3 491.2,529 535.6,528.8 	"/>
-        <polygon id="124" className="st8" fill={this.props.color} points="79.4,541.2 5.8,553.7 9.1,508.7 65.5,517.4 72.4,515.2 	"/>
-        <polygon id="108" className="st8" fill={this.props.color} points="9.1,508.7 9.1,508.7 5.8,553.7 5.8,553.7 -25.3,559 -43.9,553.7 -35.6,501.8 	"/>
-        <polygon id="110" className="st8" fill={this.props.color} points="-3.5,559.7 -4.6,616.8 -53,611.7 -45.8,566.1 	"/>
-        <polygon id="111" className="st8" fill={this.props.color} points="34,610.9 -4.6,616.8 -3.5,559.7 32.5,554.3 	"/>
-        <polygon id="112" className="st8" fill={this.props.color} points="70.3,605.3 34,610.9 32.5,554.3 68,548.9 	"/>
-        <polygon id="113" className="st8" fill={this.props.color} points="104.3,600.1 70.3,605.3 68,548.9 102.9,543.6 	"/>
-        <polygon id="28" className="st8" fill={this.props.color} points="138.8,594.8 104.3,600.1 102.9,543.6 138.1,538.3 	"/>
-        <polygon id="29" className="st8" fill={this.props.color} points="174.5,589.3 138.8,594.8 138.1,538.3 173.4,532.5 	"/>
-        <polygon id="30" className="st8" fill={this.props.color} points="211.4,583.6 174.5,589.3 173.4,532.5 177.3,531.8 208.3,531.1 	"/>
-        <polygon id="31" className="st8" fill={this.props.color} points="243.7,582.3 211.4,583.6 208.3,531.1 243.2,530.3 	"/>
-        <polygon id="32" className="st8" fill={this.props.color} points="279.6,529.5 279.6,580.7 243.7,582.3 243.2,530.3 	"/>
-        <polygon id="33" className="st8" fill={this.props.color} points="314.3,529.5 313.8,579.3 279.6,580.7 279.6,529.5 	"/>
-        <polygon id="34" className="st8" fill={this.props.color} points="350.1,577.7 313.8,579.3 314.3,529.5 350,529.4 	"/>
-        <polygon id="35" className="st8" fill={this.props.color} points="386.8,529.3 384.5,578.7 351.1,577.7 350.1,577.7 350,529.4 	"/>
-        <polygon id="36" className="st8" fill={this.props.color} points="419.9,529.2 419.9,579.9 384.5,578.7 386.8,529.3 	"/>
-        <polygon id="37" className="st8" fill={this.props.color} points="457,581.1 419.9,579.9 419.9,529.2 456.5,529.1 	"/>
-        <polygon id="17" className="st8" fill={this.props.color} points="479.4,416.2 479.4,467.7 445.3,467.7 444.9,415.9 	"/>
-        <polygon id="16" className="st8" fill={this.props.color} points="445.3,467.7 409,467.7 409,415.5 444.9,415.9 	"/>
-        <polygon id="15" className="st8" fill={this.props.color} points="409,415.5 409,467.7 373.2,467.7 373.2,417.9 379.2,415.3 	"/>
-        <polygon id="13" className="st8" fill={this.props.color} points="339.3,467.7 325.5,467.7 303.7,468.4 303.7,417.9 338.1,417.9 	"/>
-        <polygon id="12" className="st8" fill={this.props.color} points="303.7,417.9 303.7,468.4 289.9,468.8 268.7,469.4 265.8,417.9 	"/>
-        <polygon id="4" className="st8" fill={this.props.color} points="444.9,308.2 444.9,359.6 405.2,359.6 409,308 	"/>
-        <polygon id="52" className="st8" fill={this.props.color} points="483.7,356.3 460.7,358.3 444.9,359.6 444.9,308.2 475.2,308.4 	"/>
-        <polygon id="116" className="st8" fill={this.props.color} points="834.8,574.6 832.2,630.5 792.5,625.4 798.2,574.6 	"/>
-        <polygon id="115" className="st8" fill={this.props.color} points="871.4,573.7 866.4,627.1 832.2,630.5 834.8,574.6 	"/>
-        <polygon id="114" className="st8" fill={this.props.color} points="908.6,572.8 902.5,623.5 866.4,627.1 871.4,573.7 	"/>
-        <polygon id="107" className="st8" fill={this.props.color} points="968.7,578.4 943.4,619.4 902.5,623.5 908.6,572.8 953.2,571.7 	"/>
-        <polygon id="53" className="st8" fill={this.props.color} points="614.1,314 574.7,321.3 562.1,274.8 604.6,264.1 	"/>
-        <polygon id="64" className="st8" fill={this.props.color} points="624.9,364.8 587.7,369.5 574.7,321.3 614.1,314 620.2,314 	"/>
-        <polygon id="54" className="st8" fill={this.props.color} points="647.3,314 614.1,314 604.6,264.1 641.2,264.1 	"/>
-        <polygon id="65" className="st8" fill={this.props.color} points="666.4,360.3 624.9,364.8 620.2,314 647.3,314 658.8,311.9 	"/>
-        <polygon id="55" className="st8" fill={this.props.color} points="681.8,307.8 658.8,311.9 647.3,314 641.2,264.1 679.1,260.3 	"/>
-        <polygon id="66" className="st8" fill={this.props.color} points="698.1,356.8 666.4,360.3 658.8,311.9 681.8,307.8 693.3,308.2 	"/>
-        <polygon id="56" className="st8" fill={this.props.color} points="717,300.2 693.3,308.2 681.8,307.8 679.1,260.3 712.3,254.7 	"/>
-        <polygon id="57" className="st8" fill={this.props.color} points="767.1,297.3 731.2,304.2 717,300.2 712.3,254.7 761.7,250.4 	"/>
-        <polygon id="67" className="st8" fill={this.props.color} points="736.8,352.5 698.1,356.8 693.3,308.2 717,300.2 731.2,304.2 	"/>
-        <polygon id="68" className="st8" fill={this.props.color} points="770.7,348.8 736.8,352.5 731.2,304.2 767.1,297.3 	"/>
-        <polygon id="58" className="st8" fill={this.props.color} points="812.5,293 812.5,293 776.7,297.3 770.7,246.4 807.6,246.4 	"/>
-        <polygon id="59" className="st8" fill={this.props.color} points="848.7,288.7 812.5,293 807.6,246.4 842.2,238.5 	"/>
-        <polygon id="60" className="st8" fill={this.props.color} points="884.8,284.4 848.7,288.7 842.2,238.5 881.5,234.6 	"/>
-        <polygon id="62" className="st8" fill={this.props.color} points="955.5,277.5 919.6,280.9 917.4,230.2 950.3,227.1 	"/>
-        <polygon id="73" className="st8" fill={this.props.color} points="960.6,327.1 921.9,331.3 919.6,280.9 955.5,277.5 	"/>
-        <polygon id="72" className="st8" fill={this.props.color} points="921.9,331.3 888.2,335 884.8,284.4 888.2,284 919.6,280.9 	"/>
-        <polygon id="71" className="st8" fill={this.props.color} points="888.2,335 853,339.4 849,290.6 848.7,288.7 884.8,284.4 	"/>
-        <polygon id="70" className="st8" fill={this.props.color} points="853,339.4 817.9,343.7 812.5,293 812.5,293 848.7,288.7 849,290.6 	"/>
-        <polygon id="69" className="st8" fill={this.props.color} points="817.9,343.7 817.9,343.7 782.6,348.1 776.7,297.3 812.5,293 	"/>
-        <polygon id="125" className="st8" fill={this.props.color} points="604.6,533.4 557.2,537.6 552.5,511.5 593.1,488.2 601.9,486.8 	"/>
-        <polygon id="101" className="st8" fill={this.props.color} points="644.2,529.9 604.6,533.4 601.9,486.8 636.4,481 	"/>
-        <polygon id="74" className="st8" fill={this.props.color} points="679.1,526.8 644.2,529.9 636.4,481 670.3,477.3 	"/>
-        <polygon id="84" className="st8" fill={this.props.color} points="712.3,523.9 679.1,526.8 670.3,477.3 708.9,472.3 	"/>
-        <polygon id="94" className="st8" fill={this.props.color} points="753.5,520.2 712.3,523.9 708.9,472.3 746.1,468.4 	"/>
-        <polygon id="95" className="st8" fill={this.props.color} points="788.1,514.4 753.5,520.2 746.1,468.4 782.6,467.7 	"/>
-        <polygon id="128" className="st8" fill={this.props.color} points="604.6,542.3 604.6,580 557.2,582.6 557.2,547.8 	"/>
-        <polygon id="123" className="st8" fill={this.props.color} points="658.8,536.1 658.8,581.2 648,577.7 604.6,580 604.6,542.3 	"/>
-        <polygon id="126" className="st8" fill={this.props.color} points="702,531.1 702,595.5 658.8,581.2 658.8,536.1 	"/>
-        <polygon id="119" className="st8" fill={this.props.color} points="563.5,326.5 517.3,345 503.1,292.9 545.1,282.4 549.8,307.8 557.2,304.5 	"/>
-        <polygon id="120" className="st8" fill={this.props.color} points="565.4,364.8 568.8,377.9 530.8,394.6 517.3,345 563.5,326.5 573.5,361.2 	"/>
-        <polygon id="121" className="st8" fill={this.props.color} points="589.1,430.9 544.4,448.3 534.2,406.2 580.9,385.9 	"/>
-        <polygon id="122" className="st8" fill={this.props.color} points="589.1,430.9 589.1,479.5 552.5,499.1 544.4,448.3 	"/>
-        <polygon id="75" className="st8" fill={this.props.color} points="644.2,422.5 599.2,427.2 593.1,427.2 589.1,383 637.1,373.5 	"/>
-        <polygon id="85" className="st8" fill={this.props.color} points="662.6,469.7 603.3,475.9 599.2,427.2 644.2,422.5 658.8,420.9 	"/>
-        <polygon id="76" className="st8" fill={this.props.color} points="679.1,418.7 658.8,420.9 644.2,422.5 637.1,373.5 672.4,369.5 	"/>
-        <polygon id="86" className="st8" fill={this.props.color} points="698.1,465.9 662.6,469.7 658.8,420.9 679.1,418.7 693.3,417.2 	"/>
-        <polygon id="77" className="st8" fill={this.props.color} points="717,414.6 693.3,417.2 679.1,418.7 672.4,369.5 712.9,364.8 	"/>
-        <polygon id="88" className="st8" fill={this.props.color} points="767.1,458.7 734,462.2 731.2,413.1 749.8,411.1 764.4,409.5 	"/>
-        <polygon id="87" className="st8" fill={this.props.color} points="734,462.2 698.1,465.9 693.3,417.2 717,414.6 731.2,413.1 	"/>
-        <polygon id="78" className="st8" fill={this.props.color} points="749.8,411.1 731.2,413.1 717,414.6 712.9,364.8 746.1,360.7 	"/>
-        <polygon id="117" className="st8" fill={this.props.color} points="783.3,457 767.1,458.7 764.4,409.5 749.8,411.1 746.1,360.7 770.7,357.6 776.6,409.5 
+        <polygon id="38" className="st8"  points="494.6,582.3 457.1,581.1 457,581.1 456.5,529.1 491.2,529 	"/>
+        <polygon id="39" className="st8"  points="537.7,583.6 494.8,582.3 494.6,582.3 491.2,529 535.6,528.8 	"/>
+        <polygon id="124" className="st8"  points="79.4,541.2 5.8,553.7 9.1,508.7 65.5,517.4 72.4,515.2 	"/>
+        <polygon id="108" className="st8"  points="9.1,508.7 9.1,508.7 5.8,553.7 5.8,553.7 -25.3,559 -43.9,553.7 -35.6,501.8 	"/>
+        <polygon id="110" className="st8"  points="-3.5,559.7 -4.6,616.8 -53,611.7 -45.8,566.1 	"/>
+        <polygon id="111" className="st8"  points="34,610.9 -4.6,616.8 -3.5,559.7 32.5,554.3 	"/>
+        <polygon id="112" className="st8"  points="70.3,605.3 34,610.9 32.5,554.3 68,548.9 	"/>
+        <polygon id="113" className="st8"  points="104.3,600.1 70.3,605.3 68,548.9 102.9,543.6 	"/>
+        <polygon id="28" className="st8"  points="138.8,594.8 104.3,600.1 102.9,543.6 138.1,538.3 	"/>
+        <polygon id="29" className="st8"  points="174.5,589.3 138.8,594.8 138.1,538.3 173.4,532.5 	"/>
+        <polygon id="30" className="st8"  points="211.4,583.6 174.5,589.3 173.4,532.5 177.3,531.8 208.3,531.1 	"/>
+        <polygon id="31" className="st8"  points="243.7,582.3 211.4,583.6 208.3,531.1 243.2,530.3 	"/>
+        <polygon id="32" className="st8"  points="279.6,529.5 279.6,580.7 243.7,582.3 243.2,530.3 	"/>
+        <polygon id="33" className="st8"  points="314.3,529.5 313.8,579.3 279.6,580.7 279.6,529.5 	"/>
+        <polygon id="34" className="st8"  points="350.1,577.7 313.8,579.3 314.3,529.5 350,529.4 	"/>
+        <polygon id="35" className="st8"  points="386.8,529.3 384.5,578.7 351.1,577.7 350.1,577.7 350,529.4 	"/>
+        <polygon id="36" className="st8"  points="419.9,529.2 419.9,579.9 384.5,578.7 386.8,529.3 	"/>
+        <polygon id="37" className="st8"  points="457,581.1 419.9,579.9 419.9,529.2 456.5,529.1 	"/>
+        <polygon id="17" className="st8"  points="479.4,416.2 479.4,467.7 445.3,467.7 444.9,415.9 	"/>
+        <polygon id="16" className="st8"  points="445.3,467.7 409,467.7 409,415.5 444.9,415.9 	"/>
+        <polygon id="15" className="st8"  points="409,415.5 409,467.7 373.2,467.7 373.2,417.9 379.2,415.3 	"/>
+        <polygon id="13" className="st8"  points="339.3,467.7 325.5,467.7 303.7,468.4 303.7,417.9 338.1,417.9 	"/>
+        <polygon id="12" className="st8"  points="303.7,417.9 303.7,468.4 289.9,468.8 268.7,469.4 265.8,417.9 	"/>
+        <polygon id="4" className="st8"  points="444.9,308.2 444.9,359.6 405.2,359.6 409,308 	"/>
+        <polygon id="52" className="st8"  points="483.7,356.3 460.7,358.3 444.9,359.6 444.9,308.2 475.2,308.4 	"/>
+        <polygon id="116" className="st8"  points="834.8,574.6 832.2,630.5 792.5,625.4 798.2,574.6 	"/>
+        <polygon id="115" className="st8"  points="871.4,573.7 866.4,627.1 832.2,630.5 834.8,574.6 	"/>
+        <polygon id="114" className="st8"  points="908.6,572.8 902.5,623.5 866.4,627.1 871.4,573.7 	"/>
+        <polygon id="107" className="st8"  points="968.7,578.4 943.4,619.4 902.5,623.5 908.6,572.8 953.2,571.7 	"/>
+        <polygon id="53" className="st8"  points="614.1,314 574.7,321.3 562.1,274.8 604.6,264.1 	"/>
+        <polygon id="64" className="st8"  points="624.9,364.8 587.7,369.5 574.7,321.3 614.1,314 620.2,314 	"/>
+        <polygon id="54" className="st8"  points="647.3,314 614.1,314 604.6,264.1 641.2,264.1 	"/>
+        <polygon id="65" className="st8"  points="666.4,360.3 624.9,364.8 620.2,314 647.3,314 658.8,311.9 	"/>
+        <polygon id="55" className="st8"  points="681.8,307.8 658.8,311.9 647.3,314 641.2,264.1 679.1,260.3 	"/>
+        <polygon id="66" className="st8"  points="698.1,356.8 666.4,360.3 658.8,311.9 681.8,307.8 693.3,308.2 	"/>
+        <polygon id="56" className="st8"  points="717,300.2 693.3,308.2 681.8,307.8 679.1,260.3 712.3,254.7 	"/>
+        <polygon id="57" className="st8"  points="767.1,297.3 731.2,304.2 717,300.2 712.3,254.7 761.7,250.4 	"/>
+        <polygon id="67" className="st8"  points="736.8,352.5 698.1,356.8 693.3,308.2 717,300.2 731.2,304.2 	"/>
+        <polygon id="68" className="st8"  points="770.7,348.8 736.8,352.5 731.2,304.2 767.1,297.3 	"/>
+        <polygon id="58" className="st8"  points="812.5,293 812.5,293 776.7,297.3 770.7,246.4 807.6,246.4 	"/>
+        <polygon id="59" className="st8"  points="848.7,288.7 812.5,293 807.6,246.4 842.2,238.5 	"/>
+        <polygon id="60" className="st8"  points="884.8,284.4 848.7,288.7 842.2,238.5 881.5,234.6 	"/>
+        <polygon id="62" className="st8"  points="955.5,277.5 919.6,280.9 917.4,230.2 950.3,227.1 	"/>
+        <polygon id="73" className="st8"  points="960.6,327.1 921.9,331.3 919.6,280.9 955.5,277.5 	"/>
+        <polygon id="72" className="st8"  points="921.9,331.3 888.2,335 884.8,284.4 888.2,284 919.6,280.9 	"/>
+        <polygon id="71" className="st8"  points="888.2,335 853,339.4 849,290.6 848.7,288.7 884.8,284.4 	"/>
+        <polygon id="70" className="st8"  points="853,339.4 817.9,343.7 812.5,293 812.5,293 848.7,288.7 849,290.6 	"/>
+        <polygon id="69" className="st8"  points="817.9,343.7 817.9,343.7 782.6,348.1 776.7,297.3 812.5,293 	"/>
+        <polygon id="125" className="st8"  points="604.6,533.4 557.2,537.6 552.5,511.5 593.1,488.2 601.9,486.8 	"/>
+        <polygon id="101" className="st8"  points="644.2,529.9 604.6,533.4 601.9,486.8 636.4,481 	"/>
+        <polygon id="74" className="st8"  points="679.1,526.8 644.2,529.9 636.4,481 670.3,477.3 	"/>
+        <polygon id="84" className="st8"  points="712.3,523.9 679.1,526.8 670.3,477.3 708.9,472.3 	"/>
+        <polygon id="94" className="st8"  points="753.5,520.2 712.3,523.9 708.9,472.3 746.1,468.4 	"/>
+        <polygon id="95" className="st8"  points="788.1,514.4 753.5,520.2 746.1,468.4 782.6,467.7 	"/>
+        <polygon id="128" className="st8"  points="604.6,542.3 604.6,580 557.2,582.6 557.2,547.8 	"/>
+        <polygon id="123" className="st8"  points="658.8,536.1 658.8,581.2 648,577.7 604.6,580 604.6,542.3 	"/>
+        <polygon id="126" className="st8"  points="702,531.1 702,595.5 658.8,581.2 658.8,536.1 	"/>
+        <polygon id="119" className="st8"  points="563.5,326.5 517.3,345 503.1,292.9 545.1,282.4 549.8,307.8 557.2,304.5 	"/>
+        <polygon id="120" className="st8"  points="565.4,364.8 568.8,377.9 530.8,394.6 517.3,345 563.5,326.5 573.5,361.2 	"/>
+        <polygon id="121" className="st8"  points="589.1,430.9 544.4,448.3 534.2,406.2 580.9,385.9 	"/>
+        <polygon id="122" className="st8"  points="589.1,430.9 589.1,479.5 552.5,499.1 544.4,448.3 	"/>
+        <polygon id="75" className="st8"  points="644.2,422.5 599.2,427.2 593.1,427.2 589.1,383 637.1,373.5 	"/>
+        <polygon id="85" className="st8"  points="662.6,469.7 603.3,475.9 599.2,427.2 644.2,422.5 658.8,420.9 	"/>
+        <polygon id="76" className="st8"  points="679.1,418.7 658.8,420.9 644.2,422.5 637.1,373.5 672.4,369.5 	"/>
+        <polygon id="86" className="st8"  points="698.1,465.9 662.6,469.7 658.8,420.9 679.1,418.7 693.3,417.2 	"/>
+        <polygon id="77" className="st8"  points="717,414.6 693.3,417.2 679.1,418.7 672.4,369.5 712.9,364.8 	"/>
+        <polygon id="88" className="st8"  points="767.1,458.7 734,462.2 731.2,413.1 749.8,411.1 764.4,409.5 	"/>
+        <polygon id="87" className="st8"  points="734,462.2 698.1,465.9 693.3,417.2 717,414.6 731.2,413.1 	"/>
+        <polygon id="78" className="st8"  points="749.8,411.1 731.2,413.1 717,414.6 712.9,364.8 746.1,360.7 	"/>
+        <polygon id="117" className="st8"  points="783.3,457 767.1,458.7 764.4,409.5 749.8,411.1 746.1,360.7 770.7,357.6 776.6,409.5 
           779.3,415.5 	"/>
-        <polygon id="79" className="st8" fill={this.props.color} points="824.9,402.8 788.1,407.2 783.3,357.6 821,352.5 	"/>
-        <polygon id="80" className="st8" fill={this.props.color} points="860.9,398.4 824.9,402.8 821,352.5 855.7,347.9 	"/>
-        <polygon id="81" className="st8" fill={this.props.color} points="897,394.1 861.5,398.4 860.9,398.4 855.7,347.9 891.6,343 	"/>
-        <polygon id="82" className="st8" fill={this.props.color} points="932.5,389.9 897,394.1 891.6,343 927.5,343 	"/>
-        <polygon id="83" className="st8" fill={this.props.color} points="966,385.9 932.5,389.9 927.5,343 960.6,338.5 	"/>
-        <polygon id="93" className="st8" fill={this.props.color} points="971.6,434.6 937.7,438.3 932.5,389.9 966,385.9 	"/>
-        <polygon id="89" className="st8" fill={this.props.color} points="828.6,450.2 792.5,454.1 788.1,407.2 824.9,402.8 	"/>
-        <polygon id="90" className="st8" fill={this.props.color} points="865.7,446.1 828.6,450.2 824.9,402.8 860.9,398.4 	"/>
-        <polygon id="91" className="st8" fill={this.props.color} points="902.5,442.1 865.7,446.1 860.9,398.4 861.5,398.4 897,394.1 	"/>
-        <polygon id="92" className="st8" fill={this.props.color} points="937.7,438.3 902.5,442.1 897,394.1 932.5,389.9 	"/>
-        <polygon id="96" className="st8" fill={this.props.color} points="832.5,510.1 796.1,510.1 792.5,464.3 830.7,460.6 	"/>
-        <polygon id="97" className="st8" fill={this.props.color} points="873.3,507 869.5,507.3 836.4,509.8 832.5,510.1 830.7,460.6 865.7,455.3 	"/>
-        <polygon id="98" className="st8" fill={this.props.color} points="897,510.1 897,505.3 873.3,507 865.7,455.3 902.5,449.8 905.9,509.3 	"/>
-        <polygon id="106" className="st8" fill={this.props.color} points="983.9,553.8 975.1,568 945.8,555 943.8,505.8 978.3,502.7 	"/>
-        <polygon id="105" className="st8" fill={this.props.color} points="945.8,555 908.6,557.1 905.9,509.3 942.2,506 943.8,505.8 	"/>
-        <polygon id="104" className="st8" fill={this.props.color} points="908.6,557.1 873.2,559.1 869.5,507.3 873.3,507 897,505.3 897,510.1 905.9,509.3 	"/>
-        <polygon id="102" className="st8" fill={this.props.color} points="836.4,509.8 832.5,561.5 800.2,563.3 796.1,510.1 832.5,510.1 	"/>
-        <polygon id="103" className="st8" fill={this.props.color} points="873.2,559.1 832.5,561.5 836.4,509.8 869.5,507.3 	"/>
-        <polygon id="99" className="st8" fill={this.props.color} points="942.2,506 905.9,509.3 902.5,449.8 937.8,446 	"/>
-        <polygon id="100" className="st8" fill={this.props.color} points="978.3,502.7 943.8,505.8 942.2,506 937.8,446 971.6,442.5 	"/>
-        <polygon id="61" className="st8" fill={this.props.color} points="919.6,280.9 888.2,284 884.8,284.4 881.5,234.6 914.1,230.5 917.4,230.2 	"/>
+        <polygon id="79" className="st8"  points="824.9,402.8 788.1,407.2 783.3,357.6 821,352.5 	"/>
+        <polygon id="80" className="st8"  points="860.9,398.4 824.9,402.8 821,352.5 855.7,347.9 	"/>
+        <polygon id="81" className="st8"  points="897,394.1 861.5,398.4 860.9,398.4 855.7,347.9 891.6,343 	"/>
+        <polygon id="82" className="st8"  points="932.5,389.9 897,394.1 891.6,343 927.5,343 	"/>
+        <polygon id="83" className="st8"  points="966,385.9 932.5,389.9 927.5,343 960.6,338.5 	"/>
+        <polygon id="93" className="st8"  points="971.6,434.6 937.7,438.3 932.5,389.9 966,385.9 	"/>
+        <polygon id="89" className="st8"  points="828.6,450.2 792.5,454.1 788.1,407.2 824.9,402.8 	"/>
+        <polygon id="90" className="st8"  points="865.7,446.1 828.6,450.2 824.9,402.8 860.9,398.4 	"/>
+        <polygon id="91" className="st8"  points="902.5,442.1 865.7,446.1 860.9,398.4 861.5,398.4 897,394.1 	"/>
+        <polygon id="92" className="st8"  points="937.7,438.3 902.5,442.1 897,394.1 932.5,389.9 	"/>
+        <polygon id="96" className="st8"  points="832.5,510.1 796.1,510.1 792.5,464.3 830.7,460.6 	"/>
+        <polygon id="97" className="st8"  points="873.3,507 869.5,507.3 836.4,509.8 832.5,510.1 830.7,460.6 865.7,455.3 	"/>
+        <polygon id="98" className="st8"  points="897,510.1 897,505.3 873.3,507 865.7,455.3 902.5,449.8 905.9,509.3 	"/>
+        <polygon id="106" className="st8"  points="983.9,553.8 975.1,568 945.8,555 943.8,505.8 978.3,502.7 	"/>
+        <polygon id="105" className="st8"  points="945.8,555 908.6,557.1 905.9,509.3 942.2,506 943.8,505.8 	"/>
+        <polygon id="104" className="st8"  points="908.6,557.1 873.2,559.1 869.5,507.3 873.3,507 897,505.3 897,510.1 905.9,509.3 	"/>
+        <polygon id="102" className="st8"  points="836.4,509.8 832.5,561.5 800.2,563.3 796.1,510.1 832.5,510.1 	"/>
+        <polygon id="103" className="st8"  points="873.2,559.1 832.5,561.5 836.4,509.8 869.5,507.3 	"/>
+        <polygon id="99" className="st8"  points="942.2,506 905.9,509.3 902.5,449.8 937.8,446 	"/>
+        <polygon id="100" className="st8"  points="978.3,502.7 943.8,505.8 942.2,506 937.8,446 971.6,442.5 	"/>
+        <polygon id="61" className="st8"  points="919.6,280.9 888.2,284 884.8,284.4 881.5,234.6 914.1,230.5 917.4,230.2 	"/>
       </g>
       <g id="Linie">
         <g>
@@ -1861,7 +1878,7 @@ return(<div>
       <Wrapper>
         <NavBar />
         <Container>
-        <Mapka fill={randomColor()}/>
+        <Mapka />
         </Container>
       </Wrapper>
     )
@@ -1869,7 +1886,4 @@ return(<div>
 }
 
 
-function randomColor() {
-  return "#7FBC5E";
-}
 export default Garden
