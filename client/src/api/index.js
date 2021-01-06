@@ -119,7 +119,7 @@ export const getAllAllotments = () => api.get(`/allotments`)
 // export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
-export const getAllotmentByNumber = number => api.get(`/allotment/${number}`)
+export const getAllotmentByNumber = id => api.get(`/allotment/${id}`)
 
 export const insertMessage = payload => api.post(`/message`, payload)
 export const getAllMessages = () => api.get(`/messages`)

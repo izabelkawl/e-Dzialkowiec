@@ -8,7 +8,7 @@ import PrivateRoute from '../components/private-route/PrivateRoute';
 import LoggedNavBar from '../components/LoggedNavBar';
 
 import Dashboard from '../components/dashboard/Dashboard';
-import { Forum, Account, Allotment } from '../pages';
+import { Forum, Account, MyGarden, BuyingAllotment } from '../pages';
 
 import bg from './img/bgo.svg';
 import styled from 'styled-components';
@@ -38,7 +38,8 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
             <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
-            <PrivateRoute path="/dashboard/allotment" exact component={Allotment} />
+            <PrivateRoute path="/dashboard/allotment" exact component={MyGarden} />
+            <PrivateRoute path="/dashboard/allotments/update/:id" exact component={BuyingAllotment}/>
             <PrivateRoute path="/dashboard/commitment" exact component={Commitment} />
             <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />

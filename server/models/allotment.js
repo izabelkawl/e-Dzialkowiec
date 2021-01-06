@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Allotment = new Schema({
 
-  number: { type: Number, required: true },
+  number: { type: Number, required: true, unique: true  },
   allotment_width: { type: Number, required: true },
   allotment_length: { type: Number, required: true },
   price: { type: Number, require: true },

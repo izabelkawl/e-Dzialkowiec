@@ -1,18 +1,9 @@
 import React, { useState, useEffect, Component } from "react";
-import styled from 'styled-components';
-import NavBar from '../components/NavBar';
-import './MapColors.css'
-import api from "../api";
-const Wrapper = styled.div`
+import '../MapColors.css'
+import api from "../../api";
+import Wrapper from '../../components/Wrapper/Wrapper';
 
-`;
-const Container = styled.div`
-  width: 80vw;
-  margin: 0 auto;
-  padding: 50px;
-`;
-
-class Garden extends Component {
+class MyGarden extends Component {
 
   render() {
     const Mapka = (props) => {
@@ -96,6 +87,12 @@ function generateTooltipContent(provinceName) {
       for (let key in json) {
           if ( (json[key]) === "Wolna") {
             path.style.fill="#7FBC5E";
+            path.onclick = function updateAllotment(event) {
+                event.preventDefault()
+                const number = path.id
+                window.location.href = `/dashboard/allotments/update/${number}`
+            } 
+            path.style.cursor="pointer";
       }else if( (json[key]) === "Zajęta") {
             path.style.fill="#0071BC";
     }else if((json[key]) === "Na sprzedaż") {
@@ -1880,14 +1877,11 @@ return(<div>
       
     return (
       <Wrapper>
-        <NavBar />
-        <Container>
         <Mapka />
-        </Container>
       </Wrapper>
     )
   }
 }
 
 
-export default Garden
+export default MyGarden

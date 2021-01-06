@@ -7,7 +7,8 @@ import Contact from './Contact'
 
 import Forum from './logged/Forum'
 import Account from './logged/Account'
-import Allotment from './logged/Allotment'
+import MyGarden from './logged/MyGarden'
+import BuyingAllotment from './logged/BuyingAllotment'
 import Commitment from './logged/Commitment'
 import ForumThread from './logged/ForumThread'
 import Message from './logged/Messages'
@@ -29,4 +30,4 @@ import Finanse from './admin/Finance'
 import FinancesInsert from './admin/FinancesInsert'
 import ImageUpload from './ImageUpload';
 
-export { FrontPage, Management, About, AddComment , Contact,Messages, ForumThread,Message, ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden,Forum, Account, Allotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
+export { FrontPage, Management, About, AddComment , Contact,Messages, ForumThread,Message, ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden, BuyingAllotment, Forum, Account, MyGarden, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert }
