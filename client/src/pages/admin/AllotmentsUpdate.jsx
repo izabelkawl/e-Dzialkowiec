@@ -151,8 +151,7 @@ class AllotmentsUpdate extends Component {
                         as="select"
                         className={classnames("", {
                             invalid: errors.status
-                        })}value={status}
-                        defaultChecked={status}>
+                        })}value={status}>
 
                         <option>Wolna</option> 
                         <option>Zajęta</option> 
@@ -168,8 +167,7 @@ class AllotmentsUpdate extends Component {
                         as="select"
                         className={classnames("", {
                         invalid: errors.user_id
-                    })}value={user_id}
-                    defaultChecked={user_id}>
+                    })}value={user_id}>
 
                         <option>Brak</option>
                         <UsersID/>

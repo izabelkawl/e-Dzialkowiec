@@ -27,7 +27,7 @@ class MyGarden extends Component {
       }
         const tooltipData = {};
         allotments.map((allotment) => {
-          const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
+          const { _id, number, allotment_width, allotment_length, price, status, user_id } = allotment;
           if( status === "Wolna" ){
           return(
         tooltipData[number] = {
@@ -89,14 +89,19 @@ function generateTooltipContent(provinceName) {
             path.style.fill="#7FBC5E";
             path.onclick = function updateAllotment(event) {
                 event.preventDefault()
-                const number = path.id
-                window.location.href = `/dashboard/allotments/update/${number}`
-            } 
+                
+                const test = allotments.find(allotment => +path.id === allotment.number)
+
+                
+                window.location.href = `/dashboard/allotments/update/${test._id}`
+              }
             path.style.cursor="pointer";
       }else if( (json[key]) === "Zajęta") {
             path.style.fill="#0071BC";
     }else if((json[key]) === "Na sprzedaż") {
       path.style.fill="#CC0033";
+    }else if((json[key]) === "Rezerwacja") {
+      path.style.fill="yellow";
     }else if((json[key]) === "") {
       path.style.fill="#222222";
     }

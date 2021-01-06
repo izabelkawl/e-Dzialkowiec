@@ -99,7 +99,7 @@ const getAllotmentById = async (req, res) => {
 };
 
 const getAllotmentByNumber = async (req, res) => {
-  await Allotment.findOne({ _id: req.params.number }, (err, allotment) => {
+  await Allotment.findOne({ number : req.params.number }, (err, allotment) => {
     if (err) {
       return res.status(400).json({ success: false, error: err });
     }

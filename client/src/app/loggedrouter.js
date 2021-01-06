@@ -38,7 +38,7 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard" exact component={Dashboard} />
             <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
-            <PrivateRoute path="/dashboard/allotment" exact component={MyGarden} />
+            <PrivateRoute path="/dashboard/allotments" exact component={MyGarden} />
             <PrivateRoute path="/dashboard/allotments/update/:id" exact component={BuyingAllotment}/>
             <PrivateRoute path="/dashboard/commitment" exact component={Commitment} />
             <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
