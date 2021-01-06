@@ -100,6 +100,8 @@ function generateTooltipContent(provinceName) {
             path.style.fill="#0071BC";
     }else if((json[key]) === "Na sprzedaż") {
       path.style.fill="#CC0033";
+    }else if((json[key]) === "Rezerwacja") {
+      path.style.fill="yellow";
     }else if((json[key]) === "") {
       path.style.fill="#222222";
     }
