@@ -6,38 +6,6 @@ import isEmpty from "is-empty";
 
 
 const createAllotment = async (req, res) => {
-
-  // const body = req.body;
-  // const { errors, isValid } = validateRegisterInput(allotmentData);
-  // if (!body) {
-  //   return res.status(400).json({
-  //     success: false,
-  //     error: "You must provide a allotment",
-  //   });
-  // }
-
-  // const allotment = new Allotment(body);
-
-  // if (!allotment) {
-  //   return res.status(400).json({ success: false, error: err });
-  // }
-
-  // allotment
-  //   .save()
-  //   .then(() => {
-  //     return res.status(201).json({
-  //       success: true,
-  //       id: allotment._id,
-  //       message: "allotment created!",
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     return res.status(400).json({
-  //       error,
-  //       message: "allotment not created!",
-  //     });
-  //   });
-
 const allotmentData = req.body;
   const { errors, isValid } = validateAllotmentInput(allotmentData);
   const isAllotment = await Allotment.findOne({ number: allotmentData.number });
@@ -130,6 +98,21 @@ const getAllotmentById = async (req, res) => {
   }).catch((err) => console.log(err));
 };
 
+const getAllotmentByNumber = async (req, res) => {
+  await Allotment.findOne({ _number: req.params.number }, (err, allotment) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err });
+    }
+
+    if (!allotment) {
+      return res
+        .status(404)
+        .json({ success: false, error: `Brak działki o tym numerze` });
+    }
+    return res.status(200).json({ success: true, data: allotment });
+  }).catch((err) => console.log(err));
+};
+
 const getAllotments = async (req, res) => {
   await Allotment.find({}, (err, allotments) => {
     if (err) {
@@ -150,4 +133,5 @@ export default {
   deleteAllotment,
   getAllotments,
   getAllotmentById,
+  getAllotmentByNumber,
 };

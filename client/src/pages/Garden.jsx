@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from "react";
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import './MapColors.css'
-
+import api from "../api";
 const Wrapper = styled.div`
-`;
 
+`;
 const Container = styled.div`
   width: 80vw;
   margin: 0 auto;
@@ -15,37 +15,87 @@ const Container = styled.div`
 class Garden extends Component {
 
   render() {
+    const Mapka = (props) => {
+    
+  const [allotments, setAllotments] = useState([]);
+    // Tooltip
+      const tooltip = document.createElement("div");
+      tooltip.classList.add("tooltip-map");
+      tooltip.style.display = "none";
+      document.body.appendChild(tooltip);
 
-    const tooltip = document.createElement("div");
-    tooltip.classList.add("tooltip-map");
-    tooltip.style.display = "none";
-    document.body.appendChild(tooltip);
+      function setTooltipPos(x, y) {
+          tooltip.style.left = x + 20 + "px";
+          tooltip.style.top = y + 20 + "px";
+          if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
+              tooltip.style.left = x - tooltip.offsetWidth - 90 + "px";
+          }
+          if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
+              tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
+          }
+      }
+        const tooltipData = {};
+        allotments.map((allotment) => {
+          const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
+          return(
+        tooltipData[number] = {
+            'Szerokość' : allotment_width,
+            'Długość': allotment_length,
+            'Cena': price,
+            'Status': status,
+            'Użytkownik': user_id
+        })
+        });
+    const tooltipTemplate = `
+    <h2 class="tooltip-map-title">Działka o numerze: {{number}}</h2>
+     {{Content}}
+`;
+//Układ tooltipa
+function generateTooltipContent(provinceName) {
+  const ob = tooltipData[provinceName];
+  let html = "";
+  if (ob !== undefined) { //jezeli nie ma takiej działki w bazie
+      if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki są puste
+          html += "<div class=\"tooltip-map-content\">";
+          for (let key in ob) {
+              if (ob.hasOwnProperty(key)) {
+                  html += "<p>" + key + ": <b>" + ob[key] + "</b></p>";
+              }
+          }
+          html += "</div>";
+          return html;
+      }
+  }
+  return html;
+}
+    // Add Event Listener and Tooltip on st8 clas items
+    useEffect(() => {
+      const requestAllotmentsList = async () => {
+        const allotmentsList = await api.getAllAllotments();
+        const { data } = allotmentsList;
+        setAllotments(data.data);
+    };
+    requestAllotmentsList();
+    
+}, []);
+    const paths = document.querySelectorAll('.st8');
 
-    function setTooltipPos(x, y) {
-        tooltip.style.left = x + 20 + "px";
-        tooltip.style.top = y + 20 + "px";
-
-        if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
-            tooltip.style.left = x - tooltip.offsetWidth - 60 + "px";
-        }
-        if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
-            tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
-        }
-    }
-
-  const Mapka = (props) => {
-
-    React.useEffect(() => {
-	const paths = document.querySelectorAll('.st8');
 	for (const path of paths) {
-		 path.addEventListener('mouseover', function(e) {
-        tooltip.innerHTML = 'Działka o numerze: ' + this.id 
-                            + '<br>Szerokość: 5' 
-                            + '<br>Długość: 15'
-                            + '<br>Cena: 5500';
+		path.addEventListener('mouseover', function(e) {
+      if (typeof tooltipData !== "undefined") {
+        let tooltipHTML = tooltipTemplate;
+
+        const content = generateTooltipContent(this.id);
+        tooltipHTML = tooltipHTML.replace("{{number}}", this.id);
+        console.log(tooltipData[this.id])
+        tooltipHTML = tooltipHTML.replace("{{Content}}", content);
+        tooltip.innerHTML = tooltipHTML;
+
         setTooltipPos(e.pageX, e.pageY);
         tooltip.style.display = "";
-    });
+    }
+  });
+    
     path.addEventListener('mousemove', function(e) {
         setTooltipPos(e.pageX, e.pageY);
     });
@@ -54,10 +104,9 @@ class Garden extends Component {
         tooltip.style.display = "none";
         tooltip.innerHTML = "";
     });
-}
-}, []);
+  }
 
-return(
+return(<div>
       <svg xmlns="http://www.w3.org/2000/svg" fill={props.fill} version="1.1" id="Warstwa_1" x="0px" y="0px" viewBox="-89 134 1100 533" >
       <polygon id="cien" className="st0" points="974.6,566.8 965.9,581 959.4,591.4 934.1,632.4 893.2,636.5 857.1,640.1 823,643.5 
         783.3,638.4 692.7,608.5 649.5,594.2 638.8,590.7 595.4,593 547.9,595.6 528.4,596.6 485.6,595.3 485.3,595.3 447.8,594.1 
@@ -446,7 +495,7 @@ return(
       </g>
       <g id="Dziaki">
         <polygon id="118"  className="st8" fill={this.props.color} points="506,282.4 478.3,302.5 457.8,242.6 491,231.9 	"/>
-        <polygon id="pusta" className="st8" fill={this.props.color} points="530.2,274.5 506,282.4 491,231.9 512.3,225.1 513.1,224.7 	"/>
+        <polygon id="pusta" fill={this.props.color} points="530.2,274.5 506,282.4 491,231.9 512.3,225.1 513.1,224.7 	"/>
         <polygon id="127" className="st8" fill={this.props.color} points="562.1,264.1 530.2,274.5 513.1,224.7 549.6,208.9 553.5,208 	"/>
         <polygon id="41" className="st8" fill={this.props.color} points="593.1,254.7 589.9,255.1 562.1,264.1 553.5,208 590.3,199 	"/>
         <polygon id="42" className="st8" fill={this.props.color} points="631.8,250.4 593.1,254.7 590.3,199 591.7,198.7 627,195.1 	"/>
@@ -1804,6 +1853,7 @@ return(
       </g>
      
       </svg>
+      </div>
 )
   }
       
@@ -1812,14 +1862,6 @@ return(
         <NavBar />
         <Container>
         <Mapka fill={randomColor()}/>
-          <div id="a54" >
-           <p ><b>Numer działki: </b></p > 
-            <p>Szerokość:</p>
-            <p>Długość:</p>
-            <p>Cena:</p>
-            <p>Status:</p>
-            <p>Właściciel:</p>
-          </div>
         </Container>
       </Wrapper>
     )
