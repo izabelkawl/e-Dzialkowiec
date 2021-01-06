@@ -156,6 +156,7 @@ class AllotmentsUpdate extends Component {
                         <option>Wolna</option> 
                         <option>Zajęta</option> 
                         <option>Na sprzedaż</option> 
+                        <option>Rezerwacja</option> 
                     </Form.Control>
 
                     <Label htmlFor="user_id">Użytkownik: </Label>

@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
-import { Form, Button, Row, Col, } from 'react-bootstrap';
+import { Form, Button, Col, } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import classnames from "classnames";
@@ -75,14 +75,18 @@ class BuyingAllotment extends Component {
 
     render() {
         const { user } = this.props.auth;
-        const { errors, number, allotment_width, allotment_length, price, } = this.state;
+        const { errors, number, allotment_width, allotment_length, price } = this.state;
         return (
             <Wrapper>
                 <Title>Kupno działki</Title>
-                <Row>
+                <Form >
+                    
+                <Form.Row>
                     <Col><Label htmlFor="number">Numer:</Label></Col>
-                    <Col><Form.Control 
-                       onChange={this.onChange}
+                    <Col>
+                    <Form.Control 
+                    
+                    onChange={this.onChange}
                        error={errors.number}
                        id="number"
                        type="text"
@@ -90,15 +94,17 @@ class BuyingAllotment extends Component {
                            invalid: errors.number
                        })}
                        value={number}
-                       readOnly
-                    />
+                       readonly
+                      >
+                    </Form.Control>
                     </Col>
-                </Row>
-                <Row>
+                </Form.Row>
+                <Form.Row>
                     <Col><Label htmlFor="allotment_width">Szerokość: </Label>
                     </Col> 
                     <Col><Form.Control
-                        onChange={this.onChange}
+                    
+                    onChange={this.onChange}
                         error={errors.allotment_width}
                         id="allotment_width"
                         type="text"
@@ -106,13 +112,16 @@ class BuyingAllotment extends Component {
                             invalid: errors.allotment_width
                         })}
                         value={allotment_width}
-                        readOnly
-                    /></Col>
-                </Row> 
-                <Row>
+                        readonly
+                       >
+                            </Form.Control>
+                            </Col>
+                </Form.Row> 
+                <Form.Row>
                     <Col><Label htmlFor="allotment_length">Długość: </Label></Col>
                     <Col><Form.Control
-                        onChange={this.onChange}
+                    
+                    onChange={this.onChange}
                         error={errors.allotment_length}
                         id="allotment_length"
                         type="text"
@@ -120,13 +129,14 @@ class BuyingAllotment extends Component {
                         className={classnames("", {
                             invalid: errors.allotment_length
                         })}
-                        readOnly
-                    /></Col>
-                </Row>
-                <Row>
+                        readonly
+                    ></Form.Control></Col>
+                </Form.Row>
+                <Form.Row>
                     <Col><Label htmlFor="price">Cena: </Label></Col>
                     <Col> <Form.Control
-                         onChange={this.onChange}
+                    
+                    onChange={this.onChange}
                          error={errors.price}
                          id="price"
                          type="text"
@@ -134,12 +144,13 @@ class BuyingAllotment extends Component {
                              invalid: errors.price
                          })}
                          value={price}
-                        readOnly
-                    /></Col>
-                </Row>
-                <Row>
+                         readonly
+                    ></Form.Control></Col>
+                </Form.Row>
+                <Form.Row>
                     <Col><Label htmlFor="status">Status: </Label></Col>
                     <Col><Form.Control
+                        value="Rezeracja"
                         onChange={this.onChange}
                         error={errors.status} 
                         id="status"
@@ -147,24 +158,26 @@ class BuyingAllotment extends Component {
                         className={classnames("", {
                             invalid: errors.status
                         })}
-                        value="Rezerwacja"
-                        readOnly/></Col>
-                </Row>
-                <Row>
+                        readonly>
+                        </Form.Control>
+                       </Col>
+                </Form.Row>
+                <Form.Row>
                     <Col><Label htmlFor="user_id">Użytkownik: </Label></Col>
                     <Col><Form.Control
+                    value={user.firstname+' '+user.lastname}
                         onChange={this.onChange}
                         error={errors.user_id}
                         id="user_id"
                         type="text"
                         className={classnames("", {
                             invalid: errors.user_id
-                        })}
-                        value={user.firstname+' '+user.lastname}
-                        readOnly/></Col>
-                </Row>
+                        })}readonly
+                       ></Form.Control></Col>
+                </Form.Row>
                     <Button type="submit" onClick={this.handleUpdateAllotment}>Kupuje</Button>
                     <CancelButton href={'/dashboard/allotments'}>Powrót</CancelButton>
+                    </Form>
             </Wrapper>
         )
     }

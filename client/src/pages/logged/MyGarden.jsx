@@ -27,7 +27,7 @@ class MyGarden extends Component {
       }
         const tooltipData = {};
         allotments.map((allotment) => {
-          const { _id, number, allotment_width, allotment_length, price, status, user_id } = allotment;
+          const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
           if( status === "Wolna" ){
           return(
         tooltipData[number] = {
