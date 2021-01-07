@@ -47,8 +47,8 @@ class BuyingAllotment extends Component {
             allotment_width: allotment.data.data.allotment_width,
             allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
-            status: allotment.data.data.status,
-            user_id: allotment.data.data.user_id,
+            status: "Rezerwacja",
+            user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname
         })
     }
 
@@ -65,7 +65,7 @@ class BuyingAllotment extends Component {
     };
 
     handleUpdateAllotment = e => {
-
+        console.log(this.props.auth)
         e.preventDefault();
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
@@ -165,7 +165,7 @@ class BuyingAllotment extends Component {
                 <Form.Row>
                     <Col><Label htmlFor="user_id">Użytkownik: </Label></Col>
                     <Col><Form.Control
-                    value={user.firstname+' '+user.lastname}
+                        value={user.firstname+' '+user.lastname}
                         onChange={this.onChange}
                         error={errors.user_id}
                         id="user_id"
