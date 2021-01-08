@@ -1,25 +1,27 @@
 .st0{fill:#E2E2E2;}
 	.st1{fill:#EFEDAC;}
 	.st2{fill:#CCCC99;}
-	.st3{fill:#FFFF00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st3{fill:#FF9933;}
 	.st4{fill:#C4C080;}
 	.st5{fill:#CCCCCC;}
-	.st6{fill:#CC0033;}
-	.st7{fill:#0071BC;}
-	.st8{fill: #7FBC5E; stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st6{fill:#7FBC5E;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st7{fill:#666666;}
+	.st8{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;}
+	.st9{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.8233,14.8233;}
+	.st10{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:13.7609,13.7609;}
+	.st11{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:10.0848,10.0848;}
+	.st12{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.8713,14.8713;}
+	.st13{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.7887,14.7887;}
+	.st14{fill:#FFFFFF;}
+	.st15{fill:none;}
+	.st16{fill:#66CCFF;}
+	.st17{fill:#0071BC;}
+	.st18{fill:#009999;}
+	.st19{fill:#CC0033;}
+	.st20{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:15;}
+	.st21{fill:#FF9933;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st22{fill:#FFCC00;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
 	.ast8{fill: #7FBC5E; stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st9{fill:#FF9900;}
-	.st10{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:15;}
-	.st11{fill:#666666;}
-	.st12{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;}
-	.st13{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.8233,14.8233;}
-	.st14{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:13.7609,13.7609;}
-	.st15{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:10.0848,10.0848;}
-	.st16{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.8713,14.8713;}
-	.st17{fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:14.7887,14.7887;}
-	.st18{fill:#FFFFFF;}
-	.st19{fill:none;}
-	path{fill: black}
 	.tooltip-map {
     left: -999px;
     top: -999px;
