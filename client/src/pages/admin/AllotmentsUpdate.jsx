@@ -83,7 +83,6 @@ class AllotmentsUpdate extends Component {
         e.preventDefault();
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
-
         this.props.updateAllotmentById(id, payload)
     }
 
