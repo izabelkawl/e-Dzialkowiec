@@ -3,24 +3,16 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
-import { Form, Button, Col, } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-
+import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import classnames from "classnames";
 import Wrapper from '../../components/Wrapper/Wrapper'
+import Title from '../../components/Title'
 
-const Title = styled.h1`
-    font-size: 32px;
-`;
-
-const Label = styled.label`
-    margin: 5px;
-`;
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
+const Container = styled.div`
+    width: 70%;
+    margin: 0 auto;
 `;
 
 class BuyingAllotment extends Component {
@@ -78,15 +70,14 @@ class BuyingAllotment extends Component {
         const { errors, number, allotment_width, allotment_length, price } = this.state;
         return (
             <Wrapper>
+                <Container>
                 <Title>Kupno działki</Title>
                 <Form >
-                    
-                <Form.Row>
-                    <Col><Label htmlFor="number">Numer:</Label></Col>
-                    <Col>
-                    <Form.Control 
-                    
-                    onChange={this.onChange}
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>
+                    <Col sm="8">
+                    <Form.Control
+                        onChange={this.onChange}
                        error={errors.number}
                        id="number"
                        type="text"
@@ -94,17 +85,16 @@ class BuyingAllotment extends Component {
                            invalid: errors.number
                        })}
                        value={number}
-                       readonly
+                       readOnly
                       >
                     </Form.Control>
                     </Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col><Label htmlFor="allotment_width">Szerokość: </Label>
-                    </Col> 
-                    <Col><Form.Control
-                    
-                    onChange={this.onChange}
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="allotment_width">Szerokość: </Form.Label>
+                     <Col sm="8">
+                    <Form.Control                   
+                        onChange={this.onChange}
                         error={errors.allotment_width}
                         id="allotment_width"
                         type="text"
@@ -112,14 +102,15 @@ class BuyingAllotment extends Component {
                             invalid: errors.allotment_width
                         })}
                         value={allotment_width}
-                        readonly
+                        readOnly
                        >
                             </Form.Control>
-                            </Col>
-                </Form.Row> 
-                <Form.Row>
-                    <Col><Label htmlFor="allotment_length">Długość: </Label></Col>
-                    <Col><Form.Control
+                </Col>
+                </Form.Group> 
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="allotment_length">Długość: </Form.Label>
+                     <Col sm="8">
+                    <Form.Control
                     
                     onChange={this.onChange}
                         error={errors.allotment_length}
@@ -129,12 +120,14 @@ class BuyingAllotment extends Component {
                         className={classnames("", {
                             invalid: errors.allotment_length
                         })}
-                        readonly
-                    ></Form.Control></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col><Label htmlFor="price">Cena: </Label></Col>
-                    <Col> <Form.Control
+                        readOnly
+                    ></Form.Control>
+</Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
+                      <Col sm="8">
+                    <Form.Control
                     
                     onChange={this.onChange}
                          error={errors.price}
@@ -144,12 +137,14 @@ class BuyingAllotment extends Component {
                              invalid: errors.price
                          })}
                          value={price}
-                         readonly
-                    ></Form.Control></Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col><Label htmlFor="status">Status: </Label></Col>
-                    <Col><Form.Control
+                         readOnly
+                    ></Form.Control>
+</Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
+                     <Col sm="8">
+                    <Form.Control
                         value="Rezeracja"
                         onChange={this.onChange}
                         error={errors.status} 
@@ -158,13 +153,15 @@ class BuyingAllotment extends Component {
                         className={classnames("", {
                             invalid: errors.status
                         })}
-                        readonly>
+                        readOnly>
                         </Form.Control>
-                       </Col>
-                </Form.Row>
-                <Form.Row>
-                    <Col><Label htmlFor="user_id">Użytkownik: </Label></Col>
-                    <Col><Form.Control
+</Col>
+                       
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="4" htmlFor="user_id">Użytkownik: </Form.Label>
+                     <Col sm="8">
+                    <Form.Control
                         value={user.firstname+' '+user.lastname}
                         onChange={this.onChange}
                         error={errors.user_id}
@@ -172,12 +169,14 @@ class BuyingAllotment extends Component {
                         type="text"
                         className={classnames("", {
                             invalid: errors.user_id
-                        })}readonly
-                       ></Form.Control></Col>
-                </Form.Row>
-                    <Button type="submit" onClick={this.handleUpdateAllotment}>Kupuje</Button>
-                    <CancelButton href={'/dashboard/allotments'}>Powrót</CancelButton>
+                        })}readOnly
+                       ></Form.Control>
+                    </Col>
+                </Form.Group>
+                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Kupuje</Button>{' '}
+                    <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
                     </Form>
+                    </Container>
             </Wrapper>
         )
     }
