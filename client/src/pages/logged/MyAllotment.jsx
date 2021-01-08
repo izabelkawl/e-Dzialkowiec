@@ -18,7 +18,13 @@ const Span = styled.div`
     padding-bottom: 30px;
     color: gray;
 `
-class BuyingAllotment extends Component {
+const Error = styled.span.attrs({
+    className: `red-text`,
+})`
+    color: red;
+`
+
+class MyAllotment extends Component {
     constructor(props) {
         super(props)
 
@@ -42,7 +48,7 @@ class BuyingAllotment extends Component {
             allotment_width: allotment.data.data.allotment_width,
             allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
-            status: "Rezerwacja",
+            status: allotment.data.data.status,
             user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname
         })
     }
@@ -65,17 +71,16 @@ class BuyingAllotment extends Component {
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
 
         this.props.updateAllotmentById(id, payload)
-        alert('Właśnie kupiłeś działkę!\nSprawdź zakładkę Zobowiązania')
     }
 
     render() {
         const { user } = this.props.auth;
-        const { errors, number, allotment_width, allotment_length, price } = this.state;
+        const { errors, number, allotment_width, allotment_length, price, status } = this.state;
         return (
             <Wrapper>
                 <Container>
-                <Title>Kupno działki</Title>
-                <Span><i>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</i></Span>
+                <Title>Zarządzaj działką</Title>
+                <Span><i>*By wystawić działkę na sprzedaż ustaw dogodną cenę, zmień status działki, a pokaże się ona na mapie innym użytkownikom.</i></Span>
                 <Form >
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>
@@ -131,6 +136,8 @@ class BuyingAllotment extends Component {
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
                       <Col sm="8">
+                      
+                   
                     <Form.Control
                     
                     onChange={this.onChange}
@@ -141,24 +148,28 @@ class BuyingAllotment extends Component {
                              invalid: errors.price
                          })}
                          value={price}
-                         readOnly
                     ></Form.Control>
+                    
+                <Error>{errors.price}</Error>
 </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
                      <Col sm="8">
                     <Form.Control
-                        value="Rezeracja"
                         onChange={this.onChange}
                         error={errors.status} 
                         id="status"
-                        type="text"
+                        as="select"
                         className={classnames("", {
                             invalid: errors.status
-                        })}
-                        readOnly>
+                        })}value={status}>
+
+                        <option>Zajęta</option>
+                        <option>Na sprzedaż</option>
                         </Form.Control>
+                        
+                <Error>{errors.status}</Error>
 </Col>
                        
                 </Form.Group>
@@ -177,7 +188,7 @@ class BuyingAllotment extends Component {
                        ></Form.Control>
                     </Col>
                 </Form.Group>
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Kupuje</Button>{' '}
+                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>{' '}
                     <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
                     </Form>
                     </Container>
@@ -186,7 +197,7 @@ class BuyingAllotment extends Component {
     }
 }
 
-BuyingAllotment.propTypes = {
+MyAllotment.propTypes = {
     updateAllotmentById: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -200,4 +211,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { updateAllotmentById }
-)(withRouter( BuyingAllotment));
+)(withRouter(MyAllotment));

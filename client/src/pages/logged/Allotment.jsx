@@ -87,16 +87,16 @@ function generateTooltipContent(provinceName) {
     const paths = document.querySelectorAll('.st6');
   for (const path of paths) {
     const json = tooltipData[path.id]
-      for (let key in json) {
-        if ( (json[key]) === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname) {
+      for (const key in json) {
+        if ((json[key]) === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname) {
            path.style.fill="#ffc107";
            path.onclick = function MyGarden(event) {
              event.preventDefault()
              const test = allotments.find(allotment => +path.id === allotment.number)
              window.location.href = `/dashboard/allotments/mygarden/${test._id}`
-           }
+		}
           path.style.cursor="pointer";
-        } else if ( (json[key]) === "Wolna") {
+        } else if((json[key]) === "Wolna") {
             path.style.fill="#7FBC5E";
             path.onclick = function updateAllotment(event) {
               event.preventDefault()
@@ -104,15 +104,27 @@ function generateTooltipContent(provinceName) {
               window.location.href = `/dashboard/allotments/update/${test._id}`
             }
           path.style.cursor="pointer";
-        } else if( (json[key]) === "Zajęta") {
+        } else if((json[key]) === "Zajęta") {
           path.style.fill="#0071BC";
         } else if((json[key]) === "Na sprzedaż") {
-          path.style.fill="#CC0033";
-        } else if((json[key]) === "Rezerwacja") {
-          path.style.fill="#009999";
+		  path.style.fill="#CC0033";
+		  path.onclick = function updateAllotment(event) {
+			event.preventDefault()
+			const test = allotments.find(allotment => +path.id === allotment.number)
+			window.location.href = `/dashboard/allotments/update/${test._id}`
+		  }
+		path.style.cursor="pointer";
         } else if((json[key]) === "") {
           path.style.fill="#222222";
       }
+  }
+  for (let key in json) {
+	if((json[key]) === "Rezerwacja") {
+		path.style.fill="#009999";
+		path.onclick = function Empty() {
+	   }
+	   path.style.cursor="default";
+	  } 
   }
 		path.addEventListener('mouseover', function(e) {
       if (typeof tooltipData !== "undefined") {
