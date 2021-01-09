@@ -5,38 +5,9 @@ import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
-import styled from 'styled-components';
 import UsersID from './UsersID';
+import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
 
-const Title = styled.h1`
-    font-size: 32px;
-`;
-
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})` margin-left: auto;
-    margin-right: auto; 
-    background-color: white;
-    padding: 50px;
-    width: 600px;
-    margin-top: 50px;
-`;
-
-const Label = styled.label`
-    margin: 5px;
-`;
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`;
-
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 class AllotmentsUpdate extends Component {
     constructor(props) {
         super(props)
@@ -88,6 +59,7 @@ class AllotmentsUpdate extends Component {
 
     render() {
         const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
+        
         return (
             <Wrapper>
                 <Title>Edycja działki</Title>
@@ -141,7 +113,7 @@ class AllotmentsUpdate extends Component {
                         })}
                         value={price}
                     />
-                    <Label htmlFor="status">Status: </Label>
+                    <Label htmlFor="status" >Status: </Label>
                     <Span>{errors.status}</Span>
                     <Form.Control
                         onChange={this.onChange}
@@ -151,16 +123,15 @@ class AllotmentsUpdate extends Component {
                         className={classnames("", {
                             invalid: errors.status
                         })} value={this.state.value}>
-                            <option hidden>{status}</option>
-                        <option value="Wolna">Wolna</option> 
-                        <option value="dwa">Zajęta</option> 
-                        <option value="dwa" >Na sprzedaż</option> 
-                        <option value="dwa">Rezerwacja</option> 
+                        <option hidden>{status}</option>
+                        <option >Wolna</option> 
+                        <option >Zajęta</option> 
+                        <option >Na sprzedaż</option> 
+                        <option >Rezerwacja</option> 
                     </Form.Control>
                     <Label htmlFor="user_id">Użytkownik: </Label>
                     <Span>{errors.user_id}</Span>
                     <Form.Control
-                        
                         onChange={this.onChange}
                         error={errors.user_id}
                         id="user_id"
@@ -168,15 +139,13 @@ class AllotmentsUpdate extends Component {
                         className={classnames("", {
                         invalid: errors.user_id
                         })}>
-                            { this.state.value === "Wolna" ? <option>not</option> : <option>essa</option>}
-                        <option hidden>{user_id}</option>
-                        <option>Brak</option>
+                        <option hidden >{user_id}</option>
+                        <option >Brak</option>
                         <UsersID/>
                     </Form.Control>
-
-
-                    <Button type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
-                    <CancelButton href={'/admin/allotments/list'}>Zamknij</CancelButton>
+                    <br></br>
+                    <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>{' '}
+                    <Button style={BlueButtonStyle} href={'/admin/allotments/list'}>Zamknij</Button>
                     
             </Wrapper>
         )

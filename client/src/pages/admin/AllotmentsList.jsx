@@ -1,15 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
-import { Table, Button} from 'react-bootstrap';
-import styled from "styled-components";
+import { Table, Button } from 'react-bootstrap';
+import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
 
-const Wrapper = styled.div`
-    width: 80%;
-    margin: 0 auto;
-    padding: 50px;
-    margin-top: 50px;
-    background-color: white; 
-`;
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
@@ -18,7 +11,7 @@ class UpdateAllotment extends Component {
         window.location.href = `/admin/allotments/update/${this.props.id}`
     }
     render() {
-        return <Button variant="success" onClick={this.updateAllotment}>Update</Button>
+        return <Button style={BlueButtonStyle} onClick={this.updateAllotment}>Edytuj</Button>
     }
 }
 
@@ -35,7 +28,7 @@ class DeleteAllotment extends Component {
         }
     }
     render() {
-        return <Button variant="danger" onClick={this.deleteAllotment}>Delete</Button>
+        return <Button style={RedButtonStyle} onClick={this.deleteAllotment}>Usuń</Button>
     }
 }
 
@@ -61,15 +54,14 @@ const AllotmentsList = () => {
                 <td>{price}</td>
                 <td>{status}</td>
                 <td>{user_id}</td>
-
-                <td><DeleteAllotment id={_id} /></td>
                 <td><UpdateAllotment id={_id} /></td>
+                <td><DeleteAllotment id={_id} /></td>
             </tr>
         );
     });
 
-    return <Wrapper>
-         <Button variant="success" href="/admin/allotments/create" >Dodaj działke</Button>
+    return <List>
+         <Button style={BlueButtonStyle} href="/admin/allotments/create" >Dodaj działke</Button>
          <br></br>
          <br></br>
         <Table striped bordered hover size="sm" responsive>
@@ -90,7 +82,7 @@ const AllotmentsList = () => {
                 {AllotmentsTable}
             </tbody>
         </Table>
-    </Wrapper>
+    </List>
 };
 
 export default AllotmentsList;

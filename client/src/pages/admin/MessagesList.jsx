@@ -1,32 +1,14 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-    width: 70%;
-    background-color: white;
-    padding: 50px;
-    margin: 0 auto;
-    margin-top: 50px;
-`;
-
-class UpdateMessage extends Component {
-    updateMessage = event => {
-        event.preventDefault()
-        window.location.href = `/admin/messages/update/${this.props.id}`
-    }
-    render() {
-        return <Button variant="success" onClick={this.updateMessage}>Update</Button>
-    }
-}
+import { List,  RedButtonStyle } from '../constants';
 
 class DeleteMessage extends Component {
     deleteMessage = event => {
         event.preventDefault()
         if (
             window.confirm(
-                `Do tou want to delete the message ${this.props.id} permanently?`,
+                `Czy na pewno chcesz usunąć tą wiadomosć?`,
             )
         ) {
             api.deleteMessageById(this.props.id)
@@ -34,7 +16,7 @@ class DeleteMessage extends Component {
         }
     }
     render() {
-        return <Button variant="danger" onClick={this.deleteMessage}>Delete</Button>
+        return <Button style={RedButtonStyle} onClick={this.deleteMessage}>Delete</Button>
     }
 }
 
@@ -54,28 +36,24 @@ const MessagesList = () => {
 
         return (
             <tr key={_id}>
-                <td>{index + 1}</td>
                 <td>{user}</td>
                 <td>{recipient}</td>
                 <td>{content}</td>
-
+                {/* <td>{}</td> */}
                 <td><DeleteMessage id={_id} /></td>
-                <td><UpdateMessage id={_id} /></td>
             </tr>
         );
     });
 
-    return <Wrapper>
+    return <List>
             <Table striped bordered hover size="sm"  responsive>
                     <thead>
                         <tr>
-                            <th>Lp</th>
-                            <th>User</th>
-                            <th>Recipient</th>
-                            <th>Content</th>
+                            <th>Użytkownik</th>
+                            <th>Odbiorca</th>
+                            <th>Treść</th>
                             {/* Date */}
                             
-                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -83,7 +61,7 @@ const MessagesList = () => {
                         {MessagesTable}
                     </tbody>
                 </Table>
-            </Wrapper>;
+            </List>;
 };
 
 export default MessagesList;

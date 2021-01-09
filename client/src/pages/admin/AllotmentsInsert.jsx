@@ -3,46 +3,11 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { insertAllotment } from "../../api/index";
-import {Form }from 'react-bootstrap';
-
-import styled from 'styled-components';
+import { Form, Button }from 'react-bootstrap';
+import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
 import classnames from "classnames";
 import UsersID from './UsersID';
 
-const Title = styled.h1`
-    font-size: 32px;
-`;
-
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})`
-    margin-left: auto;
-    margin-right: auto; 
-    background-color: white;
-    padding: 50px;
-    width: 600px;
-    margin-top: 50px;
-`
-
-const Label = styled.label`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-const Span = styled.span`
-    color: red;
-    font-size: 80%;
-`
 class AllotmentsInsert extends Component {
     constructor() {
         super()
@@ -159,7 +124,7 @@ class AllotmentsInsert extends Component {
                         <option>Na sprzedaż</option> 
                     </Form.Control>
 
-                    <Label htmlFor="user_id">Użytkownik: </Label>
+                    <Label htmlFor="user_id">Działkowicz: </Label>
                     <Span>{errors.user_id}</Span>
                     <Form.Control
                         onChange={this.onChange}
@@ -173,10 +138,9 @@ class AllotmentsInsert extends Component {
                         <option>Brak</option>
                         <UsersID/>
                     </Form.Control>
-
-
-                    <Button type="submit">Dodaj działkę</Button>
-                    <CancelButton href={'/admin/allotments/list'}>Zamknij</CancelButton>
+                    <br></br>
+                    <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Zamknij</Button>{' '}
+                    <Button style={BlueButtonStyle} type="submit">Dodaj działkę</Button>
                     </Form>
             </Wrapper>
         )

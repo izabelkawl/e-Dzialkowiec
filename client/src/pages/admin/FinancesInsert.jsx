@@ -1,46 +1,10 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import {Form }from 'react-bootstrap';
-import styled from 'styled-components';
+import { Form }from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Wrapper, BlueButtonStyle, RedButtonStyle, Title } from '../constants';
 
 import UsersID from './UsersID';
-
-const Title = styled.h1`
-    font-size: 32px;
-`;
-
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})`
-    margin-left: auto;
-    margin-right: auto; 
-    background-color: white;
-    padding: 50px;
-    width: 600px;
-    margin-top: 50px;
-`
-
-const Label = styled.label`
-    margin: 5px;
-`
-
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
-const CancelButton = styled.a.attrs({
-    className: `btn btn-danger`,
-})`
-    margin: 15px 15px 15px 5px;
-`
 
 class FinancesInsert extends Component {
     constructor(props) {
@@ -119,67 +83,68 @@ class FinancesInsert extends Component {
     }
 
     render() {
-        const { allotment_number, area, term, payment_date, charge, account} = this.state
+        const { allotment_number, area, term, payment_date, charge} = this.state
         return (
             <Wrapper>
-                <Title>Create Finance</Title>
-
-                <Label>User: </Label>
-                <Form.Control as="select" onChange={this.handleChangeInputUserId}>
+                <Title>Tworzenie zobowiązania</Title>
+            <Form.Group><Form.Label>Odbiorca: </Form.Label>
+                <Form.Control
+                    as="select"
+                    onChange={this.handleChangeInputUserId}>
                     <option>Wybierz działkowicza</option>
                     <UsersID/>
                 </Form.Control>
-
-                <Label>Allotment Number: </Label>
-                <InputText
-                    type="text"
-                    value={allotment_number}
-                    onChange={this.handleChangeInputAllotmentNumber}
-                />
-                <Label>Area: </Label>
-                <InputText
-                    type="text"
-                    value={area}
-                    onChange={this.handleChangeInputArea}
-                />
-
-                <Label>Term: </Label>
-                <InputText
-                    type="date"
-                    value={term}
-                    onChange={this.handleChangeInputTerm}
-                />
-                <Label>payment_date: </Label>
-                    <InputText
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Numer działki: </Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={allotment_number}
+                        onChange={this.handleChangeInputAllotmentNumber}
+                    />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Tytuł: </Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={area}
+                        onChange={this.handleChangeInputArea}
+                    />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Termin zapłaty: </Form.Label>
+                    <Form.Control
+                        type="date"
+                        value={term}
+                        onChange={this.handleChangeInputTerm}
+                    />
+            </Form.Group>
+            <Form.Group hidden>
+                <Form.Label>payment_date: </Form.Label>
+                    <Form.Control
                         type="date"
                         value={payment_date}
                         onChange={this.handleChangeInputPaymentDate}
                     />
-
-                <Label>Charge: </Label>
-                <InputText
-                    type="text"
-                    value={charge}
-                    onChange={this.handleChangeInputCharge}
-                />
-
-                <Label>Status: </Label>
-
-                <Form.Control as="select"  onChange={this.handleChangeInputStatus}>
-                    <option>Wybierz..</option> 
-                    <option>Opłacona</option> 
-                    <option>Nieopłacona</option> 
-                </Form.Control>
-
-                <Label>Account: </Label>
-                <InputText
-                    type="text"
-                    value={account}
-                    onChange={this.handleChangeInputAccount}
-                />
-
-                <Button onClick={this.handleIncludeFinance}>Add Finance</Button>
-                <CancelButton href={'/admin/finance'}>Cancel</CancelButton>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>należność: </Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={charge}
+                        onChange={this.handleChangeInputCharge}
+                    />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Status: </Form.Label>
+                    <Form.Control as="select"  onChange={this.handleChangeInputStatus}>
+                        <option>Wybierz..</option> 
+                        <option>Opłacona</option> 
+                        <option>Nieopłacona</option> 
+                    </Form.Control>
+            </Form.Group>
+                <Button style={BlueButtonStyle} onClick={this.handleIncludeFinance}>Wyślij</Button>{' '}
+                <Button style={RedButtonStyle} href={'/admin/finance'}>Zamknij</Button>
             </Wrapper>
         )
     }

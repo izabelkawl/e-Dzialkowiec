@@ -63,11 +63,10 @@ class BuyingAllotment extends Component {
             return (
                 <div>
                     <br></br>
-                <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>
+                <Button style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '}
+                <Button style={RedButtonStyle} onClick={() => setModalShow(true)}>
                 Kupuję
-                </Button>{' '}
-                <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
-
+                </Button>
               <Modal show={modalShow}
               onHide={() => setModalShow(false)}
                 {...props}
@@ -86,13 +85,13 @@ class BuyingAllotment extends Component {
                   </p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={BlueButtonStyle} type="submit" onClick={() => {
+                    <Button style={BlueButtonStyle} onClick={() => setModalShow(false)}>Rezygnuje
+          </Button>&nbsp;
+                    <Button style={RedButtonStyle} type="submit" onClick={() => {
                         this.handleUpdateAllotment();
                         setModalShow(false)}
                         }>Kupuję</Button>
-                    <Button style={RedButtonStyle} onClick={() => setModalShow(false)}>
-            Rezygnuje
-          </Button>
+            
                 </Modal.Footer>
               </Modal>
               </div>

@@ -145,8 +145,8 @@ class MyAllotment extends Component {
                             <Error>{errors.status}</Error>
                         </Col>     
                     </Form.Group>
-                        <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>{' '}
-                        <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
+                        <Button style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '} 
+                        <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>
                 </Form>
             </Container>
         </Wrapper>

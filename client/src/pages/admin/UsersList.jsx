@@ -1,25 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-    width: 70%;
-    background-color: white; 
-    padding: 50px;
-    margin: 0 auto;
-    margin-top: 50px;
-`;
-
-class UpdateUser extends Component {
-    updateUser = event => {
-        event.preventDefault()
-        window.location.href = `/admin/users/update/${this.props.id}`
-    }
-    render() {
-        return <Button variant="success" onClick={this.updateUser}>Update</Button>
-    }
-}
+import { List, RedButtonStyle } from '../constants';
 
 class DeleteUser extends Component {
     deleteUser = event => {
@@ -34,7 +16,7 @@ class DeleteUser extends Component {
         }
     }
     render() {
-        return <Button variant="danger" onClick={this.deleteUser}>Delete</Button>
+        return <Button style={RedButtonStyle} onClick={this.deleteUser}>Usuń</Button>
     }
 }
 
@@ -60,24 +42,21 @@ const UsersList = () => {
                 <td>{lastname}</td>
                 <td>{address}</td>
                 <td>{phone}</td>
-
                 <td><DeleteUser id={_id} /></td>
-                <td><UpdateUser id={_id} /></td>
             </tr>
         );
     });
 
-    return <Wrapper>
+    return <List>
         <Table striped bordered hover size="sm"  responsive>
             <thead>
                 <tr>
                     <th>Lp</th>
-                    <th>email</th>
-                    <th>firstname</th>
-                    <th>lastname</th>
-                    <th>address</th>
-                    <th>phone</th>
-                    <th></th>
+                    <th>Email</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Adres</th>
+                    <th>Telefon</th>
                     <th></th>
                 </tr>
             </thead>
@@ -85,7 +64,7 @@ const UsersList = () => {
                 {UsersTable}
             </tbody>
         </Table>
-    </Wrapper>
+    </List>
 };
 
 export default UsersList;

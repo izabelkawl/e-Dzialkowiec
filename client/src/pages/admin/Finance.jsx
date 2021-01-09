@@ -1,34 +1,11 @@
 import React, { Component } from "react";
-import { Table, Form, Col, Row} from 'react-bootstrap';
-import styled from "styled-components";
+import { Table, Form, Col, Row, Button } from 'react-bootstrap';
+import { List,Title,  BlueButtonStyle, RedButtonStyle } from '../constants';
 
-const Wrapper = styled.div`
-    width: 80%;
-    margin: 0 auto;
-    padding:50px;
-    margin-top: 50px;
-    background-color: white; 
-`
-
-const Title = styled.h1`
-    font-size: 32px
-`;
-
-const Button = styled.button`
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-    
-`
-const InsertButton = styled.a.attrs({
-    className: `btn btn-success float-right`,
-})`
-   
-`
 class Management extends Component {
     render() {
         return (
-        <Wrapper>
+        <List>
              <Title>Opłaty</Title>
 < br/>
             <Row>
@@ -173,7 +150,7 @@ class Management extends Component {
                             
                         </Form.Group>
                              
-    <Button>Zapisz</Button>               
+    <Button style={BlueButtonStyle} >Zapisz</Button>               
                     </Form>
                     </Col>
                 <Col sm={{ span: 5 }}>
@@ -187,20 +164,20 @@ class Management extends Component {
     Pozdrawiamy zarząd ROW Rzeszów"/>
     </Form.Group>
                         
-    <Button >Zapisz</Button>
+    <Button style={BlueButtonStyle}>Zapisz</Button>
                     </Form>
                 </Col>
             </Row>
             <hr></hr>
             <Row>
-                <Col> <Form.Control
-                                        type="text"
-                                        placeholder="FIltruj.."
-                                    />
-                </Col>    
                 <Col>
-                    <InsertButton href="/admin/finance/create">Dodaj płatność</InsertButton>
+                    <Button style={RedButtonStyle} href="/admin/finance/create">Dodaj płatność</Button>
                 </Col>
+                <Col> <Form.Control
+                        type="text"
+                        placeholder="FIltruj.."
+                    />
+                </Col>   
             </Row>
             <br></br>
             <Row>
@@ -239,7 +216,7 @@ class Management extends Component {
         <option value="2">Nieopłacona</option>
        
       </Form.Control></td>
-     <td> <Button>Zapisz</Button></td>
+     <td> <Button style={BlueButtonStyle} >Zapisz</Button></td>
                        
                    
                 </tr>
@@ -263,7 +240,7 @@ class Management extends Component {
         <option value="2">Nieopłacona</option>
        
       </Form.Control></td>
-      <td> <Button>Zapisz</Button></td>
+      <td> <Button style={BlueButtonStyle}  >Zapisz</Button></td>
                 </tr>
                 
                 <tr>
@@ -288,7 +265,7 @@ class Management extends Component {
        
       </Form.Control></td>
       
-      <td> <Button>Zapisz</Button></td>
+      <td> <Button style={BlueButtonStyle} >Zapisz</Button></td>
                     
                 </tr>
                 <tr>
@@ -311,14 +288,14 @@ class Management extends Component {
         <option value="2">Nieopłacona</option>
        
       </Form.Control></td>
-      <td> <Button>Zapisz</Button></td>
+      <td> <Button style={BlueButtonStyle} >Zapisz</Button></td>
                 </tr>
             </tbody>
         </Table>
         </Col>
         </Row>
-        <Button>Wyślij upomnienia</Button>
-        </Wrapper>
+        <Button style={BlueButtonStyle} >Wyślij upomnienie</Button>
+        </List>
         )
     }
 };

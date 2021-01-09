@@ -1,120 +1,146 @@
-import React, { Component } from "react";
+import React, {Component, useState, useEffect } from "react";
+import api from "../../api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import { Form, Row, Col } from 'react-bootstrap';
-import styled from 'styled-components';
+import {Form,  Row, Col, Button  } from 'react-bootstrap';
+import { List,Title, BlueButtonStyle } from '../../pages/constants';
 
-const Wrapper = styled.div`
-    width: 80%;
-    margin: 0 auto;
-    padding: 50px;
-    margin-top: 50px;
-    background-color: white; 
-`
-const Title = styled.h1`
-    font-size: 32px;
-`;
+const AdminData = () => {
+    const [users, setUsers] = useState([]);
+    const [allotments, setAllotments] = useState([]);
+        useEffect(() => {
+            const requestUsersList = async () => {
+                const usersList = await api.getAllUsers();
+                const { data } = usersList;
+                setUsers(data.data);
+            };
+        const requestAllotmentsList = async () => {
+            const allotmentsList = await api.getAllAllotments();
+            const { data } = allotmentsList;
+            setAllotments(data.data);
+        };
+        requestAllotmentsList();
+        requestUsersList();
+    }, []);
 
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`
+    var wol = 0;
+    var zaj = 0;
+    var rez = 0;
+    
+    var result = users.reduce(function(sum) {
+        return sum = sum+1;
+    },0 );
+
+    const resultSum = allotments.map((allotment, index) => {
+        const { status } = allotment;
+            if (status === "Wolna"){
+                wol++
+            }
+            return wol
+        },)  
+    const resultZaj = allotments.map((allotment, index) => {
+            const { status } = allotment;
+                if (status === "Zajęta"){
+                    zaj++
+                }
+                return zaj
+            })  
+    const resultRez = allotments.map((allotment, index) => {
+        const { status } = allotment;
+        if (status === "Rezerwacja"){
+                rez++
+            }
+            return rez
+        })  
+    return ( 
+        <Form>
+            <Form.Group>
+                <Row>
+                    <Col sm={{ span: 3 }}>
+                        <Form.Label htmlFor="email">Liczba zarejestrowanych
+                            </Form.Label>
+                    </Col>
+                    <Col sm={{ span: 1, offset: 3 }}>
+                        <Form.Control
+                            type="text"
+                            value={result}
+                            disabled
+                        />
+                    </Col>
+                </Row>
+            </Form.Group>
+            <Form.Group>
+                <Row>
+                    <Col sm={3}>
+                        <Form.Label htmlFor="email">Wolne działki
+                            </Form.Label>
+                    </Col>
+                    <Col sm={{ span: 1, offset: 3 }}>
+                        <Form.Control
+                            type="text"
+                            value={resultSum.slice(-1)}
+                            disabled/>
+                    </Col>
+                </Row>
+            </Form.Group>
+            <Form.Group>
+                <Row>
+                    <Col sm={3}>
+                        <Form.Label htmlFor="email">Zajęte działki 
+                            </Form.Label>
+                    </Col>
+                    <Col sm={{ span: 1, offset: 3 }}>
+                        <Form.Control
+                                type="text"
+                                value={resultZaj.slice(-1)}
+                                disabled
+                            />
+                    </Col>
+                </Row>
+            </Form.Group>
+            <Form.Group>
+                <Row>
+                    <Col sm={3}>
+                        <Form.Label htmlFor="email">Ilość rezerwacji 
+                            </Form.Label>
+                    </Col>
+                    <Col sm={{ span: 1, offset: 3 }}>
+                        <Form.Control
+                                type="text"
+                                value={resultRez.slice(-1)}
+                                disabled
+                            />
+                    </Col>
+                </Row>
+            </Form.Group>
+    </Form>
+    )
+        
+}
 
 class Admin extends Component {
 
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
-    };
+    }
     render() {
-
         const { user } = this.props.auth;
         if (user.email === "edzialkowiec@gmail.com") {
             return (
-                <Wrapper >
-                    <Title>Panet Adminstratora</Title>
-                    <Form noValidate onSubmit={this.onSubmit}>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={{ span: 3 }}>
-                                    <Form.Label htmlFor="email">Liczba zarejestrowanych
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 1, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        value="164"
-                                        disabled
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={3}>
-                                    <Form.Label htmlFor="email">Wolne działki
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 1, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        value="54"
-                                        disabled
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={3}>
-                                    <Form.Label htmlFor="email">Działki na sprzedaż
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 1, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        value="12"
-                                        disabled
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={3}>
-                                    <Form.Label htmlFor="email">Liczba ogłoszeń
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 1, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        value="17"
-                                        disabled
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                    </Form>
-                   
-                    <Title>Dane administratora</Title>
+                <List >
+                    <Title>Panel Adminstratora</Title>
+                        <AdminData/>
+                    <Title>Dane zalogowanego</Title>
                     <Row>
-                        <Col><p>Email <b> {user.email}  </b></p>
-                            {/* <p>Imię <b> {user.firstname}  </b></p>
-                    <p>Nazwisko <b> {user.lastname}  </b></p> */}
-
-                            <p>Telefon <b> {user.phone}  </b></p></Col>
-                        <Col><Button
-                            onClick={this.onLogoutClick}
-                        >
-                            Wyloguj
-            </Button>
+                        <Col><p>Email: <b> {user.email}  </b></p>
+                            <p>Administrator: <b> {user.firstname+ ' ' +user.lastname}  </b></p></Col>
+                        <Col>
+                            <Button style={BlueButtonStyle} onClick={this.onLogoutClick} >Wyloguj</Button>
                         </Col>
                     </Row>
-                    <Button href="/dashboard" > Strona e-działkowiec </Button>
-                </Wrapper>
+                </List>
             );
     }
   }
