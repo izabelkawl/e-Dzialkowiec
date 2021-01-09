@@ -75,6 +75,8 @@ class MyAllotment extends Component {
 
     render() {
         const { user } = this.props.auth;
+        const [modalShow, setModalShow] = React.useState(false);
+
         const { errors, number, allotment_width, allotment_length, price, status } = this.state;
         return (
             <Wrapper>

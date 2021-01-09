@@ -3,15 +3,16 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+
 import styled from 'styled-components';
-import  {RedButtonStyle, BlueButtonStyle } from '../constants'
-import classnames from "classnames";
-import Wrapper from '../../components/Wrapper/Wrapper'
-import Title from '../../components/Title'
+import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
+import Wrapper from '../../components/Wrapper/Wrapper';
+import Title from '../../components/Title';
+// Button Style
+import  {RedButtonStyle, BlueButtonStyle } from '../constants';
 
 const Container = styled.div`
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
 `;
 const Span = styled.div`
@@ -29,8 +30,7 @@ class BuyingAllotment extends Component {
             allotment_length: '',
             price: '',
             status: '',
-            user_id: '',
-            errors: {}
+            user_id: ''
         }
     }
     componentDidMount = async () => {
@@ -47,30 +47,60 @@ class BuyingAllotment extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }
-
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    handleUpdateAllotment = e => {
-        e.preventDefault();
+    handleUpdateAllotment = () => {
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
-
         this.props.updateAllotmentById(id, payload)
         alert('Właśnie kupiłeś działkę!\nSprawdź zakładkę Zobowiązania')
     }
 
     render() {
-        const { user } = this.props.auth;
-        const { errors, number, allotment_width, allotment_length, price } = this.state;
+        const ConfirmModal = (props) => {
+            const [modalShow, setModalShow] = React.useState(false);
+            return (
+                <div>
+                    <br></br>
+                <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>
+                Kupuję
+                </Button>{' '}
+                <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
+
+              <Modal show={modalShow}
+              onHide={() => setModalShow(false)}
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="contained-modal-title-vcenter">
+                    Potwierdzenie
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <p>
+                    Potwierdzam kupno wybranej działki i zoobowiązuję sie uregulować nalżność do 7 dnia tygodnia.</p><p> W innym wypadku rezerwacja zniknie z systemu.
+                  </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button style={BlueButtonStyle} type="submit" onClick={() => {
+                        this.handleUpdateAllotment();
+                        setModalShow(false)}
+                        }>Kupuję</Button>
+                    <Button style={RedButtonStyle} onClick={() => setModalShow(false)}>
+            Rezygnuje
+          </Button>
+                </Modal.Footer>
+              </Modal>
+              </div>
+            );
+          }
+
+        const { number, allotment_width, allotment_length, price } = this.state;
         return (
             <Wrapper>
                 <Container>
@@ -82,12 +112,8 @@ class BuyingAllotment extends Component {
                     <Col sm="8">
                     <Form.Control
                         onChange={this.onChange}
-                       error={errors.number}
                        id="number"
                        type="text"
-                       className={classnames("", {
-                           invalid: errors.number
-                       })}
                        value={number}
                        readOnly
                       >
@@ -99,12 +125,8 @@ class BuyingAllotment extends Component {
                      <Col sm="8">
                     <Form.Control                   
                         onChange={this.onChange}
-                        error={errors.allotment_width}
                         id="allotment_width"
                         type="text"
-                        className={classnames("", {
-                            invalid: errors.allotment_width
-                        })}
                         value={allotment_width}
                         readOnly
                        >
@@ -114,71 +136,29 @@ class BuyingAllotment extends Component {
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="allotment_length">Długość: </Form.Label>
                      <Col sm="8">
-                    <Form.Control
-                    
-                    onChange={this.onChange}
-                        error={errors.allotment_length}
-                        id="allotment_length"
-                        type="text"
-                        value={allotment_length}
-                        className={classnames("", {
-                            invalid: errors.allotment_length
-                        })}
-                        readOnly
-                    ></Form.Control>
-</Col>
+                        <Form.Control
+                        onChange={this.onChange}
+                            id="allotment_length"
+                            type="text"
+                            value={allotment_length}
+                            readOnly>
+                        </Form.Control>
+                    </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
                       <Col sm="8">
                     <Form.Control
-                    
                     onChange={this.onChange}
-                         error={errors.price}
                          id="price"
                          type="text"
-                         className={classnames("", {
-                             invalid: errors.price
-                         })}
                          value={price}
                          readOnly
                     ></Form.Control>
 </Col>
                 </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control
-                        value="Rezerwacja"
-                        onChange={this.onChange}
-                        error={errors.status} 
-                        id="status"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.status
-                        })}
-                        readOnly>
-                        </Form.Control>
-</Col>
-                       
-                </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="user_id">Użytkownik: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control
-                        value={user.firstname+' '+user.lastname}
-                        onChange={this.onChange}
-                        error={errors.user_id}
-                        id="user_id"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.user_id
-                        })}readOnly
-                       ></Form.Control>
-                    </Col>
-                </Form.Group>
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Kupuje</Button>{' '}
-                    <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
+                {/* Modal */}
+                <ConfirmModal/>
                     </Form>
                     </Container>
             </Wrapper>
@@ -188,13 +168,11 @@ class BuyingAllotment extends Component {
 
 BuyingAllotment.propTypes = {
     updateAllotmentById: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    auth: state.auth
 });
 
 export default connect(
