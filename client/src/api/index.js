@@ -105,7 +105,7 @@ export const insertAllotment = (allotmentData, history) => dispatch => {
 export const updateAllotmentById = (id, payload) => dispatch => {
     api
         .put(`/allotment/${id}`, payload)
-        // .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -113,7 +113,18 @@ export const updateAllotmentById = (id, payload) => dispatch => {
             })
         );
 }
-
+// Update user
+export const buyAllotmentById = (id, payload) => dispatch => {
+    api
+        .put(`/allotment/${id}`, payload)
+        .then(res => window.alert(`Właśnie kupiłeś działkę!\nSprawdź zakładkę Zobowiązania`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 // export const insertAllotment = payload => api.post(`/allotment`, payload)
 export const getAllAllotments = () => api.get(`/allotments`)
 // export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
@@ -161,6 +172,7 @@ const apis = {
     insertAllotment,
     getAllAllotments,
     updateAllotmentById,
+    buyAllotmentById,
     deleteAllotmentById,
     getAllotmentById,
     getAllotmentByNumber,

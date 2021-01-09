@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateAllotmentById } from '../../api';
-
+import api, { buyAllotmentById } from '../../api';
+// Style
 import styled from 'styled-components';
 import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
@@ -54,8 +54,7 @@ class BuyingAllotment extends Component {
     handleUpdateAllotment = () => {
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
-        this.props.updateAllotmentById(id, payload)
-        alert('Właśnie kupiłeś działkę!\nSprawdź zakładkę Zobowiązania')
+        this.props.buyAllotmentById(id, payload)
     }
 
     render() {
@@ -167,7 +166,7 @@ class BuyingAllotment extends Component {
 }
 
 BuyingAllotment.propTypes = {
-    updateAllotmentById: PropTypes.func.isRequired,
+    buyAllotmentById: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
 
@@ -177,5 +176,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { updateAllotmentById }
+    { buyAllotmentById }
 )(withRouter( BuyingAllotment));

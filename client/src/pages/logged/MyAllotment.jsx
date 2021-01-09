@@ -23,7 +23,6 @@ const Error = styled.span.attrs({
 })`
     color: red;
 `
-
 class MyAllotment extends Component {
     constructor(props) {
         super(props)
@@ -66,135 +65,91 @@ class MyAllotment extends Component {
     };
 
     handleUpdateAllotment = e => {
-        e.preventDefault();
+        e.preventDefault()
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
-
         this.props.updateAllotmentById(id, payload)
     }
 
     render() {
-        const { user } = this.props.auth;
-        const [modalShow, setModalShow] = React.useState(false);
-
         const { errors, number, allotment_width, allotment_length, price, status } = this.state;
         return (
             <Wrapper>
                 <Container>
-                <Title>Zarządzaj działką</Title>
-                <Span><i>*By wystawić działkę na sprzedaż ustaw dogodną cenę, zmień status działki, a pokaże się ona na mapie innym użytkownikom.</i></Span>
-                <Form >
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>
-                    <Col sm="8">
-                    <Form.Control
-                        onChange={this.onChange}
-                       error={errors.number}
-                       id="number"
-                       type="text"
-                       className={classnames("", {
-                           invalid: errors.number
-                       })}
-                       value={number}
-                       readOnly
-                      >
-                    </Form.Control>
-                    </Col>
-                </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="allotment_width">Szerokość: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control                   
-                        onChange={this.onChange}
-                        error={errors.allotment_width}
-                        id="allotment_width"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.allotment_width
-                        })}
-                        value={allotment_width}
-                        readOnly
-                       >
+                    <Title>Zarządzaj działką</Title>
+                    <Span><i>*By wystawić działkę na sprzedaż ustaw dogodną cenę, zmień status działki, a pokaże się ona na mapie innym użytkownikom.</i></Span>
+                <Form>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>
+                        <Col sm="8">
+                            <Form.Control
+                                onChange={this.onChange}
+                                id="number"
+                                type="text"
+                                value={number}
+                                readOnly>
                             </Form.Control>
-                </Col>
-                </Form.Group> 
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="allotment_length">Długość: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control
-                    
-                    onChange={this.onChange}
-                        error={errors.allotment_length}
-                        id="allotment_length"
-                        type="text"
-                        value={allotment_length}
-                        className={classnames("", {
-                            invalid: errors.allotment_length
-                        })}
-                        readOnly
-                    ></Form.Control>
-</Col>
-                </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
-                      <Col sm="8">
-                      
-                   
-                    <Form.Control
-                    
-                    onChange={this.onChange}
-                         error={errors.price}
-                         id="price"
-                         type="text"
-                         className={classnames("", {
-                             invalid: errors.price
-                         })}
-                         value={price}
-                    ></Form.Control>
-                    
-                <Error>{errors.price}</Error>
-</Col>
-                </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.status} 
-                        id="status"
-                        as="select"
-                        className={classnames("", {
-                            invalid: errors.status
-                        })}value={status}>
-
-                        <option>Zajęta</option>
-                        <option>Na sprzedaż</option>
-                        </Form.Control>
-                        
-                <Error>{errors.status}</Error>
-</Col>
-                       
-                </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column sm="4" htmlFor="user_id">Użytkownik: </Form.Label>
-                     <Col sm="8">
-                    <Form.Control
-                        value={user.firstname+' '+user.lastname}
-                        onChange={this.onChange}
-                        error={errors.user_id}
-                        id="user_id"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.user_id
-                        })}readOnly
-                       ></Form.Control>
-                    </Col>
-                </Form.Group>
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>{' '}
-                    <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
-                    </Form>
-                    </Container>
-            </Wrapper>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="allotment_width">Szerokość: </Form.Label>
+                        <Col sm="8">
+                            <Form.Control                   
+                                onChange={this.onChange}
+                                id="allotment_width"
+                                type="text"
+                                value={allotment_width}
+                                readOnly>
+                            </Form.Control>
+                        </Col>
+                    </Form.Group> 
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="allotment_length">Długość: </Form.Label>
+                        <Col sm="8">
+                            <Form.Control
+                                onChange={this.onChange}
+                                id="allotment_length"
+                                type="text"
+                                value={allotment_length}
+                                readOnly>
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
+                        <Col sm="8">
+                            <Form.Control
+                                onChange={this.onChange}
+                                error={errors.price}
+                                id="price"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.price
+                                })}
+                                value={price}>
+                            </Form.Control>
+                        <Error>{errors.price}</Error>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
+                        <Col sm="8">
+                            <Form.Control
+                                onChange={this.onChange}
+                                id="status"
+                                as="select"
+                                value={status}>
+                                <option>Zajęta</option>
+                                <option>Na sprzedaż</option>
+                            </Form.Control>
+                            <Error>{errors.status}</Error>
+                        </Col>     
+                    </Form.Group>
+                        <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>{' '}
+                        <Button style={RedButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>
+                </Form>
+            </Container>
+        </Wrapper>
         )
     }
 }
