@@ -5,28 +5,8 @@ import { connect } from "react-redux";
 import api, { updateUserById } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
+import { Wrapper, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
 
-import styled from 'styled-components';
-const Title = styled.h1.attrs({
-    className: 'h1',
-})`font-size: 32px`
-
-const Wrapper = styled.div.attrs({
-    className: 'form-group',
-})`
-    margin-left: auto;
-    margin-right: auto; 
-    background-color: white;
-    padding: 50px;
-    width: 600px;
-    margin-top: 50px;
-`
-
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 class UsersUpdate extends Component {
     constructor(props) {
         super(props)
@@ -185,8 +165,8 @@ class UsersUpdate extends Component {
                     />
                 </Form.Group>
 
-                <Button variant="success" type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>&nbsp;&nbsp;
-                <Button variant="danger" href={'/admin/users/list'}>Powrót</Button>
+                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>{' '}
+                <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>
             </Wrapper>
         )
     }

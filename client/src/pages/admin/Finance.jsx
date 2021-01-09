@@ -2,24 +2,34 @@ import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Form, Col, Row, Button } from 'react-bootstrap';
 import { List,Title,  BlueButtonStyle, RedButtonStyle } from '../constants';
+
+class StatusUpdateBtn extends Component {
+    updateFinance = event => {
+        event.preventDefault()
+
+        window.location.href = `/admin/finances/update/${this.props.id}`
+    }
+    render() {
+        return <Button style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
+    }
+}
+
 class Management extends Component {
 
     render() {
         const FinancesList = () => {
-            
-const [finances, setFinances] = useState([]);
-        useEffect(() => {
-            const requestFinancesList = async () => {
-                const financesList = await api.getAllFinances();
-                const { data } = financesList;
-                setFinances(data.data);
-            };
-            requestFinancesList();
-        }, []);
-    
+            const [finances, setFinances] = useState([]);
+            useEffect(() => {
+                const requestFinancesList = async () => {
+                    const financesList = await api.getAllFinances();
+                    const { data } = financesList;
+                    setFinances(data.data);
+                };
+                requestFinancesList();
+            }, []);
+
         const FinancesTable = finances.map((finance, index) => {
-            const { _id, allotment_number, title, area, charge, term  } = finance;
-    
+            const { _id, allotment_number, title, area, charge, term, status  } = finance;
             return (
                 <tr key={_id}>
                     <td>{allotment_number}</td>
@@ -27,19 +37,8 @@ const [finances, setFinances] = useState([]);
                     <td>{area}</td>
                     <td>{charge}</td>
                     <td>{term}</td>
-                    {/* <td>{account}</td> */}
-                    
-                    <td><Form.Control
-                            as="select"
-                            className="mr-sm-2"
-                            id="inlineFormCustomSelect"
-                            custom
-                        >
-                            <option >Wybierz..</option>
-                            <option >Opłacona</option>
-                            <option >Nieopłacona</option>
-                        </Form.Control></td>
-                    <td><Button style={BlueButtonStyle} >Zapisz</Button></td>
+                    <td>{status}</td>
+                    <td><StatusUpdateBtn id={_id}/></td>
                 </tr>
             );
         })
@@ -209,7 +208,7 @@ const [finances, setFinances] = useState([]);
             <hr></hr>
             <Row>
                 <Col>
-                    <Button style={RedButtonStyle} href="/admin/finance/create">Dodaj płatność</Button>
+                    <Button style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
                 </Col>
                 <Col> <Form.Control
                         type="text"

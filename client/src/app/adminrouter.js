@@ -6,6 +6,7 @@ import store from "../store.js";
 import { connect } from "react-redux";
 
 import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management, Finanse, FinancesInsert } from '../pages'
+import StatusUpdate from '../pages/admin/StatusUpdate'
 
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Admin from '../components/dashboard/Admin';
@@ -53,8 +54,9 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/messages/create" exact component={MessagesInsert} />
                 <PrivateRoute path="/admin/messages/update/:id" exact component={MessagesUpdate} />
 
-                <PrivateRoute path="/admin/finance" exact component={Finanse} />
-                <PrivateRoute path="/admin/finance/create" exact component={FinancesInsert} />
+                <PrivateRoute path="/admin/finances/list" exact component={Finanse} />
+                <PrivateRoute path="/admin/finances/create" exact component={FinancesInsert} />
+                <PrivateRoute path="/admin/finances/update/:id" exact component={StatusUpdate} />
               </Switch>
             </Router>
           </ Container >

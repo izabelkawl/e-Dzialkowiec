@@ -157,7 +157,7 @@ export const deleteCommentById = id => api.delete(`/comment/${id}`)
 export const getCommentById = id => api.get(`/comment/${id}`)
 
 
-// Insert Allotment
+// Insert FInance
 export const insertFinance = (allotmentData, history) => dispatch => {
     api
         .post("/finance", allotmentData)
@@ -170,8 +170,19 @@ export const insertFinance = (allotmentData, history) => dispatch => {
         );
 };
 
+// Update finance
+export const updateFinanceById = (id, payload) => dispatch => {
+    api
+        .put(`/finance/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllFinances = () => api.get(`/finances`)
-export const updateFinanceById = (id, payload) => api.put(`/finance/${id}`, payload)
 export const deleteFinanceById = id => api.delete(`/finance/${id}`)
 export const getFinanceById = id => api.get(`/finance/${id}`)
 

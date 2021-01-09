@@ -115,7 +115,7 @@ class FinancesInsert extends Component {
                     </Form.Control>
             </Form.Group>
                 <Button style={BlueButtonStyle} type="submit">Wyślij</Button>{' '}
-                <Button style={RedButtonStyle} href={'/admin/finance'}>Zamknij</Button>
+                <Button style={RedButtonStyle} href={'/admin/finances/list'}>Zamknij</Button>
                 </Form>
             </Wrapper>
         )
