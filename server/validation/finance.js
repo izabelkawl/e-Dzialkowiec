@@ -1,42 +1,39 @@
 import Validator from "validator";
 import isEmpty from "is-empty";
 
-const validateAllotmentInput = (data) => {
+const validateFinanceInput = (data) => {
   let errors = {};
 
   // Convert empty fields to an empty string so we can use validator functions
-  data.number = !isEmpty(data.number) ? data.number : "";
-  data.allotment_width = !isEmpty(data.allotment_width) ? data.allotment_width : "";
-  data.allotment_length = !isEmpty(data.allotment_length) ? data.allotment_length : "";
-  data.price = !isEmpty(data.price) ? data.price : "";
+  data.allotment_number = !isEmpty(data.allotment_number) ? data.allotment_number : "";
+  data.title = !isEmpty(data.area) ? data.title : "";
+  data.area = !isEmpty(data.area) ? data.area : "";
+  data.charge = !isEmpty(data.charge) ? data.charge : "";
+  data.term = !isEmpty(data.term) ? data.term : "";
+  data.account = !isEmpty(data.account) ? data.account : "";
   data.status = !isEmpty(data.status) ? data.status : "";
-  data.user_id = !isEmpty(data.user_id) ? data.user_id : "";
 
-  // Number checks
-  if (Validator.isEmpty(data.number)) {
-    errors.number = " *Podaj numer działki";
+  if (Validator.isEmpty(data.allotment_number)) {
+    errors.allotment_number = " *Podaj numer działki";
   }
-  // Width checks
-  if (Validator.isEmpty(data.allotment_width)) {
-    errors.allotment_width = " *Podaj szerokość";
+  if (Validator.isEmpty(data.title)) {
+    errors.title = " *Podaj tytuł";
   }
-  // length checks
-  if (Validator.isEmpty(data.allotment_length)) {
-    errors.allotment_length = " *Długość jest wymagana";
+  if (Validator.isEmpty(data.area)) {
+    errors.area = " *Podaj szerokość";
   }
-  // Price checks
-  if (Validator.isEmpty(data.price)) {
-    errors.price = " *Cena jest wymagana";
+  if (Validator.isEmpty(data.charge)) {
+    errors.charge = " *Należność jest wymagana";
   }
-  // Status checks
+  if (Validator.isEmpty(data.term)) {
+    errors.term = " *Termin jest wymagana";
+  }
+  if (Validator.isEmpty(data.account)) {
+    errors.account = " *Podaj numer konta";
+  } 
   if (Validator.isEmpty(data.status)) {
-    errors.status = " *Podaj status";
+    errors.status = " *Wybierz status";
   } 
-  // Status checks
-  if (Validator.isEmpty(data.user_id)) {
-    errors.user_id = " *Wybierz działkowicza";
-  } 
-  // User_id empty or someone
 
   return {
     errors,
@@ -44,4 +41,4 @@ const validateAllotmentInput = (data) => {
   };
 };
 
-export default validateAllotmentInput;
+export default validateFinanceInput;

@@ -66,12 +66,12 @@ class FinancesInsert extends Component {
                     />
             </Form.Group>
             
-            <Form.Group hidden>
+            <Form.Group>
                 <Form.Label>Powierzchnia: </Form.Label>
                     <Form.Control
                     id="area"
                     value={this.state.area}
-                        type="date"
+                        type="text"
                         onChange={this.onChange}
                     />
             </Form.Group>
@@ -94,8 +94,21 @@ class FinancesInsert extends Component {
                     />
             </Form.Group>
             <Form.Group>
+                <Form.Label>Konto: </Form.Label>
+                    <Form.Control
+                        id="account"
+                        type="text"
+                        value={this.state.account}
+                        onChange={this.onChange}
+                    />
+            </Form.Group>
+            <Form.Group>
                 <Form.Label>Status: </Form.Label>
-                    <Form.Control as="select" value={this.state.status} id="status" onChange={this.onChange}>
+                    <Form.Control
+                    onChange={this.onChange}
+                    as="select" 
+                    value={this.state.status} 
+                    id="status" >
                         <option>Wybierz..</option> 
                         <option>Opłacona</option> 
                         <option>Nieopłacona</option> 

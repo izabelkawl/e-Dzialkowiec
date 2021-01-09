@@ -1,9 +1,10 @@
 import Finance from "../models/finance.js";
+import validateFinanceInput from "../validation/finance.js";
 
   const createFinance = async (req, res) => {
     const financeData = req.body;
-      const { errors, isValid } = validateFinanceInput(financeData);
-      const isFinance = await Finance.findOne({ number: financeData.number });
+    const { errors, isValid } = validateFinanceInput(financeData);
+    const isFinance = await Finance.findOne({ allotment_number: financeData.allotment_number });
     
       if (!isValid) return res.status(400).json(errors);
       if (!!isFinance)
