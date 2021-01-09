@@ -4,7 +4,6 @@ import validateAllotmentInput from "../validation/allotment.js";
 import validateUpdateAllotment from "../validation/updateAllotment.js";
 import isEmpty from "is-empty";
 
-
 const createAllotment = async (req, res) => {
 const allotmentData = req.body;
   const { errors, isValid } = validateAllotmentInput(allotmentData);

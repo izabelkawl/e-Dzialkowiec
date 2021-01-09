@@ -186,6 +186,36 @@ export const getAllFinances = () => api.get(`/finances`)
 export const deleteFinanceById = id => api.delete(`/finance/${id}`)
 export const getFinanceById = id => api.get(`/finance/${id}`)
 
+
+// Insert paymentdetail
+export const insertPaymentdetail = (paymentdetailData, history) => dispatch => {
+    api
+        .post("/paymentdetail", paymentdetailData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+// Update paymentdetail
+export const updatePaymentdetailById = (id, payload) => dispatch => {
+    api
+        .put(`/paymentdetail/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
+export const getAllPaymentdetails = () => api.get(`/paymentdetails`)
+export const deletePaymentdetailById = id => api.delete(`/paymentdetaile/${id}`)
+export const getPaymentdetailById = id => api.get(`/paymentdetail/${id}`)
+
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
@@ -225,11 +255,18 @@ const apis = {
     deleteForumById,
     getForumById,
 
+
     insertFinance,
     getAllFinances,
     updateFinanceById,
     deleteFinanceById,
     getFinanceById,
+
+    insertPaymentdetail,
+    getAllPaymentdetails,
+    updatePaymentdetailById,
+    deletePaymentdetailById,
+    getPaymentdetailById,
 
     insertComment,
     getAllComments,

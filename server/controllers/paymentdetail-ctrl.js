@@ -1,37 +1,23 @@
 import Paymentdetail from "../models/paymentdetail.js";
+import validatePaymentdetailInput from "../validation/paymentdetail.js";
 
-const createPaymentdetail = (req, res) => {
-  const body = req.body;
-
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a paymentdetail",
-    });
-  }
-
-  const paymentdetail = new Paymentdetail(body);
-
-  if (!paymentdetail) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  paymentdetail
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: paymentdetail._id,
-        message: "paymentdetail created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "paymentdetail not created!",
-      });
-    });
-};
+const createPaymentdetail = async (req, res) => {
+  const paymentdetailData = req.body;
+    const { errors, isValid } = validatePaymentdetailInput(paymentdetailData);
+    const isPaymentdetail = await Paymentdetail.findOne({ stable_price: paymentdetailData.stable_price });
+  
+    if (!isValid) return res.status(400).json(errors);
+    if (!!isPaymentdetail)
+      return res.status(400).json({ numberexists: " *Error" });
+  
+    const processedPaymentdetail = new Paymentdetail(paymentdetailData);
+  
+    try {
+      processedPaymentdetail.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
+  };
 
 const updatePaymentdetail = async (req, res) => {
   const body = req.body;

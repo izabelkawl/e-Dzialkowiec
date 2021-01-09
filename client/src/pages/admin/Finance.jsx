@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Form, Col, Row, Button } from 'react-bootstrap';
-import { List,Title,  BlueButtonStyle, RedButtonStyle } from '../constants';
+import { List,  BlueButtonStyle, RedButtonStyle } from '../constants';
+import PaymentdetailsUpdate from './PaymentdetailsUpdate';
 
 class StatusUpdateBtn extends Component {
     updateFinance = event => {
@@ -62,149 +63,7 @@ class Management extends Component {
     }
         return (
         <List>
-             <Title>Opłaty</Title>
-< br/>
-            <Row>
-            <Col sm={{ span: 7 }}> 
-            <Form noValidate onSubmit={this.onSubmit}>
-                    <Form.Group>
-                            
-                            <Row>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Label htmlFor="email">Powierzchnia działki (m2*przelicznik)
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        
-                                    />
-                                </Col >zł
-                                
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            
-                            <Row>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Label htmlFor="email">Składka członkowska
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        
-                                    />
-                                </Col>zł
-                            </Row>
-                        </Form.Group>
-                        
-                        <Form.Group>
-                            <Row>
-                                <Col sm={6}>
-                                    <Form.Label htmlFor="email">Zaliczka wodna (działka bez wodomierza)
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        
-                                    />
-                                </Col>zł
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={6}>
-                                    <Form.Label htmlFor="email">Opłata wodna
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                    />
-                                </Col>zł
-                            </Row>
-                        </Form.Group> <Form.Group>
-                            <Row>
-                                <Col sm={6}>
-                                    <Form.Label htmlFor="email">Opłata energetyczna
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                    />
-                                </Col>zł
-                            </Row>
-                        </Form.Group> 
-                        <Form.Group>
-                            <Row>
-                                <Col sm={6}>
-                                    <Form.Label htmlFor="email">Śmieci
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control
-                                        type="text"
-                                        
-                                    />
-                                </Col>zł
-                            </Row>
-                        </Form.Group>
-                    </Form>
-    <Button style={BlueButtonStyle} >Zapisz</Button> 
-                    </Col>
-                <Col sm={{ span: 5 }}>
-                                        <b>Dla stałej powierzchni działki 240m2:</b> 
-                                        <p>działka o powierzchni 240 m2 = 240 x 1,00 zł x = 240,00 zł</p>
-                                        <hr></hr>
-                                        <Form>
-                                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                    <Form.Label htmlFor="email">Termin płatności
-                                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control
-                                        type="date"
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                    <Form.Label htmlFor="email">Tytuł opłaty
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="2020 / nr działki"
-                                    />
-                                </Col>
-                            </Row>
-                            
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                    <Form.Label htmlFor="email">Konto
-                        </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="1234 1234 1234 1234 1234"
-                                    />
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                     </Form>
-                </Col>
-            </Row>
+           <PaymentdetailsUpdate/>
             <hr></hr>
             <Row>
                 <Col>
@@ -222,7 +81,6 @@ class Management extends Component {
             <FinancesList/>
         </Col>
         </Row>
-        <Button style={BlueButtonStyle} >Wyślij upomnienie</Button>
         </List>
         )
     }
