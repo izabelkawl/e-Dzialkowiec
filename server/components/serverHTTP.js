@@ -14,6 +14,8 @@ import tableRouter from "../routes/table-router.js";
 import imageRouter from "../routes/category-router.js";
 import forumRouter from "../routes/forum-router.js";
 import commentRouter from "../routes/comment-router.js";
+import financeRouter from "../routes/finance-router.js";
+import paymentdetailRouter from "../routes/paymentdetail-router.js";
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.use("/api", tableRouter);
 app.use('/api', imageRouter);
 app.use('/api', forumRouter);
 app.use('/api', commentRouter);
+app.use('/api', financeRouter);
+app.use('/api', paymentdetailRouter);
 
 export const startHTTPServer = async () =>
   app.listen(keys.httpPort, (error) => {

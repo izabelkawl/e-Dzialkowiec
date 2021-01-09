@@ -1,153 +1,124 @@
 import React, { Component } from 'react';
-import api from '../../api';
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { insertFinance } from "../../api/index";
 import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Wrapper, BlueButtonStyle, RedButtonStyle, Title } from '../constants';
 
-import UsersID from './UsersID';
-
 class FinancesInsert extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
-            user_id: '',
             allotment_number: '',
+            title: '',
             area: '',
-            term: '',
-            payment_date: '',
             charge: '',
-            status: '',
+            term: '',
             account: '',
+            status: ''
         }
     }
 
-    handleChangeInputUserId = async event => {
-        const user_id = event.target.value
-        this.setState({ user_id })
-    }
-    handleChangeInputAllotmentNumber = async event => {
-        const allotment_number = event.target.validity.valid
-            ? event.target.value
-            : this.state.allotment_number
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
 
-        this.setState({ allotment_number })
-    }
-    handleChangeInputArea = async event => {
-        const area = event.target.validity.valid
-            ? event.target.value
-            : this.state.area
+    onSubmit = e => {
 
-        this.setState({ area })
-    }
-    handleChangeInputTerm = async event => {
-        const term = event.target.value
-        this.setState({ term })
-    }
-    handleChangeInputPaymentDate = async event => {
-        const payment_date = event.target.value
-        this.setState({ payment_date })
-    }
-    handleChangeInputCharge = async event => {
-        const charge = event.target.validity.valid
-            ? event.target.value
-            : this.state.charge
+        e.preventDefault();
+        const newFinance = {
 
-        this.setState({ charge })
-    }  
-    handleChangeInputStatus = async event => {
-        const status = event.target.value
-        this.setState({ status })
-    }  
-    handleChangeInputAccount = async event => {
-        const account = event.target.value
-        this.setState({ account })
-    }
-    handleIncludeFinance = async () => {
-        const { user_id, allotment_number, area, term, payment_date, charge, status, account } = this.state
-        const payload = { user_id, allotment_number, area, term, payment_date, charge, status, account }
-
-        await api.insertFinance(payload).then(res => {
-            window.alert(`Finance inserted successfully`)
-            this.setState({
-                user_id: '',
-                allotment_number: '',
-                area: '',
-                term: '',
-                payment_date: '',
-                charge: '',
-                status: '',
-                account: '',
-            })
-        })
-    }
+            allotment_number: this.state.allotment_number,
+            title: this.state.title,
+            area: this.state.area,
+            charge: this.state.charge,
+            term: this.state.term,
+            account: this.state.account,
+            status: this.state.status
+        };
+        this.props.insertFinance(newFinance, this.props.history)
+    };
 
     render() {
-        const { allotment_number, area, term, payment_date, charge} = this.state
         return (
             <Wrapper>
                 <Title>Tworzenie zobowiązania</Title>
-            <Form.Group><Form.Label>Odbiorca: </Form.Label>
-                <Form.Control
-                    as="select"
-                    onChange={this.handleChangeInputUserId}>
-                    <option>Wybierz działkowicza</option>
-                    <UsersID/>
-                </Form.Control>
+        <Form onSubmit={this.onSubmit}>
+            <Form.Group>
+                <Form.Label >Tytuł: </Form.Label>
+                    <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.title}
+                        id="title"
+                        type="text"
+                    />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Numer działki: </Form.Label>
                     <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.allotment_number}
+                        id="allotment_number"
                         type="text"
-                        value={allotment_number}
-                        onChange={this.handleChangeInputAllotmentNumber}
+                    />
+            </Form.Group>
+            
+            <Form.Group hidden>
+                <Form.Label>Powierzchnia: </Form.Label>
+                    <Form.Control
+                    id="area"
+                    value={this.state.area}
+                        type="date"
+                        onChange={this.onChange}
                     />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Tytuł: </Form.Label>
+                <Form.Label>Należność: </Form.Label>
                     <Form.Control
+                        id="charge"
                         type="text"
-                        value={area}
-                        onChange={this.handleChangeInputArea}
+                        value={this.state.charge}
+                        onChange={this.onChange}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Termin zapłaty: </Form.Label>
                     <Form.Control
+                        id="term"
                         type="date"
-                        value={term}
-                        onChange={this.handleChangeInputTerm}
-                    />
-            </Form.Group>
-            <Form.Group hidden>
-                <Form.Label>payment_date: </Form.Label>
-                    <Form.Control
-                        type="date"
-                        value={payment_date}
-                        onChange={this.handleChangeInputPaymentDate}
-                    />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>należność: </Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={charge}
-                        onChange={this.handleChangeInputCharge}
+                        value={this.state.term}
+                        onChange={this.onChange}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Status: </Form.Label>
-                    <Form.Control as="select"  onChange={this.handleChangeInputStatus}>
+                    <Form.Control as="select" value={this.state.status} id="status" onChange={this.onChange}>
                         <option>Wybierz..</option> 
                         <option>Opłacona</option> 
                         <option>Nieopłacona</option> 
                     </Form.Control>
             </Form.Group>
-                <Button style={BlueButtonStyle} onClick={this.handleIncludeFinance}>Wyślij</Button>{' '}
+                <Button style={BlueButtonStyle} type="submit">Wyślij</Button>{' '}
                 <Button style={RedButtonStyle} href={'/admin/finance'}>Zamknij</Button>
+                </Form>
             </Wrapper>
         )
     }
 }
 
-export default FinancesInsert
+FinancesInsert.propTypes = {
+    insertFinance: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { insertFinance }
+)(withRouter(FinancesInsert));

@@ -156,6 +156,25 @@ export const updateCommentById = (id, payload) => api.put(`/comment/${id}`, payl
 export const deleteCommentById = id => api.delete(`/comment/${id}`)
 export const getCommentById = id => api.get(`/comment/${id}`)
 
+
+// Insert Allotment
+export const insertFinance = (allotmentData, history) => dispatch => {
+    api
+        .post("/finance", allotmentData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+export const getAllFinances = () => api.get(`/finances`)
+export const updateFinanceById = (id, payload) => api.put(`/finance/${id}`, payload)
+export const deleteFinanceById = id => api.delete(`/finance/${id}`)
+export const getFinanceById = id => api.get(`/finance/${id}`)
+
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
@@ -194,6 +213,12 @@ const apis = {
     updateForumById,
     deleteForumById,
     getForumById,
+
+    insertFinance,
+    getAllFinances,
+    updateFinanceById,
+    deleteFinanceById,
+    getFinanceById,
 
     insertComment,
     getAllComments,

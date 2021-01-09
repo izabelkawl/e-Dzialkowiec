@@ -147,7 +147,6 @@ class AllotmentsInsert extends Component {
     }
 }
 
-
 AllotmentsInsert.propTypes = {
     insertAllotment: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired
