@@ -20,13 +20,13 @@ const validateFinanceInput = (data) => {
     errors.title = " *Podaj tytuł";
   }
   if (Validator.isEmpty(data.area)) {
-    errors.area = " *Podaj szerokość";
+    errors.area = " *Podaj powierzchnię działki";
   }
   if (Validator.isEmpty(data.charge)) {
     errors.charge = " *Należność jest wymagana";
   }
   if (Validator.isEmpty(data.term)) {
-    errors.term = " *Termin jest wymagana";
+    errors.term = " *Termin jest wymagany";
   }
   if (Validator.isEmpty(data.account)) {
     errors.account = " *Podaj numer konta";

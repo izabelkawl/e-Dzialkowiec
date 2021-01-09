@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { insertFinance } from "../../api/index";
 import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { Wrapper, BlueButtonStyle, RedButtonStyle, Title } from '../constants';
+import classnames from "classnames";
+import { Wrapper, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
 
 class FinancesInsert extends Component {
     constructor() {
@@ -18,7 +19,17 @@ class FinancesInsert extends Component {
             charge: '',
             term: '',
             account: '',
-            status: ''
+            status: '',
+            errors: {}
+        }
+    }
+
+    
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
         }
     }
 
@@ -43,72 +54,108 @@ class FinancesInsert extends Component {
     };
 
     render() {
+        const { errors } = this.state;
         return (
             <Wrapper>
                 <Title>Tworzenie zobowiązania</Title>
         <Form onSubmit={this.onSubmit}>
             <Form.Group>
-                <Form.Label >Tytuł: </Form.Label>
+                <Form.Label htmlFor="title" >Tytuł: </Form.Label>
+                <Span>{errors.title}</Span>
                     <Form.Control
                         onChange={this.onChange}
                         value={this.state.title}
                         id="title"
                         type="text"
+                        error={errors.title}
+                        className={classnames("", {
+                            invalid: errors.title
+                        })}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Numer działki: </Form.Label>
+                <Span>{errors.allotment_number}</Span>
                     <Form.Control
                         onChange={this.onChange}
                         value={this.state.allotment_number}
                         id="allotment_number"
                         type="text"
+                        error={errors.allotment_number}
+                        className={classnames("", {
+                            invalid: errors.allotment_number
+                        })}
                     />
             </Form.Group>
             
             <Form.Group>
                 <Form.Label>Powierzchnia: </Form.Label>
+                <Span>{errors.area}</Span>
                     <Form.Control
                     id="area"
                     value={this.state.area}
                         type="text"
                         onChange={this.onChange}
+                        error={errors.area}
+                        className={classnames("", {
+                            invalid: errors.area
+                        })}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Należność: </Form.Label>
+                <Span>{errors.charge}</Span>
                     <Form.Control
                         id="charge"
                         type="text"
                         value={this.state.charge}
                         onChange={this.onChange}
+                        error={errors.charge}
+                        className={classnames("", {
+                            invalid: errors.charge
+                        })}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Termin zapłaty: </Form.Label>
+                <Span>{errors.term}</Span>
                     <Form.Control
                         id="term"
                         type="date"
                         value={this.state.term}
                         onChange={this.onChange}
+                        error={errors.term}
+                        className={classnames("", {
+                            invalid: errors.term
+                        })}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Konto: </Form.Label>
+                <Span>{errors.account}</Span>
                     <Form.Control
                         id="account"
                         type="text"
                         value={this.state.account}
                         onChange={this.onChange}
+                        error={errors.account}
+                        className={classnames("", {
+                            invalid: errors.account
+                        })}
                     />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Status: </Form.Label>
+                <Span>{errors.status}</Span>
                     <Form.Control
                     onChange={this.onChange}
                     as="select" 
                     value={this.state.status} 
-                    id="status" >
+                    id="status" 
+                    error={errors.status}
+                        className={classnames("", {
+                            invalid: errors.status
+                        })}>
                         <option>Wybierz..</option> 
                         <option>Opłacona</option> 
                         <option>Nieopłacona</option> 
