@@ -149,7 +149,7 @@ class BuyingAllotment extends Component {
                     <Form.Label column sm="4" htmlFor="status">Status: </Form.Label>
                      <Col sm="8">
                     <Form.Control
-                        value="Rezeracja"
+                        value="Rezerwacja"
                         onChange={this.onChange}
                         error={errors.status} 
                         id="status"

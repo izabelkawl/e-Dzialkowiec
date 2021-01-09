@@ -86,7 +86,8 @@ function generateTooltipContent(provinceName) {
 }, []);
     const paths = document.querySelectorAll('.st6');
   for (const path of paths) {
-    const json = tooltipData[path.id]
+	const json = tooltipData[path.id]
+	
       for (const key in json) {
         if ((json[key]) === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname) {
            path.style.fill="#ffc107";

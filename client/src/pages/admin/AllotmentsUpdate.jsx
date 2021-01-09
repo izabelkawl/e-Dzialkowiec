@@ -150,25 +150,26 @@ class AllotmentsUpdate extends Component {
                         as="select"
                         className={classnames("", {
                             invalid: errors.status
-                        })}value={status}>
-
-                        <option>Wolna</option> 
-                        <option>Zajęta</option> 
-                        <option>Na sprzedaż</option> 
-                        <option>Rezerwacja</option> 
+                        })} value={this.state.value}>
+                            <option hidden>{status}</option>
+                        <option value="Wolna">Wolna</option> 
+                        <option value="dwa">Zajęta</option> 
+                        <option value="dwa" >Na sprzedaż</option> 
+                        <option value="dwa">Rezerwacja</option> 
                     </Form.Control>
-
                     <Label htmlFor="user_id">Użytkownik: </Label>
                     <Span>{errors.user_id}</Span>
                     <Form.Control
+                        
                         onChange={this.onChange}
                         error={errors.user_id}
                         id="user_id"
                         as="select"
                         className={classnames("", {
                         invalid: errors.user_id
-                    })}value={user_id}>
-
+                        })}>
+                            { this.state.value === "Wolna" ? <option>not</option> : <option>essa</option>}
+                        <option hidden>{user_id}</option>
                         <option>Brak</option>
                         <UsersID/>
                     </Form.Control>

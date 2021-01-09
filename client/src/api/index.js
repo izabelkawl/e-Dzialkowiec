@@ -105,7 +105,7 @@ export const insertAllotment = (allotmentData, history) => dispatch => {
 export const updateAllotmentById = (id, payload) => dispatch => {
     api
         .put(`/allotment/${id}`, payload)
-        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        // .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
