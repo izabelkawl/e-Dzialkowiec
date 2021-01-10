@@ -67,11 +67,7 @@ class PaymentdetailsUpdate extends Component {
         
         return (
             <div>
-
                 <Title>Opłaty</Title>
-                
-            <Row>
-            <Col sm={{ span: 7 }}> 
                 <Form.Group>
                     <Row>
                         <Col sm={{ span: 6 }}>
@@ -190,73 +186,6 @@ class PaymentdetailsUpdate extends Component {
                         </Col >zł 
                     </Row>
                 </Form.Group>
-               
-                    <br></br>
-                    <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdatePaymentdetail}>Zapisz</Button>
-                    </Col>
-                        <Col sm={{ span: 5 }}>
-                            <b>Dla stałej powierzchni działki 240m2:</b> 
-                            <p>działka o powierzchni 240 m2 = 240 x 1,00 zł x = 240,00 zł</p>
-                            <hr></hr>
-                            <Form>
-                                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                <Form.Label  htmlFor="transfer_title">Tytuł opłaty: </Form.Label >
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control
-                                    onChange={this.onChange}
-                                    error={errors.transfer_title}
-                                    type="text"
-                                    id="transfer_title"
-                                    className={classnames("", {
-                                        invalid: errors.transfer_title
-                                    })}value={transfer_title}
-                                ></Form.Control>
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                    <Form.Label  htmlFor="payment_date">Termin płatności: </Form.Label>
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control
-                                    onChange={this.onChange}
-                                    error={errors.payment_date}
-                                    type="date"
-                                    id="payment_date"
-                                    className={classnames("", {
-                                        invalid: errors.payment_date
-                                    })}value={payment_date}
-                                ></Form.Control>
-                                </Col>
-                            </Row>
-                            
-                        </Form.Group>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={5}>
-                                    <Form.Label  htmlFor="account_number">Konto: </Form.Label >
-                                </Col>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Control    
-                                    onChange={this.onChange}
-                                    error={errors.account_number}
-                                    type="text"
-                                    id="account_number"
-                                    className={classnames("", {
-                                        invalid: errors.water_charge
-                                    })}value={account_number}
-                                ></Form.Control>
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                     </Form>
-                </Col>
-            </Row>
     </div>
         )
     }

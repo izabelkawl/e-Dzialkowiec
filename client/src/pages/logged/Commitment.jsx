@@ -8,6 +8,8 @@ import Title from '../../components/Title'
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from './pdf.jsx';
 import { BlueButtonStyle } from '../constants';
+import FinancesTable from './FinanceTable';
+
 const Label = styled(Form.Label)`
     margin-top: 8px;
 `
@@ -159,50 +161,7 @@ class Commitment extends Component {
                         </Form.Group>
                         <hr></hr>
 </Form>
-
-            <Table striped bordered hover responsive>
-            <thead>
-                <tr>
-                    <th>Lp</th>
-                    <th>Tytuł</th>
-                    <th>Numer działki</th>
-                    <th>Powierzchnia(m2)</th>
-                    <th>Kwota</th>
-                    <th>Termin zapłaty</th>
-                    <th>Status</th>
-                    <th>Faktura</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <td>1</td>
-                    <td>2020</td>
-                    <td>23</td>
-                    <td>120</td>
-                    <td>358.55</td>
-                    <td>31.12.2020</td>
-                    <td>Nieopłacona</td>
-                    <td>
-                    <PDFDownloadLink document={<MyDocument />} fileName="faktura.pdf">
-      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' : <Button style={BlueButtonStyle}>Pobierz</Button>)}
-    </PDFDownloadLink>
-                        </td>
-                    
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>2019</td>
-                    <td>12</td>
-                    <td>240</td>
-                    <td>370,55</td>
-                    <td>31.12.2019</td>
-                    <td>Opłacona</td>
-                    <td> <PDFDownloadLink document={<MyDocument />} fileName="faktura.pdf">
-      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button style={BlueButtonStyle}>Pobierz</Button>)}
-    </PDFDownloadLink></td>
-                </tr>
-            </tbody>
-        </Table>
+            <FinancesTable/>
         </Wrapper>
         )
     }
