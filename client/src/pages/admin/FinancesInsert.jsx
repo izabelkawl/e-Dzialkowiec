@@ -7,6 +7,49 @@ import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import classnames from "classnames";
 import { Wrapper, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
+import AllotmentsID from './AllotmentsID'
+
+// const FinanceData = () => {
+//     const [paymentdetails, setPaymentdetails] = useState([]);
+//     const [allotments, setAllotments] = useState([]);
+//         useEffect(() => {
+//             const requestPaymentdetailsList = async () => {
+//                 const paymentdetailsList = await api.getAllPaymentdetails();
+//                 const { data } = paymentdetailsList;
+//                 setPaymentdetails(data.data);
+//             };
+//         const requestAllotmentsList = async () => {
+//             const allotmentsList = await api.getAllAllotments();
+//             const { data } = allotmentsList;
+//             setAllotments(data.data);
+//         };
+//         requestAllotmentsList();
+//         requestPaymentdetailsList();
+//     }, []);
+
+//     var wol = 0;
+//     var zaj = 0;
+//     var rez = 0;
+    
+//     var result = paymentdetails.reduce(function(sum) {
+//         return sum = sum+1;
+//     },0 );
+
+//     const resultZaj = allotments.map((allotment, index) => {
+//             const { status } = allotment;
+//                 if (status === "Zajęta"){
+//                     zaj++
+//                 }
+//                 return zaj
+//             })  
+//     const resultRez = allotments.map((allotment, index) => {
+//         const { status } = allotment;
+//         if (status === "Rezerwacja"){
+//                 rez++
+//             }
+//             return rez
+//         })  
+//     }
 
 class FinancesInsert extends Component {
     constructor() {
@@ -71,22 +114,24 @@ class FinancesInsert extends Component {
                         className={classnames("", {
                             invalid: errors.title
                         })}
-                    />
+                    ></Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Numer działki: </Form.Label>
                 <Span>{errors.allotment_number}</Span>
                     <Form.Control
                         onChange={this.onChange}
-                        value={this.state.allotment_number}
                         id="allotment_number"
-                        type="text"
+                        as="select"
                         error={errors.allotment_number}
                         className={classnames("", {
                             invalid: errors.allotment_number
-                        })}
-                    />
-            </Form.Group>
+                        })}defaultChecked="Wybierz działkę"
+                        >
+                        <option hidden>Wybierz działkę</option>
+                    <AllotmentsID/>
+                    </Form.Control>
+                    </Form.Group>
             
             <Form.Group>
                 <Form.Label>Powierzchnia: </Form.Label>
@@ -100,7 +145,7 @@ class FinancesInsert extends Component {
                         className={classnames("", {
                             invalid: errors.area
                         })}
-                    />
+                        ></Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Należność: </Form.Label>
@@ -114,7 +159,7 @@ class FinancesInsert extends Component {
                         className={classnames("", {
                             invalid: errors.charge
                         })}
-                    />
+                        ></Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Termin zapłaty: </Form.Label>
@@ -128,7 +173,7 @@ class FinancesInsert extends Component {
                         className={classnames("", {
                             invalid: errors.term
                         })}
-                    />
+                        ></Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Konto: </Form.Label>
@@ -142,7 +187,7 @@ class FinancesInsert extends Component {
                         className={classnames("", {
                             invalid: errors.account
                         })}
-                    />
+                        ></Form.Control>
             </Form.Group>
             <Form.Group>
                 <Form.Label>Status: </Form.Label>

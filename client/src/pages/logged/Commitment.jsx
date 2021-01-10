@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import api from '../../api';
+import classnames from "classnames";
 import { Table, Form, Row, Col, Button} from 'react-bootstrap';
 import styled from "styled-components";
 import Wrapper from '../../components/Wrapper/Wrapper';
@@ -10,7 +12,44 @@ const Label = styled(Form.Label)`
     margin-top: 8px;
 `
 class Commitment extends Component {
-    render() {
+
+        constructor(props) {
+            super(props)
+    
+            this.state = {
+                id: '5ffa2f4e205ae300946933d7',
+                stable_price: '',
+                membership_fee: '',
+                water_advance: '',
+                water_charge: '',
+                energy_charge: '',
+                garbage: '',
+                transfer_title: '',
+                payment_date: '',
+                account_number: '',
+                errors: {}
+            }
+        }
+        componentDidMount = async () => {
+            const { id } = this.state
+            const paymentdetail = await api.getPaymentdetailById(id)
+    
+            this.setState({
+                stable_price: paymentdetail.data.data.stable_price,
+                membership_fee: paymentdetail.data.data.membership_fee,
+                water_advance: paymentdetail.data.data.water_advance,
+                water_charge: paymentdetail.data.data.water_charge,
+                energy_charge: paymentdetail.data.data.energy_charge,
+                garbage: paymentdetail.data.data.garbage,
+                transfer_title: paymentdetail.data.data.transfer_title,
+                payment_date: paymentdetail.data.data.payment_date,
+                account_number: paymentdetail.data.data.account_number,
+            })
+        }
+    
+        render() {
+            const { errors, stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number  } = this.state;
+            
         return (
         <Wrapper>
              <Title>Jak obliczana jest składka roczna</Title>
@@ -23,11 +62,10 @@ class Commitment extends Component {
                                     </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="120"
-                                        
-                                    />
+                                     <Form.Control 
+                                value={stable_price}
+                                disabled
+                                ></Form.Control>
                                 </Col >
                                 <Col sm={{ span: 1 }}>
                                    <Label>zł</Label> 
@@ -43,11 +81,10 @@ class Commitment extends Component {
                         </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="6"
-                                        
-                                    />
+                                <Form.Control
+                                value={membership_fee}
+                                disabled
+                                ></Form.Control>
                                 </Col><Col sm={{ span: 1 }}>
                                 <Label>zł</Label> 
                                 </Col >
@@ -61,11 +98,10 @@ class Commitment extends Component {
                         </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="108"
-                                        
-                                    />
+                                <Form.Control
+                            value={water_advance}
+                            disabled
+                            ></Form.Control>
                                 </Col><Col sm={{ span: 1 }}>
                                 <Label>zł</Label> 
                                 </Col >
@@ -78,11 +114,10 @@ class Commitment extends Component {
                         </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="30"
-                                        
-                                    />
+                                <Form.Control
+                                value={water_charge}
+                                disabled
+                            ></Form.Control>
                                 </Col><Col sm={{ span: 1 }}>
                                 <Label>zł</Label> 
                                 </Col >
@@ -94,11 +129,11 @@ class Commitment extends Component {
                         </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="20"
-                                        
-                                    />
+                                <Form.Control
+                                value={energy_charge}
+                                disabled
+                                >
+                            </Form.Control>
                                 </Col><Col sm={{ span: 1 }}>
                                 <Label>zł</Label> 
                                 </Col >
@@ -111,11 +146,11 @@ class Commitment extends Component {
                         </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="74,55"
-                                        
-                                    />
+                                <Form.Control
+                               value={garbage}
+                               disabled
+                               >
+                            </Form.Control>
                                 </Col><Col sm={{ span: 1 }}>
                                 <Label>zł</Label> 
                                 </Col >
@@ -123,24 +158,6 @@ class Commitment extends Component {
                             
                         </Form.Group>
                         <hr></hr>
-                        <Form.Group>
-                            <Row>
-                                <Col sm={6}>
-                                    <Label htmlFor="email">Suma
-                        </Label>
-                                </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control disabled
-                                        type="text"
-                                        value="358.55"
-                                        
-                                    />
-                                </Col><Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                </Col >
-                            </Row>
-                            
-                        </Form.Group>
 </Form>
 
             <Table striped bordered hover responsive>
