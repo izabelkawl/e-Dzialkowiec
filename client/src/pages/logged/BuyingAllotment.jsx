@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { buyAllotmentById } from '../../api';
+import api, { buyAllotmentById, insertFinance } from '../../api';
 // Style
 import styled from 'styled-components';
 import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
@@ -29,13 +29,22 @@ class BuyingAllotment extends Component {
             allotment_width: '',
             allotment_length: '',
             price: '',
+            user_id: '',
+
+            allotment_number: '',
+            owner: '',
+            title: '',
+            area: '',
+            charge: '',
+            term: '',
+            account: '',
             status: '',
-            user_id: ''
         }
     }
     componentDidMount = async () => {
         const { id } = this.state
         const allotment = await api.getAllotmentById(id)
+        const paymentdetails = await api.getPaymentdetailById('5ffa2f4e205ae300946933d7')
 
         this.setState({
             number: allotment.data.data.number,
@@ -43,7 +52,17 @@ class BuyingAllotment extends Component {
             allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
             status: "Rezerwacja",
-            user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname
+            user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname,
+       
+            stable_price: paymentdetails.data.data.stable_price,
+            membership_fee: paymentdetails.data.data.membership_fee,
+            water_advance: paymentdetails.data.data.water_advance,
+            water_charge: paymentdetails.data.data.water_charge,
+            energy_charge: paymentdetails.data.data.energy_charge,
+            garbage: paymentdetails.data.data.garbage,
+            transfer_title: paymentdetails.data.data.transfer_title,
+            payment_date: paymentdetails.data.data.payment_date,
+            account_number: paymentdetails.data.data.account_number
         })
     }
 
@@ -55,8 +74,24 @@ class BuyingAllotment extends Component {
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
         this.props.buyAllotmentById(id, payload)
-    }
+        
+        const timestamp = id.toString().substring(0,8);
+        const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+       
+        const newFinance = {
 
+            allotment_number: this.state.number,
+            owner: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname,
+            title: "Kupno działki",
+            area: this.state.allotment_width * this.state.allotment_length,
+            charge: this.state.price,
+            term: date,
+            account: this.state.account_number,
+            status: "Nieopłacona"
+        };
+        this.props.insertFinance(newFinance, this.props.history)
+
+    }
     render() {
         const ConfirmModal = (props) => {
             const [modalShow, setModalShow] = React.useState(false);
@@ -87,10 +122,10 @@ class BuyingAllotment extends Component {
                 <Modal.Footer>
                     <Button style={BlueButtonStyle} onClick={() => setModalShow(false)}>Rezygnuje
           </Button>&nbsp;
-                    <Button style={RedButtonStyle} type="submit" onClick={() => {
+                    <Button style={RedButtonStyle} onClick={() => {
                         this.handleUpdateAllotment();
-                        setModalShow(false)}
-                        }>Kupuję</Button>
+                        setModalShow(false);
+                    }}>Kupuję</Button>
             
                 </Modal.Footer>
               </Modal>
@@ -166,6 +201,7 @@ class BuyingAllotment extends Component {
 
 BuyingAllotment.propTypes = {
     buyAllotmentById: PropTypes.func.isRequired,
+    insertFinance: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
 
@@ -175,5 +211,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { buyAllotmentById }
+    { buyAllotmentById, insertFinance }
 )(withRouter( BuyingAllotment));

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import api, { insertFinance } from "../../api/index";
+import PropTypes from "prop-types";
 import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Wrapper,Span,  BlueButtonStyle, RedButtonStyle, Title } from '../constants';
@@ -31,7 +30,6 @@ class FinancesInsert extends Component {
         }
     }
 
-    
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
@@ -43,12 +41,23 @@ class FinancesInsert extends Component {
     componentDidMount = async () => {
         const { id } = this.state
         const allotment = await api.getAllotmentById(id)
+        const paymentdetails = await api.getPaymentdetailById('5ffa2f4e205ae300946933d7')
 
         this.setState({
             number: allotment.data.data.number,
             allotment_width: allotment.data.data.allotment_width,
             allotment_length: allotment.data.data.allotment_length,
             user_id: allotment.data.data.user_id,
+
+            stable_price: paymentdetails.data.data.stable_price,
+            membership_fee: paymentdetails.data.data.membership_fee,
+            water_advance: paymentdetails.data.data.water_advance,
+            water_charge: paymentdetails.data.data.water_charge,
+            energy_charge: paymentdetails.data.data.energy_charge,
+            garbage: paymentdetails.data.data.garbage,
+            transfer_title: paymentdetails.data.data.transfer_title,
+            payment_date: paymentdetails.data.data.payment_date,
+            account_number: paymentdetails.data.data.account_number
         })
     }
 
@@ -63,18 +72,20 @@ class FinancesInsert extends Component {
 
             allotment_number: this.state.number,
             owner: this.state.user_id,
-            title: this.state.title,
+            title: this.state.transfer_title,
             area: this.state.allotment_width * this.state.allotment_length,
-            charge: this.state.charge,
-            term: this.state.term,
-            account: this.state.account,
+            charge: ( this.state.allotment_width * this.state.allotment_length*this.state.stable_price) + this.state.membership_fee  + this.state.water_advance + this.state.water_charge + this.state.energy_charge + this.state.garbage,
+            term: this.state.payment_date,
+            account: this.state.account_number,
             status: this.state.status
         };
         this.props.insertFinance(newFinance, this.props.history)
     };
 
     render() {
-        const {  number, allotment_width, allotment_length, price, status, user_id } = this.state;
+        const { stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number  } = this.state;
+        
+        const {  number, allotment_width, allotment_length, user_id } = this.state;
         const { errors } = this.state;
       
         return (
@@ -103,7 +114,7 @@ class FinancesInsert extends Component {
                 <Form.Label htmlFor="title" >Tytuł: </Form.Label>
                     <Form.Control
                         onChange={this.onChange}
-                        value={this.state.title}
+                        value={transfer_title}
                         id="title"
                         type="text"
                         readOnly
@@ -123,7 +134,7 @@ class FinancesInsert extends Component {
                     <Form.Control
                         id="charge"
                         type="text"
-                        value={this.state.charge}
+                        value={( allotment_width * allotment_length*stable_price ) + membership_fee +  water_advance +water_charge + energy_charge + garbage}
                         readOnly
                         onChange={this.onChange}
                         ></Form.Control>
@@ -133,7 +144,7 @@ class FinancesInsert extends Component {
                     <Form.Control
                         id="term"
                         type="date"
-                        value={this.state.term}
+                        value={payment_date}
                         onChange={this.onChange}
                         readOnly
                         ></Form.Control>
@@ -143,7 +154,7 @@ class FinancesInsert extends Component {
                     <Form.Control
                         id="account"
                         type="text"
-                        value={this.state.account}
+                        value={account_number}
                         onChange={this.onChange}
                         readOnly
                         ></Form.Control>
@@ -171,7 +182,7 @@ class FinancesInsert extends Component {
 
 FinancesInsert.propTypes = {
     insertFinance: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

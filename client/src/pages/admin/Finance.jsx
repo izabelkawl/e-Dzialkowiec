@@ -14,6 +14,22 @@ class StatusUpdateBtn extends Component {
         return <Button style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
     }
 }
+class StatusDeleteBtn extends Component {
+    deleteFinance = event => {
+        event.preventDefault()
+        if (
+            window.confirm(
+                `Chcesz usunąć tą płatność?`,
+            )
+        ) {
+            api.deleteFinanceById(this.props.id)
+            window.location.reload()
+        }
+    }
+    render() {
+        return <Button style={RedButtonStyle} onClick={this.deleteFinance}>Usuń</Button>
+    }
+}
 
 class Management extends Component {
 
@@ -41,6 +57,7 @@ class Management extends Component {
                     <td>{term}</td>
                     <td>{status}</td>
                     <td><StatusUpdateBtn id={_id}/></td>
+                    <td><StatusDeleteBtn id={_id}/></td>
                 </tr>
             );
         })
@@ -55,6 +72,7 @@ class Management extends Component {
                 <th>Należność</th>
                 <th>Termin</th>
                 <th>Status</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
