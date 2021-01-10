@@ -4,12 +4,8 @@ import validateFinanceInput from "../validation/finance.js";
   const createFinance = async (req, res) => {
     const financeData = req.body;
     const { errors, isValid } = validateFinanceInput(financeData);
-    const isFinance = await Finance.findOne({ allotment_number: financeData.allotment_number });
-    
       if (!isValid) return res.status(400).json(errors);
-      if (!!isFinance)
-        return res.status(400).json({ numberexists: " *Działka o podanym numerze już istnieje." });
-    
+      
       const processedFinance = new Finance(financeData);
     
       try {

@@ -158,9 +158,9 @@ export const getCommentById = id => api.get(`/comment/${id}`)
 
 
 // Insert FInance
-export const insertFinance = (allotmentData, history) => dispatch => {
+export const insertFinance = (financeData, history) => dispatch => {
     api
-        .post("/finance", allotmentData)
+        .post("/finance", financeData)
         .then(res => window.alert(`Dodano pomyślnie!`))
         .catch(err =>
             dispatch({

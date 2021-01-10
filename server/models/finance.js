@@ -8,8 +8,8 @@ const Finance = new Schema({
   title: { type: String, required: true },
   area: { type: Number, required: true },
   charge: { type: Number, required: true },
-  term: { type: String, required: true },
-  account: { type: String, required: true },
+  term: { type: Date, required: true },
+  account: { type: Number, required: true },
   status: { type: String, required: true },
 },
 { timestamps: true }

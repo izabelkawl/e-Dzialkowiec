@@ -18,7 +18,7 @@ const AllotmentsID = () => {
     const AllotmentsTable = allotments.map((allotment) => {
         const { _id, number, status } = allotment;
         if( status === "Zajęta"){
-        return  <option key={_id}>{number}</option>
+        return  number + '.' + _id
         }
     });
     return AllotmentsTable        
