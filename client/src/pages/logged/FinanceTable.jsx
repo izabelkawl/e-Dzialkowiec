@@ -23,9 +23,9 @@ class Management extends Component {
             }, []);
 
         const FinancesTable = finances.map((finance, index) => {
-            const { _id, allotment_number, title, area, charge, term, status } = finance;
+            const { _id, allotment_number,owner,  title, area, charge, term, status } = finance;
             const logged = this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname
-            // if(user_id === logged){
+            if(owner === logged){
             return (
                 <tr key={_id}>
                     <td>{allotment_number}</td>
@@ -39,7 +39,7 @@ class Management extends Component {
     </PDFDownloadLink></td>
                 </tr>
             );
-        // }
+        }
         })
         return (
         <Table striped bordered hover size="sm" responsive>

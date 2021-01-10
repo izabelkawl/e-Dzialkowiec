@@ -75,7 +75,7 @@ class PaymentdetailsUpdate extends Component {
                 <Form.Group>
                     <Row>
                         <Col sm={{ span: 6 }}>
-                            <Form.Label  htmlFor="stable_price">Numer:</Form.Label >
+                            <Form.Label  htmlFor="stable_price">Powierzchnia działki (m2*przelicznik):</Form.Label >
                         </Col>
                         <Col sm={{ span: 2, offset: 3 }}>
                             <Form.Control 
@@ -94,7 +94,7 @@ class PaymentdetailsUpdate extends Component {
                 <Form.Group>
                     <Row>
                         <Col sm={{ span: 6 }}>
-                            <Form.Label  htmlFor="membership_fee">Szerokość: </Form.Label >
+                            <Form.Label  htmlFor="membership_fee">Składka członkowska: </Form.Label >
                             <Span>{errors.membership_fee}</Span>
                         </Col>
                         <Col sm={{ span: 2, offset: 3 }}>
@@ -114,7 +114,7 @@ class PaymentdetailsUpdate extends Component {
                 <Form.Group>
                     <Row>
                         <Col sm={{ span: 6 }}>
-                            <Form.Label  htmlFor="water_advance">Długość: </Form.Label >
+                            <Form.Label  htmlFor="water_advance">Zaliczka wodna: </Form.Label >
                             <Span>{errors.water_advance}</Span>
                     </Col>
                     <Col sm={{ span: 2, offset: 3 }}>
@@ -134,7 +134,7 @@ class PaymentdetailsUpdate extends Component {
             <Form.Group>
                     <Row>
                         <Col sm={{ span: 6 }}>
-                            <Form.Label  htmlFor="water_charge">Cena: </Form.Label >
+                            <Form.Label  htmlFor="water_charge">Opłata wodna: </Form.Label >
                             <Span>{errors.water_charge}</Span>
                         </Col>
                         <Col sm={{ span: 2, offset: 3 }}>

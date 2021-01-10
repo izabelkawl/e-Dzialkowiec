@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import api from '../../api';
-import classnames from "classnames";
-import { Table, Form, Row, Col, Button} from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import styled from "styled-components";
 import Wrapper from '../../components/Wrapper/Wrapper';
-import Title from '../../components/Title'
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import MyDocument from './pdf.jsx';
-import { BlueButtonStyle } from '../constants';
+import Title from '../../components/Title';
 import FinancesTable from './FinanceTable';
 
 const Label = styled(Form.Label)`
@@ -28,8 +24,7 @@ class Commitment extends Component {
                 garbage: '',
                 transfer_title: '',
                 payment_date: '',
-                account_number: '',
-                errors: {}
+                account_number: ''
             }
         }
         componentDidMount = async () => {
@@ -50,7 +45,7 @@ class Commitment extends Component {
         }
     
         render() {
-            const { errors, stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number  } = this.state;
+            const { stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage } = this.state;
             
         return (
         <Wrapper>

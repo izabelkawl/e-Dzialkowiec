@@ -57,6 +57,7 @@ class FinancesInsert extends Component {
 
         this.state = {
             allotment_number: '',
+            owner: '',
             title: '',
             area: '',
             charge: '',
@@ -86,6 +87,7 @@ class FinancesInsert extends Component {
         const newFinance = {
 
             allotment_number: this.state.allotment_number,
+            owner: this.state.owner,
             title: this.state.title,
             area: this.state.area,
             charge: this.state.charge,
@@ -132,7 +134,20 @@ class FinancesInsert extends Component {
                     <AllotmentsID/>
                     </Form.Control>
                     </Form.Group>
-            
+            <Form.Group>
+                <Form.Label>Posiadacz: </Form.Label>
+                <Span>{errors.owner}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        id="owner"
+                        type="text"
+                        error={errors.owner}
+                        className={classnames("", {
+                            invalid: errors.owner
+                        })}
+                        >
+                    </Form.Control>
+            </Form.Group>
             <Form.Group>
                 <Form.Label>Powierzchnia: </Form.Label>
                 <Span>{errors.area}</Span>

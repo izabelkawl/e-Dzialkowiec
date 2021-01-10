@@ -37,6 +37,7 @@ const updateFinance = async (req, res) => {
       });
     }
     finance.allotment_number = body.allotment_number;
+    finance.owner = body.owner;
     finance.title = body.title;
     finance.area = body.area;
     finance.charge = body.charge;

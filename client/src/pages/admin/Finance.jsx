@@ -30,10 +30,11 @@ class Management extends Component {
             }, []);
 
         const FinancesTable = finances.map((finance, index) => {
-            const { _id, allotment_number, title, area, charge, term, status  } = finance;
+            const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
             return (
                 <tr key={_id}>
                     <td>{allotment_number}</td>
+                    <td>{owner}</td>
                     <td>{title}</td>
                     <td>{area}</td>
                     <td>{charge}</td>
@@ -48,9 +49,10 @@ class Management extends Component {
         <thead>
             <tr>
                 <th>Numer</th>
+                <th>Posiadacz</th>
                 <th>Tytuł</th>
                 <th>Powierzchnia</th>
-                <th>Nalężność</th>
+                <th>Należność</th>
                 <th>Termin</th>
                 <th>Status</th>
                 <th></th>

@@ -6,7 +6,8 @@ const validateFinanceInput = (data) => {
 
   // Convert empty fields to an empty string so we can use validator functions
   data.allotment_number = !isEmpty(data.allotment_number) ? data.allotment_number : "";
-  data.title = !isEmpty(data.area) ? data.title : "";
+  data.owner = !isEmpty(data.owner) ? data.owner : "";
+  data.title = !isEmpty(data.title) ? data.title : "";
   data.area = !isEmpty(data.area) ? data.area : "";
   data.charge = !isEmpty(data.charge) ? data.charge : "";
   data.term = !isEmpty(data.term) ? data.term : "";
@@ -15,6 +16,9 @@ const validateFinanceInput = (data) => {
 
   if (Validator.isEmpty(data.allotment_number)) {
     errors.allotment_number = " *Podaj numer działki";
+  }
+  if (Validator.isEmpty(data.owner)) {
+    errors.owner = " *Podaj użytkownika";
   }
   if (Validator.isEmpty(data.title)) {
     errors.title = " *Podaj tytuł";
