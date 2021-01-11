@@ -1,37 +1,23 @@
 import Table from "../models/table.js";
+import validateTableInput from "../validation/table.js";
 
-const createTable = (req, res) => {
-  const body = req.body;
-
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a table",
+const createTable = async (req, res) => {
+  const tableData = req.body;
+    const { errors, isValid } = validateTableInput(tableData);
+  
+    if (!isValid) return res.status(400).json({
+      errors,
+      message: "Wątek nie został ",
     });
-  }
-
-  const table = new Table(body);
-
-  if (!table) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  table
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: table._id,
-        message: "table created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "table not created!",
-      });
-    });
-};
+    
+    const processedTable = new Table(tableData);
+  
+    try {
+      processedTable.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
+  };
 
 const updateTable = async (req, res) => {
   const body = req.body;

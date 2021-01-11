@@ -24,7 +24,6 @@ class PaymentdetailsInsert extends Component {
             errors: {}
         }
     }
-
     
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {

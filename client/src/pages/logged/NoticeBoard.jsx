@@ -2,6 +2,8 @@ import React, { useState, useEffect, Component} from "react";
 import api from "../../api";
 import styled from 'styled-components';
 import { Button, Form, Modal } from 'react-bootstrap';
+
+import { insertTable } from "../../api/index";
 import Wrapper from '../../components/Wrapper/Wrapper'
 import {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
@@ -67,7 +69,8 @@ class DeleteTable extends Component {
         title: '',
         user_id: '',
         content: '',
-        image: ''
+        image: '',
+        errors: {}
     }
       this.handleChangeInputTitle = this.handleChangeInputTitle.bind(this);
       this.handleChangeInputUserId = this.handleChangeInputUserId.bind(this);
@@ -107,7 +110,16 @@ class DeleteTable extends Component {
       })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+        this.setState({
+            errors: nextProps.errors
+        });
+    }
+}
     render(){ 
+      
+      const { errors } = this.state;
       const { title, user_id, content, image } = this.state
    return (
       <Modal
@@ -125,6 +137,8 @@ class DeleteTable extends Component {
         <Form>
     <Form.Group controlId="exampleForm.ControlInput">
       <Form.Label>Tytuł</Form.Label>
+      
+   {errors.title}
       <Form.Control type="text" value={title} onChange={this.handleChangeInputTitle}/>
     </Form.Group>
     <Form.Group controlId="exampleForm.ControlInput1">

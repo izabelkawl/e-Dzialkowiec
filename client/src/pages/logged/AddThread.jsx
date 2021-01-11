@@ -1,63 +1,55 @@
 import React, {  Component} from 'react';
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api from '../../api';
+import { insertForum } from "../../api/index";
 import { Form, Button, Modal } from 'react-bootstrap';
-import  {RedButtonStyle, BlueButtonStyle } from '../constants'
+import  {RedButtonStyle, BlueButtonStyle,  Span } from '../constants'
 
 class AddThread extends Component {
   //constructor and states
   constructor(props) {
     super(props);
-    const {user} = this.props.auth
+
     this.state = {
       title: '',
-      user_id: user.firstname + ' '+ user.lastname,
+      user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
       content: '',
-      comment: ''
+      errors:{},
+    }
   }
-  //binds
-    this.handleChangeInputTitle = this.handleChangeInputTitle.bind(this);
-    this.handleChangeInputContent = this.handleChangeInputContent.bind(this);
-    this.handleChangeInputComment = this.handleChangeInputComment.bind(this);
 
-  }
-  //handle Inputs
-  handleChangeInputTitle = async event => {
-    const title = event.target.value
-    this.setState({ title: title })
-  }
-  handleChangeInputContent = async event => {
-    const content = event.target.value
-    this.setState({ content:content })
-  }
-  handleChangeInputComment = async event => {
-    const comment = event.target.value
-    this.setState({ comment:comment })
-  }
-//Include post to database
-  handleIncludeForum = async () => {
-    const { title, user_id, content, comment } = this.state
-    const payload = { title, user_id, content, comment  }
-
-    await api.insertForum(payload).then(res => {
-        window.alert(`Forum inserted successfully`)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
         this.setState({
-          title: '',
-          user_id: '',
-          content: '',
-          comment: ''
-        })
-        window.location.reload()
-    })
-  }
+            errors: nextProps.errors
+        });
+    }
+}
+
+
+onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+};
+
+onSubmit = e => {
+
+  e.preventDefault();
+  const newForum = {
+
+    title: this.state.title,
+    user_id: this.state.user_id,
+    content: this.state.content,
+  };
+  this.props.insertForum(newForum, this.props.history)
+};
 
   render(){ 
-    
-    const { title,  content, comment } = this.state
+    const { title,  content} = this.state
+    const { errors } = this.state;
  return (
     <Modal
-      {...this.props}
+    {...this.props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -69,26 +61,33 @@ class AddThread extends Component {
       </Modal.Header>
       <Modal.Body>
       <Form>
-  <Form.Group controlId="exampleForm.ControlInput">
+  <Form.Group >
     <Form.Label>Tytuł</Form.Label>
-    <Form.Control type="text" value={title} onChange={this.handleChangeInputTitle}/>
+    <Span>{errors.title}</Span>
+    <Form.Control 
+    type="text" 
+    id="title" 
+    value={title} 
+    onChange={this.onChange}
+    />
   </Form.Group>
   
-  <Form.Group controlId="exampleForm.ControlTextarea1">
+  <Form.Group >
     <Form.Label>Treść</Form.Label>
-    <Form.Control as="textarea" value={content} onChange={this.handleChangeInputContent} rows={3} />
+    <Form.Control 
+    as="textarea" 
+    id="content" 
+    value={content} 
+    onChange={this.onChange}
+    rows={3} />
   </Form.Group>
-  <Form.Group controlId="exampleForm.ControlTextarea2">
-    <Form.Label>Treść</Form.Label>
-    <Form.Control as="textarea"value={comment}  onChange={this.handleChangeInputComment} rows={3} />
-  </Form.Group>
- 
+
 </Form>
       </Modal.Body>
       <Modal.Footer>
         
         <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={this.handleIncludeForum}>Dodaj</Button>
+        <Button style={BlueButtonStyle} onClick={this.onChange} >Dodaj</Button>
       </Modal.Footer>
     </Modal>
   )
@@ -96,13 +95,16 @@ class AddThread extends Component {
 }
 
 AddThread.propTypes = {
-  auth: PropTypes.object.isRequired
+  insertForum: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
-mapStateToProps
-)(AddThread)
+mapStateToProps,
+{ insertForum }
+)(withRouter(AddThread))

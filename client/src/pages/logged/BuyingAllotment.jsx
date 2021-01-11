@@ -74,10 +74,12 @@ class BuyingAllotment extends Component {
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
         this.props.buyAllotmentById(id, payload)
-        
-        const timestamp = id.toString().substring(0,8);
-        const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-       
+
+        var today = new Date(Date.now() + 12096e5);
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear()
+        const dataa = yyyy+'-'+mm+'-'+dd
         const newFinance = {
 
             allotment_number: this.state.number,
@@ -85,7 +87,7 @@ class BuyingAllotment extends Component {
             title: "Kupno działki",
             area: this.state.allotment_width * this.state.allotment_length,
             charge: this.state.price,
-            term: date,
+            term: dataa,
             account: this.state.account_number,
             status: "Nieopłacona"
         };
@@ -116,7 +118,7 @@ class BuyingAllotment extends Component {
                 </Modal.Header>
                 <Modal.Body>
                   <p>
-                    Potwierdzam kupno wybranej działki i zoobowiązuję sie uregulować nalżność do 7 dnia tygodnia.</p><p> W innym wypadku rezerwacja zniknie z systemu.
+                    Potwierdzam kupno wybranej działki i zoobowiązuję sie uregulować nalżność do 14 dni od daty zakupu.</p><p> W innym wypadku rezerwacja zniknie z systemu.
                   </p>
                 </Modal.Body>
                 <Modal.Footer>

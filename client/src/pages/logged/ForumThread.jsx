@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import api from '../../api';
-import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { insertComment } from "../../api/index";
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from '../constants';
@@ -27,51 +28,47 @@ const Person = styled.p`
 class ForumThread extends Component {
   constructor(props) {
     super(props)
-    const {user} = this.props.auth
     this.state = {
         id: this.props.match.params.id,
         user_id: '',
         title: '',
         content: '',
 
-        commenter:  user.firstname + ' '+ user.lastname,
+        commenter: '',
         comment_content: '',
-        forum_id: this.props.match.params.id,
+        forum_id: '',
     }
   }
   
   componentDidMount = async () => {
     const { id } = this.state
-    const form = await api.getForumById(id)
+    const forum = await api.getForumById(id)
 
     this.setState({
-        user_id: form.data.data.user_id,
-        title: form.data.data.title,
-        content: form.data.data.content,
+        user_id: forum.data.data.user_id,
+        title: forum.data.data.title,
+        content: forum.data.data.content,
     })
   }
 
-handleChangeInputCommentContent = async event => {
-    const comment_content = event.target.value
-    this.setState({ comment_content })
-}
-handleIncludeComment = async () => {
-    const { commenter, comment_content, forum_id } = this.state
-    const payload = { commenter, comment_content, forum_id }
+      onChange = e => {
+      this.setState({ [e.target.id]: e.target.value });
+      };
 
-    await api.insertComment(payload).then(res => {
-        window.alert(`Comment inserted successfully`)
-        this.setState({
-            commenter: '',
-            comment_content: '',
-            forum_id: '',
-        })
-    })
-}
+      onSubmit = e => {
+
+        e.preventDefault();
+        const newComment = {
+          
+        commenter: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+        comment_content: this.state.comment_content,
+        forum_id: this.props.match.params.id,
+
+        };
+        this.props.insertComment(newComment, this.props.history)
+    };
 
   render() {
-    
-  
   
 // Comemnt List 
   const CommentsList = () => {
@@ -100,7 +97,7 @@ handleIncludeComment = async () => {
         );
        }
     });
-    return (<div> {CommentsTable}</div>)
+    return CommentsTable
     }
   
   const { user_id, title, content} = this.state
@@ -120,10 +117,10 @@ handleIncludeComment = async () => {
               <Form>
               <Form.Group>
                 <Form.Label muted> {commenter}</Form.Label>
-                <Form.Control as="textarea" value={comment_content}
-                    onChange={this.handleChangeInputCommentContent} placeholder="Treść komantarza.." rows={3} />
+                <Form.Control as="textarea" value={comment_content} id="comment_content"
+                    onChange={this.onChange} placeholder="Treść komantarza.." rows={3} />
               </Form.Group>
-              <Button style={BlueButtonStyle} onClick={this.handleIncludeComment} size="sm" type="submit">Dodaj Komentarz</Button>
+              <Button style={BlueButtonStyle} onClick={this.onSubmit} size="sm" type="submit">Dodaj Komentarz</Button>
             </Form>
           </AddComment>
           < CommentsList/>
@@ -133,15 +130,13 @@ handleIncludeComment = async () => {
 }
 
 
-ForumThread.propTypes = {
-  auth: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
   auth: state.auth
 });
 
 export default connect(
-mapStateToProps
-)(ForumThread)
+  mapStateToProps,
+    { insertComment }
+)(withRouter(ForumThread))
 

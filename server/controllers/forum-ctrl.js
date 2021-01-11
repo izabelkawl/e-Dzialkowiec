@@ -1,38 +1,21 @@
 import Forum from "../models/forum.js";
+import validateForumInput from "../validation/forum.js";
+import isEmpty from "is-empty";
 
-const createForum = (req, res) => {
-  const body = req.body;
-
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a forum",
-    });
-  }
-
-  const forum = new Forum(body);
-
-  if (!forum) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  forum
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: forum._id,
-        message: "forum created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "forum not created!",
-      });
-    });
-};
-
+const createForum = async (req, res) => {
+  const forumData = req.body;
+    const { errors, isValid } = validateForumInput(forumData);
+    if (!isValid) return res.status(400).json(errors);
+    
+    const processedForum = new Forum(forumData);
+  
+    try {
+      processedForum.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
+  };
+  
 const updateForum = async (req, res) => {
   const body = req.body;
 
@@ -53,7 +36,6 @@ const updateForum = async (req, res) => {
     forum.title = body.title;
     forum.user_id = body.user_id;
     forum.content = body.content;
-    forum.comment = body.comment;
     forum
       .save()
       .then(() => {

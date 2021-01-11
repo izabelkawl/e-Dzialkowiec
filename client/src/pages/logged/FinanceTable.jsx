@@ -23,19 +23,32 @@ class Management extends Component {
             }, []);
 
         const FinancesTable = finances.map((finance, index) => {
-            const { _id, allotment_number,owner,  title, area, charge, term, status } = finance;
+            const { _id, allotment_number,owner,  title, area, charge, term, status, account } = finance;
+            // const timestamp = _id.toString().substring(0,8);
+            // const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
             const logged = this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname
+            
             if(owner === logged){
             return (
                 <tr key={_id}>
                     <td>{allotment_number}</td>
                     <td>{title}</td>
-                    <td>{area}</td>
-                    <td>{charge}</td>
+                    <td>{area} m²</td>
+                    <td>{charge} zł</td>
                     <td>{term}</td>
                     <td>{status}</td>
-                    <td><PDFDownloadLink document={<MyDocument />} fileName="faktura.pdf">
-      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button style={BlueButtonStyle}>Pobierz</Button>)}
+                    <td>
+                        <PDFDownloadLink 
+                        id={_id} 
+                        document={MyDocument({ number: allotment_number,
+                                               owner: this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname,
+                                               title: title,
+                                               charge: charge,
+                                               term: term,
+                                               account: account,
+                                            }) } 
+                        fileName="faktura.pdf">
+      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button id={_id} style={BlueButtonStyle}>Pobierz</Button>)}
     </PDFDownloadLink></td>
                 </tr>
             );
@@ -48,7 +61,7 @@ class Management extends Component {
                 <th>Numer</th>
                 <th>Tytuł</th>
                 <th>Powierzchnia</th>
-                <th>Nalężność</th>
+                <th>Należność</th>
                 <th>Termin</th>
                 <th>Status</th>
                 <th></th>

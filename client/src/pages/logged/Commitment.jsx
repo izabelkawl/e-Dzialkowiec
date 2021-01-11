@@ -9,6 +9,7 @@ import FinancesTable from './FinanceTable';
 const Label = styled(Form.Label)`
     margin-top: 8px;
 `
+
 class Commitment extends Component {
 
         constructor(props) {

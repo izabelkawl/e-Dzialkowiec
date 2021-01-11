@@ -15,7 +15,7 @@ const api = axios.create({
 export const registerUser = (userData, history) => dispatch => {
     api
         .post("/register", userData)
-        .then(res => history.push("/users/login"))
+        .then(res => window.alert(`Rejestracja powiodła się!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -93,7 +93,7 @@ export const getUserById = id => api.get(`/user/${id}`)
 export const insertAllotment = (allotmentData, history) => dispatch => {
     api
         .post("/allotment", allotmentData)
-        .then(res => history.push("/allotments/list"))
+        .then(res => window.alert(`Dodano pomyślnie!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -138,19 +138,60 @@ export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payl
 export const deleteMessageById = id => api.delete(`/message/${id}`)
 export const getMessageById = id => api.get(`/message/${id}`)
 
+
+// Insert Forum
+// export const insertTable = (tableData, history) => dispatch => {
+//     api
+//         .post("/table", tableData)
+//         .then(res => window.alert(`Dodano pomyślnie!`))
+//         .catch(err =>
+//             dispatch({
+//                 type: GET_ERRORS,
+//                 payload: err.response.data
+//             })
+//         );
+// };
+
+
 export const insertTable = payload => api.post(`/table`, payload)
 export const getAllTables = () => api.get(`/tables`)
 export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
 export const deleteTableById = id => api.delete(`/table/${id}`)
 export const getTableById = id => api.get(`/table/${id}`)
 
-export const insertForum = payload => api.post(`/forum`, payload)
+
+// Insert Forum
+export const insertForum = (forumData, history) => dispatch => {
+    api
+        .post("/forum", forumData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
 export const getAllForums = () => api.get(`/forums`)
 export const updateForumById = (id, payload) => api.put(`/forum/${id}`, payload)
 export const deleteForumById = id => api.delete(`/forum/${id}`)
 export const getForumById = id => api.get(`/forum/${id}`)
 
-export const insertComment = payload => api.post(`/comment`, payload)
+
+// Insert Allotment
+export const insertComment = (commentData, history) => dispatch => {
+    api
+        .post("/comment", commentData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
 export const getAllComments = () => api.get(`/comments`)
 export const updateCommentById = (id, payload) => api.put(`/comment/${id}`, payload)
 export const deleteCommentById = id => api.delete(`/comment/${id}`)
