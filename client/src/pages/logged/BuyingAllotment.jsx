@@ -22,7 +22,6 @@ const Span = styled.div`
 class BuyingAllotment extends Component {
     constructor(props) {
         super(props)
-        this.wrapper = React.createRef();
         this.state = {
             id: this.props.match.params.id,
             number: '',
@@ -70,35 +69,11 @@ class BuyingAllotment extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    handleUpdateAllotment = () => {
-        const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
-        const payload = { number, allotment_width, allotment_length, price, status, user_id }
-        this.props.buyAllotmentById(id, payload)
-
-        var today = new Date(Date.now() + 12096e5);
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear()
-        const dataa = yyyy+'-'+mm+'-'+dd
-        const newFinance = {
-
-            allotment_number: this.state.number,
-            owner: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname,
-            title: "Kupno działki",
-            area: this.state.allotment_width * this.state.allotment_length,
-            charge: this.state.price,
-            term: dataa,
-            account: this.state.account_number,
-            status: "Nieopłacona"
-        };
-        this.props.insertFinance(newFinance, this.props.history)
-
-    }
     render() {
         const ConfirmModal = (props) => {
             const [modalShow, setModalShow] = React.useState(false);
             return (
-                <div ref={this.wrapper}>
+                <div>
                     <br></br>
                 <Button style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '}
                 <Button style={RedButtonStyle} onClick={() => setModalShow(true)}>
@@ -108,7 +83,7 @@ class BuyingAllotment extends Component {
               show={modalShow}
               onHide={() => setModalShow(false)}
                 {...props}
-        animation={false}
+                animation={false}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
