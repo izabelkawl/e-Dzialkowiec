@@ -55,8 +55,7 @@ handleChangeInputCommentContent = async event => {
 
   render() {
     
-  
-  
+
 // Comemnt List 
   const CommentsList = () => {
     const [comments, setComments] = useState([]);

@@ -1,36 +1,20 @@
 import Comment from "../models/comment.js";
+import validateCommentInput from "../validation/comment.js";
+import isEmpty from "is-empty";
 
-const createComment = (req, res) => {
-  const body = req.body;
+const createComment = async (req, res) => {
+const commentData = req.body;
+  const { errors, isValid } = validateCommentInput(commentData);
 
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a comment",
-    });
+  if (!isValid) return res.status(400).json(errors);
+ 
+  const processedComment = new Comment(commentData);
+
+  try {
+    processedComment.save();
+  } catch (error) {
+    throw new DatabaseInsertError(error.message);
   }
-
-  const comment = new Comment(body);
-
-  if (!comment) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  comment
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: comment._id,
-        message: "comment created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "comment not created!",
-      });
-    });
 };
 
 const updateComment = async (req, res) => {

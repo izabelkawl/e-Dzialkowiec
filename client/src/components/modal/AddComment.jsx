@@ -76,7 +76,7 @@ onSubmit = e => {
       ></Form.Control>
   </Form.Group>
   <Form.Group >
-    <Span>{errors. comment_content}</Span>
+    <Span>{errors.comment_content}</Span>
                 <Form.Control 
                   as="textarea" 
                   id="comment_content"

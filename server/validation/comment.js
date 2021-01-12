@@ -1,42 +1,22 @@
 import Validator from "validator";
 import isEmpty from "is-empty";
 
-const validateAllotmentInput = (data) => {
+const validateCommentInput = (data) => {
   let errors = {};
 
-  // Convert empty fields to an empty string so we can use validator functions
-  data.number = !isEmpty(data.number) ? data.number : "";
-  data.allotment_width = !isEmpty(data.allotment_width) ? data.allotment_width : "";
-  data.allotment_length = !isEmpty(data.allotment_length) ? data.allotment_length : "";
-  data.price = !isEmpty(data.price) ? data.price : "";
-  data.status = !isEmpty(data.status) ? data.status : "";
-  data.user_id = !isEmpty(data.user_id) ? data.user_id : "";
+  data.commenter = !isEmpty(data.commenter) ? data.commenter : "";
+  data.comment_content = !isEmpty(data.comment_content) ? data.comment_content : "";
+  data.forum_id = !isEmpty(data.forum_id) ? data.forum_id : "";
 
-  // Number checks
-  if (Validator.isEmpty(data.number)) {
-    errors.number = " *Podaj numer działki";
+  if (Validator.isEmpty(data.commenter)) {
+    errors.commenter = " *Brak użytkownika";
   }
-  // Width checks
-  if (Validator.isEmpty(data.allotment_width)) {
-    errors.allotment_width = " *Podaj szerokość";
+  if (Validator.isEmpty(data.comment_content)) {
+    errors.comment_content = " *Podaj treść komentarza";
   }
-  // length checks
-  if (Validator.isEmpty(data.allotment_length)) {
-    errors.allotment_length = " *Długość jest wymagana";
+  if (Validator.isEmpty(data.forum_id)) {
+    errors.forum_id = " *Brak forum";
   }
-  // Price checks
-  if (Validator.isEmpty(data.price)) {
-    errors.price = " *Cena jest wymagana";
-  }
-  // Status checks
-  if (Validator.isEmpty(data.status)) {
-    errors.status = " *Podaj status";
-  } 
-  // Status checks
-  if (Validator.isEmpty(data.user_id)) {
-    errors.user_id = " *Wybierz działkowicza";
-  } 
-  // User_id empty or someone
 
   return {
     errors,
@@ -44,4 +24,4 @@ const validateAllotmentInput = (data) => {
   };
 };
 
-export default validateAllotmentInput;
+export default validateCommentInput;
