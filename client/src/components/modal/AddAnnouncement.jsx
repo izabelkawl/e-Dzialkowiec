@@ -14,7 +14,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
       
       this.state = {
         title: '',
-        user_id: '',
+        user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
         content: '',
         image: '',
         errors: {}
@@ -38,7 +38,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
       const newTable = {
 
          title: this.state.title,
-          user_id: this.state.user_id,
+          user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
           content: this.state.content,
           image: this.state.image
       };
@@ -46,7 +46,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
   };
   render(){ 
       const { errors } = this.state;
-      const { title, user_id, content, image } = this.state
+      const { title, content, image } = this.state
       const {staticContext, insertTable, ...rest} = this.props
    return (
       <Modal
@@ -73,18 +73,6 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
                   error={errors.title} 
                   onChange={this.onChange}
                   className={classnames("", {invalid: errors.title })}
-                ></Form.Control>
-          </Form.Group>
-          <Form.Group >
-            <Form.Label>Użytkownik</Form.Label>
-              <Span>{errors.user_id}</Span>
-                <Form.Control 
-                  type="text"
-                  id="user_id"
-                  value={user_id}
-                  error={errors.user_id} 
-                  onChange={this.onChange}
-                  className={classnames("", {invalid: errors.user_id })}
                 ></Form.Control>
           </Form.Group>
           <Form.Group >
@@ -125,10 +113,12 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 
 AddAnnouncement.propTypes = {
   errors: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   insertTable: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   errors: state.errors
 });
 

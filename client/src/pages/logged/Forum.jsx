@@ -18,7 +18,7 @@ const Container = styled.div`
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 0.8fr 0.2fr;
+    grid-template-columns: 4fr 1fr;
     grid-template-rows:  3(1fr);
     gap: 25px 25px;
     grid-template-areas:
@@ -57,7 +57,7 @@ class DeleteForum extends Component {
       event.preventDefault()
       if (
           window.confirm(
-              `Do you want to delete the Forum ${this.props.id} permanently?`,
+              `Czy na pewno chcesz usunąć ten wątek??`,
           )
       ) {
           api.deleteForumById(this.props.id)
@@ -71,7 +71,7 @@ class DeleteForum extends Component {
 class Forum  extends Component {
 
   render() {
-  const ForumComponent = (props) => {
+  const ForumComponent = () => {
 
     const [swt, setSwt] = React.useState(true);
     const [forums, setForums] = useState([]);
