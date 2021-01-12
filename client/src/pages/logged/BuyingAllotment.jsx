@@ -22,7 +22,7 @@ const Span = styled.div`
 class BuyingAllotment extends Component {
     constructor(props) {
         super(props)
-
+        this.wrapper = React.createRef();
         this.state = {
             id: this.props.match.params.id,
             number: '',
@@ -62,7 +62,7 @@ class BuyingAllotment extends Component {
             garbage: paymentdetails.data.data.garbage,
             transfer_title: paymentdetails.data.data.transfer_title,
             payment_date: paymentdetails.data.data.payment_date,
-            account_number: paymentdetails.data.data.account_number
+            account_number: paymentdetails.data.data.account_number,
         })
     }
 
@@ -98,15 +98,17 @@ class BuyingAllotment extends Component {
         const ConfirmModal = (props) => {
             const [modalShow, setModalShow] = React.useState(false);
             return (
-                <div>
+                <div ref={this.wrapper}>
                     <br></br>
                 <Button style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '}
                 <Button style={RedButtonStyle} onClick={() => setModalShow(true)}>
                 Kupuję
                 </Button>
-              <Modal show={modalShow}
+              <Modal 
+              show={modalShow}
               onHide={() => setModalShow(false)}
                 {...props}
+        animation={false}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered

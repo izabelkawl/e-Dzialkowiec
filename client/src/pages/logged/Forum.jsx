@@ -8,7 +8,7 @@ import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
-import AddThread from './AddThread'
+import AddThread from '../../components/modal/AddThread'
 
 const Container = styled.div`
     background-color: white;
@@ -52,7 +52,6 @@ class UpdateForum extends Component {
       return <Button style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
   }
 }
-//tylko dla swoich zrobić
 class DeleteForum extends Component {
   deleteForum = event => {
       event.preventDefault()
@@ -72,7 +71,7 @@ class DeleteForum extends Component {
 class Forum  extends Component {
 
   render() {
-  const ForumComponent = () => {
+  const ForumComponent = (props) => {
 
     const [swt, setSwt] = React.useState(true);
     const [forums, setForums] = useState([]);
@@ -87,6 +86,7 @@ class Forum  extends Component {
 
       requestForumsList();
   }, []);
+
   const ForumsList = forums.map((forum) => {
       const { _id, title, user_id, content } = forum;
       const timestamp = _id.toString().substring(0,8);

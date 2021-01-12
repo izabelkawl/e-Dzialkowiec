@@ -139,21 +139,20 @@ export const deleteMessageById = id => api.delete(`/message/${id}`)
 export const getMessageById = id => api.get(`/message/${id}`)
 
 
-// Insert Forum
-// export const insertTable = (tableData, history) => dispatch => {
-//     api
-//         .post("/table", tableData)
-//         .then(res => window.alert(`Dodano pomyślnie!`))
-//         .catch(err =>
-//             dispatch({
-//                 type: GET_ERRORS,
-//                 payload: err.response.data
-//             })
-//         );
-// };
+export const insertTable = (tableData, history) => dispatch => {
+    api
+        .post("/table", tableData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
 
 
-export const insertTable = payload => api.post(`/table`, payload)
+// export const insertTable = payload => api.post(`/table`, payload)
 export const getAllTables = () => api.get(`/tables`)
 export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
 export const deleteTableById = id => api.delete(`/table/${id}`)
@@ -172,7 +171,7 @@ export const insertForum = (forumData, history) => dispatch => {
             })
         );
 };
-
+// export const insertForum = payload => api.post(`/forum`, payload)
 export const getAllForums = () => api.get(`/forums`)
 export const updateForumById = (id, payload) => api.put(`/forum/${id}`, payload)
 export const deleteForumById = id => api.delete(`/forum/${id}`)

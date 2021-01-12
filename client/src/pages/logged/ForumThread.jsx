@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { insertComment } from "../../api/index";
 import Wrapper from '../../components/Wrapper/Wrapper';
+
+import PropTypes from "prop-types";
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from '../constants';
 import styled from 'styled-components';
@@ -97,8 +99,6 @@ class ForumThread extends Component {
         );
        }
     });
-    return CommentsTable
-    }
   
   const { user_id, title, content} = this.state
   const { commenter, comment_content} = this.state
@@ -123,13 +123,18 @@ class ForumThread extends Component {
               <Button style={BlueButtonStyle} onClick={this.onSubmit} size="sm" type="submit">Dodaj Komentarz</Button>
             </Form>
           </AddComment>
-          < CommentsList/>
+          < CommentsTable/>
       </Wrapper>
     )
   }
+  return <CommentsList/>
+  }
 }
-
-
+ForumThread.propTypes = {
+  errors: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  insertComment: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   auth: state.auth

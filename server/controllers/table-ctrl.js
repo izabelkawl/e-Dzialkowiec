@@ -1,14 +1,10 @@
 import Table from "../models/table.js";
 import validateTableInput from "../validation/table.js";
 
-const createTable = async (req, res) => {
+const createTable  = async (req, res) => {
   const tableData = req.body;
-    const { errors, isValid } = validateTableInput(tableData);
-  
-    if (!isValid) return res.status(400).json({
-      errors,
-      message: "Wątek nie został ",
-    });
+  const { errors, isValid } = validateTableInput(tableData);
+    if (!isValid) return res.status(400).json(errors);
     
     const processedTable = new Table(tableData);
   

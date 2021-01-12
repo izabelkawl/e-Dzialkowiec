@@ -1,13 +1,13 @@
-import React, {  Component} from 'react';
+import React, { Component} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { insertForum } from "../../api/index";
-import { Form, Button, Modal } from 'react-bootstrap';
-import  {RedButtonStyle, BlueButtonStyle,  Span } from '../constants'
+import { insertForum } from "../../api";
+import { Button, Form, Modal } from 'react-bootstrap';
+import classnames from "classnames";
+import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 
 class AddThread extends Component {
-  //constructor and states
   constructor(props) {
     super(props);
 
@@ -18,7 +18,6 @@ class AddThread extends Component {
       errors:{},
     }
   }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
         this.setState({
@@ -27,9 +26,8 @@ class AddThread extends Component {
     }
 }
 
-
 onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+  this.setState({ [e.target.id]: e.target.value });
 };
 
 onSubmit = e => {
@@ -39,17 +37,20 @@ onSubmit = e => {
 
     title: this.state.title,
     user_id: this.state.user_id,
-    content: this.state.content,
+    content: this.state.content
   };
   this.props.insertForum(newForum, this.props.history)
 };
 
   render(){ 
-    const { title,  content} = this.state
     const { errors } = this.state;
+    const { title,  content } = this.state
+    const {staticContext, insertForum, ...rest} = this.props
  return (
     <Modal
-    {...this.props}
+    {...rest}
+    
+    animation={false}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -63,40 +64,44 @@ onSubmit = e => {
       <Form>
   <Form.Group >
     <Form.Label>Tytuł</Form.Label>
-    <Span>{errors.title}</Span>
-    <Form.Control 
-    type="text" 
-    id="title" 
-    value={title} 
-    onChange={this.onChange}
-    />
+      <Span>{errors.title}</Span>
+        <Form.Control 
+          type="text" 
+          id="title" 
+          value={title} 
+          error={errors.title} 
+          onChange={this.onChange}
+          className={classnames("", {invalid: errors.title })}
+      ></Form.Control>
   </Form.Group>
-  
   <Form.Group >
     <Form.Label>Treść</Form.Label>
-    <Form.Control 
-    as="textarea" 
-    id="content" 
-    value={content} 
-    onChange={this.onChange}
-    rows={3} />
+    <Span>{errors.content}</Span>
+                <Form.Control 
+                  type="text"
+                  id="content"
+                  value={content}
+                  error={errors.content} 
+                  onChange={this.onChange}
+                  className={classnames("", {invalid: errors.content })}
+                ></Form.Control>
   </Form.Group>
-
 </Form>
       </Modal.Body>
       <Modal.Footer>
         
         <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={this.onChange} >Dodaj</Button>
+        <Button style={BlueButtonStyle} onClick={this.onSubmit} >Dodaj</Button>
       </Modal.Footer>
     </Modal>
   )
- }
+}
 }
 
 AddThread.propTypes = {
-  insertForum: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  insertForum: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -106,5 +111,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 mapStateToProps,
-{ insertForum }
+{insertForum}
 )(withRouter(AddThread))
