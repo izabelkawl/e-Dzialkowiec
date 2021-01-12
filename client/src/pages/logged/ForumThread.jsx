@@ -1,13 +1,11 @@
 import React, { useState, useEffect, Component } from "react";
 import api from '../../api';
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { insertComment } from "../../api/index";
-import Wrapper from '../../components/Wrapper/Wrapper';
-
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import Wrapper from '../../components/Wrapper/Wrapper';
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from '../constants';
+import AddComment from '../../components/modal/AddComment'
 import styled from 'styled-components';
 
 const Content = styled.div`
@@ -18,11 +16,6 @@ const Content = styled.div`
   -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
 `
-const AddComment = styled.div`
-    background-color: #ffffff;
-    padding: 20px ;
-    min-height: content; 
-`
 const Person = styled.p`
     color: #0071BC;
 `
@@ -30,57 +23,50 @@ const Person = styled.p`
 class ForumThread extends Component {
   constructor(props) {
     super(props)
+    const {user} = this.props.auth
     this.state = {
         id: this.props.match.params.id,
         user_id: '',
         title: '',
         content: '',
 
-        commenter: '',
+        commenter:  user.firstname + ' '+ user.lastname,
         comment_content: '',
-        forum_id: '',
+        forum_id: this.props.match.params.id,
     }
   }
   
   componentDidMount = async () => {
     const { id } = this.state
-    const forum = await api.getForumById(id)
+    const form = await api.getForumById(id)
 
     this.setState({
-        user_id: forum.data.data.user_id,
-        title: forum.data.data.title,
-        content: forum.data.data.content,
+        user_id: form.data.data.user_id,
+        title: form.data.data.title,
+        content: form.data.data.content,
     })
   }
 
-      onChange = e => {
-      this.setState({ [e.target.id]: e.target.value });
-      };
-
-      onSubmit = e => {
-
-        e.preventDefault();
-        const newComment = {
-          
-        commenter: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
-        comment_content: this.state.comment_content,
-        forum_id: this.props.match.params.id,
-
-        };
-        this.props.insertComment(newComment, this.props.history)
-    };
+  
+handleChangeInputCommentContent = async event => {
+    const comment_content = event.target.value
+    this.setState({ comment_content })
+}
 
   render() {
+    
+  
   
 // Comemnt List 
   const CommentsList = () => {
     const [comments, setComments] = useState([]);
+    const [modalShow, setModalShow] = React.useState(false);
+   
     useEffect(() => {
         const requestCommentsList = async () => {
             const commentsList = await api.getAllComments();
             const { data } = commentsList;
             setComments(data.data);
-
         };
         requestCommentsList();
     }, []);
@@ -99,41 +85,34 @@ class ForumThread extends Component {
         );
        }
     });
+    return (<div>
+      <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
+        <AddComment show={modalShow} onHide={() => setModalShow(false)}
+      />
+      {CommentsTable}</div>)
+    }
   
   const { user_id, title, content} = this.state
-  const { commenter, comment_content} = this.state
     return (
       <Wrapper>
         <Button style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
           <Content>
-          <p>{this.props.match.params.id} id posta na chwile pokauje</p>
             <h3>{title}</h3>
             <p>{user_id}</p>
             <hr></hr>
             <p>{content}</p>
             <Form.Text muted>27.11.2020</Form.Text>
           </Content>
-            <AddComment>
-              <Form>
-              <Form.Group>
-                <Form.Label muted> {commenter}</Form.Label>
-                <Form.Control as="textarea" value={comment_content} id="comment_content"
-                    onChange={this.onChange} placeholder="Treść komantarza.." rows={3} />
-              </Form.Group>
-              <Button style={BlueButtonStyle} onClick={this.onSubmit} size="sm" type="submit">Dodaj Komentarz</Button>
-            </Form>
-          </AddComment>
-          < CommentsTable/>
+            
+          < CommentsList/>
       </Wrapper>
     )
   }
-  return <CommentsList/>
-  }
 }
+
+
 ForumThread.propTypes = {
-  errors: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  insertComment: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -141,7 +120,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-    { insertComment }
-)(withRouter(ForumThread))
-
+mapStateToProps
+)(ForumThread)
