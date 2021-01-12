@@ -93,7 +93,7 @@ class Forum  extends Component {
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
       if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
       return (
-        <Container key={this.props.auth}>
+        <Container key={_id}>
             <Content>
               <HeaderDiv>{title}</HeaderDiv>
               <Form.Text>{content}</Form.Text>
