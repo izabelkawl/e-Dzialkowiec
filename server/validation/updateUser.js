@@ -11,7 +11,6 @@ const validateUpdateUser = (data) => {
   data.address = !isEmpty(data.address) ? data.address : "";
   data.phone = !isEmpty(data.phone) ? data.phone : "";
   data.password = !isEmpty(data.password) ? data.password : "";
-  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
   // Email checks
   if (isEmpty(data.email)) errors.email = " *Podaj adres email";
@@ -48,15 +47,10 @@ const validateUpdateUser = (data) => {
   // Password checks
   if (isEmpty(data.password)) errors.password = " *Pole nie może być puste";
 
-  if (isEmpty(data.password2)) errors.password2 = " *Potwierdź hasło";
-
   if (!isEmpty(data.password)) {
 
     if (!Validator.isLength(data.password, { min: 8, max: 30 }))
       errors.password = " *Hasło minimum 8 znaków";
-
-    if (!Validator.equals(data.password, data.password2))
-      errors.password2 = " *Hasła różnią się od siebie";
 
   }
 

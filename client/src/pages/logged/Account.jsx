@@ -104,7 +104,7 @@ class Account extends Component {
                             </Col>
                             <Col sm={{ offset: 1, span: 5 }}>
                                 <Tab.Content>
-                                    <Tab.Pane eventKey="#link1">
+                                    <Tab.Pane eventKey="#link1" >
                                         <Title>Zmiana adresu email</Title>
                                         <Form>
                                             <Form.Group>
@@ -201,7 +201,7 @@ class Account extends Component {
 
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="#link3">
-                                        <Title>Edytuj dane</Title>
+                                        <Title>Twoje dane</Title>
 
                                         <Form noValidate >
 
