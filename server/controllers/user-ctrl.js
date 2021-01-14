@@ -82,6 +82,19 @@ const updateUser = async (req, res) => {
 
   const fieldsToUpdate = { ...req.body };
 
+  const password = req.body.password;
+
+  const processedUser = await User.findOne({ _id: req.params.id });
+  const isPasswordValid = await comparePassword(
+    password,
+    processedUser.password
+  );
+
+  if (!isPasswordValid)
+    return res
+      .status(400)
+      .json({ passwordincorrect: "*Nieprawidłowe hasło" });
+
   const isPasswordPassed =
     !!fieldsToUpdate?.password?.length && fieldsToUpdate?.password2?.length;
 
@@ -95,7 +108,6 @@ const updateUser = async (req, res) => {
 
   if (!isValid) return res.status(400).json(errors);
 
-  const processedUser = await User.findOne({ _id: req.params.id });
 
   if (!processedUser)
     return res.status(404).json({

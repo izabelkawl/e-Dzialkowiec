@@ -158,6 +158,8 @@ class Commitment extends Component {
                         <hr></hr>
 </Form>
             <FinancesTable/>
+            
+<p>*Status zostanie zmieniony po weryfikacji przez zarząd</p>
         </Wrapper>
         )
     }

@@ -13,6 +13,7 @@ class StatusUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             allotment_number: '',
+            owner: '',
             title: '',
             area: '',
             charge: '',
@@ -27,6 +28,7 @@ class StatusUpdate extends Component {
 
         this.setState({
             allotment_number: finance.data.data.allotment_number,
+            owner: finance.data.data.owner,
             title: finance.data.data.title,
             area: finance.data.data.area,
             charge: finance.data.data.charge,
@@ -49,8 +51,8 @@ class StatusUpdate extends Component {
         handleUpdateFinance = e => {
 
             e.preventDefault();
-            const { id, allotment_number, title, area, charge, term, account, status  } = this.state
-            const payload = { allotment_number, title, area, charge, term, account, status  }
+            const { id, allotment_number, title,owner, area, charge, term, account, status  } = this.state
+            const payload = { allotment_number, title,owner, area, charge, term, account, status  }
 
             this.props.updateFinanceById(id, payload)
         }
@@ -66,6 +68,18 @@ class StatusUpdate extends Component {
                         onChange={this.onChange}
                         value={this.state.title}
                         id="title"
+                        type="text"
+                        readOnly
+                        >
+                        </Form.Control>
+                        </Col>
+            </Form.Group>
+            <Form.Group as={Row}>
+                 <Form.Label column sm="4">Właściciel działki: </Form.Label>
+                    <Col sm="8"> <Form.Control
+                        onChange={this.onChange}
+                        value={this.state.owner}
+                        id="owner"
                         type="text"
                         readOnly
                         >

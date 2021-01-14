@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api from '../../api';
+import api, { updateUserById } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Tab, Col, Row, ListGroup, Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ class Account extends Component {
         super(props)
 
         this.state = {
-            id: this.props.auth.email,
+            id: this.props.auth.user.id,
             email: '',
             firstname: '',
             lastname: '',
@@ -78,7 +78,7 @@ class Account extends Component {
         this.props.logoutUser();
     };
     render() {
-        const { errors, email } = this.state;
+        const { errors, email, password, lastname, firstname, address, phone } = this.state;
         return (
             <Wrapper >
                 <Container>
@@ -126,14 +126,15 @@ class Account extends Component {
                                             </Form.Group>
                                                 <Form.Group>
                                                     <Form.Label htmlFor="password">Hasło: </Form.Label >
-                                                    <Span>{errors.password}</Span>
+                                                    <Span>
+                                                        {errors.passwordincorrect}
+                                                    </Span>
                                                     <Form.Control
                                                         onChange={this.onChange}
-                                                        error={errors.password}
                                                         id="password"
                                                         type="password"
                                                         className={classnames("", {
-                                                            invalid: errors.password
+                                                            invalid: errors.passwordincorrect
                                                         })}
                                                     />
                                             </Form.Group>
@@ -146,33 +147,54 @@ class Account extends Component {
                                         <Form>
                                             <Form.Group>
                                                 <Form.Label htmlFor="password">Obecne hasło:</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="password"
-                                                />
+                                                <Span>
+                                                        {errors.password}
+                                                        {errors.passwordincorrect}
+                                                    </Span>
+                                                    <Form.Control
+                                                        onChange={this.onChange}
+                                                        error={errors.password}
+                                                        id="password"
+                                                        type="password"
+                                                        className={classnames("", {
+                                                            invalid: errors.password || errors.passwordincorrect
+                                                        })}
+                                                    />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label htmlFor="password">Nowe hasło:</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="password"
-                                                />
+                                                <Span>
+                                                        {errors.password}
+                                                        {errors.passwordincorrect}
+                                                    </Span>
+                                                    <Form.Control
+                                                        onChange={this.onChange}
+                                                        error={errors.password}
+                                                        id="password"
+                                                        type="password"
+                                                        className={classnames("", {
+                                                            invalid: errors.password || errors.passwordincorrect
+                                                        })}
+                                                    />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label htmlFor="password">Powtórz hasło:</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="password"
-                                                />
+                                                <Span>
+                                                        {errors.password}
+                                                        {errors.passwordincorrect}
+                                                    </Span>
+                                                    <Form.Control
+                                                        onChange={this.onChange}
+                                                        error={errors.password}
+                                                        id="password"
+                                                        type="password"
+                                                        className={classnames("", {
+                                                            invalid: errors.password || errors.passwordincorrect
+                                                        })}
+                                                    />
                                             </Form.Group>
 
-                                            <Button type="submit" style={BlueButtonStyle} className="float-right">Zapisz</Button>
+                                            <Button type="submit" style={BlueButtonStyle} onClick={this.handleUpdateUser} className="float-right">Zapisz</Button>
 
                                         </Form>
 
@@ -186,68 +208,81 @@ class Account extends Component {
                                             <Form.Group >
                                                 <Form.Label htmlFor="firstname">Imię
                                 </Form.Label>
-
-                                                <Form.Control
-
-                                                    type="text"
-
-                                                    placeholder="Jan"
-                                                />
+                                <Span>{errors.firstname}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.firstname}
+                        id="firstname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.firstname
+                        })}
+                        value={firstname}
+                    />
                                             </Form.Group>
                                             <Form.Group>
                                                 <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="text"
-
-                                                    placeholder="Kowalski"
-                                                />
-
-
+                                                <Span>{errors.lastname}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.lastname}
+                        id="lastname"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.lastname
+                        })}
+                        value={lastname}
+                    />
                                             </Form.Group>
 
                                             <Form.Group >
                                                 <Form.Label htmlFor="address">Adres</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="text"
-
-                                                    placeholder="ul. Wspólna 2, Warszawa 00-000"
-                                                />
-
+                                                <Span>{errors.address}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.address}
+                        id="address"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.address
+                        })}
+                        value={address}
+                    />
                                             </Form.Group>
 
                                             <Form.Group >
                                                 <Form.Label htmlFor="phone">Telefon</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="text"
-
-                                                    placeholder="123 456 789"
-                                                />
-
+                                                <Span>{errors.phone}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.phone}
+                        id="phone"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.phone
+                        })}
+                        value={phone}
+                    />
                                             </Form.Group>
 
                                             <Form.Group >
                                                 <Form.Label htmlFor="password">Hasło</Form.Label>
-
-                                                <Form.Control
-
-
-                                                    type="password"
-
-                                                    placeholder="********"
-                                                />
-
+                                                <Span>
+                                                        {errors.password}
+                                                        {errors.passwordincorrect}
+                                                    </Span>
+                                                    <Form.Control
+                                                        onChange={this.onChange}
+                                                        error={errors.password}
+                                                        id="password"
+                                                        type="password"
+                                                        className={classnames("", {
+                                                            invalid: errors.password || errors.passwordincorrect
+                                                        })}
+                                                    />
                                             </Form.Group>
 
-                                            <Button style={BlueButtonStyle}  type="submit" className="float-right">Zapisz</Button>
+                                            <Button style={BlueButtonStyle}  type="submit" onClick={this.handleUpdateUser} className="float-right">Zapisz</Button>
 
                                         </Form>
 
@@ -266,15 +301,18 @@ class Account extends Component {
     }
 }
 Account.propTypes = {
+    updateUserById: PropTypes.func.isRequired,
     logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    errors: state.errors
 });
 
 export default connect(
     mapStateToProps,
-    { logoutUser }
+    { logoutUser, updateUserById }
 )(Account);
