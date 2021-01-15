@@ -137,33 +137,6 @@ class UsersUpdate extends Component {
                         value={phone}
                     />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor="password">Hasło: </Form.Label >
-                    <Span>{errors.password}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.password}
-                        id="password"
-                        type="password"
-                        className={classnames("", {
-                            invalid: errors.password
-                        })}
-
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor="password2">Powtórz hasło: </Form.Label >
-                    <Span>{errors.password2}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.password2}
-                        id="password2"
-                        type="password"
-                        className={classnames("", {
-                            invalid: errors.password2
-                        })}
-                    />
-                </Form.Group>
 
                 <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>{' '}
                 <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>

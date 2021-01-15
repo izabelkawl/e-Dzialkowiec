@@ -78,12 +78,13 @@ onSubmit = e => {
     <Form.Label>Treść</Form.Label>
     <Span>{errors.content}</Span>
                 <Form.Control 
-                  type="text"
+                  as="textarea" 
                   id="content"
                   value={content}
                   error={errors.content} 
                   onChange={this.onChange}
                   className={classnames("", {invalid: errors.content })}
+                  row={3}
                 ></Form.Control>
   </Form.Group>
 </Form>

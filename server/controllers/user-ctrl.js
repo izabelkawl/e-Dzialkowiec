@@ -81,9 +81,7 @@ const loginUser = async (req, res) => {
 const updateUser = async (req, res) => {
 
   const fieldsToUpdate = { ...req.body };
-
   const password = req.body.password;
-
   const processedUser = await User.findOne({ _id: req.params.id });
   const isPasswordValid = await comparePassword(
     password,
@@ -96,8 +94,7 @@ const updateUser = async (req, res) => {
       .json({ passwordincorrect: "*Nieprawidłowe hasło" });
 
   const isPasswordPassed =
-    !!fieldsToUpdate?.password?.length && fieldsToUpdate?.password2?.length;
-
+    !!fieldsToUpdate?.password1?.length && fieldsToUpdate?.password2?.length;
   const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
 
   if (isEmpty(fieldsToUpdate))
@@ -108,7 +105,6 @@ const updateUser = async (req, res) => {
 
   if (!isValid) return res.status(400).json(errors);
 
-
   if (!processedUser)
     return res.status(404).json({
       err,
@@ -116,9 +112,9 @@ const updateUser = async (req, res) => {
     });
 
   if (isPasswordPassed)
-    fieldsToUpdate.password = await hashPassword(fieldsToUpdate.password);
+    fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);
   else {
-    fieldsToUpdate.password = processedUser.password;
+    fieldsToUpdate.password1 = processedUser.password2;
     delete fieldsToUpdate.password2;
   }
 
@@ -143,6 +139,56 @@ const updateUser = async (req, res) => {
     message: "*Aktualizacja powiodła się!",
   });
 };
+
+
+const updatePassword = async (req, res) => {
+
+  const fieldsToUpdate = { ...req.body };
+  const password = req.body.password;
+  const processedUser = await User.findOne({ _id: req.params.id });
+  const isPasswordValid = await comparePassword(
+    password,
+    processedUser.password
+  );
+
+  if (!isPasswordValid)
+    return res
+      .status(400)
+      .json({ passwordincorrect: "*Nieprawidłowe hasło" });
+
+  const isPasswordPassed =
+    !!fieldsToUpdate?.password1?.length && fieldsToUpdate?.password2?.length;
+  const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
+
+  if (isPasswordPassed)
+    fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);
+  else {
+    fieldsToUpdate.password1 = processedUser.password2;
+    delete fieldsToUpdate.password2;
+  }
+
+  for (const field in fieldsToUpdate)
+    processedUser[field] = fieldsToUpdate[field];
+
+  try {
+    await processedUser.save();
+  } catch (error) {
+    console.log(error);
+
+    return res.status(400).json({
+      success: false,
+      id: processedUser._id,
+      message: "*Aktualizacja nie powiodła się!",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: processedUser._id,
+    message: "*Aktualizacja powiodła się!",
+  });
+};
+
 
 const deleteUser = async (req, res) => {
   await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
@@ -184,6 +230,7 @@ const getUsers = async (req, res) => {
 };
 
 export default {
+  updatePassword ,
   createUser,
   loginUser,
   updateUser,

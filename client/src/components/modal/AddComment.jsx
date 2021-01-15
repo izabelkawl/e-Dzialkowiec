@@ -82,9 +82,9 @@ onSubmit = e => {
                   id="comment_content"
                   value={comment_content}
                   placeholder="Treść.."
-                  error={errors. comment_content} 
+                  error={errors.comment_content} 
                   onChange={this.onChange}
-                  className={classnames("", {invalid: errors. comment_content })}
+                  className={classnames("", {invalid: errors.comment_content })}
                   rows={3}
                 ></Form.Control>
   </Form.Group>

@@ -18,8 +18,6 @@ import Commitment from '../pages/logged/Commitment.jsx';
 import Messages from '../pages/logged/Messages.jsx';
 import ForumThread from '../pages/logged/ForumThread.jsx';
 
-import AddComment from '../pages/logged/AddComment'
-
 const Container = styled.div`
   background-image: url(${bg});
   background-repeat: no-repeat;
@@ -44,7 +42,6 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />
             <PrivateRoute path="/dashboard/forums/update/:id" exact component={ForumThread}/>
-            <PrivateRoute path="/dashboard/comment" exact component={AddComment}/>
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
           </Switch>
         </Router>
