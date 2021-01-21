@@ -7,7 +7,7 @@ import { InputGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
 import { List } from '../constants';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
-import AddMessage from '../../components/modal/AddMessage';
+import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
 
 const MessageList = styled.div`
   overflow: auto;
@@ -70,10 +70,10 @@ class Messages extends Component {
   const MessagesTable  = messages.map((users, index) => {
       
       const {user_id, recipient} = users
-      if(user_id === user.firstname + ' ' + user.lastname ){
+      if(user_id === "Zarząd"){
       return recipient
       }
-      else if(recipient === user.firstname + ' ' + user.lastname ){
+      else if(recipient === "Zarząd" ){
           return user_id
       }
   })
@@ -85,7 +85,7 @@ class Messages extends Component {
   })
   return <List>
         <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
-        <AddMessage show={modalShow} onHide={() => setModalShow(false)}
+        <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}
     />
      <Row>
            <Col sm="3">

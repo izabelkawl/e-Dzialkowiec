@@ -8,12 +8,12 @@ import classnames from "classnames";
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 import UsersID from '../../pages/admin/UsersID';
 
-class AddMessage extends Component {
+class AddMessageAdminPanel extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+      user_id: "Zarząd",
       recipient: '',
       content: '',
       errors: {}
@@ -37,7 +37,7 @@ onSubmit = e => {
   e.preventDefault();
   const newMessage = {
 
-    user_id: this.state.user_id,
+    user_id: "Zarząd",
     recipient: this.state.recipient,
     content: this.state.content,
   };
@@ -63,14 +63,7 @@ onSubmit = e => {
       </Modal.Header>
       <Modal.Body>
       <Form noValidate onSubmit={this.onSubmit}></Form>
-                <Form.Label>Ja: </Form.Label>
-                <FormControl
-                    onChange={this.onChange}
-                    value={this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname}
-                    id="user_id"
-                    type="text"
-                />
-
+               
                 <Form.Label>Odbiorca: </Form.Label>
                 <Span>{errors.recipient}</Span>
                 <FormControl
@@ -82,8 +75,7 @@ onSubmit = e => {
                         invalid: errors.recipient
                     })}
                 >
-                    <option>Wybierz..</option>
-                    <option>Zarząd</option>
+                    <option>Wybierz działkowicza..</option>
                 <UsersID/>
             </FormControl>
                 <Form.Label>Treść: </Form.Label>
@@ -110,7 +102,7 @@ onSubmit = e => {
 }
 }
 
-AddMessage.propTypes = {
+AddMessageAdminPanel.propTypes = {
   errors: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   insertMessage: PropTypes.func.isRequired,
@@ -124,4 +116,4 @@ const mapStateToProps = state => ({
 export default connect(
 mapStateToProps,
 {insertMessage}
-)(withRouter(AddMessage))
+)(withRouter(AddMessageAdminPanel))
