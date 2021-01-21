@@ -127,7 +127,7 @@ class Admin extends Component {
     }
     render() {
         const { user } = this.props.auth;
-        if (user.email === "edzialkowiec@gmail.com") {
+        if (user.position !== "Działkowiec") {
             return (
                 <List >
                     <Title>Panel Adminstratora</Title>

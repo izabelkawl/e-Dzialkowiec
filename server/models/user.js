@@ -8,6 +8,7 @@ const User = new Schema({
   lastname: { type: String, required: true },
   address: { type: String, required: true },
   phone: { type: String, required: true },
+  position: { type: String,required: true, default: "Działkowiec"},
   password: { type: String, required: true },
 },
 { timestamps: true }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById } from '../../api';
+import api, { updateUserByIdA } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 import { Wrapper, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
@@ -18,8 +18,7 @@ class UsersUpdate extends Component {
             lastname: '',
             address: '',
             phone: '',
-            password: '',
-            password2: '',
+            position: '',
             errors: {}
         }
     }
@@ -33,7 +32,8 @@ class UsersUpdate extends Component {
             firstname: user.data.data.firstname,
             lastname: user.data.data.lastname,
             address: user.data.data.address,
-            phone: user.data.data.phone
+            phone: user.data.data.phone,
+            position: user.data.data.position,
         })
     }
 
@@ -52,16 +52,16 @@ class UsersUpdate extends Component {
     handleUpdateUser = e => {
 
         e.preventDefault();
-        const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
-        const payload = { email, firstname, lastname, address, phone, password, password2 }
+        const { id, email, firstname, lastname, address, phone, position} = this.state
+        const payload = { email, firstname, lastname, address, phone, position }
 
-        this.props.updateUserById(id, payload)
+        this.props.updateUserByIdA(id, payload)
 
     }
 
 
     render() {
-        const { errors, email, firstname, lastname, address, phone } = this.state;
+        const { errors, email, firstname, lastname, address, phone, position } = this.state;
         return (
             <Wrapper>
                 <Title>Edycja</Title>
@@ -137,6 +137,28 @@ class UsersUpdate extends Component {
                         value={phone}
                     />
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label htmlFor="position">position: </Form.Label >
+                    <Span>{errors.position}</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.position}
+                        id="position"
+                        type="text"
+                        className={classnames("", {
+                            invalid: errors.position
+                        })}
+                    // defaultChecked={position}
+                    value={position}
+                    >
+                    {/* <option>customer</option>
+                    <option>Członek</option>
+                    <option>Skarbnik</option>
+                    <option>Sekretarz</option>
+                    <option>Wiceprezes Ogrodu</option>
+                    <option>Prezes Ogrodu</option> */}
+                    </Form.Control>
+                </Form.Group>
 
                 <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>{' '}
                 <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>
@@ -147,7 +169,7 @@ class UsersUpdate extends Component {
 
 
 UsersUpdate.propTypes = {
-    updateUserById: PropTypes.func.isRequired,
+    updateUserByIdA: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -159,5 +181,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { updateUserById }
+    { updateUserByIdA }
 )(withRouter(UsersUpdate));

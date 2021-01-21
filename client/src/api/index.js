@@ -85,6 +85,18 @@ export const updateUserById = (id, payload) => dispatch => {
             })
         );
 }
+// Update user Admin site
+export const updateUserByIdA = (id, payload) => dispatch => {
+    api
+        .put(`/userA/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
@@ -209,7 +221,6 @@ export const updateCommentById = (id, payload) => api.put(`/comment/${id}`, payl
 export const deleteCommentById = id => api.delete(`/comment/${id}`)
 export const getCommentById = id => api.get(`/comment/${id}`)
 
-
 // Insert FInance
 export const insertFinance = (financeData, history) => dispatch => {
     api
@@ -298,6 +309,7 @@ const apis = {
     setCurrentUser,
     setUserLoading,
     logoutUser,
+    updateUserByIdA,
 
     getAllUsers,
     updateUserById,

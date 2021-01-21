@@ -54,12 +54,11 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
-            if (this.state.email === "edzialkowiec@gmail.com") {
+            if (nextProps.auth.user.position !== "Działkowiec") {
                 this.props.history.push("/admin");
                
             } else
             this.props.history.push("/dashboard");
-                
         }
 
         if (nextProps.errors) {
@@ -132,11 +131,6 @@ class Login extends Component {
                             />
                             <Form.Text style={{ paddingTop: '10px' }}><Link href="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
                         </Form.Group>
-                        {/* 
-                        <Form.Group controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Zapamietaj mnie" />
-                        </Form.Group> */}
-
                         <Button  style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
                     </Form>
                 </Container>

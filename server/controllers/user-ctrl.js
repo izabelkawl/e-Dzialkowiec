@@ -32,6 +32,11 @@ const createUser = async (req, res) => {
   } catch (error) {
     throw new DatabaseInsertError(error.message);
   }
+  
+  return res.status(200).json({
+    success: true,
+    message: "*Rejestracja powiodła się!",
+  });
 };
 
 //Login
@@ -70,6 +75,7 @@ const loginUser = async (req, res) => {
       lastname: processedUser.lastname,
       address: processedUser.address,
       phone: processedUser.phone,
+      position: processedUser.position,
     };
 
     return res
@@ -102,8 +108,6 @@ const updateUser = async (req, res) => {
       message: "*Wypełnij puste komórki.",
     });
 
-  if (!isValid) return res.status(400).json(errors);
-
   if (isPasswordPassed)
     fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);
   else {
@@ -133,6 +137,42 @@ const updateUser = async (req, res) => {
   });
 };
 
+const updateUserAdmin = async (req, res) => {
+
+  const fieldsToUpdate = { ...req.body };
+  const processedUser = await User.findOne({ _id: req.params.id });
+  if (isEmpty(fieldsToUpdate))
+    return res.status(400).json({
+      success: false,
+      message: "*Wypełnij puste komórki.",
+    });
+  for (const field in fieldsToUpdate)
+    processedUser[field] = fieldsToUpdate[field];
+    
+  if (isEmpty(fieldsToUpdate))
+  return res.status(400).json({
+    success: false,
+    message: "*Wypełnij puste komórki.",
+  });
+  
+  try {
+    await processedUser.save();
+  } catch (error) {
+    console.log(error);
+
+    return res.status(400).json({
+      success: false,
+      id: processedUser._id,
+      message: "*Aktualizacja nie powiodła się!",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    id: processedUser._id,
+    message: "*Aktualizacja powiodła się!",
+  });
+};
 
 const updatePassword = async (req, res) => {
 
@@ -225,6 +265,7 @@ const getUsers = async (req, res) => {
 export default {
   updatePassword ,
   createUser,
+  updateUserAdmin,
   loginUser,
   updateUser,
   deleteUser,

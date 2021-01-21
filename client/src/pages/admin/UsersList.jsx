@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
-import { List, RedButtonStyle } from '../constants';
+import { List, RedButtonStyle, BlueButtonStyle } from '../constants';
 
 class DeleteUser extends Component {
     deleteUser = event => {
@@ -19,6 +19,16 @@ class DeleteUser extends Component {
         return <Button style={RedButtonStyle} onClick={this.deleteUser}>Usuń</Button>
     }
 }
+class UpdateUser extends Component {
+    updateUser = event => {
+        event.preventDefault()
+
+        window.location.href = `/admin/users/update/${this.props.id}`
+    }
+    render() {
+        return <Button style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>
+    }
+}
 
 const UsersList = () => {
     const [users, setUsers] = useState([]);
@@ -32,7 +42,7 @@ const UsersList = () => {
     }, []);
 
     const UsersTable = users.map((user, index) => {
-        const { _id, email, firstname, lastname, address, phone } = user;
+        const { _id, email, firstname, lastname, address, phone, position } = user;
 
         return (
             <tr key={_id}>
@@ -42,7 +52,8 @@ const UsersList = () => {
                 <td>{lastname}</td>
                 <td>{address}</td>
                 <td>{phone}</td>
-                <td><DeleteUser id={_id} /></td>
+                <td>{position}</td>
+                <td><DeleteUser id={_id} />{' '}<UpdateUser id={_id} /></td>
             </tr>
         );
     });
@@ -57,6 +68,7 @@ const UsersList = () => {
                     <th>Nazwisko</th>
                     <th>Adres</th>
                     <th>Telefon</th>
+                    <th>Stanowisko</th>
                     <th></th>
                 </tr>
             </thead>

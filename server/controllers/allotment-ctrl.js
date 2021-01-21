@@ -20,6 +20,11 @@ const allotmentData = req.body;
   } catch (error) {
     throw new DatabaseInsertError(error.message);
   }
+  
+  return res.status(200).json({
+    success: true,
+    message: "*Działka stworzona!",
+  });
 };
 
 const updateAllotment = async (req, res) => {

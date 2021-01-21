@@ -12,6 +12,8 @@ const validateUpdateUser = (data) => {
   data.phone = !isEmpty(data.phone) ? data.phone : "";
   data.password = !isEmpty(data.password) ? data.password : "";
 
+  data.position = !isEmpty(data.position) ? data.position : "";
+  
   // Email checks
   if (isEmpty(data.email)) errors.email = " *Podaj adres email";
   else if (!Validator.isEmail(data.email)) {
