@@ -46,14 +46,14 @@ class MessagesUpdate extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            user: '',
+            user_id: '',
             recipient: '',
             content: '',
         }
     }
-    handleChangeInputUser = async event => {
-        const user = event.target.value
-        this.setState({ user })
+    handleChangeInputUserId = async event => {
+        const user_id = event.target.value
+        this.setState({ user_id })
     }
     handleChangeInputRecipient = async event => {
         const recipient = event.target.value
@@ -65,13 +65,13 @@ class MessagesUpdate extends Component {
     }
 
     handleUpdateMessage = async () => {
-        const { id, user, recipient, content } = this.state
-        const payload = { user, recipient, content }
+        const { id, user_id, recipient, content } = this.state
+        const payload = { user_id, recipient, content }
 
         await api.updateMessageById(id, payload).then(res => {
             window.alert(`Message updated successfully`)
             this.setState({
-                user: '',
+                user_id: '',
                 recipient: '',
                 content: ''
             })
@@ -83,22 +83,22 @@ class MessagesUpdate extends Component {
         const message = await api.getMessageById(id)
 
         this.setState({
-            user: message.data.data.user,
+            user_id: message.data.data.user_id,
             recipient: message.data.data.recipient,
             content: message.data.data.content,
         })
     }
 
     render() {
-        const { user, recipient, content } = this.state
+        const { user_id, recipient, content } = this.state
         return (
             <Wrapper>
                 <Title>Update Message</Title>
                 <Label>User: </Label>
                 <InputText
                     type="text"
-                    value={user}
-                    onChange={this.handleChangeInputUser}
+                    value={user_id}
+                    onChange={this.handleChangeInputUserId}
                 />
 
                 <Label>Recipient: </Label>

@@ -42,7 +42,6 @@ class EmailChange extends Component {
             lastname: user.data.data.lastname,
             address: user.data.data.address,
             phone: user.data.data.phone,
-            password: user.data.data.password
         })
     }
 
@@ -58,21 +57,29 @@ class EmailChange extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    
-    onSubmit = e => {
-        const { id } = this.state
+    handleUpdateUser = e => {
+
         e.preventDefault();
-        const payload = {
-            email: this.state.email,
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            address: this.state.address,
-            phone: this.state.phone,
-            password: this.state.password1,
-            password2: this.state.password2
-        };
+        const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
+        const payload = { email, firstname, lastname, address, phone, password, password2 }
+
         this.props.updateUserById(id, payload)
-    };
+
+    }
+    // onSubmit = e => {
+    //     const { id } = this.state
+    //     e.preventDefault();
+    //     const payload = {
+    //         email: this.state.email,
+    //         firstname: this.state.firstname,
+    //         lastname: this.state.lastname,
+    //         address: this.state.address,
+    //         phone: this.state.phone,
+    //         password1: this.state.password1,
+    //         password2: this.state.password2
+    //     };
+    //     this.props.updateUserById(id, payload)
+    // };
 
     render() {
         const { errors, password } = this.state;
@@ -81,7 +88,7 @@ class EmailChange extends Component {
                     <Title>Zmiana hasła</Title>
                         <Form>
                         <Form.Group>
-                            <Form.Label htmlFor="password">Hasło: </Form.Label >
+                            <Form.Label htmlFor="password">Obecne Hasło: </Form.Label >
                             <Span> {errors.password}
                                 {errors.passwordincorrect}
                             </Span>
@@ -90,7 +97,7 @@ class EmailChange extends Component {
                                 id="password"
                                 type="password"
                                 className={classnames("", {
-                                    invalid: errors.password || errors.passwordincorrect
+                                    invalid:  errors.passwordincorrect
                                 })}
                             />
                         </Form.Group>
@@ -105,7 +112,7 @@ class EmailChange extends Component {
                                     id="password1"
                                     type="password"
                                     className={classnames("", {
-                                        invalid: errors.password1 || errors.passwordincorrect
+                                        invalid: errors.password1
                                     })}
                                 />
                         </Form.Group>
@@ -120,11 +127,11 @@ class EmailChange extends Component {
                                     id="password2"
                                     type="password"
                                     className={classnames("", {
-                                        invalid: errors.password2 || errors.passwordincorrect
+                                        invalid: errors.password2
                                     })}
                                 />
                         </Form.Group>
-                        <Button type="submit" style={BlueButtonStyle} onClick={this.onSubmit} className="float-right">Zapisz</Button>
+                        <Button type="submit" style={BlueButtonStyle} onClick={this.handleUpdateUser} className="float-right">Zapisz</Button>
                     </Form>
                 </Container>
             );

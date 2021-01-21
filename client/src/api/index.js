@@ -132,7 +132,20 @@ export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
 export const getAllotmentByNumber = id => api.get(`/allotment/${id}`)
 
-export const insertMessage = payload => api.post(`/message`, payload)
+// Insert Allotment
+export const insertMessage = (messageData, history) => dispatch => {
+    api
+        .post("/message", messageData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+// export const insertMessage = payload => api.post(`/message`, payload)
 export const getAllMessages = () => api.get(`/messages`)
 export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payload)
 export const deleteMessageById = id => api.delete(`/message/${id}`)
@@ -256,6 +269,28 @@ export const getAllPaymentdetails = () => api.get(`/paymentdetails`)
 export const deletePaymentdetailById = id => api.delete(`/paymentdetaile/${id}`)
 export const getPaymentdetailById = id => api.get(`/paymentdetail/${id}`)
 
+
+
+// Insert Management
+export const insertManagement = (managementData, history) => dispatch => {
+    api
+        .post("/management", managementData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+export const getAllManagements = () => api.get(`/managements`)
+export const updateManagementById = (id, payload) => api.put(`/management/${id}`, payload)
+export const deleteManagementById = id => api.delete(`/management/${id}`)
+export const getManagementById = id => api.get(`/management/${id}`)
+
+
+
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
@@ -313,6 +348,12 @@ const apis = {
     updateCommentById,
     deleteCommentById,
     getCommentById,
+
+    insertManagement,
+    getAllManagements,
+    updateManagementById,
+    deleteManagementById,
+    getManagementById,
 
     insertImage
 }

@@ -4,20 +4,7 @@ const Schema = mongoose.Schema;
 const Management = new Schema({
   
   description: { type: String, required: true },
-  members: [{
-    role: {type: String, required: true },
-    firstname: {type: String, required: true },
-    lastname: {type: String, required: true },
-    }],
-  classifieds: [{ 
-      title: {type: String, required: true },
-      content: {type: String, required: true },
-      timestamps: true,
-    }],
-  rodo: [{ 
-      content: {type: String, required: true },
-      timestamps: true,
-    }],
+  rodo: {type: String, required: true },
   },
   { timestamps: true }
 );

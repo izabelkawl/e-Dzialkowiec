@@ -16,6 +16,7 @@ import forumRouter from "../routes/forum-router.js";
 import commentRouter from "../routes/comment-router.js";
 import financeRouter from "../routes/finance-router.js";
 import paymentdetailRouter from "../routes/paymentdetail-router.js";
+import managementRouter from "../routes/management-router.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api', forumRouter);
 app.use('/api', commentRouter);
 app.use('/api', financeRouter);
 app.use('/api', paymentdetailRouter);
+app.use('/api', managementRouter);
 
 export const startHTTPServer = async () =>
   app.listen(keys.httpPort, (error) => {

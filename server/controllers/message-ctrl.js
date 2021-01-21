@@ -1,37 +1,20 @@
 import Message from "../models/message.js";
+import validateMessageInput from "../validation/message.js";
 
-const createMessage = (req, res) => {
-  const body = req.body;
-
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a message",
-    });
-  }
-
-  const message = new Message(body);
-
-  if (!message) {
-    return res.status(400).json({ success: false, error: err });
-  }
-
-  message
-    .save()
-    .then(() => {
-      return res.status(201).json({
-        success: true,
-        id: message._id,
-        message: "message created!",
-      });
-    })
-    .catch((error) => {
-      return res.status(400).json({
-        error,
-        message: "message not created!",
-      });
-    });
-};
+const createMessage = async (req, res) => {
+  const messageData = req.body;
+    const { errors, isValid } = validateMessageInput(messageData);
+    if (!isValid) return res.status(400).json(errors);
+    
+    const processedMessage = new Message(messageData);
+  
+    try {
+      processedMessage.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
+  };
+  
 
 const updateMessage = async (req, res) => {
   const body = req.body;
@@ -50,7 +33,7 @@ const updateMessage = async (req, res) => {
         message: "message not found!",
       });
     }
-    message.user = body.user;
+    message.user_id = body.user_id;
     message.recipient = body.recipient;
     message.content = body.content;
     message

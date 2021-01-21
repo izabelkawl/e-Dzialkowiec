@@ -8,7 +8,7 @@ import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
-import AddThread from '../../components/modal/AddThread'
+import AddThread from '../../components/modal/AddThread';
 
 const Container = styled.div`
     background-color: white;

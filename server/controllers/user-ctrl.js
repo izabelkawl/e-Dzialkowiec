@@ -6,9 +6,9 @@ import { DatabaseInsertError } from "../errors/database.js";
 // Load input validation
 import validateRegisterInput from "../validation/register.js";
 import validateLoginInput from "../validation/login.js";
+import validatePassword from  "../validation/password.js";
 import validateUpdateUser from "../validation/updateUser.js";
 import isEmpty from "is-empty";
-
 //same
 
 // @route POST api/users/register
@@ -81,8 +81,11 @@ const loginUser = async (req, res) => {
 const updateUser = async (req, res) => {
 
   const fieldsToUpdate = { ...req.body };
+  // pobiera password z formularza
   const password = req.body.password;
+  // znajdz jednego i porównaj z nim haasło pobrane z formulazra
   const processedUser = await User.findOne({ _id: req.params.id });
+
   const isPasswordValid = await comparePassword(
     password,
     processedUser.password
@@ -93,10 +96,6 @@ const updateUser = async (req, res) => {
       .status(400)
       .json({ passwordincorrect: "*Nieprawidłowe hasło" });
 
-  const isPasswordPassed =
-    !!fieldsToUpdate?.password1?.length && fieldsToUpdate?.password2?.length;
-  const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
-
   if (isEmpty(fieldsToUpdate))
     return res.status(400).json({
       success: false,
@@ -104,12 +103,6 @@ const updateUser = async (req, res) => {
     });
 
   if (!isValid) return res.status(400).json(errors);
-
-  if (!processedUser)
-    return res.status(404).json({
-      err,
-      message: "*Użytkownik nieistnieje.",
-    });
 
   if (isPasswordPassed)
     fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);

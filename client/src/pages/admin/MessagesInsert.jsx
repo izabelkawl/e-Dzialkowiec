@@ -1,7 +1,13 @@
-import React, { Component } from 'react'
-import api from '../../api'
-
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { insertMessage } from "../../api/index";
+import { FormControl, Button, Form }from 'react-bootstrap';
+import { Span} from '../constants';
+import UsersID from './UsersID';
+import styled from 'styled-components';
+import classnames from "classnames";
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -18,22 +24,6 @@ const Wrapper = styled.div.attrs({
     margin-top: 50px;
 `
 
-const Label = styled.label`
-    margin: 5px;
-`
-
-const InputText = styled.input.attrs({
-    className: 'form-control',
-})`
-    margin: 5px;
-`
-
-const Button = styled.button.attrs({
-    className: `btn btn-primary`,
-})`
-    margin: 15px 15px 15px 5px;
-`
-
 const CancelButton = styled.a.attrs({
     className: `btn btn-danger`,
 })`
@@ -41,73 +31,104 @@ const CancelButton = styled.a.attrs({
 `
 
 class MessagesInsert extends Component {
-    constructor(props) {
-        super(props)
-
+    constructor() {
+        super()
+        // const {user} = this.props.auth
         this.state = {
-            user: '',
+            user_id: '',
             recipient: '',
-            content: ''
+            content: '',
+            errors: {}
         }
     }
-    handleChangeInputUser = async event => {
-        const user = event.target.value
-        this.setState({ user })
-    }
-    handleChangeInputRecipient = async event => {
-        const recipient = event.target.value
-        this.setState({ recipient })
-    }
-    handleChangeInputContent = async event => {
-        const content = event.target.value
-        this.setState({ content })
-    }
 
-    handleIncludeMessage = async () => {
-        const { user, recipient, content } = this.state
-        const payload = { user, recipient, content }
 
-        await api.insertMessage(payload).then(res => {
-            window.alert(`Message inserted successfully`)
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
             this.setState({
-                user: '',
-                recipient: '',
-                content: ''
-            })
-        })
+                errors: nextProps.errors
+            });
+        }
     }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
+
+        e.preventDefault();
+        const newMessage = {
+
+            user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+            recipient: this.state.recipient,
+            content: this.state.content,
+        };
+        this.props.insertMessage(newMessage, this.props.history)
+    };
 
     render() {
-        const { user, recipient, content } = this.state
+
+        const { errors } = this.state
         return (
             <Wrapper>
                 <Title>Create Message</Title>
-                <Label>User: </Label>
-                <InputText
+                <Form noValidate onSubmit={this.onSubmit}></Form>
+                <Form.Label>Ja: </Form.Label>
+                <FormControl
+                    onChange={this.onChange}
+                    value={this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname}
+                    id="user_id"
                     type="text"
-                    value={user}
-                    onChange={this.handleChangeInputUser}
                 />
 
-                <Label>Recipient: </Label>
-                <InputText
-                    type="text"
-                    value={recipient}
-                    onChange={this.handleChangeInputRecipient}
+                <Form.Label>Odbiorca: </Form.Label>
+                <Span>{errors.recipient}</Span>
+                <FormControl
+                    onChange={this.onChange}
+                    error={errors.recipient} 
+                    as="select"
+                    id="recipient"
+                    className={classnames("", {
+                        invalid: errors.recipient
+                    })}
+                >
+                    <option>Wybierz działkowicza..</option>
+                <UsersID/>
+            </FormControl>
+                <Form.Label>Treść: </Form.Label>
+                <Span>{errors.content }</Span>
+                <FormControl
+                onChange={this.onChange}
+                value={this.state.content}
+                error={errors.content}
+                type="text"
+                id="content"
+                className={classnames("", {
+                    invalid: errors.content
+                })}
                 />
 
-                <Label>Content: </Label>
-                <InputText
-                    type="text"
-                    value={content}
-                    onChange={this.handleChangeInputContent}
-                />
-
-                <Button onClick={this.handleIncludeMessage}>Add Message</Button>
+                <Button onClick={this.onSubmit}>Add Message</Button>
                 <CancelButton href={'/admin/messages/list'}>Cancel</CancelButton>
+            <Form/>
             </Wrapper>
         )
     }
 }
 
-export default MessagesInsert
+MessagesInsert.propTypes = {
+    insertMessage: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { insertMessage }
+)(withRouter(MessagesInsert));

@@ -1,6 +1,5 @@
 import Forum from "../models/forum.js";
 import validateForumInput from "../validation/forum.js";
-import isEmpty from "is-empty";
 
 const createForum = async (req, res) => {
   const forumData = req.body;
