@@ -70,7 +70,7 @@ export const logoutUser = () => dispatch => {
     // Set current user to empty object {} which will set isAuthenticated to false
     dispatch(setCurrentUser({}));
 };
-
+// Get all users
 export const getAllUsers = () => api.get(`/users`)
 
 // Update user
@@ -85,6 +85,7 @@ export const updateUserById = (id, payload) => dispatch => {
             })
         );
 }
+
 // Update user Admin site
 export const updateUserByIdA = (id, payload) => dispatch => {
     api
@@ -97,11 +98,13 @@ export const updateUserByIdA = (id, payload) => dispatch => {
             })
         );
 }
-
+// Delete user by id
 export const deleteUserById = id => api.delete(`/user/${id}`)
+
+// Get user by id
 export const getUserById = id => api.get(`/user/${id}`)
 
-// Insert Allotment
+// Allotment
 export const insertAllotment = (allotmentData, history) => dispatch => {
     api
         .post("/allotment", allotmentData)
@@ -113,7 +116,7 @@ export const insertAllotment = (allotmentData, history) => dispatch => {
             })
         );
 };
-// Update user
+
 export const updateAllotmentById = (id, payload) => dispatch => {
     api
         .put(`/allotment/${id}`, payload)
@@ -125,7 +128,7 @@ export const updateAllotmentById = (id, payload) => dispatch => {
             })
         );
 }
-// Update user
+
 export const buyAllotmentById = (id, payload) => dispatch => {
     api
         .put(`/allotment/${id}`, payload)
@@ -137,14 +140,13 @@ export const buyAllotmentById = (id, payload) => dispatch => {
             })
         );
 }
-// export const insertAllotment = payload => api.post(`/allotment`, payload)
+
 export const getAllAllotments = () => api.get(`/allotments`)
-// export const updateAllotmentById = (id, payload) => api.put(`/allotment/${id}`, payload)
 export const deleteAllotmentById = id => api.delete(`/allotment/${id}`)
 export const getAllotmentById = id => api.get(`/allotment/${id}`)
 export const getAllotmentByNumber = id => api.get(`/allotment/${id}`)
 
-// Insert Allotment
+// Message
 export const insertMessage = (messageData, history) => dispatch => {
     api
         .post("/message", messageData)
@@ -156,14 +158,22 @@ export const insertMessage = (messageData, history) => dispatch => {
             })
         );
 };
-
-// export const insertMessage = payload => api.post(`/message`, payload)
+export const updateMessageById = (id, payload) => dispatch => {
+    api
+        .put(`/message/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllMessages = () => api.get(`/messages`)
-export const updateMessageById = (id, payload) => api.put(`/message/${id}`, payload)
 export const deleteMessageById = id => api.delete(`/message/${id}`)
 export const getMessageById = id => api.get(`/message/${id}`)
 
-
+// Notice Board - Table
 export const insertTable = (tableData, history) => dispatch => {
     api
         .post("/table", tableData)
@@ -175,16 +185,22 @@ export const insertTable = (tableData, history) => dispatch => {
             })
         );
 };
-
-
-// export const insertTable = payload => api.post(`/table`, payload)
+export const updateTableById = (id, payload) => dispatch => {
+    api
+        .put(`/table/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllTables = () => api.get(`/tables`)
-export const updateTableById = (id, payload) => api.put(`/table/${id}`, payload)
 export const deleteTableById = id => api.delete(`/table/${id}`)
 export const getTableById = id => api.get(`/table/${id}`)
 
-
-// Insert Forum
+// Forum
 export const insertForum = (forumData, history) => dispatch => {
     api
         .post("/forum", forumData)
@@ -196,14 +212,22 @@ export const insertForum = (forumData, history) => dispatch => {
             })
         );
 };
-// export const insertForum = payload => api.post(`/forum`, payload)
+export const updateForumById = (id, payload) => dispatch => {
+    api
+        .put(`/forum/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllForums = () => api.get(`/forums`)
-export const updateForumById = (id, payload) => api.put(`/forum/${id}`, payload)
 export const deleteForumById = id => api.delete(`/forum/${id}`)
 export const getForumById = id => api.get(`/forum/${id}`)
 
-
-// Insert Allotment
+// Comment
 export const insertComment = (commentData, history) => dispatch => {
     api
         .post("/comment", commentData)
@@ -215,13 +239,22 @@ export const insertComment = (commentData, history) => dispatch => {
             })
         );
 };
-
+export const updateCommentById = (id, payload) => dispatch => {
+    api
+        .put(`/comment/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllComments = () => api.get(`/comments`)
-export const updateCommentById = (id, payload) => api.put(`/comment/${id}`, payload)
 export const deleteCommentById = id => api.delete(`/comment/${id}`)
 export const getCommentById = id => api.get(`/comment/${id}`)
 
-// Insert FInance
+// Finance
 export const insertFinance = (financeData, history) => dispatch => {
     api
         .post("/finance", financeData)
@@ -233,8 +266,6 @@ export const insertFinance = (financeData, history) => dispatch => {
             })
         );
 };
-
-// Update finance
 export const updateFinanceById = (id, payload) => dispatch => {
     api
         .put(`/finance/${id}`, payload)
@@ -250,8 +281,7 @@ export const getAllFinances = () => api.get(`/finances`)
 export const deleteFinanceById = id => api.delete(`/finance/${id}`)
 export const getFinanceById = id => api.get(`/finance/${id}`)
 
-
-// Insert paymentdetail
+// Paymentdetail
 export const insertPaymentdetail = (paymentdetailData, history) => dispatch => {
     api
         .post("/paymentdetail", paymentdetailData)
@@ -263,8 +293,6 @@ export const insertPaymentdetail = (paymentdetailData, history) => dispatch => {
             })
         );
 };
-
-// Update paymentdetail
 export const updatePaymentdetailById = (id, payload) => dispatch => {
     api
         .put(`/paymentdetail/${id}`, payload)
@@ -280,7 +308,7 @@ export const getAllPaymentdetails = () => api.get(`/paymentdetails`)
 export const deletePaymentdetailById = id => api.delete(`/paymentdetaile/${id}`)
 export const getPaymentdetailById = id => api.get(`/paymentdetail/${id}`)
 
-// Insert Management
+// Management
 export const insertManagement = (managementData, history) => dispatch => {
     api
         .post("/management", managementData)
@@ -292,14 +320,22 @@ export const insertManagement = (managementData, history) => dispatch => {
             })
         );
 };
-
+export const updateManagementById = (id, payload) => dispatch => {
+    api
+        .put(`/management/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllManagements = () => api.get(`/managements`)
-export const updateManagementById = (id, payload) => api.put(`/management/${id}`, payload)
 export const deleteManagementById = id => api.delete(`/management/${id}`)
 export const getManagementById = id => api.get(`/management/${id}`)
 
-
-// Insert Announcement
+// Announcement
 export const insertAnnouncement = (announcementData, history) => dispatch => {
     api
         .post("/announcement", announcementData)
@@ -311,12 +347,22 @@ export const insertAnnouncement = (announcementData, history) => dispatch => {
             })
         );
 };
-
+export const updateAnnouncementById = (id, payload) => dispatch => {
+    api
+        .put(`/announcement/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 export const getAllAnnouncements = () => api.get(`/announcements`)
-export const updateAnnouncementById = (id, payload) => api.put(`/announcement/${id}`, payload)
 export const deleteAnnouncementById = id => api.delete(`/announcement/${id}`)
 export const getAnnouncementById = id => api.get(`/announcement/${id}`)
 
+// Images
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,

@@ -5,6 +5,7 @@ import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
 import Title from '../components/Title'
 import ManagementList from '../components/management/ManagementList';
+import AdList from '../components/management/AdList'
 
 const Wrapper = styled.div`
   min-width: 100vh;
@@ -67,32 +68,7 @@ class About extends Component {
                 <Tab.Content>
                 <Tab.Pane eventKey="#link1">
                     <Title>Aktualności</Title>
-                    <Card>
-                      <Card.Header>Quote</Card.Header>
-                        <Card.Body>
-                          <blockquote className="blockquote mb-0">
-                            <p>{' '}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                                    erat a ante.{' '} </p>
-                            <footer className="blockquote-footer">
-                              Someone famous in <cite title="Source Title">Source Title</cite>
-                            </footer>
-                          </blockquote>
-                        </Card.Body>
-                    </Card>
-                    <br></br>
-                    <Card>
-                      <Card.Header>Quote</Card.Header>
-                        <Card.Body>
-                          <blockquote className="blockquote mb-0">
-                            <p>
-                              {' '} Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur maxime deserunt optio adipisci, laudantium maiores officia error, odit vero consequatur ea obcaecati! Vitae, eum iure impedit ducimus soluta animi hic quas illo enim, mollitia quibusdam unde odio. Tempora eum quaerat optio, culpa praesentium esse ipsa veniam! Nesciunt, placeat ratione officia, dolorem, veniam tenetur illum obcaecati quis ad dolore similique eius itaque eum excepturi cum exercitationem omnis ex ab ipsa velit sequi repellat nostrum. Voluptas vero necessitatibus repellendus, odit tempora corrupti repudiandae dolore est vitae eius recusandae sapiente blanditiis corporis quaerat suscipit perferendis quidem ea consectetur exercitationem. Quae fugit velit modi.{' '}
-                            </p>
-                            <footer className="blockquote-footer">
-                              Someone famous in <cite title="Source Title">Source Title</cite>
-                            </footer>
-                          </blockquote>
-                        </Card.Body>
-                    </Card>
+                    <AdList/>
                   </Tab.Pane>
                 <Tab.Pane eventKey="#link2">
                         <Title>O nas</Title>
