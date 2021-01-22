@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import api from '../api'
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
 import NavBar from '../components/NavBar';
 import Title from '../components/Title'
+import ManagementList from '../components/management/ManagementList';
 
 const Wrapper = styled.div`
   min-width: 100vh;
@@ -15,7 +17,28 @@ const Container = styled.div`
 `;
 
 class About extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        id: "6009bbfedb3f5e215007b7e0",
+        description: '',
+        rodo: '',
+        errors: {}
+    }
+  }
+  componentDidMount = async () => {
+    const { id } = this.state
+    const management = await api.getManagementById(id)
+
+    this.setState({
+        description: management.data.data.description,
+        rodo: management.data.data.rodo,
+    })
+  }
+
   render() {
+    const {  description, rodo } = this.state
 
     return (
       <Wrapper>
@@ -42,57 +65,7 @@ class About extends Component {
               </Col>
               <Col sm={{ offset: 1, span: 9 }}>
                 <Tab.Content>
-            <Tab.Pane eventKey="#link2">
-                    <Title>O nas</Title>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta cupiditate quibusdam voluptate. Tempore amet quo magnam dicta quam? Non accusamus, unde, ullam dolorum id ipsum deserunt quibusdam earum fugiat nesciunt harum sapiente autem doloribus odit sit mollitia nobis commodi hic pariatur atque molestias veritatis? Accusantium facere autem explicabo eveniet voluptatem, commodi accusamus ex ea error. Ea odio nostrum eveniet ratione eius quo quam numquam ullam, aliquid earum id doloribus sit perspiciatis neque culpa voluptatibus labore nemo aperiam! Harum saepe doloribus numquam sunt commodi culpa, rem quaerat alias corrupti ab dolores vel voluptas laboriosam voluptatem placeat? Quisquam ducimus suscipit in voluptatibus, nobis est rerum voluptas numquam quas nostrum quo eius et veritatis tempore earum, eveniet, labore consequatur? Fugiat hic aliquid recusandae quisquam tempore tempora delectus tenetur rerum! Facere deleniti, et labore magni dolore provident, cum ab repellat ex eos ad impedit quasi rem cupiditate quas, corr.
-                      </Tab.Pane>
-            <Tab.Pane eventKey="#link3">
-                    <Title>Zarząd</Title>
-                    <CardColumns>
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>Prezes Ogrodu </Card.Title>
-                            <Card.Text>
-                              Małgorzata Wolak
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>Wiceprezes</Card.Title>
-                            <Card.Text>
-                             Piotr Skrzypiński
-                            </Card.Text>
-                          </Card.Body>
-                      </Card>
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>Sekretarz </Card.Title>
-                            <Card.Text>
-                              Monika Sekuła
-                            </Card.Text>
-                        </Card.Body>
-                      </Card>
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>Skarbnik </Card.Title>
-                            <Card.Text>
-                              Kazimierz Sochacki
-                            </Card.Text>
-                        </Card.Body>
-                      </Card>
-                      <Card>
-                        <Card.Body>
-                          <Card.Title>Członek </Card.Title>
-                            <Card.Text>
-                              Grzegorz Necel
-                            </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </CardColumns>
-                  </Tab.Pane>
-
-            <Tab.Pane eventKey="#link1">
+                <Tab.Pane eventKey="#link1">
                     <Title>Aktualności</Title>
                     <Card>
                       <Card.Header>Quote</Card.Header>
@@ -121,17 +94,19 @@ class About extends Component {
                         </Card.Body>
                     </Card>
                   </Tab.Pane>
-
-            <Tab.Pane eventKey="#link4">
+                <Tab.Pane eventKey="#link2">
+                        <Title>O nas</Title>
+                          {description}
+                        </Tab.Pane>
+                <Tab.Pane eventKey="#link3">
+                    <Title>Zarząd</Title>
+                    <CardColumns>
+                     <ManagementList/>
+                    </CardColumns>
+                  </Tab.Pane>
+                <Tab.Pane eventKey="#link4">
                     <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>
-                  Przez
-                  Rodzinny Ogród Działkowy Wisła w Krakowie ul Klasztorna 31-977
-                  W związku ze zmianami w zakresie przetwarzanie danych osobowych na skutek Rozporządzenia Parlamentu Europejskiego i Rady UE 2016/679 z 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych) zwanego RODO informujemy:
-                  Administratorem Danych Osobowych zgromadzanych w ramach działalności
-                  Rodzinny Ogród Działkowy Wisła jest:
-                  Rodzinny Ogród Działkowy Wisła ul Klasztorna 31-977 Kraków
-                  Administrator będzie przetwarzać dane w celu udziału w projektach, skorzystania z innej formy wsparcia oferowanej przez ROD Wisła  lub uzyskania odpowiedzi na pytanie zadane drogą elektroniczną. Podanie danych ma charakter dobrowolny, ale jest konieczne do wzięcia udziału w danym projekcie, skorzystania z innef formy wsparcia lub uzyskania odpowiedzi na pytanie zadane drogą elektroniczną. Każdy kogo dane osobowe przetwarzamy ma prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych, gdy uzna iż przetwarzanie jego danych osobowych narusza przepisy RODO.
-                  Dzięki RODO:
+                  {rodo}
                   </Tab.Pane>
                 </Tab.Content>
               </Col>

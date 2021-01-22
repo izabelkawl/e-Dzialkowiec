@@ -78,7 +78,7 @@ class UsersUpdate extends Component {
                             invalid: errors.email
                         })}
                         value={email}
-
+                        readOnly
                     />
                 </Form.Group >
                 <Form.Group >
@@ -93,6 +93,7 @@ class UsersUpdate extends Component {
                             invalid: errors.firstname
                         })}
                         value={firstname}
+                        readOnly
                     />
                 </Form.Group >
                 <Form.Group >
@@ -107,6 +108,7 @@ class UsersUpdate extends Component {
                             invalid: errors.lastname
                         })}
                         value={lastname}
+                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -121,6 +123,7 @@ class UsersUpdate extends Component {
                             invalid: errors.address
                         })}
                         value={address}
+                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -135,6 +138,7 @@ class UsersUpdate extends Component {
                             invalid: errors.phone
                         })}
                         value={phone}
+                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -144,19 +148,19 @@ class UsersUpdate extends Component {
                         onChange={this.onChange}
                         error={errors.position}
                         id="position"
-                        type="text"
+                        as="select"
                         className={classnames("", {
                             invalid: errors.position
                         })}
-                    // defaultChecked={position}
-                    value={position}
+                    defaultChecked={position}
+                    // value={position}
                     >
-                    {/* <option>customer</option>
+                    <option>Działkowiec</option>
                     <option>Członek</option>
                     <option>Skarbnik</option>
                     <option>Sekretarz</option>
                     <option>Wiceprezes Ogrodu</option>
-                    <option>Prezes Ogrodu</option> */}
+                    <option>Prezes Ogrodu</option>
                     </Form.Control>
                 </Form.Group>
 

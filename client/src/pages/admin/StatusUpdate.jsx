@@ -61,7 +61,7 @@ class StatusUpdate extends Component {
         return (
             <Wrapper>
                 <Title>Zmień status</Title>
-                 <Form onSubmit={this.onSubmit}>
+                 <Form >
             <Form.Group as={Row}>
                  <Form.Label column sm="4" >Tytuł: </Form.Label>
                     <Col sm="8"> <Form.Control

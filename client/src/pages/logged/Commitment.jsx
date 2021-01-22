@@ -56,7 +56,7 @@ class Commitment extends Component {
                     <Form.Group>
                             <Row>
                                 <Col sm={{ span: 6 }}>
-                                    <Label htmlFor="email">Powierzchnia działki (m2*przelicznik)
+                                    <Label htmlFor="email">Opłata za m² działki
                                     </Label>
                                 </Col>
                                 <Col sm={{ span: 2, offset: 3 }}>

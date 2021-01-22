@@ -53,7 +53,8 @@ const UsersList = () => {
                 <td>{address}</td>
                 <td>{phone}</td>
                 <td>{position}</td>
-                <td><DeleteUser id={_id} />{' '}<UpdateUser id={_id} /></td>
+                <td><DeleteUser id={_id} /></td>
+                <td><UpdateUser id={_id} /></td>
             </tr>
         );
     });
@@ -69,6 +70,7 @@ const UsersList = () => {
                     <th>Adres</th>
                     <th>Telefon</th>
                     <th>Stanowisko</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>

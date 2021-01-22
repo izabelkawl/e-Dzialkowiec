@@ -9,7 +9,7 @@ import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpd
 import StatusUpdate from '../pages/admin/StatusUpdate'
 import PaymentInsert from '../pages/admin/PaymentInsert'
 import ChoosenAllotmetnforFinances from '../pages/admin/ChoosenAllotmetnforFinances'
-import ManagementsInsert from '../pages/admin/ManagementsInsert'
+import AnnouncementUpdate from '../pages/admin/AnnouncementUpdate'
 
 import PrivateRoute from '../components/private-route/PrivateRoute'
 
@@ -63,7 +63,7 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/finances/create/:id" exact component={ChoosenAllotmetnforFinances} />
                 <PrivateRoute path="/admin/finances/update/:id" exact component={StatusUpdate} />
 
-                <PrivateRoute path="/admin/rodo" exact component={ManagementsInsert}/>
+                <PrivateRoute path="/admin/ads/update/:id" exact component={AnnouncementUpdate} />
                 <PrivateRoute path="/admin/paymentdetails/create" exact component={PaymentInsert} />
              
               </Switch>

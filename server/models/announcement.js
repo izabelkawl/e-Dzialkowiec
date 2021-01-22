@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const Classifieds = new Schema({
+const Announcement = new Schema({
   
     title: {type: String, required: true },
     content: {type: String, required: true },
@@ -9,4 +9,4 @@ const Classifieds = new Schema({
   { timestamps: true }
 );
 
-export default mongoose.model("classifiedss", Classifieds);
+export default mongoose.model("announcements", Announcement);

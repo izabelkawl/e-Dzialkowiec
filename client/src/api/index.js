@@ -280,8 +280,6 @@ export const getAllPaymentdetails = () => api.get(`/paymentdetails`)
 export const deletePaymentdetailById = id => api.delete(`/paymentdetaile/${id}`)
 export const getPaymentdetailById = id => api.get(`/paymentdetail/${id}`)
 
-
-
 // Insert Management
 export const insertManagement = (managementData, history) => dispatch => {
     api
@@ -301,6 +299,23 @@ export const deleteManagementById = id => api.delete(`/management/${id}`)
 export const getManagementById = id => api.get(`/management/${id}`)
 
 
+// Insert Announcement
+export const insertAnnouncement = (announcementData, history) => dispatch => {
+    api
+        .post("/announcement", announcementData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+export const getAllAnnouncements = () => api.get(`/announcements`)
+export const updateAnnouncementById = (id, payload) => api.put(`/announcement/${id}`, payload)
+export const deleteAnnouncementById = id => api.delete(`/announcement/${id}`)
+export const getAnnouncementById = id => api.get(`/announcement/${id}`)
 
 export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
@@ -367,6 +382,11 @@ const apis = {
     deleteManagementById,
     getManagementById,
 
+    insertAnnouncement,
+    getAllAnnouncements,
+    updateAnnouncementById,
+    deleteAnnouncementById,
+    getAnnouncementById,
     insertImage
 }
 

@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import { Table, Form, Tab, Col, Row, ListGroup} from 'react-bootstrap';
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Table, Form, Tab, ListGroup,Button, Row, Col, CardColumns } from 'react-bootstrap';
 import styled from "styled-components";
+import api, { updateManagementById } from '../../api';
+import {  Span, Title, BlueButtonStyle } from '../constants';
+import classnames from "classnames";
+import ManagementList from "../../components/management/ManagementList"
+import AnnouncementList from "../../components/management/AnnouncementList"
+import AddAnnouncementAdmin from '../../components/modal/AddAnnouncementAdmin';
 
 const Wrapper = styled.div`
     width: 80%;
@@ -10,19 +19,65 @@ const Wrapper = styled.div`
     background-color: white; 
 `;
 
-const Title = styled.h1`
-    font-size: 32px
-`;
-
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`;
-
 class Management extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            id: "6009bbfedb3f5e215007b7e0",
+            description: '',
+            rodo: '',
+            errors: {}
+        }
+    }
+
+    componentDidMount = async () => {
+        const { id } = this.state
+        const management = await api.getManagementById(id)
+
+        this.setState({
+            description: management.data.data.description,
+            rodo: management.data.data.rodo,
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    
+    handleUpdateManagement = e => {
+
+        e.preventDefault();
+        const {id, description, rodo } = this.state
+        const payload = { description, rodo }
+
+        this.props.updateManagementById(id, payload)
+    }
+
     render() {
+        const { errors, description, rodo } = this.state
+        const AddView = () => {
+            
+        const [modalShow, setModalShow] = React.useState(false);
+            return <div>
+                 <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj nowe ogłoszenie</Button>
+                <AddAnnouncementAdmin show={modalShow} onHide={() => setModalShow(false)}
+                />
+                <br></br>
+                <br></br>
+                 <AnnouncementList/>
+            </div>
+        }
         return (
         <Wrapper>
             <Row className="justify-content-md-center" >
@@ -45,126 +100,56 @@ class Management extends Component {
                     </Col>
                     <Col xs={9}>
                             <Tab.Content>
-
                                 <Tab.Pane eventKey="#link1">
                                     <Form >
                                         <Form.Group>
-                                            <Title>O nas</Title>
-                                            <Form.Control as="textarea" rows={10}  />
+                                            <Form.Label htmlFor="description">O nas: </Form.Label>
+                                            <Span>{errors.description}</Span>
+                                            <Form.Control
+                                                onChange={this.onChange}
+                                                error={errors.description}
+                                                id="description"
+                                                as="textarea"
+                                                className={classnames("", {
+                                                    invalid: errors.description
+                                                })}
+                                                value={description}
+                                                rows={10}
+                                            />
                                         </Form.Group>
-                                        <Button className="float-right">Zapisz</Button>
-                                    </Form>
+                                        <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateManagement}>Zapisz</Button>
+                    </Form>
                                 </Tab.Pane>
 
                                 <Tab.Pane eventKey="#link2">
                                     <Title>Zarząd</Title>
-                                        <Table striped bordered hover size="sm">
-                                            <thead>
-                                                <tr>
-                                                    <th>Stopień</th>
-                                                    <th>Osoba</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Prezes zarządu</td>
-                                                    <td>Małgorzata Wolak</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Wiceprezes</td>
-                                                    <td>Piotr Skrzypiński</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Sekretarz</td>
-                                                    <td>Monika Sekuła</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                        </Table>
-                                    <Title>Dodaj osobę</Title>
-                                        <Form>
-                                            <Form.Group>
-                                                <Form.Label>Stopień</Form.Label>
-                                                <Form.Control />
-                                                <Form.Label>Osoba</Form.Label>
-                                                <Form.Control />
-                                            </Form.Group>
-                                            <Button className="float-right">Dodaj</Button>
-                                        </Form>
+                                    <CardColumns><ManagementList/></CardColumns>
+                                    <Button style={BlueButtonStyle} href={"/admin/users/list"}>Edytuj</Button>
+                   
                                 </Tab.Pane>
 
                                 <Tab.Pane eventKey="#link3">
                                     <Title>Ogłoszenia</Title>
-                                        <Table striped bordered hover size="sm">
-                                            <thead>
-                                                <tr>
-                                                    <th>Tytuł</th>
-                                                    <th>treść</th>
-                                                    <th>Data</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Quote</td>
-                                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</td>
-                                                    <td>Someone famous in Source Title</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Quote</td>
-                                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</td>
-                                                    <td>Someone famous in Source Title</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Quote</td>
-                                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</td>
-                                                    <td>Someone famous in Source Title</td>
-                                                    <td><Button variant="danger">Usuń</Button></td>
-                                                    <td><Button variant="success">Aktualizuj</Button></td>
-                                                </tr>
-                                            </tbody>
-                                        </Table>
-                                    <Title>Dodaj ogłoszenie</Title>
-                                        <Form>
-                                            <Form.Group>
-                                                <Form.Label>Tytuł</Form.Label>
-                                                <Form.Control />
-                                                <Form.Label>Treść</Form.Label>
-                                                <Form.Control as="textarea" rows={5} />
-                                            </Form.Group>
-                                            <Button className="float-right">Dodaj</Button>
-                                        </Form>
+                                   
+                                   <AddView/>
+                                        
                                 </Tab.Pane>
 
                                 <Tab.Pane eventKey="#link4">
-                                    <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>
-                                        <Form>
-                                            <Form.Group>
-                                                <Form.Label>Treść</Form.Label>
-                                                <Form.Control as="textarea" rows={10}  />
-                                            </Form.Group>
-                                            <Button className="float-right">Zapisz</Button>
-                                        </Form>
+                                    <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title> 
+                                            <Span>{errors.rodo}</Span>
+                                            <Form.Control
+                                                onChange={this.onChange}
+                                                error={errors.description}
+                                                id="rodo"
+                                                as="textarea"
+                                                className={classnames("", {
+                                                    invalid: errors.rodo
+                                                })}
+                                                value={rodo}
+                                                rows={10}
+                                            />
+                                             <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateManagement}>Zapisz</Button>
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>
@@ -175,4 +160,16 @@ class Management extends Component {
     }
 };
 
-export default Management;
+Management.propTypes = {
+    updateManagementById: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { updateManagementById }
+)(withRouter( Management));
