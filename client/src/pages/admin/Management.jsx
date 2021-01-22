@@ -102,8 +102,8 @@ class Management extends Component {
                             <Tab.Content>
                                 <Tab.Pane eventKey="#link1">
                                     <Form >
+                                        <Title>O nas</Title>
                                         <Form.Group>
-                                            <Form.Label htmlFor="description">O nas: </Form.Label>
                                             <Span>{errors.description}</Span>
                                             <Form.Control
                                                 onChange={this.onChange}
@@ -124,7 +124,7 @@ class Management extends Component {
                                 <Tab.Pane eventKey="#link2">
                                     <Title>Zarząd</Title>
                                     <CardColumns><ManagementList/></CardColumns>
-                                    <Button style={BlueButtonStyle} href={"/admin/users/list"}>Edytuj</Button>
+                                    {/* <Button style={BlueButtonStyle} href={"/admin/users/list"}>Edytuj</Button> */}
                    
                                 </Tab.Pane>
 
@@ -149,6 +149,7 @@ class Management extends Component {
                                                 value={rodo}
                                                 rows={10}
                                             />
+                                            <br></br>
                                              <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateManagement}>Zapisz</Button>
                                 </Tab.Pane>
                             </Tab.Content>
