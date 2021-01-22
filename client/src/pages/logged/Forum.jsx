@@ -87,7 +87,7 @@ class Forum  extends Component {
       requestForumsList();
   }, []);
 
-  const ForumsList = forums.map((forum) => {
+  const ForumsList = forums.slice(0).reverse().map((forum) => {
       const { _id, title, user_id, content } = forum;
       const timestamp = _id.toString().substring(0,8);
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();

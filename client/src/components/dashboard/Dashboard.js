@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 import { Card } from 'react-bootstrap';
 import styled from 'styled-components';
+import AdList from '../management/AdList';
 
 const Wrapper = styled.div` 
     width: 70vw;
@@ -38,57 +39,7 @@ class Dashboard extends Component {
             <Wrapper >
                 <Title>Aktualności</ Title>
                 <Container>
-                    <Card>
-                        <Card.Header>Nowe opłaty</Card.Header>
-                        <Card.Body>
-                            <Blockquote>
-                                <p>
-                                    {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-                                </p>
-                                <Footer>
-                                    27.11.2020
-                                </Footer>
-                            </Blockquote>
-                        </Card.Body>
-                    </Card>
-                    <br></br>
-                    <Card>
-                        <Card.Header>Pamiętaj o wodzie</Card.Header>
-                        <Card.Body>
-                            <Blockquote>
-                                <p>
-                                    {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-                                </p>
-                                <Footer >
-                                    04.11.2020
-                                </Footer>
-                            </Blockquote>
-                        </Card.Body>
-                    </Card>
-                    <br></br>
-                    <Card>
-                        <Card.Header>Zmiany w ustawie</Card.Header>
-                        <Card.Body>
-                            <Blockquote>
-                                <p>
-                                    {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-                                </p>
-                                <Footer>
-                                    01.08.2020
-                                </Footer>
-                            </Blockquote>
-                        </Card.Body>
-                    </Card>
-
+                   <AdList/>
                 </Container >
             </Wrapper >
         );

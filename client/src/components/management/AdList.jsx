@@ -13,7 +13,7 @@ const AdList = () => {
         requestAnnouncementsList();
     }, []);
 
-    const AnnouncementsTable = ads.map((ad, index) => {
+    const AnnouncementsTable = ads.slice(0).reverse().map((ad, index) => {
         const { _id, title, content } = ad;
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();

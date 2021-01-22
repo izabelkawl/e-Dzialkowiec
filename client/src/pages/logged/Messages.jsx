@@ -60,7 +60,7 @@ class Messages extends Component {
         requestMessagesList();
     }, []);
     
-    const MessagesTable  = messages.map((users, index) => {
+    const MessagesTable  = messages.slice(0).reverse().map((users, index) => {
         
       const {user_id, recipient} = users
       if(user_id === user.firstname + ' ' + user.lastname ){

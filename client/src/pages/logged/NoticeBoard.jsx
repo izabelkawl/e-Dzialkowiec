@@ -93,7 +93,7 @@ const NoticeBoard = () => {
         requestTablesList();
     }, []);
 
-    const TableList = tables.map((table) => {
+    const TableList = tables.slice(0).reverse().map((table) => {
         const { _id, title, user_id, content} = table;
         // Date
         const timestamp = _id.toString().substring(0,8);
