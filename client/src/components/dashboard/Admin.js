@@ -140,6 +140,10 @@ class Admin extends Component {
                             <Button style={BlueButtonStyle} onClick={this.onLogoutClick} >Wyloguj</Button>
                         </Col>
                     </Row>
+                        <br></br>
+                    <Row>
+                    <Button style={BlueButtonStyle} href={'/dashboard'}>E-działkowiec</Button>
+                    </Row>
                 </List>
             );
     }

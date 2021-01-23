@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
-import logo from './img/logo.png';
+import logo from '../img/logo.png';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';

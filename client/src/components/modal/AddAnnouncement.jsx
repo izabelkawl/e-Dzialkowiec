@@ -2,7 +2,7 @@ import React, { Component} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { insertTable } from "../../api";
+import { insertNoticeboard } from "../../api";
 import { Button, Form, Modal } from 'react-bootstrap';
 import classnames from "classnames";
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
@@ -35,19 +35,19 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
   onSubmit = e => {
 
       e.preventDefault();
-      const newTable = {
+      const newNoticeboard = {
 
          title: this.state.title,
           user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
           content: this.state.content,
           image: this.state.image
       };
-      this.props.insertTable(newTable, this.props.history)
+      this.props.insertNoticeboard(newNoticeboard, this.props.history)
   };
   render(){ 
       const { errors } = this.state;
       const { title, content, image } = this.state
-      const {staticContext, insertTable, ...rest} = this.props
+      const {staticContext, insertNoticeboard, ...rest} = this.props
    return (
       <Modal
         {...rest}
@@ -114,7 +114,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 AddAnnouncement.propTypes = {
   errors: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  insertTable: PropTypes.func.isRequired,
+  insertNoticeboard: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -124,5 +124,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {insertTable}
+  {insertNoticeboard}
 )(withRouter(AddAnnouncement));

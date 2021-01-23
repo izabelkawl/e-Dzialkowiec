@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navigation/NavBar';
 import { Form } from 'react-bootstrap';
 import bg from './img/bgo.svg';
 import Title from '../components/Title'

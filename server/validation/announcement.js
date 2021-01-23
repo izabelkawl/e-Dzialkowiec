@@ -1,7 +1,7 @@
 import Validator from "validator";
 import isEmpty from "is-empty";
 
-const validateAdInput = (data) => {
+const validateAnnouncementInput = (data) => {
   let errors = {};
 
   data.title = !isEmpty(data.title) ? data.title : "";
@@ -19,4 +19,4 @@ const validateAdInput = (data) => {
   };
 };
 
-export default validateAdInput;
+export default validateAnnouncementInput;

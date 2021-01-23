@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import styled from 'styled-components';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navigation/NavBar';
 import './MapColors.css'
 import api from "../api";
 const Wrapper = styled.div`

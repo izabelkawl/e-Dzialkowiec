@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import api, { updateAnnouncementById } from '../../api';
 import classnames from "classnames";
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
+import {Title, Wrapper, BlueButtonStyle, RedButtonStyle,  Span} from '../constants';
 
 class AnnouncementsUpdate extends Component {
     constructor(props) {

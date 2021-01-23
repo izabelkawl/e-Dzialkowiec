@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 import { connect } from "react-redux";
 
-import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, MessagesInsert, Management, Finanse, FinancesInsert,  } from '../pages'
+import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate, Management, Finanse, FinancesInsert,  } from '../pages'
 import StatusUpdate from '../pages/admin/StatusUpdate'
 import PaymentInsert from '../pages/admin/PaymentInsert'
 import ChoosenAllotmetnforFinances from '../pages/admin/ChoosenAllotmetnforFinances'
@@ -15,7 +15,7 @@ import NoticeBoard from '../pages/admin/NoticeBoard'
 import PrivateRoute from '../components/private-route/PrivateRoute'
 
 import Admin from '../components/dashboard/Admin';
-import AdminNavBar from '../components/AdminNavBar';
+import AdminNavBar from '../components/navigation/AdminNavBar';
 
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -56,7 +56,6 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/allotments/update/:id" exact component={AllotmentsUpdate} />
 
                 <PrivateRoute path="/admin/messages/list" exact component={MessagesList} />
-                <PrivateRoute path="/admin/messages/create" exact component={MessagesInsert} />
                 <PrivateRoute path="/admin/messages/update/:id" exact component={MessagesUpdate} />
 
                 <PrivateRoute path="/admin/finances/list" exact component={Finanse} />

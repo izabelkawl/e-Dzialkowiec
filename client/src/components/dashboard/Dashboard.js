@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import { Card } from 'react-bootstrap';
 import styled from 'styled-components';
 import AdList from '../management/AdList';
 
@@ -16,16 +15,6 @@ const Container = styled.div`
 const Title = styled.h3`
     padding-bottom:30px; 
     color: #0071BC;
-`
-
-const Footer = styled.footer.attrs({
-    className: 'blockquote-footer',
-})`
-    color: #28a745;
-`
-const Blockquote = styled.blockquote.attrs({
-    className: "blockquote mb-0"
-})`
 `
 
 class Dashboard extends Component {

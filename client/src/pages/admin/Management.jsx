@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Table, Form, Tab, ListGroup,Button, Row, Col, CardColumns } from 'react-bootstrap';
+import { Form, Tab, ListGroup,Button, Row, Col, CardColumns } from 'react-bootstrap';
 import styled from "styled-components";
 import api, { updateManagementById } from '../../api';
 import {  Span, Title, BlueButtonStyle } from '../constants';

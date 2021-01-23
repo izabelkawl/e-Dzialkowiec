@@ -46,7 +46,6 @@ onSubmit = e => {
 
   render(){ 
     const { errors } = this.state;
-    const { title,  content } = this.state
     const {staticContext, insertMessage, ...rest} = this.props
  return (
     <Modal

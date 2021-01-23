@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { InputGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
-import { List,  RedButtonStyle } from '../constants';
+import { List } from '../constants';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessage from '../../components/modal/AddMessage';

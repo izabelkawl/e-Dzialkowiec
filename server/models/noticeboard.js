@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const Table = new Schema({
+const NoticeBoard = new Schema({
 
   title: { type: String, required: true },
   user_id: { type: String, required: true },
@@ -12,4 +12,4 @@ const Table = new Schema({
    timestamps: true,
 });
 
-export default mongoose.model("tables", Table);
+export default mongoose.model("noticeboards", NoticeBoard);

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {Card } from 'react-bootstrap';
 import api from "../../api";
+import styled from "styled-components";
 
+const Footer = styled.footer`
+    color: #007bff;
+`
 const AdList = () => {
     const [ads, setAnnouncements] = useState([]);
     useEffect(() => {
@@ -23,9 +27,9 @@ const AdList = () => {
               <Card.Body>
                 <blockquote className="blockquote mb-0">
                   <p>{' '+ content +' '} </p>
-                  <footer className="blockquote-footer">
+                  <Footer className="blockquote-footer">
                    {date}
-                  </footer>
+                  </Footer>
                 </blockquote>
               </Card.Body>
       </Card><br></br></div>

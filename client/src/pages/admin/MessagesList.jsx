@@ -8,6 +8,7 @@ import { List } from '../constants';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
+import store from "../../store";
 
 const MessageList = styled.div`
   overflow: auto;
@@ -19,9 +20,6 @@ const Person = styled.div`
   padding: 10px;
   font-size: 12px;
   cursor: pointer;
-`
-const MessagesContent = styled.div`
-  
 `
 const Me = styled.p`
   color: white;
@@ -38,83 +36,87 @@ const NotMe = styled.p`
   padding: 5px;
   width: 100%;
   ` 
+  const MessagesList = () => {
   
+    const [modalShow, setModalShow] = React.useState(false);
+    const [messages, setMessages] = useState([]);
+    useEffect(() => {
+        const requestMessagesList = async () => {
+            const messagesList = await api.getAllMessages();
+            const { data } = messagesList;
+            setMessages(data.data);
+        };
+        requestMessagesList();
+    }, []);
+    
+    const MessagesTable  = messages.slice(0).reverse().map((users, index) => {
+        
+        const {user_id, recipient} = users
+        if(user_id === "Zarząd"){
+        return recipient
+        }
+        else if(recipient === "Zarząd" ){
+            return user_id
+        }
+    })
+
+    const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
+    const Messages = isDupuplicate.map((sth, index) => {
+        if( isDupuplicate[index] !== 'undefined'){
+            return <Person key={index} onClick={() => storeVar(isDupuplicate[index])}>{isDupuplicate[index]}</Person>
+        }
+    })
+    let author = '';
+    const storeVar = (val) => {
+      author =  val
+    const Listka = messages.map((users, index) => {
+      const { _id, user_id, recipient, content } = users
+      if( user_id === "Zarząd" && recipient === val){
+        return <Me key={_id}>{recipient+ ' '+ content}</Me>
+        }else if(user_id === val && recipient === "Zarząd"){
+          return <NotMe key={_id}>{user_id + ' '+ content}</NotMe>
+        }
+      })
+      return Listka
+    }
+
+    return <List>
+           <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
+          <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}
+        />
+        <Row>
+           <Col sm="3">
+            <MessageList>
+              {Messages}
+            </MessageList>
+            </Col>
+         </Row>
+         <Row>
+          <Col sm="9">
+                  {/* {storeVar(author)} */}
+                  <InputGroup className="mb-3">
+                    <FormControl
+                      placeholder="Treść wiadomości.."
+                    />
+                    <InputGroup.Append>
+                      <Button variant="primary">Wyślij</Button>
+                    </InputGroup.Append>
+                  </InputGroup>
+            </Col>
+           </Row>
+        </List>
+      
+          
+  }
+
 class Messages extends Component {
   
   render() {
-      const { user } = this.props.auth;
-  const MessagesList = () => {
-  
-  const [modalShow, setModalShow] = React.useState(false);
-  const [messages, setMessages] = useState([]);
-  useEffect(() => {
-      const requestMessagesList = async () => {
-          const messagesList = await api.getAllMessages();
-          const { data } = messagesList;
-          setMessages(data.data);
-      };
-      requestMessagesList();
-  }, []);
-  const storeVar = (val) => {
-      console.log(val)
-    const Listka = messages.map((users, index) => {
-        const {user_id, recipient, content} = users
-        return <Me key={index}>{user_id}</Me>
-      //   else if(recipient === user.firstname + ' ' + user.lastname ){
-        // return <NotMe key={index}>{user_id}</NotMe>
-      //   }
-    })
-  return Listka
+
+  return  <MessagesList/>
+    }
   }
-  
-  const MessagesTable  = messages.slice(0).reverse().map((users, index) => {
-      
-      const {user_id, recipient} = users
-      if(user_id === "Zarząd"){
-      return recipient
-      }
-      else if(recipient === "Zarząd" ){
-          return user_id
-      }
-  })
-  const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
-  const Messages = isDupuplicate.map((sth, index) => {
-      if( isDupuplicate[index] !== 'undefined'){
-          return <Person key={index} onClick={() => storeVar(isDupuplicate[index])}>{isDupuplicate[index]}</Person>
-      }
-  })
-  return <List>
-        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
-        <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}
-    />
-     <Row>
-           <Col sm="3">
-            <MessageList
-            >
-              {Messages}
-            </MessageList>
-             </Col>
-           <Col sm="9">
-              <Row>
-                <Me id="hehe">
-                   {/* {this.state.valueoooo} */}
-                </Me>
-              </Row>
-                <InputGroup className="mb-3">
-                  <FormControl
-                    placeholder="Treść wiadomości.."
-                  />
-                  <InputGroup.Append>
-                    <Button variant="primary">Wyślij</Button>
-                  </InputGroup.Append>
-                </InputGroup>
-           </Col>
-         </Row>
-          </List>;
-      };
-      return <MessagesList/>
-  }
-}
+
 Messages.propTypes = {
   auth: PropTypes.object.isRequired
 };

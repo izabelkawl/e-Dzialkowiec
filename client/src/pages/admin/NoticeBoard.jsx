@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { insertTable } from "../../api";
+import api, { insertNoticeboard } from "../../api";
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import { List, RedButtonStyle } from '../constants'
@@ -41,20 +41,20 @@ const HeaderDiv = styled.div`
   font-size: 26px;
 `
 
-class DeleteTable extends Component {
-  deleteTable = event => {
+class DeleteNoticeboard extends Component {
+  deleteNoticeboard = event => {
       event.preventDefault()
       if (
           window.confirm(
               `Czy na pewno chcesz usunąć ten wątek?`,
           )
       ) {
-          api.deleteTableById(this.props.id)
+          api.deleteNoticeboardById(this.props.id)
           window.location.reload()
       }
   }
   render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteTable}>Usuń</Button>
+      return <Button style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
   }
 }
 
@@ -62,21 +62,19 @@ class NoticeBoard extends Component {
 
   render() {
 const NoticeBoard = () => {
-    const [tables, setTables] = useState([]);
-    const [modalShow, setModalShow] = React.useState(false);
-    const [swt, setSwt] = React.useState(true);
+    const [tables, setNoticeboards] = useState([]);
 
     useEffect(() => {
-        const requestTablesList = async () => {
-            const tablesList = await api.getAllTables();
+        const requestNoticeboardsList = async () => {
+            const tablesList = await api.getAllNoticeboards();
             const { data } = tablesList;
-            setTables(data.data);
+            setNoticeboards(data.data);
         };
 
-        requestTablesList();
+        requestNoticeboardsList();
     }, []);
 
-    const TableList = tables.map((table) => {
+    const NoticeboardList = tables.map((table) => {
         const { _id, title, user_id, content} = table;
         // Date
         const timestamp = _id.toString().substring(0,8);
@@ -91,7 +89,7 @@ const NoticeBoard = () => {
                 </Content>
                 <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
                 <FooterButton>
-                  <DeleteTable id={_id}/>
+                  <DeleteNoticeboard id={_id}/>
                 </FooterButton>
             </Container> 
       )
@@ -101,7 +99,7 @@ const NoticeBoard = () => {
         <Title>Tablica ogłoszeń</ Title>
         <br></br>
         <br></br>
-       {TableList}
+       {NoticeboardList}
       </List>
     )
   }
@@ -112,7 +110,7 @@ const NoticeBoard = () => {
 NoticeBoard.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  insertTable: PropTypes.func.isRequired,
+  insertNoticeboard: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -122,5 +120,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {insertTable}
+  {insertNoticeboard}
 )(withRouter(NoticeBoard));

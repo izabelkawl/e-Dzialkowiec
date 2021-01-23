@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button } from 'react-bootstrap';
-import { List, BlueButtonStyle, RedButtonStyle } from '../../pages/constants';
+import { BlueButtonStyle, RedButtonStyle } from '../../pages/constants';
 
 class UpdateAnnouncement extends Component {
     updateAnnouncement = event => {
@@ -42,7 +42,7 @@ const AnnouncementsList = () => {
         requestAnnouncementsList();
     }, []);
 
-    const AnnouncementsTable = ads.map((ad, index) => {
+    const AnnouncementsTable = ads.slice(0).reverse().map((ad, index) => {
         const { _id, title, content } = ad;
 
         return (

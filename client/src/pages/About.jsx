@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import api from '../api'
 import styled from 'styled-components';
-import { Tab, Col, Row, ListGroup, Card, CardColumns } from 'react-bootstrap';
-import NavBar from '../components/NavBar';
+import { Tab, Col, Row, ListGroup,  CardColumns } from 'react-bootstrap';
+import NavBar from '../components/navigation/NavBar';
 import Title from '../components/Title'
 import ManagementList from '../components/management/ManagementList';
 import AdList from '../components/management/AdList'

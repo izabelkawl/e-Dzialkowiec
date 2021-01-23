@@ -82,7 +82,7 @@ class EmailChange extends Component {
     // };
 
     render() {
-        const { errors, password } = this.state;
+        const { errors} = this.state;
         return (
                 <Container>
                     <Title>Zmiana hasła</Title>

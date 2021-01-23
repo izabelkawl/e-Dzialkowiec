@@ -7,7 +7,7 @@ import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
 import Title from '../components/Title'
 import { loginUser } from "../api/index";
-import NavBar from '../components/NavBar'
+import NavBar from '../components/navigation/NavBar'
 
 import bg from './img/bgo.svg';
 

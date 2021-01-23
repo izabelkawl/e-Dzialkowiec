@@ -173,10 +173,10 @@ export const getAllMessages = () => api.get(`/messages`)
 export const deleteMessageById = id => api.delete(`/message/${id}`)
 export const getMessageById = id => api.get(`/message/${id}`)
 
-// Notice Board - Table
-export const insertTable = (tableData, history) => dispatch => {
+// Notice Board
+export const insertNoticeboard = (noticeboardData, history) => dispatch => {
     api
-        .post("/table", tableData)
+        .post("/noticeboard", noticeboardData)
         .then(res => window.alert(`Dodano pomyślnie!`))
         .catch(err =>
             dispatch({
@@ -185,9 +185,9 @@ export const insertTable = (tableData, history) => dispatch => {
             })
         );
 };
-export const updateTableById = (id, payload) => dispatch => {
+export const updateNoticeboardById = (id, payload) => dispatch => {
     api
-        .put(`/table/${id}`, payload)
+        .put(`/noticeboard/${id}`, payload)
         .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
         .catch(err =>
             dispatch({
@@ -196,9 +196,9 @@ export const updateTableById = (id, payload) => dispatch => {
             })
         );
 }
-export const getAllTables = () => api.get(`/tables`)
-export const deleteTableById = id => api.delete(`/table/${id}`)
-export const getTableById = id => api.get(`/table/${id}`)
+export const getAllNoticeboards = () => api.get(`/noticeboards`)
+export const deleteNoticeboardById = id => api.delete(`/noticeboard/${id}`)
+export const getNoticeboardById = id => api.get(`/noticeboard/${id}`)
 
 // Forum
 export const insertForum = (forumData, history) => dispatch => {
@@ -391,11 +391,11 @@ const apis = {
     deleteMessageById,
     getMessageById,
 
-    insertTable,
-    getAllTables,
-    updateTableById,
-    deleteTableById,
-    getTableById,
+    insertNoticeboard,
+    getAllNoticeboards,
+    updateNoticeboardById,
+    deleteNoticeboardById,
+    getNoticeboardById,
 
     insertForum,
     getAllForums,

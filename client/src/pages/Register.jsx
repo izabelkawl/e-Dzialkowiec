@@ -7,7 +7,7 @@ import classnames from "classnames";
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navigation/NavBar';
 import Title from '../components/Title'
 import bg from './img/bgo.svg';
 

@@ -1,7 +1,7 @@
 import Validator from "validator";
 import isEmpty from "is-empty";
 
-const validateTableInput = (data) => {
+const validateNoticeboardInput = (data) => {
   let errors = {};
 
   data.title = !isEmpty(data.title) ? data.title : "";
@@ -30,4 +30,4 @@ const validateTableInput = (data) => {
   };
 };
 
-export default validateTableInput;
+export default validateNoticeboardInput;
