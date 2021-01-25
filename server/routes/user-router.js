@@ -12,3 +12,4 @@ router.get("/user/:id", UserCtrl.getUserById);
 router.get("/users", UserCtrl.getUsers);
 
 export default router;
+

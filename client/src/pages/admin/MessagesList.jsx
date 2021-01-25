@@ -21,6 +21,16 @@ const Person = styled.div`
   font-size: 12px;
   cursor: pointer;
 `
+
+const MessagesContent = styled.div`
+  color: white;
+  border-bottom: 1px solid #d3d3d3;
+  padding: 10px;
+  width: 100%;
+  overflow: auto;
+  height: 250px;
+  margin-bottom: 10px;
+`
 const Me = styled.p`
   color: white;
   background-color: #007aff;
@@ -36,6 +46,18 @@ const NotMe = styled.p`
   padding: 5px;
   width: 100%;
   ` 
+  
+class ShowMessages extends Component {
+  getUserById = event => {
+      event.preventDefault()
+
+      window.location.href = `/admin/messages/${this.props.id}`
+  }
+  render() {
+      return <Person onClick={this.getUserById}>{this.props.id}</Person>
+  }
+}
+
   const MessagesList = () => {
   
     const [modalShow, setModalShow] = React.useState(false);
@@ -63,7 +85,7 @@ const NotMe = styled.p`
     const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
     const Messages = isDupuplicate.map((sth, index) => {
         if( isDupuplicate[index] !== 'undefined'){
-            return <Person key={index} onClick={() => storeVar(isDupuplicate[index])}>{isDupuplicate[index]}</Person>
+          return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
         }
     })
     let author = '';
@@ -90,10 +112,16 @@ const NotMe = styled.p`
               {Messages}
             </MessageList>
             </Col>
-         </Row>
-         <Row>
           <Col sm="9">
-                  {/* {storeVar(author)} */}
+          <Row>
+                  <MessagesContent>
+                    <Me>asdg</Me>
+                    <Me>sdfsdf</Me>
+                    <NotMe>ssssssssss</NotMe>
+                    <Me>sdfsdfsdf</Me>
+                    <NotMe>sdfffffff</NotMe>
+                  </MessagesContent>
+                </Row>
                   <InputGroup className="mb-3">
                     <FormControl
                       placeholder="Treść wiadomości.."

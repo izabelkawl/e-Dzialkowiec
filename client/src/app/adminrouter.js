@@ -11,7 +11,7 @@ import PaymentInsert from '../pages/admin/PaymentInsert'
 import ChoosenAllotmetnforFinances from '../pages/admin/ChoosenAllotmetnforFinances'
 import AnnouncementUpdate from '../pages/admin/AnnouncementUpdate'
 import NoticeBoard from '../pages/admin/NoticeBoard'
-
+import MessagesContent from '../pages/admin/MessagesContent'
 import PrivateRoute from '../components/private-route/PrivateRoute'
 
 import Admin from '../components/dashboard/Admin';
@@ -57,6 +57,7 @@ class AdminApp extends Component {
 
                 <PrivateRoute path="/admin/messages/list" exact component={MessagesList} />
                 <PrivateRoute path="/admin/messages/update/:id" exact component={MessagesUpdate} />
+                <PrivateRoute path="/admin/messages/:id" exact component={MessagesContent}/>
 
                 <PrivateRoute path="/admin/finances/list" exact component={Finanse} />
                 <PrivateRoute path="/admin/finances/create" exact component={FinancesInsert} />

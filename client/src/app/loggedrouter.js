@@ -17,6 +17,7 @@ import NoticeBoard from '../pages/logged/NoticeBoard.jsx';
 import Commitment from '../pages/logged/Commitment.jsx';
 import Messages from '../pages/logged/Messages.jsx';
 import ForumThread from '../pages/logged/ForumThread.jsx';
+import MessagesContent from '../pages/logged/MessagesContent.jsx';
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -40,6 +41,7 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/commitment" exact component={Commitment} />
             <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
             <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
+            <PrivateRoute path="/dashboard/messages/:id" exact component={MessagesContent}/>
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />
             <PrivateRoute path="/dashboard/forums/update/:id" exact component={ForumThread}/>
             <PrivateRoute path="/dashboard/account/" exact component={Account} />

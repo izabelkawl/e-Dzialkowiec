@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { InputGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
-import { List } from '../constants';
+import Wrapper from '../../components/Wrapper/Wrapper';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessage from '../../components/modal/AddMessage';
@@ -43,6 +43,18 @@ const NotMe = styled.p`
   padding: 5px;
   width: 100%;
   `
+  
+class ShowMessages extends Component {
+  getUserById = event => {
+      event.preventDefault()
+
+      window.location.href = `/dashboard/messages/${this.props.id}`
+  }
+  render() {
+      return <Person onClick={this.getUserById}>{this.props.id}</Person>
+  }
+}
+
 class Messages extends Component {
     
     render() {
@@ -73,12 +85,12 @@ class Messages extends Component {
   const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
   const Messages = isDupuplicate.map((sth, index) => {
     if( isDupuplicate[index] !== 'undefined'){
-      return <Person key={index}>{isDupuplicate[index]}</Person>
+      return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
   }
   })
 
 
-    return <List>
+    return <Wrapper>
           <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wiadomość</Button>
           <AddMessage show={modalShow} onHide={() => setModalShow(false)}
       />
@@ -109,7 +121,7 @@ class Messages extends Component {
                   </InputGroup>
              </Col>
            </Row>
-            </List>;
+            </Wrapper>;
         };
         return <MessagesList/>
     }

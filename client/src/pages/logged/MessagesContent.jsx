@@ -2,6 +2,9 @@ import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import styled from "styled-components";
 import Wrapper from "../../components/Wrapper/Wrapper";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const Me = styled.p`
   color: white;
@@ -43,10 +46,10 @@ const NotMe = styled.p`
   }, []);
     const Listka = messages.map((users, index) => {
         const { _id, user_id, recipient, content } = users
-
-        if( user_id === "Zarząd" && recipient === this.props.match.params.id){
-        return <Me key={_id}>{user_id+ ' '+ content}</Me> 
-        }else if(user_id === this.props.match.params.id && recipient === "Zarząd"){
+        const { user } = this.props.auth;
+        if( user_id === user.firstname + ' ' + user.lastname && recipient === this.props.match.params.id){
+        return <Me key={_id}>{recipient+ ' '+ content}</Me> 
+        }else if(user_id === this.props.match.params.id && recipient === user.firstname + ' ' + user.lastname){
           return <NotMe key={_id}>{user_id + ' '+ content}</NotMe>
         }
      
@@ -56,5 +59,15 @@ const NotMe = styled.p`
       return <Wrapper><MessagesList/></Wrapper> 
     }
   }
-      
-export default MessagesContent
+
+  MessagesContent.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+    mapStateToProps
+)(withRouter( MessagesContent));
