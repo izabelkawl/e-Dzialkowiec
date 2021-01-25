@@ -1,60 +1,136 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import styled from "styled-components";
-import Wrapper from "../../components/Wrapper/Wrapper";
+import { insertMessage } from "../../api";
+import { List, BlueButtonStyle, Span } from '../constants';
+import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import classnames from "classnames";
 
-const Me = styled.p`
+const Container = styled.div`
+    width: 40vw;
+    margin: 0 auto;
+    
+  `
+const MessageContainer = styled.div`
+    overflow: auto;
+    height: 500px;
+    scroll-behavior: smooth;
+    margin-bottom: 10px;
+  `
+const Me = styled.p.attrs({
+  className: "float-right"
+})`
   color: white;
-  background-color: #007aff;
-  border-radius: 5px;
-  padding: 5px;
+  background-color: rgb(0, 113, 188);
+  border-radius: 9px;
+  padding: 9px;
   text-align: right;
   width: 100%;
 `
 const NotMe = styled.p`
   color: white;
   background-color: gray;
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
+  border-radius: 9px;
+  padding: 9px;
+  float-left;
   ` 
+  const MessageDate = styled.i`
+    font-size: 10px;
+  `
 
-  class MessagesContent extends Component {
-    constructor(props) {
-        super(props)
+      const MessagesList = (val) => {
+      const [messages, setMessages] = useState([]);
+      useEffect(() => {
+          const requestMessagesList = async () => {
+              const messagesList = await api.getAllMessages();
+              const { data } = messagesList;
+              setMessages(data.data);
+          };
+          requestMessagesList();
+      }, []);
+        const Listka = messages.map((users, index) => {
+            const { _id, user_id, recipient, content } = users
+            const timestamp = _id.toString().substring(0,8);
+            const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+            if( user_id === "Zarząd" && recipient === val.id){
+            return <div key={_id}><MessageDate className="float-right">{date} </MessageDate> <Me>{content}</Me></div> 
+            }else if(user_id === val.id && recipient === "Zarząd"){
+              return <div key={_id}><MessageDate>{date} </MessageDate> <NotMe >{content}</NotMe></div> 
+            }
+        
+        })
+      window.setInterval(function() {
+        var elem = document.getElementById('data');
+        elem.scrollTo(0, document.body.scrollHeight);
+      }, 3500);
 
-        this.state = {
-            id: this.props.match.params.id,
-        }
+      return  <MessageContainer id="data">
+                {Listka}
+              </MessageContainer>
     }
-    
-    render() {
-      console.log(this.props.match.params.id)
-  const MessagesList = () => {
 
-  const [messages, setMessages] = useState([]);
-  useEffect(() => {
-      const requestMessagesList = async () => {
-          const messagesList = await api.getAllMessages();
-          const { data } = messagesList;
-          setMessages(data.data);
-      };
-      requestMessagesList();
-  }, []);
-    const Listka = messages.map((users, index) => {
-        const { _id, user_id, recipient, content } = users
 
-        if( user_id === "Zarząd" && recipient === this.props.match.params.id){
-        return <Me key={_id}>{user_id+ ' '+ content}</Me> 
-        }else if(user_id === this.props.match.params.id && recipient === "Zarząd"){
-          return <NotMe key={_id}>{user_id + ' '+ content}</NotMe>
-        }
-     
-    })
-  return Listka
+  class MessagesInsert extends Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        user_id: "Zarząd",
+        recipient:  this.props.match.params.id,
+        content: ''
       }
-      return <Wrapper><MessagesList/></Wrapper> 
+    }
+  
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+  
+  onSubmit = e => {
+  
+    e.preventDefault();
+    const newMessage = {
+  
+      user_id: "Zarząd",
+      recipient: this.props.match.params.id,
+      content: this.state.content,
+    };
+    this.props.insertMessage(newMessage, this.props.history)
+  };
+
+    render() {
+      return <List>
+        <Button style={BlueButtonStyle} href={'/admin/messages/list'}>Powrót</Button>
+        <Container>
+                <MessagesList id={this.props.match.params.id}/>
+                  <InputGroup className="mb-3">
+                            <FormControl
+                            onChange={this.onChange}
+                            value={this.state.content}
+                            type="text"
+                            id="content"
+                            placeholder="Wpisz treść wiadomości.."
+                            /><InputGroup.Append><Button variant="secondary" onClick={this.onSubmit} >Wyślij</Button>
+                </InputGroup.Append>
+                
+              </InputGroup>
+              </Container>
+              </List>
+
     }
   }
-      
-export default MessagesContent
+
+  MessagesInsert.propTypes = {
+    insertMessage: PropTypes.func.isRequired,
+  };
+  
+  const mapStateToProps = state => ({
+    errors: state.errors
+  });
+  
+  export default connect(
+  mapStateToProps,
+  {insertMessage}
+  )(withRouter(MessagesInsert))

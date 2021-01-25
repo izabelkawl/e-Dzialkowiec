@@ -24,10 +24,9 @@ import AllotmentsInsert from './admin/AllotmentsInsert'
 import Messages from './logged/Messages'
 
 import MessagesList from './admin/MessagesList'
-import MessagesUpdate from './admin/MessagesUpdate'
 import Finanse from './admin/Finance'
 import FinancesInsert from './admin/FinancesInsert'
 import ImageUpload from './ImageUpload';
 import AnnouncementUpdate from './admin/AnnouncementUpdate'
 
-export { FrontPage, Management, About, AnnouncementUpdate, Contact,Messages, ForumThread, Message, ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, MessagesUpdate }
+export { FrontPage, Management, About, AnnouncementUpdate, Contact,Messages, ForumThread, Message, ImageUpload,Finanse,FinancesInsert, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList }

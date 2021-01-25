@@ -3,50 +3,30 @@ import api from "../../api";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { InputGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
-import { List } from '../constants';
+import { Button } from 'react-bootstrap';
+import { List, Title } from '../constants';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
-import store from "../../store";
 
+const Container = styled.div`
+    padding: 50px;
+    width: 30vw;
+  `
 const MessageList = styled.div`
   overflow: auto;
   height: 300px;
 `
 const Person = styled.div`
-  border-bottom: 1px solid #d3d3d3;
-  color: gray;
-  padding: 10px;
-  font-size: 12px;
+  color: white;
+  background-color: rgb(0, 113, 188);
+  padding: 12px;
+  // width: fit-content;
+  border-radius: 9px;
+  margin: 10px;
   cursor: pointer;
 `
 
-const MessagesContent = styled.div`
-  color: white;
-  border-bottom: 1px solid #d3d3d3;
-  padding: 10px;
-  width: 100%;
-  overflow: auto;
-  height: 250px;
-  margin-bottom: 10px;
-`
-const Me = styled.p`
-  color: white;
-  background-color: #007aff;
-  border-radius: 5px;
-  padding: 5px;
-  text-align: right;
-  width: 100%;
-`
-const NotMe = styled.p`
-  color: white;
-  background-color: gray;
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  ` 
-  
 class ShowMessages extends Component {
   getUserById = event => {
       event.preventDefault()
@@ -88,50 +68,16 @@ class ShowMessages extends Component {
           return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
         }
     })
-    let author = '';
-    const storeVar = (val) => {
-      author =  val
-    const Listka = messages.map((users, index) => {
-      const { _id, user_id, recipient, content } = users
-      if( user_id === "Zarząd" && recipient === val){
-        return <Me key={_id}>{recipient+ ' '+ content}</Me>
-        }else if(user_id === val && recipient === "Zarząd"){
-          return <NotMe key={_id}>{user_id + ' '+ content}</NotMe>
-        }
-      })
-      return Listka
-    }
 
     return <List>
            <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
-          <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}
-        />
-        <Row>
-           <Col sm="3">
+          <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}/>
+          <Container>
+            <Title>Lista wiadomości</Title>
             <MessageList>
               {Messages}
             </MessageList>
-            </Col>
-          <Col sm="9">
-          <Row>
-                  <MessagesContent>
-                    <Me>asdg</Me>
-                    <Me>sdfsdf</Me>
-                    <NotMe>ssssssssss</NotMe>
-                    <Me>sdfsdfsdf</Me>
-                    <NotMe>sdfffffff</NotMe>
-                  </MessagesContent>
-                </Row>
-                  <InputGroup className="mb-3">
-                    <FormControl
-                      placeholder="Treść wiadomości.."
-                    />
-                    <InputGroup.Append>
-                      <Button variant="primary">Wyślij</Button>
-                    </InputGroup.Append>
-                  </InputGroup>
-            </Col>
-           </Row>
+            </Container>
         </List>
       
           
