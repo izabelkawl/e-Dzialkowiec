@@ -4,45 +4,29 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { InputGroup, FormControl, Col, Row, Button } from 'react-bootstrap';
+import { List, Title } from '../constants';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessage from '../../components/modal/AddMessage';
 
+const Container = styled.div`
+    padding: 50px;
+    width: 30vw;
+  `
 const MessageList = styled.div`
   overflow: auto;
   height: 300px;
 `
 const Person = styled.div`
-  border-bottom: 1px solid #d3d3d3;
-  color: gray;
-  padding: 10px;
-  font-size: 12px;
-`
-const MessagesContent = styled.div`
   color: white;
-  border-bottom: 1px solid #d3d3d3;
-  padding: 10px;
-  width: 100%;
-  overflow: auto;
-  height: 250px;
-  margin-bottom: 10px;
+  background-color: rgb(0, 113, 188);
+  padding: 12px;
+  // width: fit-content;
+  border-radius: 9px;
+  margin: 10px;
+  cursor: pointer;
 `
-const Me = styled.p`
-  color: white;
-  background-color: #007aff;
-  border-radius: 5px;
-  padding: 5px;
-  text-align: right;
-  width: 100%;
-`
-const NotMe = styled.p`
-  color: white;
-  background-color: gray;
-  border-radius: 5px;
-  padding: 5px;
-  width: 100%;
-  `
   
 class ShowMessages extends Component {
   getUserById = event => {
@@ -55,12 +39,7 @@ class ShowMessages extends Component {
   }
 }
 
-class Messages extends Component {
-    
-    render() {
-        const { user } = this.props.auth;
-    const MessagesList = () => {
-    
+    const MessagesList = (val) => {
     const [modalShow, setModalShow] = React.useState(false);
     const [messages, setMessages] = useState([]);
     useEffect(() => {
@@ -75,10 +54,10 @@ class Messages extends Component {
     const MessagesTable  = messages.slice(0).reverse().map((users, index) => {
         
       const {user_id, recipient} = users
-      if(user_id === user.firstname + ' ' + user.lastname ){
+      if(user_id === val.id ){
       return recipient
       }
-      else if(recipient === user.firstname + ' ' + user.lastname ){
+      else if(recipient === val.id ){
           return user_id
       }
   })
@@ -91,41 +70,23 @@ class Messages extends Component {
 
 
     return <Wrapper>
-          <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wiadomość</Button>
-          <AddMessage show={modalShow} onHide={() => setModalShow(false)}
-      />
-       <Row>
-             <Col sm="3">
-              <MessageList
-              >
-                {Messages}
-              </MessageList>
-               </Col>
-             <Col sm="9">
-                <Row>
-                  <MessagesContent>
-                    <Me>asdg</Me>
-                    <Me>sdfsdf</Me>
-                    <NotMe>ssssssssss</NotMe>
-                    <Me>sdfsdfsdf</Me>
-                    <NotMe>sdfffffff</NotMe>
-                  </MessagesContent>
-                </Row>
-                  <InputGroup className="mb-3">
-                    <FormControl
-                      placeholder="Treść wiadomości.."
-                    />
-                    <InputGroup.Append>
-                      <Button variant="primary">Wyślij</Button>
-                    </InputGroup.Append>
-                  </InputGroup>
-             </Col>
-           </Row>
+         <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
+          <AddMessage show={modalShow} onHide={() => setModalShow(false)}/>
+          <Container>
+            <Title>Lista wiadomości</Title>
+            <MessageList>
+              {Messages}
+            </MessageList>
+            </Container>
             </Wrapper>;
         };
-        return <MessagesList/>
-    }
-}
+class Messages extends Component {
+  
+    render() {
+        
+    return  <MessagesList id={this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname}/>
+  }
+}    
 Messages.propTypes = {
     auth: PropTypes.object.isRequired
 };
