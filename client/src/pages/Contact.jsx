@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
-import { Form, Button } from 'react-bootstrap';
 import bg from './img/bgo.svg';
 import Title from '../components/Title'
 import { BlueButtonStyle } from './constants';
+import emailjs from 'emailjs-com';
+import { Button, Form } from 'react-bootstrap';
 
 const Wrapper = styled.div`
     background-image: url(${bg});
@@ -19,32 +20,38 @@ width: 30vw;
 margin: 150px 400px;
 `;
 
-class Contact extends Component {
-  render() {
+export default function Contact () {
+  
+  function sendEmail(e) {
+    e.preventDefault();
 
-    return (
-      <Wrapper>
+    emailjs.sendForm('service_08f6fjl', 'template_26q1t13', e.target, 'user_qWqVSkEj3aL4TRF7FmAcy')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  }
+
+    return ( <Wrapper>
         <NavBar />
         <Container>
           <Title >Kontakt</Title>
 
-          <Form>
-            <Form.Group controlId="exampleForm.ControlInput1">
+          <Form className="contact-form" onSubmit={sendEmail}>
+          <Form.Control type="hidden" name="subject" value="e-działkowiec"/>
+            <Form.Group>
               <Form.Label>Adres email:</Form.Label>
-              <Form.Control type="email" />
+              <Form.Control type="email" name="from_name"  required/>
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group>
               <Form.Label>Treść wiadomości:</Form.Label>
-              <Form.Control as="textarea" rows={6} />
+              <Form.Control as="textarea" rows={6} name="message_html" required/>
             </Form.Group>
-            <br></br>
-            <Button style={BlueButtonStyle} className="float-right">Wyślij</Button>
+            <Button style={BlueButtonStyle} type="submit" className="float-right">Wyślij</Button>
           </Form>
 
         </Container>
       </Wrapper>
     )
   }
-}
-
-export default Contact
