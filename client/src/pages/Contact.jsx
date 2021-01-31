@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import bg from './img/bgo.svg';
 import Title from '../components/Title'
+import { BlueButtonStyle } from './constants';
 
 const Wrapper = styled.div`
     background-image: url(${bg});
@@ -18,15 +19,6 @@ width: 30vw;
 margin: 150px 400px;
 `;
 
-const Label = styled(Form.Label)`
-    padding-bottom: 10px;
-`
-const Button = styled.button`
-    padding: 0 20px;
-    color: white;
-    background: #0071BC;
-    border: 10px solid #0071BC;
-`
 class Contact extends Component {
   render() {
 
@@ -38,15 +30,15 @@ class Contact extends Component {
 
           <Form>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Label>Adres email:</Label>
+              <Form.Label>Adres email:</Form.Label>
               <Form.Control type="email" />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Label>Treść wiadomości:</Label>
+              <Form.Label>Treść wiadomości:</Form.Label>
               <Form.Control as="textarea" rows={6} />
             </Form.Group>
             <br></br>
-            <Button className="float-right">Wyślij</Button>
+            <Button style={BlueButtonStyle} className="float-right">Wyślij</Button>
           </Form>
 
         </Container>
