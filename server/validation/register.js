@@ -23,7 +23,6 @@ const validateRegisterInput = (data) => {
   if (Validator.isEmpty(data.firstname)) {
     errors.firstname = " *Podaj imię";
   }
-
   // Lastname checks
   if (Validator.isEmpty(data.lastname)) {
     errors.lastname = " *Podaj nazwisko";
@@ -38,8 +37,6 @@ const validateRegisterInput = (data) => {
   } else if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
     errors.phone = " *Telefon musi mieć 9 cyfr";
   }
-
-
   // Password checks
   if (Validator.isEmpty(data.password)) {
     errors.password = " *Podaj hasło";

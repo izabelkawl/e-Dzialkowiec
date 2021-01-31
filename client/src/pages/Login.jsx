@@ -23,7 +23,7 @@ const Container = styled.div.attrs({
     className: 'form-group',
 })` 
     width: 30vw;
-    margin: 200px 400px;
+    margin: 150px 400px;
 `
 const Span = styled.span`
     color: red;

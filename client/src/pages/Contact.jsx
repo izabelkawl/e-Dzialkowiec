@@ -14,14 +14,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-    width: 40vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    padding: 60px 100px;
-    
+width: 30vw;
+margin: 150px 400px;
 `;
 
 const Label = styled(Form.Label)`

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import api from "../../api";
 import styled from "styled-components";
 
 const Footer = styled.footer`
     color: #007bff;
 `
+
 const AdList = () => {
     const [ads, setAnnouncements] = useState([]);
     useEffect(() => {
@@ -22,7 +23,8 @@ const AdList = () => {
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
         return (
-            <div><Card key={_id}>
+            <div  key={_id}>
+              <Card>
             <Card.Header>{title}</Card.Header>
               <Card.Body>
                 <blockquote className="blockquote mb-0">
@@ -32,7 +34,8 @@ const AdList = () => {
                   </Footer>
                 </blockquote>
               </Card.Body>
-      </Card><br></br></div>
+      </Card><br></br>
+      </div>
             
         );
     });
