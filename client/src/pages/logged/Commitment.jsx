@@ -157,7 +157,6 @@ class Commitment extends Component {
                         </Form.Group>
                         <hr></hr>
 </Form>
-<Title>Zobowiązania</Title>
             <FinancesTable/>
             
 <p>*Status zostanie zmieniony po weryfikacji płatności</p>

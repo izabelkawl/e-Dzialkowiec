@@ -1,14 +1,26 @@
 import React, { useState, useEffect, Component } from "react";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api from "../../api";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Form, Row, Col } from 'react-bootstrap';
 import {  BlueButtonStyle } from '../constants';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from './pdf.jsx';
+import Title from '../../components/Title';
 
 class Management extends Component {
+    constructor(){
+        super()
+        this.state = {
+            inputValue: '',
+        }
+    }
+   
+    updateInputValue = (evt) => {
+        this.setState({
+          inputValue: evt.target.value
+        });
+      }
 
     render() {
         const FinancesList = () => {
@@ -27,8 +39,11 @@ class Management extends Component {
             // const timestamp = _id.toString().substring(0,8);
             // const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
             const logged = this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname
+            // search without id letters
+            const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
+            const search = n.includes(this.state.inputValue)
             
-            if(owner === logged){
+            if(search === true && owner === logged){
             return (
                 <tr key={_id}>
                     <td>{allotment_number}</td>
@@ -72,13 +87,25 @@ class Management extends Component {
         </tbody>
     </Table>)
     }
-        return (<FinancesList/> )
+        return ( <> 
+         <Row>
+            <Col>
+                <Title>Zobowiązania</Title>
+            </Col>
+            <Col>
+                <Form.Control
+                    value={this.state.inputValue}
+                    onChange={this.updateInputValue}
+                    id="inputValue"
+                    placeholder="Szukaj.."
+                />
+            </Col>   
+            </Row>
+    <FinancesList/>
+    </>)
     }
 };
 
-Management.propTypes = {
-    auth: PropTypes.object.isRequired
-  };
   
   const mapStateToProps = state => ({
     auth: state.auth
