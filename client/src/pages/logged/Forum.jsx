@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api from '../../api';
 import styled from 'styled-components';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
@@ -69,13 +69,35 @@ class DeleteForum extends Component {
   }
 }
 class Forum  extends Component {
+  constructor(){
+    super()
+    this.state = {
+        inputValue: '',
+    }
+  }
+
+  updateInputValue = (evt) => {
+      this.setState({
+        inputValue: evt.target.value
+      });
+    }
 
   render() {
+
+    const ButtonNoticeboard = () => { 
+    
+      const [modalShow, setModalShow] = React.useState(false);
+  
+      return <>
+              <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
+              <AddThread show={modalShow} onHide={() => setModalShow(false)}/>
+          </>
+    }
+
   const ForumComponent = () => {
 
     const [swt, setSwt] = React.useState(true);
     const [forums, setForums] = useState([]);
-    const [modalShow, setModalShow] = React.useState(false);
    
     useEffect(() => {
       const requestForumsList = async () => {
@@ -89,8 +111,16 @@ class Forum  extends Component {
 
   const ForumsList = forums.slice(0).reverse().map((forum) => {
       const { _id, title, user_id, content } = forum;
+
+      // Find by number, status or User
+      const n = JSON.stringify({ title, user_id, content })
+      const search = n.includes(this.state.inputValue)
+
       const timestamp = _id.toString().substring(0,8);
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+      
+      
+      if(search === true){
       if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
       return (
         <Container key={_id}>
@@ -121,22 +151,34 @@ class Forum  extends Component {
             </Container> 
           )
       }
+    }
   });
   
+  return <>
+  <br></br>
+  <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
+  {ForumsList}
+</>
+}
     return (
       <Wrapper>
         <Title>Forum</ Title>
-        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
-        <br></br>
-        <br></br>
-        <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
-        <AddThread show={modalShow} onHide={() => setModalShow(false)}
-      />
-      {ForumsList}
+        <Row>
+          <Col>
+            <ButtonNoticeboard/>
+          </Col>
+          <Col>
+            <Form.Control
+                value={this.state.inputValue}
+                onChange={this.updateInputValue}
+                id="inputValue"
+                placeholder="Szukaj.."
+            />
+          </Col>   
+        </Row>
+        <ForumComponent/>
       </Wrapper>
     )
-    }
-    return <ForumComponent/>
   }
 }
 

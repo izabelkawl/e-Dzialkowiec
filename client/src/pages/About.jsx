@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import api from '../api'
+import React from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup,  CardColumns } from 'react-bootstrap';
 import NavBar from '../components/navigation/NavBar';

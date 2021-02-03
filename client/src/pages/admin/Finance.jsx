@@ -108,12 +108,12 @@ class Management extends Component {
                 <Col>
                     <Button style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
                 </Col>
-                <Col> <Form.Control
-                value={this.state.inputValue} onChange={this.updateInputValue}
-                        
-                        id="searchvalue"
+                <Col>
+                    <Form.Control
+                        value={this.state.inputValue}
+                        onChange={this.updateInputValue}
+                        id="inputValue"
                         placeholder="Filtruj.."
-                        value={this.state.searchvalue}
                     />
                 </Col>   
             </Row>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, Component} from "react";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { insertNoticeboard } from "../../api";
+import api from "../../api";
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Col, Row } from 'react-bootstrap';
 import { List, RedButtonStyle } from '../constants'
 import Title from '../../components/Title'
 
@@ -59,8 +58,20 @@ class DeleteNoticeboard extends Component {
 }
 
 class NoticeBoard extends Component {
-  
+  constructor(){
+    super()
+    this.state = {
+        inputValue: '',
+    }
+}
+
+updateInputValue = (evt) => {
+    this.setState({
+      inputValue: evt.target.value
+    });
+  }
   render() {
+
 const NoticeBoard = () => {
     const [tables, setNoticeboards] = useState([]);
 
@@ -76,10 +87,14 @@ const NoticeBoard = () => {
 
     const NoticeboardList = tables.map((table) => {
         const { _id, title, user_id, advertisement} = table;
+        // Find by number, status or User
+        const n = JSON.stringify({ title, user_id, advertisement })
+        const search = n.includes(this.state.inputValue)
         // Date
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
         
+        if(search === true){
         return (
             <Container key={_id}>
                 {/* <Image src={image}/> */}
@@ -94,28 +109,33 @@ const NoticeBoard = () => {
                 </FooterButton>
             </Container> 
       )
+    }
     });
-    return (
-      <List>
-        <Title>Tablica ogłoszeń</ Title>
-        <br></br>
-        <br></br>
-       {NoticeboardList}
-      </List>
-    )
+
+    return <> {NoticeboardList} </>
   }
-  return <NoticeBoard/>
+  return <List>
+          <Row>
+              <Col>
+                <Title>Tablica ogłoszeń</ Title>
+              </Col>
+              <Col>
+                <Form.Control
+                    value={this.state.inputValue}
+                    onChange={this.updateInputValue}
+                    id="inputValue"
+                    placeholder="Filtruj.."
+                />
+              </Col>   
+            </Row>
+            <NoticeBoard/>
+          </List>
   }
 }
-NoticeBoard.propTypes = {
-  errors: PropTypes.object.isRequired
-};
 const mapStateToProps = state => ({
-  errors: state.errors,
   auth: state.auth
 });
 
 export default connect(
-  mapStateToProps,
-  {insertNoticeboard}
+  mapStateToProps
 )(withRouter(NoticeBoard));

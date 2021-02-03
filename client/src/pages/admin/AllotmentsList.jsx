@@ -1,8 +1,13 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Form, Col, Row } from 'react-bootstrap';
 import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
+import styled from 'styled-components';
 
+const Container = styled.div`
+    width: 30%;
+    padding-bottom: 30px
+`
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
@@ -32,7 +37,22 @@ class DeleteAllotment extends Component {
     }
 }
 
-const AllotmentsList = () => {
+class AllotmentsList extends Component {
+    constructor(){
+        super()
+        this.state = {
+            inputValue: '',
+        }
+    }
+   
+    updateInputValue = (evt) => {
+        this.setState({
+          inputValue: evt.target.value
+        });
+      }
+
+    render() {
+const Allotments = () => {
     const [allotments, setAllotments] = useState([]);
     useEffect(() => {
         const requestAllotmentsList = async () => {
@@ -41,11 +61,17 @@ const AllotmentsList = () => {
             setAllotments(data.data);
         };
         requestAllotmentsList();
-    }, []);
+    }, []); 
 
     const AllotmentsTable = allotments.map((allotment, index) => {
+        
         const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
 
+        // Find by number, status or User
+        const n = JSON.stringify({ number, status, user_id })
+        const search = n.includes(this.state.inputValue)
+        
+        if(search === true){
         return (
             <tr key={_id}>
                 <td>{number}</td>
@@ -57,14 +83,11 @@ const AllotmentsList = () => {
                 <td><UpdateAllotment id={_id} /></td>
                 <td><DeleteAllotment id={_id} /></td>
             </tr>
-        );
+        )
+        }
     });
 
-    return <List>
-         <Button style={BlueButtonStyle} href="/admin/allotments/create" >Dodaj działke</Button>
-         <br></br>
-         <br></br>
-        <Table striped bordered hover size="sm" responsive>
+    return  <Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
                     <th>Numer</th>
@@ -82,7 +105,25 @@ const AllotmentsList = () => {
                 {AllotmentsTable}
             </tbody>
         </Table>
-    </List>
-};
+}
+return <List>
+            <Row>
+            <Col>
+                <Button style={BlueButtonStyle} href="/admin/allotments/create" >Dodaj działkę</Button>
+            </Col>
+            <Col>
+                    <Form.Control
+                        value={this.state.inputValue}
+                        onChange={this.updateInputValue}
+                        id="inputValue"
+                        placeholder="Filtruj.."
+                    />
+                </Col>   
+            </Row>
+            <br></br>
+        <Allotments/>
+        </List>
+}
+}
 
 export default AllotmentsList;

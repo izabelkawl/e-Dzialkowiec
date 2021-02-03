@@ -1,13 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { List, RedButtonStyle, BlueButtonStyle } from '../constants';
-import styled from 'styled-components';
-
-const Container = styled.div`
-    width: 30%;
-    padding-bottom: 30px
-`
+import Title from '../../components/Title';
 
 class DeleteUser extends Component {
     deleteUser = event => {
@@ -105,16 +100,20 @@ class UsersList extends Component {
         </Table>
    
     }
-    return <List>
-                <Container>
-                    <Form.Control
-                        value={this.state.inputValue}
-                        onChange={this.updateInputValue}
-                        id="searchvalue"
-                        placeholder="Filtruj.."
-                        value={this.state.searchvalue}
-                    />
-                </Container>
+    return <List><Row>
+    <Col>
+        <Title>Lista użytkowników</ Title>
+    </Col>
+    <Col>
+            <Form.Control
+                value={this.state.inputValue}
+                onChange={this.updateInputValue}
+                id="inputValue"
+                placeholder="Filtruj.."
+            />
+        </Col>   
+    </Row>
+                    <br></br>
                 <UsersPanel/>
             </List>
     }
