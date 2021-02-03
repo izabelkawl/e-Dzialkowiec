@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-width: 30vw;
-margin: 150px 400px;
+  width: 30vw;
+  margin: 150px 400px;
 `;
 
 export default function Contact () {
@@ -27,9 +27,10 @@ export default function Contact () {
 
     emailjs.sendForm('service_08f6fjl', 'template_26q1t13', e.target, 'user_qWqVSkEj3aL4TRF7FmAcy')
       .then((result) => {
-          console.log(result.text);
+        alert("Wiadomość została wysłana!")
       }, (error) => {
           console.log(error.text);
+          alert("Wiadomość nie została wysłana")
       });
   }
 

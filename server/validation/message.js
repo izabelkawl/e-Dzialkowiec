@@ -4,7 +4,6 @@ import isEmpty from "is-empty";
 const validateMessageInput = (data) => {
   let errors = {};
 
-  // Convert empty fields to an empty string so we can use validator functions
   data.recipient = !isEmpty(data.recipient) ? data.recipient : "";
   data.content = !isEmpty(data.content) ? data.content : "";
 

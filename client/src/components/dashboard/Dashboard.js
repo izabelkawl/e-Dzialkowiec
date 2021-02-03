@@ -15,9 +15,8 @@ const Wrapper = styled.div`
     padding: 100px;
 `
 const Container = styled.div`
-  padding: 20px;
+  padding: 50px 0;
 `
-
 class Dashboard extends Component {
     onLogoutClick = e => {
         e.preventDefault();
@@ -27,8 +26,8 @@ class Dashboard extends Component {
 
         return (
             <Wrapper>
-                <Tabs defaultActiveKey="link1" id="uncontrolled-tab-example">
-              <Tab eventKey="link1" title="Aktualności">
+                <Tabs  defaultActiveKey="link1" id="uncontrolled-tab-example">
+              <Tab eventKey="link1" title="Aktualności" >
                 <Container>
                 <Title>Aktualności</Title>
                    <AdList/>
@@ -61,10 +60,6 @@ class Dashboard extends Component {
     }
 }
 
-Dashboard.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
     auth: state.auth

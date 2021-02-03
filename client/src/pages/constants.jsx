@@ -41,5 +41,6 @@ export const Label = styled.label`
 export const Span = styled.span.attrs({
     className: `red-text`,
 })`
+    font-size: 12px;
     color: red;
 `

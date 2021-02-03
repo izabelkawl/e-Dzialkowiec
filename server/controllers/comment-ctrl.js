@@ -15,6 +15,10 @@ const commentData = req.body;
   } catch (error) {
     throw new DatabaseInsertError(error.message);
   }
+
+  return res.status(200).json({
+    success: true
+  });
 };
 
 const updateComment = async (req, res) => {

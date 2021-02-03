@@ -48,6 +48,7 @@ const validateRegisterInput = (data) => {
   } else if (!Validator.equals(data.password, data.password2)) {
     errors.password2 = " *Hasła różnią się";
   }
+  
   return {
     errors,
     isValid: isEmpty(errors),

@@ -13,6 +13,12 @@ const createForum = async (req, res) => {
     } catch (error) {
       throw new DatabaseInsertError(error.message);
     }
+
+    return res.status(200).json({
+      success: true,
+      message: "*Dodano ogłoszenie!",
+    });
+
   };
   
 const updateForum = async (req, res) => {

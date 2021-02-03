@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { insertNoticeboard } from "../../api";
+import api from "../../api";
 import styled from 'styled-components';
 import { Button, Form } from 'react-bootstrap';
 import AddAnnouncement from '../../components/modal/AddAnnouncement'
@@ -49,15 +49,18 @@ const HeaderDiv = styled.div`
 // `
 //tylko dla swoich zrobić
 
-class OpenNoticeboard extends Component {
+class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
       event.preventDefault()
-      window.location.href = `/dashboard/tables/update/${this.props.id}`
+
+      window.location.href = `/dashboard/noticeboard/${this.props.id}`
   }
   render() {
       return <Button style={BlueButtonStyle} onClick={this.updateNoticeboard}>Wiadomość</Button>
   }
 }
+
+
 class DeleteNoticeboard extends Component {
   deleteNoticeboard = event => {
       event.preventDefault()
@@ -79,23 +82,24 @@ class NoticeBoard extends Component {
 
   render() {
 const NoticeBoard = () => {
-    const [tables, setNoticeboards] = useState([]);
-    const [modalShow, setModalShow] = React.useState(false);
+
     const [swt, setSwt] = React.useState(true);
+    const [noticeboards, setNoticeboards] = useState([]);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [modalMessageShow, setModalMessageShow] = React.useState(false);
 
     useEffect(() => {
         const requestNoticeboardsList = async () => {
-            const tablesList = await api.getAllNoticeboards();
-            const { data } = tablesList;
+            const noticeboardsList = await api.getAllNoticeboards();
+            const { data } = noticeboardsList;
             setNoticeboards(data.data);
         };
 
         requestNoticeboardsList();
     }, []);
 
-    const NoticeboardList = tables.slice(0).reverse().map((table) => {
-        const { _id, title, user_id, content} = table;
-        // Date
+    const NoticeboardList = noticeboards.slice(0).reverse().map((noticeboard) => {
+        const { _id, title, user_id, advertisement} = noticeboard;
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
         if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
@@ -104,10 +108,11 @@ const NoticeBoard = () => {
                 {/* <Image src={image}/> */}
                 <Content>
                   <HeaderDiv>{title}</HeaderDiv>
-                  <Form.Text>{content}</Form.Text>
+                  <Form.Text>{advertisement}</Form.Text>
                   <Form.Text muted>{date}</Form.Text>
                 </Content>
-                <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+                <UserSection>
+                  <Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
                 <FooterButton>
                   <DeleteNoticeboard id={_id}/>
                 </FooterButton>
@@ -119,12 +124,12 @@ const NoticeBoard = () => {
             {/* <Image src={image}/> */}
             <Content>
               <HeaderDiv>{title}</HeaderDiv>
-              <Form.Text>{content}</Form.Text>
+              <Form.Text>{advertisement}</Form.Text>
               <Form.Text muted>{date}</Form.Text>
             </Content>
             <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
             <FooterButton>
-              <OpenNoticeboard id={_id}/>
+              <MessageNoticeBoard id={_id}/>
             </FooterButton>
         </Container> 
     )
@@ -138,10 +143,7 @@ const NoticeBoard = () => {
         <br></br>
         <br></br>
         <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
-        <AddAnnouncement
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+        <AddAnnouncement show={modalShow} onHide={() => setModalShow(false)}/>
 
        {NoticeboardList}
       </Wrapper>
@@ -153,16 +155,12 @@ const NoticeBoard = () => {
 
 NoticeBoard.propTypes = {
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  insertNoticeboard: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  errors: state.errors,
   auth: state.auth
 });
 
 export default connect(
-  mapStateToProps,
-  {insertNoticeboard}
+  mapStateToProps
 )(withRouter(NoticeBoard));

@@ -12,22 +12,27 @@ import AddMessage from '../../components/modal/AddMessage';
 
 const Container = styled.div`
     padding: 50px;
-    width: 30vw;
+    width: 50vw;
   `
 const MessageList = styled.div`
   overflow: auto;
   height: 300px;
+  
 `
 const Person = styled.div`
   color: white;
-  background-color: rgb(0, 113, 188);
   padding: 12px;
-  // width: fit-content;
+  background-image: linear-gradient(#FFCC00, #0071BC);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   border-radius: 9px;
   margin: 10px;
   cursor: pointer;
 `
-  
+const element = `
+  background-color: white;
+`
 class ShowMessages extends Component {
   getUserById = event => {
       event.preventDefault()
@@ -35,7 +40,7 @@ class ShowMessages extends Component {
       window.location.href = `/dashboard/messages/${this.props.id}`
   }
   render() {
-      return <Person onClick={this.getUserById}>{this.props.id}</Person>
+      return <Person className={element} onClick={this.getUserById}>{this.props.id}</Person>
   }
 }
 

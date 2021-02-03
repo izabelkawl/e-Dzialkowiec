@@ -11,25 +11,26 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
   class AddAnnouncement extends Component {
     constructor(props) {
       super(props);
-      
+  
       this.state = {
         title: '',
         user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
-        content: '',
+        advertisement: '',
         image: '',
-        errors: {}
+        errors: {},
     }
   }
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.errors) {
-          this.setState({
-              errors: nextProps.errors
-          });
-      }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+        this.setState({
+            errors: nextProps.errors
+        });
+    }
   }
 
   onChange = e => {
-      this.setState({ [e.target.id]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   onSubmit = e => {
@@ -39,26 +40,27 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 
          title: this.state.title,
           user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
-          content: this.state.content,
+          advertisement: this.state.advertisement,
           image: this.state.image
       };
       this.props.insertNoticeboard(newNoticeboard, this.props.history)
   };
   render(){ 
       const { errors } = this.state;
-      const { title, content, image } = this.state
+      const { title, advertisement, image } = this.state
       const {staticContext, insertNoticeboard, ...rest} = this.props
    return (
       <Modal
-        {...rest}
+      {...rest}
+    
+      animation={false}
         size="lg"
-        animation={false}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
       <Modal.Header closeButton>
-          <Modal.Title >
-            Dodaj wątek
+          <Modal.Title id="contained-modal-title-vcenter">
+            Dodaj ogłoszenie
           </Modal.Title>
       </Modal.Header>
         <Modal.Body>
@@ -77,14 +79,14 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
           </Form.Group>
           <Form.Group >
             <Form.Label>Treść</Form.Label>
-              <Span>{errors.content}</Span>
+              <Span>{errors.advertisement}</Span>
                 <Form.Control
                   as="textarea" 
-                  id="content"
-                  value={content} 
-                  error={errors.content} 
+                  id="advertisement"
+                  value={advertisement} 
+                  error={errors.advertisement} 
                   onChange={this.onChange}
-                  className={classnames("", {invalid: errors.content })}
+                  className={classnames("", {invalid: errors.advertisement })}
                   rows={3} 
             ></Form.Control>
           </Form.Group>
@@ -103,9 +105,14 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
         </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
-          <Button style={BlueButtonStyle} onClick={this.onSubmit}>Dodaj</Button>
-        </Modal.Footer>
+        <Button 
+        style={RedButtonStyle} 
+        onClick={() => {
+          this.props.onHide()
+          window.location.reload()
+        }}>Zamknij</Button>
+        <Button style={BlueButtonStyle} onClick={this.onSubmit} >Dodaj</Button>
+     </Modal.Footer>
       </Modal>
     )
   }

@@ -95,8 +95,11 @@ const NotMe = styled.p`
       user_id: this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname,
       recipient: this.props.match.params.id,
       content: this.state.content,
+    
     };
     this.props.insertMessage(newMessage, this.props.history)
+
+    window.location.reload()
   };
 
     render() {

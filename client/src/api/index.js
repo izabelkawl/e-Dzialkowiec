@@ -150,7 +150,7 @@ export const getAllotmentByNumber = id => api.get(`/allotment/${id}`)
 export const insertMessage = (messageData, history) => dispatch => {
     api
         .post("/message", messageData)
-        .then(res => window.alert(`Dodano pomyślnie!`))
+        .then(res => window.alert(`Wiadomość została wysłana`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -231,7 +231,7 @@ export const getForumById = id => api.get(`/forum/${id}`)
 export const insertComment = (commentData, history) => dispatch => {
     api
         .post("/comment", commentData)
-        .then(res => window.alert(`Dodano pomyślnie!`))
+        .then(res => window.alert(`Dodano komentarz!`))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

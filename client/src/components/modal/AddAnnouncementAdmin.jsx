@@ -7,7 +7,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import classnames from "classnames";
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 
-class AddAnnouncement extends Component {
+class AddAnnouncementAdmin extends Component {
   constructor() {
     super()
 
@@ -48,8 +48,8 @@ onSubmit = e => {
  return (
     <Modal
     {...rest}
+    size="lg"
       animation={false}
-      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -96,7 +96,7 @@ onSubmit = e => {
 }
 }
 
-AddAnnouncement.propTypes = {
+AddAnnouncementAdmin.propTypes = {
   errors: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   insertAnnouncement: PropTypes.func.isRequired,
@@ -110,4 +110,4 @@ const mapStateToProps = state => ({
 export default connect(
 mapStateToProps,
 {insertAnnouncement}
-)(withRouter(AddAnnouncement))
+)(withRouter(AddAnnouncementAdmin))

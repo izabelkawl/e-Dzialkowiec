@@ -18,6 +18,7 @@ import Commitment from '../pages/logged/Commitment.jsx';
 import Messages from '../pages/logged/Messages.jsx';
 import ForumThread from '../pages/logged/ForumThread.jsx';
 import MessagesContent from '../pages/logged/MessagesContent.jsx';
+import NoticeBoardMessage from '../pages/logged/NoticeBoardMessage.jsx';
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -39,11 +40,12 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/allotments/mygarden/:id" exact component={MyAllotment}/>
             <PrivateRoute path="/dashboard/allotments/update/:id" exact component={BuyingAllotment}/>
             <PrivateRoute path="/dashboard/commitment" exact component={Commitment} />
-            <PrivateRoute path="/dashboard/table" exact component={NoticeBoard} />
+            <PrivateRoute path="/dashboard/noticeboard" exact component={NoticeBoard} />
+            <PrivateRoute path="/dashboard/noticeboard/:id" exact component={NoticeBoardMessage} />
             <PrivateRoute path="/dashboard/messages" exact component={Messages}/>
             <PrivateRoute path="/dashboard/messages/:id" exact component={MessagesContent}/>
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />
-            <PrivateRoute path="/dashboard/forums/update/:id" exact component={ForumThread}/>
+            <PrivateRoute path="/dashboard/forums/:id" exact component={ForumThread}/>
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
           </Switch>
         </Router>

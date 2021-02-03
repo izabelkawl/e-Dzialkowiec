@@ -46,7 +46,7 @@ const HeaderDiv = styled.div`
 class UpdateForum extends Component {
   updateForum = event => {
       event.preventDefault()
-      window.location.href = `/dashboard/forums/update/${this.props.id}`
+      window.location.href = `/dashboard/forums/${this.props.id}`
   }
   render() {
       return <Button style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
@@ -76,7 +76,7 @@ class Forum  extends Component {
     const [swt, setSwt] = React.useState(true);
     const [forums, setForums] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
-    // const []
+   
     useEffect(() => {
       const requestForumsList = async () => {
           const forumsList = await api.getAllForums();

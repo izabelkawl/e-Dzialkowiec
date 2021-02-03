@@ -15,7 +15,7 @@ const validateCommentInput = (data) => {
     errors.comment_content = " *Podaj treść komentarza";
   }
   if (Validator.isEmpty(data.forum_id)) {
-    errors.forum_id = " *Brak forum";
+    errors.forum_id = " *Brak id postu";
   }
 
   return {

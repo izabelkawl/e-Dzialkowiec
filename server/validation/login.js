@@ -12,7 +12,7 @@ const validateLoginInput = (data) => {
   if (Validator.isEmpty(data.email)) {
     errors.email = " *Podaj adres email";
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = " *Adres Email jest nieprawidłowy";
+    errors.email = " *Adres email jest nieprawidłowy";
   }
 
   // Password checks

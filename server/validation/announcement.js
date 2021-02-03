@@ -11,7 +11,7 @@ const validateAnnouncementInput = (data) => {
     errors.title = " *Podaj tytuł ogłoszenia";
   }
   if (Validator.isEmpty(data.content)) {
-    errors.content = " *Podaj zawartosć ogłoszenia";
+    errors.content = " *Podaj treść ogłoszenia";
   }
   return {
     errors,

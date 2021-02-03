@@ -39,17 +39,17 @@ class LoggedNavBar extends Component {
                             <Link href="/dashboard/allotments" className="nav-link ">
                                 Działka
                                 </Link>
-                            <Link href="/dashboard/table" className="nav-link">
+                            <Link href="/dashboard/noticeboard" className="nav-link">
                                 Tablica ogłoszeń
                                 </Link>
                             <Link href="/dashboard/messages" className="nav-link ">
                                 Wiadomości
                                 </Link>
-                            <Link href="/dashboard/commitment" className="nav-link">
-                                Zobowiązania
-                                </Link>
                             <Link href="/dashboard/forums" className="nav-link">
                                 Forum
+                                </Link>
+                                <Link href="/dashboard/commitment" className="nav-link">
+                                Zobowiązania
                                 </Link>
                             <Link href="/dashboard/account" className="nav-link">
                                 Konto

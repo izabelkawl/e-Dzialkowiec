@@ -20,7 +20,7 @@ const validateAllotmentInput = (data) => {
   if (Validator.isEmpty(data.allotment_width)) {
     errors.allotment_width = " *Podaj szerokość";
   }
-  // length checks
+  // Length checks
   if (Validator.isEmpty(data.allotment_length)) {
     errors.allotment_length = " *Długość jest wymagana";
   }
@@ -32,12 +32,11 @@ const validateAllotmentInput = (data) => {
   if (Validator.isEmpty(data.status)) {
     errors.status = " *Podaj status";
   } 
-  // Status checks
+  // User checks
   if (Validator.isEmpty(data.user_id)) {
     errors.user_id = " *Wybierz działkowicza";
   } 
-  // User_id empty or someone
-
+ 
   return {
     errors,
     isValid: isEmpty(errors),

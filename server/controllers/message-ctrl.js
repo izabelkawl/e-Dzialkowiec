@@ -13,6 +13,10 @@ const createMessage = async (req, res) => {
     } catch (error) {
       throw new DatabaseInsertError(error.message);
     }
+
+  return res.status(200).json({
+    success: true,
+  });
   };
   
 
@@ -22,7 +26,7 @@ const updateMessage = async (req, res) => {
   if (!body) {
     return res.status(400).json({
       success: false,
-      error: "You must provide a body to update",
+      error: " *Wypełnij aby zaaktualizować",
     });
   }
 
@@ -30,7 +34,7 @@ const updateMessage = async (req, res) => {
     if (err) {
       return res.status(404).json({
         err,
-        message: "message not found!",
+        message: " *Nie znaleziono wiadomości!",
       });
     }
     message.user_id = body.user_id;
@@ -42,13 +46,13 @@ const updateMessage = async (req, res) => {
         return res.status(200).json({
           success: true,
           id: message._id,
-          message: "message updated!",
+          message: " *Zaaktualizowano wiadomość!",
         });
       })
       .catch((error) => {
         return res.status(404).json({
           error,
-          message: "message not updated!",
+          message: " *Niezaaktualizowano wiadomości",
         });
       });
   });
@@ -63,7 +67,7 @@ const deleteMessage = async (req, res) => {
     if (!message) {
       return res
         .status(404)
-        .json({ success: false, error: `message not found` });
+        .json({ success: false, error: ` *Nie znaleziono wiadomości` });
     }
 
     return res.status(200).json({ success: true, data: message });
@@ -79,7 +83,7 @@ const getMessageById = async (req, res) => {
     if (!message) {
       return res
         .status(404)
-        .json({ success: false, error: `message not found` });
+        .json({ success: false, error:  `*Nie znaleziono wiadomości` });
     }
     return res.status(200).json({ success: true, data: message });
   }).catch((err) => console.log(err));
@@ -93,7 +97,7 @@ const getMessages = async (req, res) => {
     if (!messages.length) {
       return res
         .status(404)
-        .json({ success: false, error: `message not found` });
+        .json({ success: false, error: ` *Nie znaleziono wiadomości` });
     }
     return res.status(200).json({ success: true, data: messages });
   }).catch((err) => console.log(err));

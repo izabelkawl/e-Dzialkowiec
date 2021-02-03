@@ -51,7 +51,7 @@ onSubmit = e => {
     <Modal
       {...rest}
       animation={false}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -62,13 +62,6 @@ onSubmit = e => {
       </Modal.Header>
       <Modal.Body>
       <Form noValidate onSubmit={this.onSubmit}></Form>
-                <Form.Label>Ja: </Form.Label>
-                <FormControl
-                    onChange={this.onChange}
-                    value={this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname}
-                    id="user_id"
-                    type="text"
-                />
 
                 <Form.Label>Odbiorca: </Form.Label>
                 <Span>{errors.recipient}</Span>
@@ -91,17 +84,21 @@ onSubmit = e => {
                 onChange={this.onChange}
                 value={this.state.content}
                 error={errors.content}
-                type="text"
+                as="textarea"
                 id="content"
                 className={classnames("", {
                     invalid: errors.content
                 })}
+                rows={3}
                 />
           <Form/>
       </Modal.Body>
       <Modal.Footer>
         
-        <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
+        <Button style={RedButtonStyle} onClick={() => {
+          this.props.onHide()
+          window.location.reload()
+        }}>Zamknij</Button>
         <Button style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>
       </Modal.Footer>
     </Modal>

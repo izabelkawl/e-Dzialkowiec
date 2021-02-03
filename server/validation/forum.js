@@ -9,15 +9,14 @@ const validateForumInput = (data) => {
   data.content = !isEmpty(data.content) ? data.content : "";
 
   if (Validator.isEmpty(data.user_id)) {
-    errors.user_id = " *Podaj numer działki";
+    errors.user_id = " *Brak użytkownika";
   }
   if (Validator.isEmpty(data.title)) {
-    errors.title = " *Podaj szerokość";
+    errors.title = " *Podaj tytuł";
   }
   if (Validator.isEmpty(data.content)) {
-    errors.content = " *Długość jest wymagana";
+    errors.content = " *Podaj treść";
   }
-
   return {
     errors,
     isValid: isEmpty(errors),
