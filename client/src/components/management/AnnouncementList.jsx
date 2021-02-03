@@ -19,7 +19,7 @@ class DeleteAnnouncement extends Component {
         event.preventDefault()
         if (
             window.confirm(
-                `Do tou want to delete the ad ${this.props.id} permanently?`,
+                `Czy na pewno chcesz usunąć  to ogłoszenie?`,
             )
         ) {
             api.deleteAnnouncementById(this.props.id)

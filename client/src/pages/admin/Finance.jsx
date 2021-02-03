@@ -19,7 +19,7 @@ class StatusDeleteBtn extends Component {
         event.preventDefault()
         if (
             window.confirm(
-                `Chcesz usunąć tą płatność?`,
+                `Czy na pewno chcesz usunąć tę płatność?`,
             )
         ) {
             api.deleteFinanceById(this.props.id)
@@ -30,10 +30,22 @@ class StatusDeleteBtn extends Component {
         return <Button style={RedButtonStyle} onClick={this.deleteFinance}>Usuń</Button>
     }
 }
-
 class Management extends Component {
+    constructor(){
+        super()
+        this.state = {
+            inputValue: '',
+        }
+    }
+   
+    updateInputValue = (evt) => {
+        this.setState({
+          inputValue: evt.target.value
+        });
+      }
 
     render() {
+        
         const FinancesList = () => {
             const [finances, setFinances] = useState([]);
             useEffect(() => {
@@ -44,29 +56,36 @@ class Management extends Component {
                 };
                 requestFinancesList();
             }, []);
-
-        const FinancesTable = finances.map((finance, index) => {
+            
+            const FinancesTable = finances.map((finance, index) => {
             const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
-            return (
-                <tr key={_id}>
-                    <td>{allotment_number}</td>
-                    <td>{owner}</td>
-                    <td>{title}</td>
-                    <td>{area}</td>
-                    <td>{charge}</td>
-                    <td>{term}</td>
-                    <td>{status}</td>
-                    <td><StatusUpdateBtn id={_id}/></td>
-                    <td><StatusDeleteBtn id={_id}/></td>
-                </tr>
-            );
+            // search without id letters
+            const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
+            const search = n.includes(this.state.inputValue)
+            
+            if(search === true){
+                return (
+                    <tr key={_id}>
+                        <td>{allotment_number}</td>
+                        <td>{owner}</td>
+                        <td>{title}</td>
+                        <td>{area}</td>
+                        <td>{charge}</td>
+                        <td>{term}</td>
+                        <td>{status}</td>
+                        <td><StatusUpdateBtn id={_id}/></td>
+                        <td><StatusDeleteBtn id={_id}/></td>
+                    </tr>
+                );
+                }
         })
+    
         return (
         <Table striped bordered hover size="sm" responsive>
         <thead>
             <tr>
-                <th>Numer</th>
-                <th>Posiadacz</th>
+                <th>Działka</th>
+                <th>Właściciel</th>
                 <th>Tytuł</th>
                 <th>Powierzchnia</th>
                 <th>Należność</th>
@@ -90,8 +109,11 @@ class Management extends Component {
                     <Button style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
                 </Col>
                 <Col> <Form.Control
-                        type="text"
-                        placeholder="FIltruj.."
+                value={this.state.inputValue} onChange={this.updateInputValue}
+                        
+                        id="searchvalue"
+                        placeholder="Filtruj.."
+                        value={this.state.searchvalue}
                     />
                 </Col>   
             </Row>

@@ -14,7 +14,7 @@ import NoticeBoard from '../pages/admin/NoticeBoard'
 import MessagesContent from '../pages/admin/MessagesContent'
 import PrivateRoute from '../components/private-route/PrivateRoute'
 
-import Admin from '../components/dashboard/Admin';
+import Admin from '../pages/admin/AdminDashboard';
 import AdminNavBar from '../components/navigation/AdminNavBar';
 
 import { Button } from 'react-bootstrap';

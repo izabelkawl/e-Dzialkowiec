@@ -7,7 +7,7 @@ import store from "../store.js";
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import LoggedNavBar from '../components/navigation/LoggedNavBar';
 
-import Dashboard from '../components/dashboard/Dashboard';
+import Dashboard from '../pages/logged/Dashboard';
 import { Forum, Account, Allotment, BuyingAllotment, MyAllotment } from '../pages';
 
 import bg from './img/bgo.svg';

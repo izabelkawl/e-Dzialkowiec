@@ -5,9 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { insertMessage } from "../../api";
-import { List, BlueButtonStyle, Span } from '../constants';
-import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
-import classnames from "classnames";
+import { List, BlueButtonStyle } from '../constants';
+import { Button,  FormControl, InputGroup } from 'react-bootstrap';
 
 const Container = styled.div`
     width: 40vw;

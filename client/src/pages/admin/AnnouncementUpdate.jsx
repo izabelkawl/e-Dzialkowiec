@@ -57,8 +57,7 @@ class AnnouncementsUpdate extends Component {
                 <Title>Edycja ogłoszenia</Title>
                 <Form>
                 <Form.Group as={Row}>
-                    <Form.Label htmlFor="title" column sm="3" >Title:</Form.Label>
-                    <Span>{errors.title}</Span>
+                    <Form.Label htmlFor="title" column sm="3" >Tytuł:</Form.Label>
                     <Col sm="9">
                     <Form.Control 
                         onChange={this.onChange}
@@ -70,11 +69,12 @@ class AnnouncementsUpdate extends Component {
                             invalid: errors.title
                         })}
                     />
+                    <Span>{errors.title}</Span>
 </Col>
 </Form.Group>
-<Form.Group as={Row}>
-                 <Form.Label column sm="3" htmlFor="content">Content: </Form.Label>
-                    <Span>{errors.content}</Span>
+<Form.Group as={Row}> 
+                 <Form.Label column sm="3" htmlFor="content">Treść: </Form.Label>
+                   
                     <Col sm="9"> <Form.Control
                         onChange={this.onChange}
                         value={content}
@@ -86,12 +86,13 @@ class AnnouncementsUpdate extends Component {
                         })}
                         rows={10}
                     />
+                    <Span>{errors.content}</Span>
  </Col>
             </Form.Group>
                     <br></br>
-                    <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>{' '}
-                    <Button style={BlueButtonStyle} href={'/admin/management#link3'}>Zamknij</Button>
-                </Form>
+                    <Button style={BlueButtonStyle} href={'/admin/management#link3'}>Zamknij</Button>{' '}
+                    <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>
+                  </Form>
             </Wrapper>
         )
     }

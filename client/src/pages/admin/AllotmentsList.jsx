@@ -20,7 +20,7 @@ class DeleteAllotment extends Component {
         event.preventDefault()
         if (
             window.confirm(
-                `Do tou want to delete the allotment ${this.props.id} permanently?`,
+                `Czy na pewno chcesz usunąć tą działkę?`,
             )
         ) {
             api.deleteAllotmentById(this.props.id)

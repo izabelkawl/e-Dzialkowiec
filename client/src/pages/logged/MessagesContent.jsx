@@ -6,8 +6,8 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { insertMessage } from "../../api";
-import { List, BlueButtonStyle, Span } from '../constants';
-import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { BlueButtonStyle } from '../constants';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { connect } from "react-redux";
 
 const Container = styled.div`

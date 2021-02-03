@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, } from 'react-bootstrap';
 import logo from '../../pages/img/logo.svg';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,6 +18,8 @@ const Navigation = {
 
 class LoggedNavBar extends Component {
     render() {
+        
+    const { user } = this.props.auth;
         return (
             <Navbar collapseOnSelect expand="lg" sticky="top" style={Navigation} >
                 <Navbar.Brand href="/dashboard" >
@@ -33,6 +36,7 @@ class LoggedNavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
                         <Nav>
+                            {user.position !== "Działkowiec" ? <Link href="/admin/" className="nav-link "> Admin </Link>: null }
                             <Link href="/dashboard/" className="nav-link ">
                                 Aktualności
                                 </Link>
@@ -61,4 +65,10 @@ class LoggedNavBar extends Component {
     }
 }
 
-export default LoggedNavBar
+const mapStateToProps = state => ({
+    auth: state.auth
+  });
+  
+  export default connect(
+    mapStateToProps
+  )(LoggedNavBar);

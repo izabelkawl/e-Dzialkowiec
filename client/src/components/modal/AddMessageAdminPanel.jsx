@@ -93,7 +93,10 @@ onSubmit = e => {
       </Modal.Body>
       <Modal.Footer>
         
-        <Button style={RedButtonStyle} onClick={this.props.onHide}>Zamknij</Button>
+        <Button style={RedButtonStyle} onClick={() => {
+          this.props.onHide()
+          window.location.reload()
+        }}>Zamknij</Button>
         <Button style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>
       </Modal.Footer>
     </Modal>

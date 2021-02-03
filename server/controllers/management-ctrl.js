@@ -1,5 +1,6 @@
 import Management from "../models/management.js";
 import validateManagementInput from "../validation/management.js";
+import isEmpty from "is-empty";
 
 const createManagement = async (req, res) => {
   const managementData = req.body;
@@ -15,43 +16,48 @@ const createManagement = async (req, res) => {
     }
   };
   
-const updateManagement = async (req, res) => {
-  const body = req.body;
+  const updateManagement = async (req, res) => {
 
-  if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: "You must provide a body to update",
-    });
-  }
-
-  Management.findOne({ _id: req.params.id }, (err, management) => {
-    if (err) {
+    const fieldsToUpdate = { ...req.body };
+  
+    const { errors, isValid } = validateManagementInput(fieldsToUpdate);
+  
+    if (isEmpty(fieldsToUpdate))
+      return res.status(400).json({
+        success: false,
+        message: "*Wypełnij puste komórki.",
+      });
+  
+    if (!isValid) return res.status(400).json(errors);
+  
+    const processedManagement = await Management.findOne({ _id: req.params.id });
+  
+    if (!processedManagement)
       return res.status(404).json({
         err,
-        message: "management not found!",
+        message: "*Informacje nie istnieje.",
+      });
+  
+      for (const field in fieldsToUpdate)
+      processedManagement[field] = fieldsToUpdate[field];
+  
+    try {
+      await processedManagement.save();
+    } catch (error) {
+      console.log(error);
+  
+      return res.status(400).json({
+        success: false,
+        id: processedManagement._id,
+        message: "*Aktualizacja nie powiodła się!",
       });
     }
-    management.description = body.description;
-    management.rodo = body.rodo;
-    management
-      .save()
-      .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: management._id,
-          message: "management updated!",
-        });
-      })
-      .catch((error) => {
-        return res.status(404).json({
-          error,
-          message: "management not updated!",
-        });
-      }); 
+    
+  return res.status(200).json({
+    success: true
   });
-};
-
+  }
+  
 const deleteManagement = async (req, res) => {
   await Management.findOneAndDelete({ _id: req.params.id }, (err, management) => {
     if (err) {

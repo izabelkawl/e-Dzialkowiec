@@ -3,15 +3,15 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { insertMessage } from "../../api";
 import { connect } from "react-redux";
-import api, { buyAllotmentById, insertFinance } from '../../api';
+import api from '../../api';
 import classnames from "classnames";
 // Style
 import styled from 'styled-components';
-import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import Title from '../../components/Title';
 // Button Style
-import  {RedButtonStyle, BlueButtonStyle, Span } from '../constants';
+import { RedButtonStyle, BlueButtonStyle, Span } from '../constants';
 
 const MessageContentn = styled.div`
     background-color: white;
@@ -73,7 +73,7 @@ class NoticeBoardMessage extends Component {
     
     render() {
         const { errors } = this.state;
-        const {user_id, title, advertisement} = this.state;
+        const { user_id, title, advertisement } = this.state;
             return ( <Wrapper>
                 <Title>Napisz wiadomość</Title>
                 <Form noValidate onSubmit={this.onSubmit}></Form>

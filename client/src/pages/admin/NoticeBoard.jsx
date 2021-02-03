@@ -9,7 +9,7 @@ import { List, RedButtonStyle } from '../constants'
 import Title from '../../components/Title'
 
 const Container = styled.div`
-    background-color: #f2f4f5;
+    border-bottom: 1px solid #dee2e6;
     -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
@@ -59,7 +59,7 @@ class DeleteNoticeboard extends Component {
 }
 
 class NoticeBoard extends Component {
-
+  
   render() {
 const NoticeBoard = () => {
     const [tables, setNoticeboards] = useState([]);
@@ -75,16 +75,17 @@ const NoticeBoard = () => {
     }, []);
 
     const NoticeboardList = tables.map((table) => {
-        const { _id, title, user_id, content} = table;
+        const { _id, title, user_id, advertisement} = table;
         // Date
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+        
         return (
             <Container key={_id}>
                 {/* <Image src={image}/> */}
                 <Content>
                   <HeaderDiv>{title}</HeaderDiv>
-                  <Form.Text>{content}</Form.Text>
+                  <Form.Text>{advertisement}</Form.Text>
                   <Form.Text muted>{date}</Form.Text>
                 </Content>
                 <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
@@ -106,13 +107,9 @@ const NoticeBoard = () => {
   return <NoticeBoard/>
   }
 }
-
 NoticeBoard.propTypes = {
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  insertNoticeboard: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
-
 const mapStateToProps = state => ({
   errors: state.errors,
   auth: state.auth

@@ -86,7 +86,6 @@ const NoticeBoard = () => {
     const [swt, setSwt] = React.useState(true);
     const [noticeboards, setNoticeboards] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
-    const [modalMessageShow, setModalMessageShow] = React.useState(false);
 
     useEffect(() => {
         const requestNoticeboardsList = async () => {

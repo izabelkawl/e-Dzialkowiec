@@ -61,7 +61,7 @@ const deleteNoticeboard = async (req, res) => {
     if (!noticeboard) {
       return res
         .status(404)
-        .json({ success: false, error: `*ogłoszenia nie znaleziono!` });
+        .json({ success: false, notfind: `*ogłoszenia nie znaleziono!` });
     }
 
     return res.status(200).json({ success: true, data: noticeboard });
@@ -77,7 +77,7 @@ const getNoticeboardById = async (req, res) => {
     if (!noticeboard) {
       return res
         .status(404)
-        .json({ success: false, error: `*ogłoszenia nie znaleziono!` });
+        .json({ success: false, notfind: `*ogłoszenia nie znaleziono!` });
     }
     return res.status(200).json({ success: true, data: noticeboard });
   }).catch((err) => console.log(err));
@@ -91,7 +91,7 @@ const getNoticeboards = async (req, res) => {
     if (!noticeboards.length) {
       return res
         .status(404)
-        .json({ success: false, error: `*ogłoszenia nie znaleziono!` });
+        .json({ success: false, notfind: `*ogłoszenia nie znaleziono!` });
     }
     return res.status(200).json({ success: true, data: noticeboards });
   }).catch((err) => console.log(err));

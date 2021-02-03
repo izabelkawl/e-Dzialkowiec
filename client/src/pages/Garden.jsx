@@ -34,28 +34,28 @@ class Garden extends Component {
               tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
           }
       }
-        const tooltipData = {};
-        allotments.map((allotment) => {
-          const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
-          if( status === "Wolna" ){
-          return(
-        tooltipData[number] = {
-            'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-              'Cena': price,
-              'Status': status,
-        })}
-        else{ 
-           return(
-          tooltipData[number] = {
-            'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-              'Status': status,
-              'Własność': user_id
-          })
-
-        }
-        });
+    const tooltipData = {};
+    allotments.map((allotment) => {
+        const { number, allotment_width, allotment_length, price, status } = allotment;
+			if( status === "Wolna" ){
+				return(
+					tooltipData[number] = {
+						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
+						'Cena': price,
+						'Status': status,
+				})
+			}
+			else{
+				return(
+					tooltipData[number] = {
+						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
+						'Status': status,
+				})
+       		}
+	});
+	
     const tooltipTemplate = `
-    <h4 className="tooltip-map-title">{{number}}</h4>
+	<h5 className="tooltip-map-title">{{number}}</h5>
      {{Content}}
 `;
 //Układ tooltipa
@@ -63,7 +63,7 @@ function generateTooltipContent(provinceName) {
   const ob = tooltipData[provinceName];
   let html = "";
   if (ob !== undefined) { //jezeli nie ma takiej działki w bazie
-      if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki są puste
+      if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki nie są puste
           html += "<div className=\"tooltip-map-content\">";
           for (let key in ob) {
               if (ob.hasOwnProperty(key)) {
@@ -73,14 +73,14 @@ function generateTooltipContent(provinceName) {
           html += "</div>";
           return html;
       }
-  }else{ html = "<div className=\"tooltip-map-content\">Brak danych</div>";
-  return html;}
-  return html;
-}
-//Układ tooltipa
+	}
+	else{ 
+		html = "<div className=\"tooltip-map-content\">Brak danych</div>";
+	  	return html;
+	}
+	return html;
+	}
 
-
-    // Add Event Listener and Tooltip on st8 clas items
     useEffect(() => {
       const requestAllotmentsList = async () => {
         const allotmentsList = await api.getAllAllotments();
@@ -110,7 +110,7 @@ function generateTooltipContent(provinceName) {
       if (typeof tooltipData !== "undefined") {
         let tooltipHTML = tooltipTemplate;
         const content = generateTooltipContent(this.id);
-        tooltipHTML = tooltipHTML.replace("{{number}}", 'Działka numer <b>' + this.id + '</b>');
+        tooltipHTML = tooltipHTML.replace("{{number}}", 'Działka nr. <b>' + this.id + '</b>');
         tooltipHTML = tooltipHTML.replace("{{Content}}", content);
         tooltip.innerHTML = tooltipHTML;
 
@@ -1835,7 +1835,7 @@ function generateTooltipContent(provinceName) {
       <Wrapper>
         <NavBar />
         <Container>
-        <Mapka />
+       		<Mapka />
         </Container>
       </Wrapper>
     )

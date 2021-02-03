@@ -1,14 +1,20 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Form } from 'react-bootstrap';
 import { List, RedButtonStyle, BlueButtonStyle } from '../constants';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    width: 30%;
+    padding-bottom: 30px
+`
 
 class DeleteUser extends Component {
     deleteUser = event => {
         event.preventDefault()
         if (
             window.confirm(
-                `Do tou want to delete the user ${this.props.id} permanently?`,
+                `Czy na pewno chcesz usunąć tego użytkownika?`,
             )
         ) {
             api.deleteUserById(this.props.id)
@@ -29,21 +35,40 @@ class UpdateUser extends Component {
         return <Button style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>
     }
 }
+class UsersList extends Component {
+    constructor(){
+        super()
+        this.state = {
+            inputValue: '',
+        }
+    }
+   
+    updateInputValue = (evt) => {
+        this.setState({
+          inputValue: evt.target.value
+        });
+      }
 
-const UsersList = () => {
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        const requestUsersList = async () => {
-            const usersList = await api.getAllUsers();
-            const { data } = usersList;
-            setUsers(data.data);
-        };
-        requestUsersList();
-    }, []);
+    render() {
 
-    const UsersTable = users.map((user, index) => {
+        const UsersPanel= () => {
+        const [users, setUsers] = useState([]);
+        useEffect(() => {
+            const requestUsersList = async () => {
+                const usersList = await api.getAllUsers();
+                const { data } = usersList;
+                setUsers(data.data);
+            };
+            requestUsersList();
+        }, []);
+
+        const UsersTable = users.map((user, index) => {
         const { _id, email, firstname, lastname, address, phone, position } = user;
 
+        const n = JSON.stringify({ email, firstname, lastname, address, phone, position })
+        const search = n.includes(this.state.inputValue)
+        
+        if(search === true){
         return (
             <tr key={_id}>
                 <td>{index + 1}</td>
@@ -56,11 +81,11 @@ const UsersList = () => {
                 <td><DeleteUser id={_id} /></td>
                 <td><UpdateUser id={_id} /></td>
             </tr>
-        );
+            )
+        }
     });
 
-    return <List>
-        <Table striped bordered hover size="sm"  responsive>
+    return   <Table striped bordered hover size="sm"  responsive>
             <thead>
                 <tr>
                     <th>Lp</th>
@@ -78,7 +103,20 @@ const UsersList = () => {
                 {UsersTable}
             </tbody>
         </Table>
-    </List>
-};
-
+   
+    }
+    return <List>
+                <Container>
+                    <Form.Control
+                        value={this.state.inputValue}
+                        onChange={this.updateInputValue}
+                        id="searchvalue"
+                        placeholder="Filtruj.."
+                        value={this.state.searchvalue}
+                    />
+                </Container>
+                <UsersPanel/>
+            </List>
+    }
+}
 export default UsersList;
