@@ -1,7 +1,8 @@
+import fs from 'fs'
 export default (req, res, next) => {
     if (typeof (req.file) === 'undefined' || typeof (req.body) === 'undefined') {
         return res.status(400).json({
-            errors: 'problem with sending data'
+            errors: 'Problem z przesłaniem pliku'
         })
     }
     console.log(req.body.name)
@@ -13,14 +14,14 @@ export default (req, res, next) => {
     if (!(req.file.mimetype).includes('jpeg') && !(req.file.mimetype).includes('png') && !(req.file.mimetype).includes('jpg')) {
         fs.unlinkSync(req.file.path)
         return res.status(400).json({
-            errors: "file not support"
+            errors: "Zły format pliku"
         })
     }
-
-    if (req.file.size > 1024 * 1024) {
+// max size 10MB
+    if (req.file.size > 1024  * 1024 * 10) {
         fs.unlinkSync(req.file.path)
         return res.status(400).json({
-            errors: "File is Too large"
+            errors: "Za duży plik"
         })
     }
     console.log(req.file)
@@ -29,7 +30,7 @@ export default (req, res, next) => {
 
         return res.status(400).json({
             sucess: false,
-            message: "all fields are required"
+            message: "Wszystkie pola są wymagane"
         })
     }
 

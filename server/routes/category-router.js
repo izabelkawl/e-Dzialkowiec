@@ -9,5 +9,5 @@ import createCategory from '../controllers/category-ctrl.js';
 
 
 router.post('/category', uploadMulter, validation, createCategory)
-
+// get?
 export default router

@@ -21,6 +21,9 @@ import announcementRouter from "../routes/announcement-router.js";
 
 const app = express();
 
+app.use(express.static('./public'));
+app.use('/uploads', express.static('uploads'));
+
 // Middlewares definition
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true })); //(bodyparser.ulr...false?

@@ -35,7 +35,9 @@ class LoggedNavBar extends Component {
 
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
-                        <Nav>
+                        <Nav><Link href="/dashboard/image/" className="nav-link ">
+                                Image
+                                </Link>
                             {user.position !== "Działkowiec" ? <Link href="/admin/" className="nav-link "> Admin </Link>: null }
                             <Link href="/dashboard/" className="nav-link ">
                                 Aktualności

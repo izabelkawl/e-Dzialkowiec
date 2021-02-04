@@ -363,7 +363,7 @@ export const deleteAnnouncementById = id => api.delete(`/announcement/${id}`)
 export const getAnnouncementById = id => api.get(`/announcement/${id}`)
 
 // Images
-export const insertImage = payload => api.post(`/category`, payload)
+// export const insertImage = payload => api.post(`/category`, payload)
 const apis = {
     registerUser,
     loginUser,
@@ -433,7 +433,7 @@ const apis = {
     updateAnnouncementById,
     deleteAnnouncementById,
     getAnnouncementById,
-    insertImage
+    // insertImage
 }
 
 export default apis

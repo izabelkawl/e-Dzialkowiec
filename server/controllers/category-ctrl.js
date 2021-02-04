@@ -16,7 +16,7 @@ const createCategory = (req, res) => {
             })
         }
         return res.json({
-            message: "Created category successfully",
+            message: "Przesłano pomyślnie!",
             category
         })
     })

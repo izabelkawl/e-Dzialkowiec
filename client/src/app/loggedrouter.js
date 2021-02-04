@@ -8,7 +8,7 @@ import PrivateRoute from '../components/private-route/PrivateRoute';
 import LoggedNavBar from '../components/navigation/LoggedNavBar';
 
 import Dashboard from '../pages/logged/Dashboard';
-import { Forum, Account, Allotment, BuyingAllotment, MyAllotment } from '../pages';
+import { Forum, Account, Allotment, BuyingAllotment, MyAllotment, ImageUpload } from '../pages';
 
 import bg from './img/bgo.svg';
 import styled from 'styled-components';
@@ -47,6 +47,7 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />
             <PrivateRoute path="/dashboard/forums/:id" exact component={ForumThread}/>
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
+            <PrivateRoute path="/dashboard/image/" exact component={ImageUpload} />
           </Switch>
         </Router>
       </ Container >
