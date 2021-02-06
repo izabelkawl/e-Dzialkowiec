@@ -7,7 +7,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import classnames from "classnames";
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 import axios from 'axios';
-import ImageUpload from './ImageUpload'
+
   class AddAnnouncement extends Component {
     constructor(props) {
       super(props);
@@ -17,8 +17,6 @@ import ImageUpload from './ImageUpload'
         user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
         advertisement: '',
         image: '',
-        name: '',
-        id: this.props.match.params.id,
         errors: {},
     }
   }
@@ -31,34 +29,84 @@ import ImageUpload from './ImageUpload'
     }
   }
 
-  onChange = e => {
+
+  render(){ 
+
+    const ImageUpload = () => {
+  /** start states */
+    const { errors } = this.state;
+    const { title, advertisement } = this.state
+    const {staticContext, insertNoticeboard, ...rest} = this.props
+
+  const [formData, setFormData] = useState('');
+  const [info, setInfo] = useState({
+    image: '',
+    name: '',
+  });
+  const [error, setError] = useState({
+    found: false,
+    message: '',
+  });
+  /** end states */
+
+  const onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
+  // Upload image
+  const upload = ({ target: { files } }) => {
+    let data = new FormData();
+    data.append('categoryImage', files[0]);
+    data.append('name', files[0].name);
+    setFormData(data);
+  };
 
-  onSubmit = e => {
+
+  const onSubmit = e => {
 
       e.preventDefault();
       const newNoticeboard = {
 
-         title: this.state.title,
+          title: this.state.title,
           user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
           advertisement: this.state.advertisement,
-          image: this.state.image
+          image: info.image
       };
       this.props.insertNoticeboard(newNoticeboard, this.props.history)
   };
-  render(){ 
+  // Submit Form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setInfo({
+      image: '',
+      name: '',
+    });
 
-      const { errors } = this.state;
-      const { title, advertisement, image, id } = this.state
-      const {staticContext, insertNoticeboard, ...rest} = this.props
-
-      {console.log(id)}
-      return ( <div >
-          <Modal
-      {...rest}
+    axios
+      .post('http://localhost:3000/api/category', formData)
+      .then((res) => {
+        console.log(res.data);
+        setTimeout(() => {
+          setInfo(res.data.category);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err.response);
+        setError({
+          found: true,
+          message: err.response.data.errors,
+        });
+        setTimeout(() => {
+          setError({
+            found: false,
+            message: '',
+          });
+        }, 3000);
+      });
     
-      animation={false}
+  };
+  return ( <Modal
+      {...rest}
+        animation={false}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -69,38 +117,50 @@ import ImageUpload from './ImageUpload'
           </Modal.Title>
       </Modal.Header>
         <Modal.Body>
-          <Form>
           <Form.Group >
             <Form.Label>Tytuł</Form.Label>
               <Span>{errors.title}</Span>
                 <Form.Control 
-                  type="text" 
-                  id="title" 
                   value={title} 
                   error={errors.title} 
-                  onChange={this.onChange}
+                  id="title"
+                  type="text" 
                   className={classnames("", {invalid: errors.title })}
+                  onChange={onChange}
                 ></Form.Control>
           </Form.Group>
           <Form.Group >
             <Form.Label>Treść</Form.Label>
               <Span>{errors.advertisement}</Span>
                 <Form.Control
-                  as="textarea" 
-                  id="advertisement"
-                  value={advertisement} 
-                  error={errors.advertisement} 
-                  onChange={this.onChange}
-                  className={classnames("", {invalid: errors.advertisement })}
-                  rows={3} 
-            ></Form.Control>
+                value={advertisement}
+                onChange={onChange}
+                id="advertisement"
+                 placeholder="Treść.."
+                 className={classnames("", {invalid: errors.advertisement })}
+                 
+            />
           </Form.Group>
-          <Form.Group >
-            <Form.Label>Img</Form.Label>
-
-        <ImageUpload/>
-        
-          </Form.Group>
+      <Form>
+        {error.found && ( <Span >{error.message}</Span> )}
+ <Form.Label>Zdjęcie</Form.Label>
+        <Form.Group className='custom-file mb-3'>
+          <Form.Control
+            type='file'
+            className='custom-file-input'
+            id='inputGroupFile04'
+            aria-describedby='inputGroupFileAddon04'
+            onChange={upload}
+          />
+          
+          <Form.Label className='custom-file-label' htmlFor='inputGroupFile04'>
+            {info.image === ''? 'Wybierz plik': info.name}
+          </Form.Label>
+          <br></br>
+          <Button onClick={handleSubmit} style={BlueButtonStyle}>
+          Załaduj
+        </Button>
+        </Form.Group>
         </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -110,22 +170,15 @@ import ImageUpload from './ImageUpload'
           this.props.onHide()
           window.location.reload()
         }}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={this.onSubmit} >Dodaj</Button>
+        <Button style={BlueButtonStyle} onClick={onSubmit} >Dodaj</Button>
      </Modal.Footer>
       </Modal>
-          
-          {/* <img
-            className='mt-3'
-            src={`http://localhost:3000/${info.image}`}
-            alt={`${info.name}`}
-            style={{ width: '359px' }}
-          /> */}
-        </div>
-      );
+  );
+}
+      return <ImageUpload/>
     }
 
   }
-  
 
 
 const mapStateToProps = state => ({

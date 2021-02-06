@@ -18,13 +18,13 @@ const Container = styled.div`
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows:  3(1fr);
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows:  100px 1fr 50px;
     gap: 25px 25px;
     grid-template-areas:
-    "Content User"
-    "Content ."
-    "Content  Footer";`
+    "Image Content User"
+    "Image Content ."
+    "Image Content  Footer";`
 
 const Content = styled.div`
   display: grid;
@@ -42,12 +42,13 @@ const UserSection = styled.div`
 const HeaderDiv = styled.div`
   font-size: 26px;
 `
-// const Image = styled.img.attrs({
-
-// })`
-//   grid-area: Image;
-// `
-//tylko dla swoich zrobić
+const Image = styled.img`
+  grid-area: Image;
+  height: 240px;
+  width: 300px;
+  object-fit: cover;
+`
+// tylko dla swoich zrobić
 
 class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
@@ -119,7 +120,7 @@ class NoticeBoard extends Component {
     }, []);
 
     const NoticeboardList = noticeboards.slice(0).reverse().map((noticeboard) => {
-        const { _id, title, user_id, advertisement} = noticeboard;
+        const { _id, title, user_id, advertisement, image} = noticeboard;
 
       // Find by number, status or User
       const n = JSON.stringify({ title, user_id, advertisement })
@@ -132,14 +133,16 @@ class NoticeBoard extends Component {
         if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
         return (
             <Container key={_id}>
-                {/* <Image src={image}/> */}
+                
+              <Image  src={`http://localhost:3000/${image}`}/>
                 <Content>
                   <HeaderDiv>{title}</HeaderDiv>
                   <Form.Text>{advertisement}</Form.Text>
                   <Form.Text muted>{date}</Form.Text>
                 </Content>
                 <UserSection>
-                  <Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+                  <Form.Text muted>{user_id}</Form.Text><hr></hr>
+                  </UserSection>
                 <FooterButton>
                   <DeleteNoticeboard id={_id}/>
                 </FooterButton>
@@ -148,7 +151,7 @@ class NoticeBoard extends Component {
         }else if( swt===true){
           return (
             <Container key={_id}>
-            {/* <Image src={image}/> */}
+              <Image  src={`http://localhost:3000/${image}`}/>
             <Content>
               <HeaderDiv>{title}</HeaderDiv>
               <Form.Text>{advertisement}</Form.Text>
