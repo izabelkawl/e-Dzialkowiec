@@ -3,7 +3,6 @@ import Category from "../models/category.js";
 const createCategory = (req, res) => {
     let name = req.body.name
     let image = req.file.path
-    console.log(name, image)
     const category = new Category({
         name: name,
         image: image

@@ -362,9 +362,23 @@ export const getAllAnnouncements = () => api.get(`/announcements`)
 export const deleteAnnouncementById = id => api.delete(`/announcement/${id}`)
 export const getAnnouncementById = id => api.get(`/announcement/${id}`)
 
-// Images
-// export const insertImage = payload => api.post(`/category`, payload)
+// Announcement
+export const insertImage = (imageData, history) => dispatch => {
+    api
+        .post("/category", imageData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                message: err.response.data.errors,
+                // found: true,
+                // payload: err.response.data
+            })
+        );
+};
 const apis = {
+    insertImage,
+    
     registerUser,
     loginUser,
     setCurrentUser,
@@ -432,8 +446,7 @@ const apis = {
     getAllAnnouncements,
     updateAnnouncementById,
     deleteAnnouncementById,
-    getAnnouncementById,
-    // insertImage
+    getAnnouncementById
 }
 
 export default apis

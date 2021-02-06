@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component, useState} from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,8 +6,8 @@ import { insertNoticeboard } from "../../api";
 import { Button, Form, Modal } from 'react-bootstrap';
 import classnames from "classnames";
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
-
-
+import axios from 'axios';
+import ImageUpload from './ImageUpload'
   class AddAnnouncement extends Component {
     constructor(props) {
       super(props);
@@ -17,6 +17,8 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
         user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
         advertisement: '',
         image: '',
+        name: '',
+        id: this.props.match.params.id,
         errors: {},
     }
   }
@@ -46,11 +48,14 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
       this.props.insertNoticeboard(newNoticeboard, this.props.history)
   };
   render(){ 
+
       const { errors } = this.state;
-      const { title, advertisement, image } = this.state
+      const { title, advertisement, image, id } = this.state
       const {staticContext, insertNoticeboard, ...rest} = this.props
-   return (
-      <Modal
+
+      {console.log(id)}
+      return ( <div >
+          <Modal
       {...rest}
     
       animation={false}
@@ -92,15 +97,9 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
           </Form.Group>
           <Form.Group >
             <Form.Label>Img</Form.Label>
-              <Span>{errors.image}</Span>
-                <Form.Control 
-                  type="text"
-                  id="image"
-                  value={image}  
-                  error={errors.image} 
-                  onChange={this.onChange}
-                  className={classnames("", {invalid: errors.image })}
-                ></Form.Control>
+
+        <ImageUpload/>
+        
           </Form.Group>
         </Form>
         </Modal.Body>
@@ -114,15 +113,20 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
         <Button style={BlueButtonStyle} onClick={this.onSubmit} >Dodaj</Button>
      </Modal.Footer>
       </Modal>
-    )
-  }
-}
+          
+          {/* <img
+            className='mt-3'
+            src={`http://localhost:3000/${info.image}`}
+            alt={`${info.name}`}
+            style={{ width: '359px' }}
+          /> */}
+        </div>
+      );
+    }
 
-AddAnnouncement.propTypes = {
-  errors: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  insertNoticeboard: PropTypes.func.isRequired,
-};
+  }
+  
+
 
 const mapStateToProps = state => ({
   auth: state.auth,
