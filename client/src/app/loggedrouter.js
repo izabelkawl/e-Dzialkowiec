@@ -19,6 +19,7 @@ import Messages from '../pages/logged/Messages.jsx';
 import ForumThread from '../pages/logged/ForumThread.jsx';
 import MessagesContent from '../pages/logged/MessagesContent.jsx';
 import NoticeBoardMessage from '../pages/logged/NoticeBoardMessage.jsx';
+import ImageUpload from '../components/modal/ImageUpload.jsx';
 
 const Container = styled.div`
   background-image: url(${bg});
@@ -47,6 +48,7 @@ function LoggedApp() {
             <PrivateRoute path="/dashboard/forums" exact component={Forum} />
             <PrivateRoute path="/dashboard/forums/:id" exact component={ForumThread}/>
             <PrivateRoute path="/dashboard/account/" exact component={Account} />
+            <PrivateRoute path="/dashboard/image/" exact component={ImageUpload} />
           </Switch>
         </Router>
       </ Container >

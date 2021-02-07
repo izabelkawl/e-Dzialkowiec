@@ -17,8 +17,15 @@ import axios from 'axios';
         user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
         advertisement: '',
         image: '',
+        inputValue: '',
         errors: {},
     }
+  }
+
+  updateInputValue = (evt) => {
+    this.setState({
+      inputValue: evt.target.value
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,29 +36,40 @@ import axios from 'axios';
     }
   }
 
+  onChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  onSubmit = e => {
+
+    e.preventDefault();
+    const newNoticeboard = {
+
+        title: this.state.title,
+        user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+        advertisement: this.state.advertisement,
+        image: this.state.inputValue
+    };
+    this.props.insertNoticeboard(newNoticeboard, this.props.history)
+};
 
   render(){ 
-
-    const ImageUpload = () => {
-  /** start states */
     const { errors } = this.state;
     const { title, advertisement } = this.state
     const {staticContext, insertNoticeboard, ...rest} = this.props
 
-  const [formData, setFormData] = useState('');
-  const [info, setInfo] = useState({
-    image: '',
-    name: '',
+    const ImageUpload = () => {
+ 
+      const [formData, setFormData] = useState('');
+      const [info, setInfo] = useState({
+        image: '',
+        name: '',
+      });
+      const [error, setError] = useState({
+        found: false,
+        message: '',
   });
-  const [error, setError] = useState({
-    found: false,
-    message: '',
-  });
-  /** end states */
 
-  const onChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
   // Upload image
   const upload = ({ target: { files } }) => {
     let data = new FormData();
@@ -60,19 +78,6 @@ import axios from 'axios';
     setFormData(data);
   };
 
-
-  const onSubmit = e => {
-
-      e.preventDefault();
-      const newNoticeboard = {
-
-          title: this.state.title,
-          user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
-          advertisement: this.state.advertisement,
-          image: info.image
-      };
-      this.props.insertNoticeboard(newNoticeboard, this.props.history)
-  };
   // Submit Form
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,9 +86,11 @@ import axios from 'axios';
       name: '',
     });
 
+
     axios
       .post('http://localhost:3000/api/category', formData)
       .then((res) => {
+        this.state.inputValue = res.data.category.image
         console.log(res.data);
         setTimeout(() => {
           setInfo(res.data.category);
@@ -102,49 +109,12 @@ import axios from 'axios';
           });
         }, 3000);
       });
-    
+      
   };
-  return ( <Modal
-      {...rest}
-        animation={false}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-      <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Dodaj ogłoszenie
-          </Modal.Title>
-      </Modal.Header>
-        <Modal.Body>
-          <Form.Group >
-            <Form.Label>Tytuł</Form.Label>
-              <Span>{errors.title}</Span>
-                <Form.Control 
-                  value={title} 
-                  error={errors.title} 
-                  id="title"
-                  type="text" 
-                  className={classnames("", {invalid: errors.title })}
-                  onChange={onChange}
-                ></Form.Control>
-          </Form.Group>
-          <Form.Group >
-            <Form.Label>Treść</Form.Label>
-              <Span>{errors.advertisement}</Span>
-                <Form.Control
-                value={advertisement}
-                onChange={onChange}
-                id="advertisement"
-                 placeholder="Treść.."
-                 className={classnames("", {invalid: errors.advertisement })}
-                 
-            />
-          </Form.Group>
-      <Form>
-        {error.found && ( <Span >{error.message}</Span> )}
- <Form.Label>Zdjęcie</Form.Label>
-        <Form.Group className='custom-file mb-3'>
+  return (<>
+    <Form.Label>Zdjęcie</Form.Label>
+  <Span>{error.message}</Span> <Span>{errors.image}</Span>
+   <Form.Group className='custom-file mb-3'>
           <Form.Control
             type='file'
             className='custom-file-input'
@@ -161,7 +131,51 @@ import axios from 'axios';
           Załaduj
         </Button>
         </Form.Group>
+        </>
+  );
+}
+      return <Modal
+      {...rest}
+        animation={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+      <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Dodaj ogłoszenie
+          </Modal.Title>
+      </Modal.Header>
+        <Modal.Body>
+          <Form>
+          <Form.Group >
+            <Form.Label>Tytuł</Form.Label>
+              <Span>{errors.title}</Span>
+                <Form.Control 
+                  value={title} 
+                  error={errors.title} 
+                  id="title"
+                  type="text" 
+                  className={classnames("", {invalid: errors.title })}
+                  onChange={this.onChange}
+                ></Form.Control>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Treść</Form.Label>
+              <Span>{errors.advertisement}</Span>
+                <Form.Control
+                value={advertisement}
+                onChange={this.onChange}
+                id="advertisement"
+                 placeholder="Treść.."
+                 className={classnames("", {invalid: errors.advertisement })}
+                 
+            />
+          </Form.Group>
+       
         </Form>
+        <ImageUpload/>
+
         </Modal.Body>
         <Modal.Footer>
         <Button 
@@ -170,21 +184,25 @@ import axios from 'axios';
           this.props.onHide()
           window.location.reload()
         }}>Zamknij</Button>
-        <Button style={BlueButtonStyle} onClick={onSubmit} >Dodaj</Button>
+
+        <Button style={BlueButtonStyle} onClick={this.onSubmit} >Dodaj</Button>
      </Modal.Footer>
       </Modal>
-  );
-}
-      return <ImageUpload/>
     }
 
   }
 
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
-});
+  AddAnnouncement.propTypes = {
+    errors: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
+    insertAnnouncement: PropTypes.func.isRequired,
+  };
+  
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
 
 export default connect(
   mapStateToProps,
