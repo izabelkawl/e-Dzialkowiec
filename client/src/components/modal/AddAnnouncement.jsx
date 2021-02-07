@@ -18,13 +18,15 @@ import axios from 'axios';
         advertisement: '',
         image: '',
         inputValue: '',
+        inputName: '',
         errors: {},
     }
   }
 
   updateInputValue = (evt) => {
     this.setState({
-      inputValue: evt.target.value
+      inputValue: evt.target.value,
+      inputName: evt.target.value
     });
   }
 
@@ -91,6 +93,7 @@ import axios from 'axios';
       .post('http://localhost:3000/api/category', formData)
       .then((res) => {
         this.state.inputValue = res.data.category.image
+        this.state.inputName = res.data.category.name
         console.log(res.data);
         setTimeout(() => {
           setInfo(res.data.category);
@@ -124,12 +127,13 @@ import axios from 'axios';
           />
           
           <Form.Label className='custom-file-label' htmlFor='inputGroupFile04'>
-            {info.image === ''? 'Wybierz plik': info.name}
+            {this.state.inputValue === ''? 'Wybierz plik': this.state.inputName}
           </Form.Label>
           <br></br>
           <Button onClick={handleSubmit} style={BlueButtonStyle}>
           Załaduj
         </Button>
+       
         </Form.Group>
         </>
   );
@@ -167,15 +171,15 @@ import axios from 'axios';
                 value={advertisement}
                 onChange={this.onChange}
                 id="advertisement"
+                as="textarea"
                  placeholder="Treść.."
                  className={classnames("", {invalid: errors.advertisement })}
-                 
+                 rows={7}
             />
           </Form.Group>
        
         </Form>
         <ImageUpload/>
-
         </Modal.Body>
         <Modal.Footer>
         <Button 
@@ -196,7 +200,6 @@ import axios from 'axios';
   AddAnnouncement.propTypes = {
     errors: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    insertAnnouncement: PropTypes.func.isRequired,
   };
   
   const mapStateToProps = state => ({

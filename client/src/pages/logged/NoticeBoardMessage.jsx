@@ -20,8 +20,23 @@ const MessageContentn = styled.div`
     -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 0.7fr 1.8fr;
+    gap: 0 30px;
+    grid-template-areas:
+    "Image ContentSection"
 `
 
+const ContentSection = styled.div`
+  grid-area: ContentSection;
+`
+const Image = styled.img`
+  grid-area: Image;
+  height: 240px;
+  width: 300px;
+  object-fit: cover;
+  cursor:zoom-in;
+`
 class NoticeBoardMessage extends Component {
     constructor(props) {
         super(props);
@@ -32,6 +47,8 @@ class NoticeBoardMessage extends Component {
           recipient: '',
           user_id: '',
           advertisement: '',
+          image: '',
+          isOpen: false,
           errors: {}
         }
       }
@@ -44,6 +61,7 @@ class NoticeBoardMessage extends Component {
             title: noticeboard.data.data.title,
             user_id: noticeboard.data.data.user_id,
             advertisement: noticeboard.data.data.advertisement,
+            image: noticeboard.data.data.image,
         })
     }
 
@@ -70,38 +88,44 @@ class NoticeBoardMessage extends Component {
       };
       this.props.insertMessage(newMessage, this.props.history)
     };
-    
+
+    handleShowDialog = () => {
+        this.setState({ isOpen: !this.state.isOpen });
+        console.log("cliked");
+      };
+
     render() {
         const { errors } = this.state;
-        const { user_id, title, advertisement } = this.state;
+        const { user_id, title, advertisement, image } = this.state;
             return ( <Wrapper>
-                <Title>Napisz wiadomość</Title>
-                <Form noValidate onSubmit={this.onSubmit}></Form>
-                <MessageContentn>
-                <i>{user_id}</i>
-                <br></br>
-                <b>{title}</b>
-                <br></br>
-                <br></br>
-                <span>{advertisement}</span>
-
-                </MessageContentn>
-                
+                        <Title>Napisz wiadomość</Title>
+                        <MessageContentn>
+                            
+                            <Image id="myImg" src={`http://localhost:3000/${image}`} />
+                            <ContentSection>
+                                <i>{user_id}</i>
+                                <br></br>
+                                <b>{title}</b>
+                                <br></br>
+                                <br></br>
+                                <span>{advertisement}</span>
+                            </ContentSection>
+                        </MessageContentn>
+                        
                  <Form.Group>
-                <Span>{errors.content }</Span>
-                <Form.Control
-                onChange={this.onChange}
-                error={errors.content}
-                as="textarea"
-                id="content"
-                className={classnames("", {
-                    invalid: errors.content
-                })}
-                rows={3}
-                placeholder={"Treść wiadomości.."}
-                />
+                    <Span>{errors.content }</Span>
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.content}
+                        as="textarea"
+                        id="content"
+                        className={classnames("", {
+                            invalid: errors.content
+                        })}
+                        rows={3}
+                        placeholder={"Treść wiadomości.."}
+                    />
                  </Form.Group>
-          <Form/>
           <Button style={RedButtonStyle} href="/dashboard/noticeboard" >Powrót</Button>
             {' '}
             <Button style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>

@@ -63,7 +63,7 @@ onSubmit = e => {
       <Modal.Body>
       <Form>
   <Form.Group >
-    <Form.Label>Tytuł</Form.Label>
+    <Form.Label>Temat</Form.Label>
       <Span>{errors.title}</Span>
         <Form.Control 
           type="text" 
@@ -84,7 +84,7 @@ onSubmit = e => {
                   error={errors.content} 
                   onChange={this.onChange}
                   className={classnames("", {invalid: errors.content })}
-                  row={3}
+                  rows={7}
                 ></Form.Control>
   </Form.Group>
 </Form>

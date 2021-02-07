@@ -18,29 +18,31 @@ const Container = styled.div`
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows:  3(1fr);
-    gap: 25px 25px;
+    grid-template-columns: 1.8fr 0.5fr;
+    grid-template-rows: 50px 2.1fr 0.4fr;
+    gap: 15px 30px;
     grid-template-areas:
-    "Content User"
-    "Content ."
-    "Content  Footer";`
+    " TitleSection User"
+    " ContentSection ."
+    " DateSection  Footer";`
 
 const Content = styled.div`
-  display: grid;
-  grid-area: Content;
+  grid-area: ContentSection;
+`
+const TitleSection = styled.div`
+  grid-area: TitleSection;
+  font-weight: bold;
+`
+const DateSection = styled.div`
+  grid-area: DateSection;
 `
 const FooterButton = styled.div`
-  display: grid;
   grid-area: Footer;
-`
-const UserSection = styled.div`
-  display: grid;
-  grid-area: User;
   text-align: right;
 `
-const HeaderDiv = styled.div`
-  font-size: 26px;
+const UserSection = styled.div`
+  grid-area: User;
+  text-align: right;
 `
 
 class UpdateForum extends Component {
@@ -124,29 +126,25 @@ class Forum  extends Component {
       if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
       return (
         <Container key={_id}>
-            <Content>
-              <HeaderDiv>{title}</HeaderDiv>
-              <Form.Text>{content}</Form.Text>
-              <Form.Text muted>{date}</Form.Text>
-            </Content>
-            <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+           <TitleSection>{title}</TitleSection>
+            <Content>{content}</Content>
+            <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
+            <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
             <FooterButton>
+              <DeleteForum id={_id}/>{' '}
               <UpdateForum id={_id}/>
-            <DeleteForum id={_id}/>
             </FooterButton>
         </Container> 
       )
       }else if( swt===true){
           return (
             <Container key={_id}>
-                <Content>
-                  <HeaderDiv>{title}</HeaderDiv>
-                  <Form.Text>{content}</Form.Text>
-                  <Form.Text muted>{date}</Form.Text>
-                </Content>
-                <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+                <TitleSection>{title}</TitleSection>
+                <Content>{content}</Content>
+                <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
+                <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
                 <FooterButton>
-              <UpdateForum id={_id}/>
+                  <UpdateForum id={_id}/>
                 </FooterButton>
             </Container> 
           )

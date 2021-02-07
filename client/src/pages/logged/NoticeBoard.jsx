@@ -18,29 +18,32 @@ const Container = styled.div`
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows:  100px 1fr 50px;
-    gap: 25px 25px;
+    grid-template-columns: 0.7fr 1.8fr 0.5fr;
+    grid-template-rows:  50px 2.1fr 0.4fr;
+    gap: 15px 30px;
     grid-template-areas:
-    "Image Content User"
-    "Image Content ."
-    "Image Content  Footer";`
+    "Image TitleSection User"
+    "Image ContentSection ."
+    "Image DateSection  Footer";
+    `
 
 const Content = styled.div`
-  display: grid;
-  grid-area: Content;
+  grid-area: ContentSection;
+`
+const TitleSection = styled.div`
+  grid-area: TitleSection;
+  font-weight: bold;
+`
+const DateSection = styled.div`
+  grid-area: DateSection;
 `
 const FooterButton = styled.div`
-  display: grid;
   grid-area: Footer;
-`
-const UserSection = styled.div`
-  display: grid;
-  grid-area: User;
   text-align: right;
 `
-const HeaderDiv = styled.div`
-  font-size: 26px;
+const UserSection = styled.div`
+  grid-area: User;
+  text-align: right;
 `
 const Image = styled.img`
   grid-area: Image;
@@ -135,13 +138,12 @@ class NoticeBoard extends Component {
             <Container key={_id}>
                 
               <Image  src={`http://localhost:3000/${image}`}/>
-                <Content>
-                  <HeaderDiv>{title}</HeaderDiv>
-                  <Form.Text>{advertisement}</Form.Text>
-                  <Form.Text muted>{date}</Form.Text>
-                </Content>
+                  <TitleSection>{title}</TitleSection>
+                  
+                  <Content>{advertisement}</Content>
+                  <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
                 <UserSection>
-                  <Form.Text muted>{user_id}</Form.Text><hr></hr>
+                  <Form.Text muted>{user_id}</Form.Text>
                   </UserSection>
                 <FooterButton>
                   <DeleteNoticeboard id={_id}/>
@@ -151,13 +153,11 @@ class NoticeBoard extends Component {
         }else if( swt===true){
           return (
             <Container key={_id}>
-              <Image  src={`http://localhost:3000/${image}`}/>
-            <Content>
-              <HeaderDiv>{title}</HeaderDiv>
-              <Form.Text>{advertisement}</Form.Text>
-              <Form.Text muted>{date}</Form.Text>
-            </Content>
-            <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
+              <Image id="exampleImage" src={`http://localhost:3000/${image}`}/>
+              <TitleSection>{title}</TitleSection>
+                  <Content>{advertisement}</Content>
+                  <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
+            <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
             <FooterButton>
               <MessageNoticeBoard id={_id}/>
             </FooterButton>
@@ -187,7 +187,7 @@ class NoticeBoard extends Component {
                 id="inputValue"
                 placeholder="Szukaj.."
             />
-          </Col>   
+            </Col>   
         </Row>
         <NoticeBoard/>
       </Wrapper>
