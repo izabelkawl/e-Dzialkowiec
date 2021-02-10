@@ -123,9 +123,10 @@ class AllotmentsInsert extends Component {
                         <option>Zajęta</option> 
                         <option>Na sprzedaż</option> 
                     </Form.Control>
-
+                    
                     <Label htmlFor="user_id">Działkowicz: </Label>
                     <Span>{errors.user_id}</Span>
+                    {this.state.status==="Wolna" ? 
                     <Form.Control
                         onChange={this.onChange}
                         error={errors.user_id}
@@ -133,11 +134,24 @@ class AllotmentsInsert extends Component {
                         id="user_id"
                         className={classnames("", {
                         invalid: errors.user_id
-                    })}defaultChecked="Wybierz działkowicza">
-                        <option>Wybierz działkowicza</option>
+                    })}defaultChecked="Brak">
                         <option>Brak</option>
-                        <UsersID/>
-                    </Form.Control>
+                    </Form.Control> 
+                    : 
+                    <Form.Control
+                    onChange={this.onChange}
+                    error={errors.user_id}
+                    as="select"
+                    id="user_id"
+                    className={classnames("", {
+                    invalid: errors.user_id
+                })}defaultChecked="Wybierz działkowca">
+                    <option>Wybierz działkowca</option>
+                    <UsersID/>
+                </Form.Control>
+                    }
+                    
+                    
                     <br></br>
                     <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Zamknij</Button>{' '}
                     <Button style={BlueButtonStyle} type="submit">Dodaj działkę</Button>
