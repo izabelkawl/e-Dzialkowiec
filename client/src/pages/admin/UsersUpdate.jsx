@@ -161,7 +161,7 @@ class UsersUpdate extends Component {
                     </Form.Control>
                 </Form.Group>
 
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Edytuj</Button>{' '}
+                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Aktualizuj</Button>{' '}
                 <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>
             </Wrapper>
         )

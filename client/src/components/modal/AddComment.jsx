@@ -13,7 +13,7 @@ class AddComment extends Component {
 
     const {user} = this.props.auth
     this.state = {
-        commenter:  user.firstname + ' '+ user.lastname,
+        commenter:  user.id,
         comment_content: '',
         forum_id: this.props.match.params.id,
         errors: {}
@@ -46,7 +46,7 @@ onSubmit = e => {
 
   render(){ 
     const { errors } = this.state;
-    const { commenter,  comment_content } = this.state
+    const { comment_content } = this.state
     const {staticContext, insertComment, ...rest} = this.props
  return (
     <Modal
@@ -64,16 +64,6 @@ onSubmit = e => {
       <Modal.Body>
       <Form>
   <Form.Group >
-      <Span>{errors.commenter}</Span>
-        <Form.Control 
-          type="text" 
-          id="commenter" 
-          value={commenter} 
-          error={errors.commenter} 
-          onChange={this.onChange}
-          className={classnames("", {invalid: errors.commenter })}
-          readOnly
-      ></Form.Control>
   </Form.Group>
   <Form.Group >
     <Span>{errors.comment_content}</Span>

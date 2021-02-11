@@ -9,6 +9,7 @@ import Wrapper from '../../components/Wrapper/Wrapper';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessage from '../../components/modal/AddMessage';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Container = styled.div`
     padding: 50px;
@@ -40,7 +41,7 @@ class ShowMessages extends Component {
       window.location.href = `/dashboard/messages/${this.props.id}`
   }
   render() {
-      return <Person className={element} onClick={this.getUserById}>{this.props.id}</Person>
+      return <Person className={element} onClick={this.getUserById}>{this.props.id==="Zarząd" ? this.props.id : <GetUserName id={this.props.id}/>}</Person>
   }
 }
 
@@ -64,17 +65,13 @@ class ShowMessages extends Component {
       }
       else if(recipient === val.id ){
           return user_id
-      }else{
-        return console.log()
-    }
+      }
   })
   const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
   const Messages = isDupuplicate.map((sth, index) => {
     if( isDupuplicate[index] !== 'undefined'){
       return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
-  }else{
-    return console.log()
-}
+  }
   })
 
 
@@ -93,7 +90,7 @@ class Messages extends Component {
   
     render() {
         
-    return  <MessagesList id={this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname}/>
+    return  <MessagesList id={this.props.auth.user.id}/>
   }
 }    
 Messages.propTypes = {

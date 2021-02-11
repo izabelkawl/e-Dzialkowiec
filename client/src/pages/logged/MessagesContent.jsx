@@ -79,7 +79,7 @@ const NotMe = styled.p`
       super(props);
   
       this.state = {
-        user_id: this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname,
+        user_id: this.props.auth.user.id,
         recipient:  this.props.match.params.id,
         content: ''
       }
@@ -94,7 +94,7 @@ const NotMe = styled.p`
     e.preventDefault();
     const newMessage = {
   
-      user_id: this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname,
+      user_id: this.props.auth.user.id,
       recipient: this.props.match.params.id,
       content: this.state.content,
     
@@ -108,7 +108,7 @@ const NotMe = styled.p`
       return <Wrapper>
         <Button style={BlueButtonStyle} href={'/dashboard/messages'}>Powrót</Button>
         <Container>
-        <MessagesList id={this.props.match.params.id} name={this.props.auth.user.firstname+ ' '+this.props.auth.user.lastname}/>
+        <MessagesList id={this.props.match.params.id} name={this.props.auth.user.id}/>
           <InputGroup className="mb-3">
                             <FormControl
                             onChange={this.onChange}

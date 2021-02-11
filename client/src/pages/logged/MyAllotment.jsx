@@ -48,7 +48,7 @@ class MyAllotment extends Component {
             allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
             status: allotment.data.data.status,
-            user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname
+            user_id: this.props.auth.user.id
         })
     }
 

@@ -13,7 +13,7 @@ class AddMessage extends Component {
     super(props);
 
     this.state = {
-      user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+      user_id: this.props.auth.user.id,
       recipient: '',
       content: '',
       errors: {}
@@ -41,6 +41,7 @@ onSubmit = e => {
     recipient: this.state.recipient,
     content: this.state.content,
   };
+  console.log(this.state.user_id+' - '+this.state.recipient)
   this.props.insertMessage(newMessage, this.props.history)
 };
 

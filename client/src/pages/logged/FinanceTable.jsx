@@ -38,7 +38,7 @@ class Management extends Component {
             const { _id, allotment_number,owner,  title, area, charge, term, status, account } = finance;
             // const timestamp = _id.toString().substring(0,8);
             // const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-            const logged = this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname
+            const logged = this.props.auth.user.id
             // search without id letters
             const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
             const search = n.includes(this.state.inputValue)

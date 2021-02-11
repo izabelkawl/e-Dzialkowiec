@@ -8,6 +8,7 @@ import { List, Title } from '../constants';
 import styled from "styled-components";
 import { BlueButtonStyle}  from '../constants';
 import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Container = styled.div`
     padding: 50px;
@@ -34,7 +35,7 @@ class ShowMessages extends Component {
       window.location.href = `/admin/messages/${this.props.id}`
   }
   render() {
-      return <Person onClick={this.getUserById}>{this.props.id}</Person>
+      return <Person onClick={this.getUserById}>{this.props.id==="Zarząd" ? this.props.id : <GetUserName id={this.props.id}/>}</Person>
   }
 }
 

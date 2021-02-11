@@ -9,6 +9,7 @@ import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
 import AddThread from '../../components/modal/AddThread';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Container = styled.div`
     background-color: white;
@@ -129,7 +130,7 @@ class Forum  extends Component {
            <TitleSection>{title}</TitleSection>
             <Content>{content}</Content>
             <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
-            <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
+            <UserSection><Form.Text muted><GetUserName id={user_id}/></Form.Text></UserSection>
             <FooterButton>
               <DeleteForum id={_id}/>{' '}
               <UpdateForum id={_id}/>
@@ -142,7 +143,7 @@ class Forum  extends Component {
                 <TitleSection>{title}</TitleSection>
                 <Content>{content}</Content>
                 <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
-                <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
+                <UserSection><Form.Text muted><GetUserName id={user_id}/></Form.Text></UserSection>
                 <FooterButton>
                   <UpdateForum id={_id}/>
                 </FooterButton>

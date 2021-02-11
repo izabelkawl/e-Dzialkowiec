@@ -13,7 +13,7 @@ class AddThread extends Component {
 
     this.state = {
       title: '',
-      user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+      user_id: this.props.auth.user.id,
       content: '',
       errors:{},
     }

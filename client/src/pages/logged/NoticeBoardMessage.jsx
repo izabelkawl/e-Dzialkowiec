@@ -12,7 +12,8 @@ import Wrapper from '../../components/Wrapper/Wrapper';
 import Title from '../../components/Title';
 // Button Style
 import { RedButtonStyle, BlueButtonStyle, Span } from '../constants';
-
+import GetUserName from '../../components/accountEditing/GetUserName';
+import axios from 'axios';
 const MessageContentn = styled.div`
     background-color: white;
     padding: 20px;
@@ -37,6 +38,8 @@ const Image = styled.img`
   object-fit: cover;
   cursor:zoom-in;
 `
+         
+
 class NoticeBoardMessage extends Component {
     constructor(props) {
         super(props);
@@ -48,6 +51,8 @@ class NoticeBoardMessage extends Component {
           user_id: '',
           advertisement: '',
           image: '',
+          val: '',
+          
           isOpen: false,
           errors: {}
         }
@@ -82,7 +87,7 @@ class NoticeBoardMessage extends Component {
       e.preventDefault();
       const newMessage = {
     
-        user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+        user_id: this.props.auth.user.id,
         recipient: this.state.user_id,
         content: this.state.content,
       };
@@ -95,17 +100,23 @@ class NoticeBoardMessage extends Component {
       };
 
     render() {
+      const api = axios.create({
+        baseURL: 'http://localhost:3000/api',
+    })
         const { errors } = this.state;
         const { user_id, title, advertisement, image } = this.state;
+        
+    const user = api.get(`/user/${user_id}`).then(res => document.getElementById("data").innerHTML= res.data.data.firstname +' '+ res.data.data.lastname)
             return ( <Wrapper>
                         <Title>Napisz wiadomość</Title>
                         <MessageContentn>
                             
                             <Image id="myImg" src={`http://localhost:3000/${image}`} />
                             <ContentSection>
-                                <i>{user_id}</i>
+                                
                                 <br></br>
                                 <b>{title}</b>
+                                <p id="data"></p>
                                 <br></br>
                                 <br></br>
                                 <span>{advertisement}</span>

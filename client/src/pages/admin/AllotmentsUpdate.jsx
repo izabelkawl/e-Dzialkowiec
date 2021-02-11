@@ -144,9 +144,9 @@ class AllotmentsUpdate extends Component {
                         <UsersID/>
                     </Form.Control>
                     <br></br>
-                    <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>{' '}
-                    <Button style={BlueButtonStyle} href={'/admin/allotments/list'}>Zamknij</Button>
-                    
+                    <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
+                    {' '}
+                    <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
             </Wrapper>
         )
     }

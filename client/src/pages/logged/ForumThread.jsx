@@ -7,6 +7,7 @@ import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from '../constants';
 import AddComment from '../../components/modal/AddComment'
 import styled from 'styled-components';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Content = styled.div`
   background-color: white;
@@ -23,16 +24,12 @@ const Person = styled.p`
 class ForumThread extends Component {
   constructor(props) {
     super(props)
-    const {user} = this.props.auth
     this.state = {
         id: this.props.match.params.id,
         user_id: '',
         title: '',
         content: '',
-
-        commenter:  user.firstname + ' '+ user.lastname,
-        comment_content: '',
-        forum_id: this.props.match.params.id,
+        username: '',
     }
   }
   
@@ -47,16 +44,17 @@ class ForumThread extends Component {
     })
   }
 
-  
-handleChangeInputCommentContent = async event => {
-    const comment_content = event.target.value
-    this.setState({ comment_content })
-}
+  handleChangeInputCommentContent = async event => {
+      const comment_content = event.target.value
+      this.setState({ comment_content })
+  }
 
   render() {
     
+  const { id, user_id, title, content} = this.state
+  const timestamp = id.toString().substring(0,8);
+  const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
 
-// Comemnt List 
   const CommentsList = () => {
     const [comments, setComments] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
@@ -69,45 +67,42 @@ handleChangeInputCommentContent = async event => {
         };
         requestCommentsList();
     }, []);
-  
+
     const CommentsTable = comments.map((comment, index) => {
+
       const { _id, commenter, comment_content, forum_id } = comment;
       const timestamp = _id.toString().substring(0,8);
-        const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-       if(forum_id ===this.props.match.params.id ){
-      return (
-        <Content key={_id}>
-            <Person>{commenter}</Person>
-            <p>{comment_content}</p>
-            <Form.Text muted>{date}</Form.Text>
-          </Content>
-        );
-       }else{
+      const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+
+      if(forum_id ===this.props.match.params.id ){
+        return (
+          <Content key={_id}>
+              <Person><GetUserName id={commenter}/></Person>
+              <p>{comment_content}</p>
+              <Form.Text muted>{date}</Form.Text>
+            </Content>
+          );
+      }else{
         return ""
       }
     });
-    return (<div>
-      <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
-        <AddComment show={modalShow} onHide={() => setModalShow(false)}
-      />
-      {CommentsTable}</div>)
+
+    return <Wrapper>
+              <Button style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
+              <Content>
+                <h3>{title}</h3>
+                <Person><GetUserName id={user_id}/></Person>
+                <hr></hr>
+                <p>{content}</p>
+                <Form.Text muted>{date}</Form.Text>
+              </Content>
+              <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
+              <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
+              {CommentsTable}
+            </Wrapper>
     }
   
-  const { user_id, title, content} = this.state
-    return (
-      <Wrapper>
-        <Button style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
-          <Content>
-            <h3>{title}</h3>
-            <p>{user_id}</p>
-            <hr></hr>
-            <p>{content}</p>
-            <Form.Text muted>27.11.2020</Form.Text>
-          </Content>
-            
-          < CommentsList/>
-      </Wrapper>
-    )
+    return <CommentsList/>
   }
 }
 

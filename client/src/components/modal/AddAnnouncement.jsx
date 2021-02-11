@@ -14,7 +14,7 @@ import axios from 'axios';
   
       this.state = {
         title: '',
-        user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+        user_id: '',
         advertisement: '',
         image: '',
         inputValue: '',
@@ -48,7 +48,7 @@ import axios from 'axios';
     const newNoticeboard = {
 
         title: this.state.title,
-        user_id: this.props.auth.user.firstname + ' '+ this.props.auth.user.lastname,
+        user_id: this.props.auth.user.id,
         advertisement: this.state.advertisement,
         image: this.state.inputValue
     };

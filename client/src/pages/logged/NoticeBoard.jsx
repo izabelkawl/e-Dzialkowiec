@@ -9,6 +9,7 @@ import AddAnnouncement from '../../components/modal/AddAnnouncement'
 import Wrapper from '../../components/Wrapper/Wrapper'
 import {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Container = styled.div`
     background-color: white;
@@ -130,7 +131,7 @@ class NoticeBoard extends Component {
 
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-        
+        console.log( <GetUserName id={user_id}/>)
         if(search === true){
         if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
         return (
@@ -142,7 +143,9 @@ class NoticeBoard extends Component {
                   <Content>{advertisement}</Content>
                   <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
                 <UserSection>
-                  <Form.Text muted>{user_id}</Form.Text>
+                  <Form.Text muted>
+                    <GetUserName id={user_id}/>
+                  </Form.Text>
                   </UserSection>
                 <FooterButton>
                   <DeleteNoticeboard id={_id}/>
@@ -156,7 +159,7 @@ class NoticeBoard extends Component {
               <TitleSection>{title}</TitleSection>
                   <Content>{advertisement}</Content>
                   <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
-            <UserSection><Form.Text muted>{user_id}</Form.Text></UserSection>
+            <UserSection><Form.Text muted><GetUserName id={user_id}/></Form.Text></UserSection>
             <FooterButton>
               <MessageNoticeBoard id={_id}/>
             </FooterButton>

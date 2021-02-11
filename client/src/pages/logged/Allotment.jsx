@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 import '../MapColors.css';
 import api from "../../api";
 import Wrapper from '../../components/Wrapper/Wrapper';
-import { Information } from '../constants';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 class MyGarden extends Component {
 
   render() {
-    const Mapka = (props) => {
+    const Mapka = () => {
     
   const [allotments, setAllotments] = useState([]);
     // Tooltip
@@ -44,7 +44,7 @@ class MyGarden extends Component {
           tooltipData[number] = {
             'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
               'Status': status,
-              'Własność': user_id
+              'Własność': <GetUserName id={user_id}/>
           })
 
         }
@@ -62,7 +62,10 @@ function generateTooltipContent(provinceName) {
           html += "<div className=\"tooltip-map-content\">";
           for (let key in ob) {
               if (ob.hasOwnProperty(key)) {
-                  html += "<p>" + key + ": <b>" + ob[key] + "</b></p>";
+				  if(key==="Własność"){
+					 let elo = <GetUserName id={ob[key]}/>
+                  html += "<p>" + key + ": <b>"+elo+"</b></p>"
+				  }else {html += "<p>" + key + ": <b>" + ob[key] + "</b></p>"}
               }
           }
           html += "</div>";
@@ -70,7 +73,6 @@ function generateTooltipContent(provinceName) {
       }
   }else{ html = "<div className=\"tooltip-map-content\">Brak danych</div>";
   return html;}
-  return html;
 }
 //Układ tooltipa
 
@@ -90,7 +92,7 @@ function generateTooltipContent(provinceName) {
 	const json = tooltipData[path.id]
 	
       for (const key in json) {
-        if ((json[key]) === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname) {
+        if ((json[key]) === this.props.auth.user.id) {
            path.style.fill="#ffc107";
            path.onclick = function MyGarden(event) {
              event.preventDefault()
@@ -1882,7 +1884,6 @@ return(<div>
       
     return (
       <Wrapper>
-		  <Information>*Aby uzyskać wiecej informacji lub zakupić działkę najedz na wybrany obszar mapy.</Information>
         <Mapka />
       </Wrapper>
     )

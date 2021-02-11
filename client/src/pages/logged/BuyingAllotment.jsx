@@ -48,7 +48,7 @@ class BuyingAllotment extends Component {
             allotment_length: allotment.data.data.allotment_length,
             price: allotment.data.data.price,
             status: "Rezerwacja",
-            user_id: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname,
+            user_id: this.props.auth.user.id,
        
             stable_price: paymentdetails.data.data.stable_price,
             membership_fee: paymentdetails.data.data.membership_fee,
@@ -78,7 +78,7 @@ class BuyingAllotment extends Component {
         const newFinance = {
 
             allotment_number: this.state.number,
-            owner: this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname,
+            owner: this.props.auth.user.id,
             title: "Kupno działki",
             area: this.state.allotment_width * this.state.allotment_length,
             charge: this.state.price,
