@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import '../MapColors.css';
 import api from "../../api";
 import Wrapper from '../../components/Wrapper/Wrapper';
+import { Information } from '../constants';
 
 class MyGarden extends Component {
 
@@ -1881,6 +1882,7 @@ return(<div>
       
     return (
       <Wrapper>
+		  <Information>*Aby uzyskać wiecej informacji lub zakupić działkę najedz na wybrany obszar mapy.</Information>
         <Mapka />
       </Wrapper>
     )

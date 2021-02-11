@@ -123,7 +123,6 @@ class UsersUpdate extends Component {
                             invalid: errors.address
                         })}
                         value={address}
-                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -138,11 +137,10 @@ class UsersUpdate extends Component {
                             invalid: errors.phone
                         })}
                         value={phone}
-                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label htmlFor="position">position: </Form.Label >
+                    <Form.Label htmlFor="position">Rola: </Form.Label >
                     <Span>{errors.position}</Span>
                     <Form.Control
                         onChange={this.onChange}
@@ -153,7 +151,6 @@ class UsersUpdate extends Component {
                             invalid: errors.position
                         })}
                     defaultChecked={position}
-                    // value={position}
                     >
                     <option>Działkowiec</option>
                     <option>Członek</option>

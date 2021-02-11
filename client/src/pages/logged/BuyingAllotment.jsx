@@ -9,16 +9,13 @@ import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import Title from '../../components/Title';
 // Button Style
-import  {RedButtonStyle, BlueButtonStyle } from '../constants';
+import  {RedButtonStyle, BlueButtonStyle, Information } from '../constants';
 
 const Container = styled.div`
     width: 60%;
     margin: 0 auto;
 `;
-const Span = styled.div`
-    padding-bottom: 30px;
-    color: gray;
-`
+
 class BuyingAllotment extends Component {
     constructor(props) {
         super(props)
@@ -140,7 +137,7 @@ class BuyingAllotment extends Component {
             <Wrapper>
                 <Container>
                 <Title>Kupno działki</Title>
-                <Span><i>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</i></Span>
+                <Information>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</Information>
                 <Form >
                 <Form.Group as={Row}>
                     <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>

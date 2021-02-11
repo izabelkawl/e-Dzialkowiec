@@ -34,29 +34,28 @@ class Account extends Component {
                         <Row>
                             <Col sm={{ span: 3 }} align="center" >
                                 <ListGroup>
-                                    <ListGroup.Item action  href="#link1" >
-                                        Zmień e-mail
+                                    <ListGroup.Item action href="#link1" >
+                                        Twoje dane
                                     </ListGroup.Item>
                                     <ListGroup.Item action href="#link2" >
-                                        Zmień hasło
+                                        Zmień e-mail
                                     </ListGroup.Item>
                                     <ListGroup.Item action href="#link3" >
-                                        Edytuj dane
+                                        Zmień hasło
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Col>
                             <Col sm={{ offset: 1, span: 5 }}>
                                 <Tab.Content>
                                     <Tab.Pane eventKey="#link1">
-                                        <EmailChange/>
-                                    </Tab.Pane>
-                                    <Tab.Pane eventKey="#link2">
-                                        <PasswordChange/>
-                                    </Tab.Pane>
-                                    <Tab.Pane eventKey="#link3">
                                         < DataChange/>
                                     </Tab.Pane>
-
+                                    <Tab.Pane eventKey="#link2">
+                                        <EmailChange/>
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="#link3">
+                                        <PasswordChange/>
+                                    </Tab.Pane>
                                 </Tab.Content>
                             </Col>
                         </Row>

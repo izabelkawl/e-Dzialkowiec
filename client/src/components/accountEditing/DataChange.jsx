@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById } from '../../api';
-import { Form, Button } from 'react-bootstrap';
+import api from '../../api';
+import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import Title from '../Title';
-import classnames from "classnames";
-import {BlueButtonStyle} from '../../pages/constants.jsx';
+import { Information } from '../../pages/constants';
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })`
-   
-`
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
 `
 class DataChange extends Component {
     constructor(props) {
@@ -25,12 +18,11 @@ class DataChange extends Component {
         
         this.state = {
             id: this.props.auth.user.id,
+            email: '',
             firstname: '',
             lastname: '',
             address: '',
-            phone: '',
-            password: '',
-            errors: {}
+            phone: ''
         }
     }
     componentDidMount = async () => {
@@ -46,119 +38,59 @@ class DataChange extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }
-
-    onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-    };
-
-    handleUpdateUser = e => {
-
-        e.preventDefault();
-        const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
-        const payload = { email, firstname, lastname, address, phone, password, password2 }
-
-        this.props.updateUserById(id, payload)
-
-    }
-
     render() {
-        const { errors, lastname, firstname, address, phone } = this.state;
+        const { email, lastname, firstname, address, phone } = this.state;
         return (
             <Container>
-                <Title>Edytuj dane</Title>
-                    <Form noValidate >
-                        <Form.Group >
-                            <Form.Label htmlFor="firstname">Imię</Form.Label>
-                            <Span>
-                                {errors.firstname}
-                                </Span>
+                <Title>Twoje dane</Title>
+                <Information>*Jeżeli Twoje dane osobowe uległy zmianie, zwróć się do Zarządu w wiadomości prywatnej.</Information>
+                    <Form >
+                    <Form.Group >
+                            <Form.Label htmlFor="email">Adres email:</Form.Label>
                             <Form.Control
-                                onChange={this.onChange}
-                                error={errors.firstname}
+                                id="email"
+                                type="text"
+                                value={email}
+                                readOnly
+                            />
+                        </Form.Group>
+                        <Form.Group >
+                            <Form.Label htmlFor="firstname">Imie:</Form.Label>
+                            <Form.Control
                                 id="firstname"
                                 type="text"
-                                className={classnames("", {
-                                invalid: errors.firstname
-                                })}
                                 value={firstname}
+                                readOnly
                             />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label htmlFor="lastname">Nazwisko</Form.Label>
-                            <Span>
-                                {errors.lastname}
-                                </Span>
+                            <Form.Label htmlFor="lastname">Nazwisko:</Form.Label>
                             <Form.Control
-                                onChange={this.onChange}
-                                error={errors.lastname}
                                 id="lastname"
                                 type="text"
-                                className={classnames("", {
-                                invalid: errors.lastname
-                                })}
                                 value={lastname}
+                                readOnly
                                 />
                         </Form.Group>
                         <Form.Group >
-                            <Form.Label htmlFor="address">Adres</Form.Label>
-                            <Span>
-                                {errors.address}
-                                </Span>
+                            <Form.Label htmlFor="address">Adres:</Form.Label>
                             <Form.Control
-                                onChange={this.onChange}
-                                error={errors.address}
                                 id="address"
                                 type="text"
-                                className={classnames("", {
-                                invalid: errors.address
-                                })}
                                 value={address}
+                                readOnly
                             />
                         </Form.Group>
                         <Form.Group >
-                            <Form.Label htmlFor="phone">Telefon</Form.Label>
-                            <Span>
-                                {errors.phone}
-                                </Span>
-                            <Form.Control
-                                onChange={this.onChange}
-                                error={errors.phone}
+                            <Form.Label htmlFor="phone">Telefon:</Form.Label>
+                             <Form.Control
                                 id="phone"
                                 type="text"
-                                className={classnames("", {
-                                invalid: errors.phone
-                                })}
                                 value={phone}
+                                readOnly
                             />
                         </Form.Group>
-                        <Form.Group>
-                            <Form.Label htmlFor="password">Hasło: </Form.Label >
-                            <Span>
-                                {errors.passwordincorrect}
-                                </Span>
-                            <Form.Control
-                                onChange={this.onChange}
-                                id="password"
-                                type="password"
-                                className={classnames("", {
-                                invalid: errors.passwordincorrect
-                                })}
-                            />
-                        </Form.Group>
-                        <Button 
-                            style={BlueButtonStyle}  
-                            type="submit" 
-                            onClick={this.handleUpdateUser} 
-                            className="float-right">
-                            Zapisz
-                        </Button>
+                        
                     </Form>
                 </Container>
             );
@@ -166,17 +98,13 @@ class DataChange extends Component {
     }
 
 DataChange.propTypes = {
-    updateUserById: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    errors: state.errors
+    auth: state.auth
 });
 
 export default connect(
-    mapStateToProps,
-    { updateUserById }
+    mapStateToProps
 )(DataChange);

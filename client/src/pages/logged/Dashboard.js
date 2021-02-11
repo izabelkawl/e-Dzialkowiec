@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
         return (
             <Wrapper>
-                <Tabs transition={false} defaultActiveKey="link1" id="uncontrolled-tab-example">
+                <Tabs fill transition={false} defaultActiveKey="link1" id="uncontrolled-tab-example">
               <Tab eventKey="link1" title="Aktualności" >
                 <Container>
                 <Title>Aktualności</Title>
@@ -53,12 +53,17 @@ class Dashboard extends Component {
                   <AdRodo/>
               </Container>
               </Tab>
+              <Tab eventKey="link5" title="Ustawy">
+                <Container>
+                  <Title>Ustawy</Title>
+                  <i>Upload ustaw</i>
+              </Container>
+              </Tab>
           </Tabs>
             </Wrapper >
         );
     }
 }
-
 
 const mapStateToProps = state => ({
     auth: state.auth

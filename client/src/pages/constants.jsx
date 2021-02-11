@@ -44,3 +44,9 @@ export const Span = styled.span.attrs({
     font-size: 12px;
     color: red;
 `
+
+export const Information = styled.div`
+    padding-bottom: 30px;
+    color: gray;
+    font-style: italic;
+`

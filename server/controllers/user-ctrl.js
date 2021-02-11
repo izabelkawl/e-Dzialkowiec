@@ -89,7 +89,7 @@ const updateUser = async (req, res) => {
   const fieldsToUpdate = { ...req.body };
   // pobiera password z formularza
   const password = req.body.password;
-  // znajdz jednego i porównaj z nim haasło pobrane z formulazra
+  // znajdz jednego użytkownika 
   const processedUser = await User.findOne({ _id: req.params.id });
 
   const isPasswordValid = await comparePassword(
@@ -108,12 +108,6 @@ const updateUser = async (req, res) => {
       message: "*Wypełnij puste komórki.",
     });
 
-  if (isPasswordPassed)
-    fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);
-  else {
-    fieldsToUpdate.password1 = processedUser.password2;
-    delete fieldsToUpdate.password2;
-  }
 
   for (const field in fieldsToUpdate)
     processedUser[field] = fieldsToUpdate[field];
