@@ -62,10 +62,12 @@ class FinancesInsert extends Component {
                                         return (
                                         <option key={_id} value={_id}>{number}</option>
                                         )
+                                }else{
+                                    return ""
                                 }
                                 })}
                             </Form.Control>
-                        
+                        <br></br>
                         <SelectAllotment id={this.state.id} style={BlueButtonStyle} type="submit"/>
             </Wrapper>
         )

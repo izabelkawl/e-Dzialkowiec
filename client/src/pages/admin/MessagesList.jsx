@@ -59,14 +59,18 @@ class ShowMessages extends Component {
         }
         else if(recipient === "Zarząd" ){
             return user_id
-        }
+        }else{
+          return console.log()
+      }
     })
 
     const isDupuplicate = Object.keys(MessagesTable.reduce((p,c) => (p[c] = true,p),{}));
     const Messages = isDupuplicate.map((sth, index) => {
         if( isDupuplicate[index] !== 'undefined'){
           return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
-        }
+        }else{
+          return console.log()
+      }
     })
 
     return <List>

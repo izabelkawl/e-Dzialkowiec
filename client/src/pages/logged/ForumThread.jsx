@@ -82,7 +82,9 @@ handleChangeInputCommentContent = async event => {
             <Form.Text muted>{date}</Form.Text>
           </Content>
         );
-       }
+       }else{
+        return ""
+      }
     });
     return (<div>
       <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>

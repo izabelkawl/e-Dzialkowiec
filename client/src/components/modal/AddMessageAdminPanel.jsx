@@ -74,7 +74,7 @@ onSubmit = e => {
                         invalid: errors.recipient
                     })}
                 >
-                    <option>Wybierz działkowicza..</option>
+                    <option>Wybierz działkowca..</option>
                 <UsersID/>
             </FormControl>
                 <Form.Label>Treść: </Form.Label>

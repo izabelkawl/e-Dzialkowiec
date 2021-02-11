@@ -15,30 +15,39 @@ const Container = styled.div`
     padding: 20px;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows:  3(1fr);
-    gap: 25px 25px;
+    grid-template-columns: 0.7fr 1.8fr 0.5fr;
+    grid-template-rows:  50px 2.1fr 0.4fr;
+    gap: 15px 30px;
     grid-template-areas:
-    "Content User"
-    "Content ."
-    "Content  Footer";`
+    "Image TitleSection User"
+    "Image ContentSection ."
+    "Image DateSection  Footer";
+    `
 
-const Content = styled.div`
-  display: grid;
-  grid-area: Content;
-`
-const FooterButton = styled.div`
-  display: grid;
-  grid-area: Footer;
-`
-const UserSection = styled.div`
-  display: grid;
-  grid-area: User;
-  text-align: right;
-`
-const HeaderDiv = styled.div`
-  font-size: 26px;
-`
+    const Content = styled.div`
+    grid-area: ContentSection;
+  `
+  const TitleSection = styled.div`
+    grid-area: TitleSection;
+    font-weight: bold;
+  `
+  const DateSection = styled.div`
+    grid-area: DateSection;
+  `
+  const FooterButton = styled.div`
+    grid-area: Footer;
+    text-align: right;
+  `
+  const UserSection = styled.div`
+    grid-area: User;
+    text-align: right;
+  `
+  const Image = styled.img`
+    grid-area: Image;
+    height: 240px;
+    width: 300px;
+    object-fit: cover;
+  `
 
 class DeleteNoticeboard extends Component {
   deleteNoticeboard = event => {
@@ -86,7 +95,7 @@ const NoticeBoard = () => {
     }, []);
 
     const NoticeboardList = tables.map((table) => {
-        const { _id, title, user_id, advertisement} = table;
+        const { _id, title, user_id, advertisement, image} = table;
         // Find by number, status or User
         const n = JSON.stringify({ title, user_id, advertisement })
         const search = n.includes(this.state.inputValue)
@@ -97,18 +106,20 @@ const NoticeBoard = () => {
         if(search === true){
         return (
             <Container key={_id}>
-                {/* <Image src={image}/> */}
-                <Content>
-                  <HeaderDiv>{title}</HeaderDiv>
-                  <Form.Text>{advertisement}</Form.Text>
-                  <Form.Text muted>{date}</Form.Text>
-                </Content>
-                <UserSection><Form.Text muted>{user_id}</Form.Text><hr></hr></UserSection>
-                <FooterButton>
+                <Image  src={`http://localhost:3000/${image}`}/>
+                  <TitleSection>{title}</TitleSection>
+                  
+                  <Content>{advertisement}</Content>
+                  <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
+                <UserSection>
+                  <Form.Text muted>{user_id}</Form.Text>
+                  </UserSection><FooterButton>
                   <DeleteNoticeboard id={_id}/>
                 </FooterButton>
             </Container> 
       )
+    }else{
+      return ""
     }
     });
 

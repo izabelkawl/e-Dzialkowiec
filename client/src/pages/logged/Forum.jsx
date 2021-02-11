@@ -148,7 +148,12 @@ class Forum  extends Component {
                 </FooterButton>
             </Container> 
           )
+      }else{
+
+        return ""
       }
+    }else{
+      return ""
     }
   });
   

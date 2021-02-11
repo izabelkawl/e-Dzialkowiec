@@ -22,7 +22,7 @@ const About = () => {
       <Wrapper>
         <NavBar />
         <Container>
-          <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+          <Tab.Container transition={false} id="list-group-tabs-example" defaultActiveKey="#link1">
             <Row>
               <Col sm={{ span: 2 }} align="center" >
                 <ListGroup >

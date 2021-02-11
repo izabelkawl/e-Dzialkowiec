@@ -59,7 +59,9 @@ const NotMe = styled.p`
           return <div key={_id}><MessageDate className="float-right">{date} </MessageDate> <Me>{content}</Me></div> 
           }else if(user_id === val.id && recipient === val.name){
             return <div key={_id}><MessageDate>{date} </MessageDate> <NotMe >{content}</NotMe></div> 
-          }
+          }else{
+            return ""
+        }
       
       })
     window.setInterval(function() {

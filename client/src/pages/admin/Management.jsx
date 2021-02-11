@@ -35,7 +35,7 @@ class Management extends Component {
         return (
         <Wrapper>
             <Row className="justify-content-md-center" >
-                <Tab.Container  id="list-group-tabs-example" defaultActiveKey="#link1" >
+                <Tab.Container transition={false} id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Col align="center" xs={3}>
                         <ListGroup >
                             <ListGroup.Item action href="#link1">

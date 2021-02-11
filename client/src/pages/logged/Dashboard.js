@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
         return (
             <Wrapper>
-                <Tabs  defaultActiveKey="link1" id="uncontrolled-tab-example">
+                <Tabs transition={false} defaultActiveKey="link1" id="uncontrolled-tab-example">
               <Tab eventKey="link1" title="Aktualności" >
                 <Container>
                 <Title>Aktualności</Title>

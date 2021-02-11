@@ -77,7 +77,10 @@ class Management extends Component {
                         <td><StatusDeleteBtn id={_id}/></td>
                     </tr>
                 );
+                }else{
+                    return ""
                 }
+                
         })
     
         return (

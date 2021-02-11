@@ -51,7 +51,6 @@ const Image = styled.img`
   width: 300px;
   object-fit: cover;
 `
-// tylko dla swoich zrobić
 
 class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
@@ -163,8 +162,12 @@ class NoticeBoard extends Component {
             </FooterButton>
         </Container> 
     )
-    }
+    }else{
+      return ""
   }
+  }else{
+    return ""
+}
     });
     
     return <>

@@ -30,7 +30,7 @@ class Account extends Component {
                         <Col><Button style={BlueButtonStyle} className="float-right" onClick={this.onLogoutClick} >Wyloguj</Button></Col>
                     </Row>
                     <hr></hr>
-                    <Tab.Container defaultActiveKey="#link1">
+                    <Tab.Container transition={false} defaultActiveKey="#link1">
                         <Row>
                             <Col sm={{ span: 3 }} align="center" >
                                 <ListGroup>

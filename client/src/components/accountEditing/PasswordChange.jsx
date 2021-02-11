@@ -26,8 +26,8 @@ class EmailChange extends Component {
         this.state = {
             id: this.props.auth.user.id,
             password: '',
-            password1: '',
-            password2: '',
+            passwordchanged: '',
+            passwordchanged2: '',
             errors: {}
         }
     }
@@ -60,8 +60,8 @@ class EmailChange extends Component {
     handleUpdateUser = e => {
 
         e.preventDefault();
-        const { id, email, firstname, lastname, address, phone, password, password2 } = this.state
-        const payload = { email, firstname, lastname, address, phone, password, password2 }
+        const { id, email, firstname, lastname, address, phone, password } = this.state
+        const payload = { email, firstname, lastname, address, phone, password }
 
         this.props.updateUserById(id, payload)
 
@@ -75,8 +75,8 @@ class EmailChange extends Component {
     //         lastname: this.state.lastname,
     //         address: this.state.address,
     //         phone: this.state.phone,
-    //         password1: this.state.password1,
-    //         password2: this.state.password2
+    //         password: this.state.passwordchanged,
+    //         password2: this.state.passwordchanged2
     //     };
     //     this.props.updateUserById(id, payload)
     // };

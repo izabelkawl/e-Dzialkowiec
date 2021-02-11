@@ -67,6 +67,8 @@ class Management extends Component {
     </PDFDownloadLink></td>
                 </tr>
             );
+        }else{
+            return ""
         }
         })
         return (

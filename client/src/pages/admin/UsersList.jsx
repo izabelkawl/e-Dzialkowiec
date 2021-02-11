@@ -77,6 +77,8 @@ class UsersList extends Component {
                 <td><UpdateUser id={_id} /></td>
             </tr>
             )
+        }else{
+            return ""
         }
     });
 

@@ -58,7 +58,9 @@ const NotMe = styled.p`
             return <div key={_id}><MessageDate className="float-right">{date} </MessageDate> <Me>{content}</Me></div> 
             }else if(user_id === val.id && recipient === "Zarząd"){
               return <div key={_id}><MessageDate>{date} </MessageDate> <NotMe >{content}</NotMe></div> 
-            }
+            }else{
+              return ""
+          }
         
         })
       window.setInterval(function() {
@@ -97,6 +99,8 @@ const NotMe = styled.p`
       content: this.state.content,
     };
     this.props.insertMessage(newMessage, this.props.history)
+    
+    window.location.reload()
   };
 
     render() {

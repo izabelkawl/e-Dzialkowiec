@@ -2,12 +2,6 @@ import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button, Form, Col, Row } from 'react-bootstrap';
 import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
-import styled from 'styled-components';
-
-const Container = styled.div`
-    width: 30%;
-    padding-bottom: 30px
-`
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
@@ -30,6 +24,8 @@ class DeleteAllotment extends Component {
         ) {
             api.deleteAllotmentById(this.props.id)
             window.location.reload()
+        }else{
+            return ""
         }
     }
     render() {
@@ -84,7 +80,9 @@ const Allotments = () => {
                 <td><DeleteAllotment id={_id} /></td>
             </tr>
         )
-        }
+        }else{
+            return ""
+          }
     });
 
     return  <Table striped bordered hover size="sm" responsive>

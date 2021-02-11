@@ -20,7 +20,9 @@ const ManagementList = () => {
         const { _id, firstname, lastname, position} = user;
         if( position !== "Działkowiec" ){
         return  <Card key={_id}><Card.Body><Card.Title>{position}</Card.Title><Card.Text>{firstname + ' ' + lastname}</Card.Text></Card.Body></Card>
-        } 
+        } else{
+            return ""
+        }
     });
 
     return UsersTable

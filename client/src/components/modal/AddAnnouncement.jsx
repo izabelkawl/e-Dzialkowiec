@@ -94,6 +94,7 @@ import axios from 'axios';
       .then((res) => {
         this.state.inputValue = res.data.category.image
         this.state.inputName = res.data.category.name
+        console.log(info.name);
         console.log(res.data);
         setTimeout(() => {
           setInfo(res.data.category);
