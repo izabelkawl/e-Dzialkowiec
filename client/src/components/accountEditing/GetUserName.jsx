@@ -24,7 +24,7 @@ class GetUserName extends Component {
 
     render() {
         const { firstname, lastname } = this.state
-        return <>{firstname + ' ' + lastname}</>
+        return `${firstname} ${lastname}`
     }             
 };
 

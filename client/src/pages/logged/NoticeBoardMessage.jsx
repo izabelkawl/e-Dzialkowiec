@@ -12,7 +12,7 @@ import Wrapper from '../../components/Wrapper/Wrapper';
 import Title from '../../components/Title';
 // Button Style
 import { RedButtonStyle, BlueButtonStyle, Span } from '../constants';
-import GetUserName from '../../components/accountEditing/GetUserName';
+// import GetUserName from '../../components/accountEditing/GetUserName';
 import axios from 'axios';
 const MessageContentn = styled.div`
     background-color: white;
@@ -96,24 +96,22 @@ class NoticeBoardMessage extends Component {
 
     handleShowDialog = () => {
         this.setState({ isOpen: !this.state.isOpen });
-        console.log("cliked");
       };
 
     render() {
-      const api = axios.create({
-        baseURL: 'http://localhost:3000/api',
-    })
+     
         const { errors } = this.state;
         const { user_id, title, advertisement, image } = this.state;
-        
-    const user = api.get(`/user/${user_id}`).then(res => document.getElementById("data").innerHTML= res.data.data.firstname +' '+ res.data.data.lastname)
+        const api = axios.create({
+          baseURL: 'http://localhost:3000/api',
+      })
+    api.get(`/user/${user_id}`).then(res => document.getElementById("data").innerHTML= res.data.data.firstname +' '+ res.data.data.lastname)
             return ( <Wrapper>
                         <Title>Napisz wiadomość</Title>
                         <MessageContentn>
                             
                             <Image id="myImg" src={`http://localhost:3000/${image}`} />
                             <ContentSection>
-                                
                                 <br></br>
                                 <b>{title}</b>
                                 <p id="data"></p>

@@ -131,7 +131,6 @@ class NoticeBoard extends Component {
 
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
-        console.log( <GetUserName id={user_id}/>)
         if(search === true){
         if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
         return (

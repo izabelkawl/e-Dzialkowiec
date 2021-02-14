@@ -6,14 +6,27 @@ import '../MapColors.css';
 import api from "../../api";
 import Wrapper from '../../components/Wrapper/Wrapper';
 import GetUserName from '../../components/accountEditing/GetUserName';
+import axios from 'axios';
 
 class MyGarden extends Component {
+	constructor() {
+        super()
 
+        this.state = {
+            firstname: '',
+            lastname: ''
+        }
+    }
+	
   render() {
+	
     const Mapka = () => {
     
-  const [allotments, setAllotments] = useState([]);
-    // Tooltip
+	  const [allotments, setAllotments] = useState([]);
+	  const [userss, setUsers] = useState([]);
+
+	  
+	  // Tooltip
       const tooltip = document.createElement("div");
       tooltip.classList.add("tooltip-map");
       tooltip.style.display = "none";
@@ -36,15 +49,15 @@ class MyGarden extends Component {
           return(
         tooltipData[number] = {
             'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-              'Cena': price,
-              'Status': status,
+            'Cena': price,
+            'Status': status,
         })}
         else{ 
            return(
           tooltipData[number] = {
             'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-              'Status': status,
-              'Własność': <GetUserName id={user_id}/>
+            'Status': status,
+            'Właściciel': user_id
           })
 
         }
@@ -56,37 +69,41 @@ class MyGarden extends Component {
 //Układ tooltipa
 function generateTooltipContent(provinceName) {
   const ob = tooltipData[provinceName];
+
   let html = "";
   if (ob !== undefined) { //jezeli nie ma takiej działki w bazie
       if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki są puste
           html += "<div className=\"tooltip-map-content\">";
-          for (let key in ob) {
-              if (ob.hasOwnProperty(key)) {
-				  if(key==="Własność"){
-					 let elo = <GetUserName id={ob[key]}/>
-                  html += "<p>" + key + ": <b>"+elo+"</b></p>"
-				  }else {html += "<p>" + key + ": <b>" + ob[key] + "</b></p>"}
-              }
-          }
+		  if(ob.Cena!==undefined){
+			html += `<p>`+ob.Wymiary +`</p><p>`+ob.Cena+`</p><p>`+ob.Status +`</p>`
+		  }else{
+			  
+			async function run(id) {
+				const user = await api.getUserById(id)
+					const value = user.data.data.firstname + ' '+ user.data.data.lastname
+					
+					setUsers(value);
+				}
+			run(ob.Właściciel)
+			html = `<p>`+ob.Wymiary +`</p><p>`+ob.Status +`</p><p>`+userss+`</p>`
+		  }
           html += "</div>";
           return html;
       }
-  }else{ html = "<div className=\"tooltip-map-content\">Brak danych</div>";
-  return html;}
+  }else{}
 }
-//Układ tooltipa
-
-
     // Add Event Listener and Tooltip on st8 clas items
     useEffect(() => {
+
       const requestAllotmentsList = async () => {
         const allotmentsList = await api.getAllAllotments();
         const { data } = allotmentsList;
         setAllotments(data.data);
     };
+
     requestAllotmentsList();
-    
 }, []);
+
     const paths = document.querySelectorAll('.st6');
   for (const path of paths) {
 	const json = tooltipData[path.id]
@@ -1884,6 +1901,7 @@ return(<div>
       
     return (
       <Wrapper>
+		  <p name="fname"></p>
         <Mapka />
       </Wrapper>
     )
