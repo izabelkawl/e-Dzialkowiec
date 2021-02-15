@@ -175,7 +175,7 @@ import axios from 'axios';
                 as="textarea"
                  placeholder="Treść.."
                  className={classnames("", {invalid: errors.advertisement })}
-                 rows={7}
+                 rows={4}
             />
           </Form.Group>
        

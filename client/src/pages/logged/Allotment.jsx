@@ -69,7 +69,7 @@ function generateTooltipContent(provinceName) {
       if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki są puste
           html += "<div className=\"tooltip-map-content\">";
 		  if(ob.Cena!==undefined){
-			html += `<p>Powierzchnia: <b>`+ob.Wymiary +`</b></p><p>Cena: <b>`+ob.Cena+`</b></p><p>Status: <b>`+ob.Status +`</b></p><p><i>Kliknij aby kupić</i></p>`
+			html += `<p>Powierzchnia: <b>`+ob.Wymiary +`</b></p><p>Cena: <b>`+ob.Cena+`</b></p><p>Status: <b>`+ob.Status +`</b></p><p><i>Kliknij aby zarezerwować.</i></p>`
 		  }else{
 			userss.map((user, index) => {
 				const { _id, firstname, lastname } = user
