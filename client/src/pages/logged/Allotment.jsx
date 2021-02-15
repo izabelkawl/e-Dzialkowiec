@@ -23,8 +23,7 @@ class MyGarden extends Component {
     const Mapka = () => {
     
 	  const [allotments, setAllotments] = useState([]);
-	  const [userss, setUsers] = useState([]);
-
+	  const [userss, setUsers] = useState('');
 	  
 	  // Tooltip
       const tooltip = document.createElement("div");
@@ -32,16 +31,11 @@ class MyGarden extends Component {
       tooltip.style.display = "none";
       document.body.appendChild(tooltip);
 
-      function setTooltipPos(x, y) {
-          tooltip.style.left = x + 10 + "px";
-          tooltip.style.top = y + 20 + "px";
-          if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
-              tooltip.style.left = x - tooltip.offsetWidth - 90 + "px";
-          }
-          if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
-              tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
-          }
-      }
+	  function setTooltipPos(x, y) {
+		tooltip.style.left = x + 10 + "px";
+		tooltip.style.top = y + 25 + "px";
+	
+	}
         const tooltipData = {};
         allotments.map((allotment) => {
           const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
@@ -63,7 +57,7 @@ class MyGarden extends Component {
         }
         });
     const tooltipTemplate = `
-    <h3 className="tooltip-map-title">{{number}}</h3>
+    <p>{{number}}</p>
      {{Content}}
 `;
 //Układ tooltipa
@@ -75,24 +69,21 @@ function generateTooltipContent(provinceName) {
       if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki są puste
           html += "<div className=\"tooltip-map-content\">";
 		  if(ob.Cena!==undefined){
-			html += `<p>`+ob.Wymiary +`</p><p>`+ob.Cena+`</p><p>`+ob.Status +`</p>`
+			html += `<p>Powierzchnia: <b>`+ob.Wymiary +`</b></p><p>Cena: <b>`+ob.Cena+`</b></p><p>Status: <b>`+ob.Status +`</b></p><p><i>Kliknij aby kupić</i></p>`
 		  }else{
-			  
-			async function run(id) {
-				const user = await api.getUserById(id)
-					const value = user.data.data.firstname + ' '+ user.data.data.lastname
-					
-					setUsers(value);
+			userss.map((user, index) => {
+				const { _id, firstname, lastname } = user
+				if(_id === ob.Właściciel){
+					return html = `<p>Powierzchnia: <b>`+ob.Wymiary +`</b></p><p>Status: <b>`+ob.Status +`</b></p><p>Właściciel: <b>`+firstname + ' '+ lastname +`</b></p>`
 				}
-			run(ob.Właściciel)
-			html = `<p>`+ob.Wymiary +`</p><p>`+ob.Status +`</p><p>`+userss+`</p>`
+			})
+				
 		  }
           html += "</div>";
           return html;
       }
   }else{}
 }
-    // Add Event Listener and Tooltip on st8 clas items
     useEffect(() => {
 
       const requestAllotmentsList = async () => {
@@ -100,8 +91,15 @@ function generateTooltipContent(provinceName) {
         const { data } = allotmentsList;
         setAllotments(data.data);
     };
+	const userName = async () => {
+			const userList = await api.getAllUsers()
+			const {data } = userList
+					
+			setUsers(data.data);
+			}
 
     requestAllotmentsList();
+	userName()
 }, []);
 
     const paths = document.querySelectorAll('.st6');
@@ -1901,7 +1899,6 @@ return(<div>
       
     return (
       <Wrapper>
-		  <p name="fname"></p>
         <Mapka />
       </Wrapper>
     )

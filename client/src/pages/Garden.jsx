@@ -26,9 +26,9 @@ class Garden extends Component {
 
       function setTooltipPos(x, y) {
           tooltip.style.left = x + 10 + "px";
-          tooltip.style.top = y + 20 + "px";
+          tooltip.style.top = y + 25 + "px";
           if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
-              tooltip.style.left = x - tooltip.offsetWidth - 90 + "px";
+              tooltip.style.left = x - tooltip.offsetWidth - 60 + "px";
           }
           if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
               tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
@@ -55,7 +55,7 @@ class Garden extends Component {
 	});
 	
     const tooltipTemplate = `
-	<h5 className="tooltip-map-title">{{number}}</h5>
+	<p>{{number}}</p>
      {{Content}}
 `;
 //Układ tooltipa
