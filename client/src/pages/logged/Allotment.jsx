@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import '../MapColors.css';
 import api from "../../api";
 import Wrapper from '../../components/Wrapper/Wrapper';
-import GetUserName from '../../components/accountEditing/GetUserName';
-import axios from 'axios';
 
 class MyGarden extends Component {
 	constructor() {
@@ -82,7 +80,9 @@ function generateTooltipContent(provinceName) {
           html += "</div>";
           return html;
       }
-  }else{}
+	}else{ html = "<div className=\"tooltip-map-content\">Brak danych</div>";
+	return html;}
+	return html;
 }
     useEffect(() => {
 

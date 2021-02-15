@@ -32,7 +32,9 @@ const Span = styled.span`
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
 `
-
+const Link = styled.a`
+    color: #0071BC;
+`
 class Register extends Component {
     constructor() {
         super();
@@ -232,8 +234,10 @@ class Register extends Component {
                             />
 
                         </Form.Group>
+                        <Form.Text ><Link href={'/dashboard'} className="float-right">Masz konto? Zaloguj się</Link></Form.Text>
                         <Button style={ BlueButtonStyle } variant="info" block  type="submit" >Rejestracja</Button>
-
+                        
+                        
                     </Form>
                 </Container>
             </Wrapper>

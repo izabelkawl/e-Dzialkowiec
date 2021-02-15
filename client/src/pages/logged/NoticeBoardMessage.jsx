@@ -12,8 +12,8 @@ import Wrapper from '../../components/Wrapper/Wrapper';
 import Title from '../../components/Title';
 // Button Style
 import { RedButtonStyle, BlueButtonStyle, Span } from '../constants';
-// import GetUserName from '../../components/accountEditing/GetUserName';
 import axios from 'axios';
+
 const MessageContentn = styled.div`
     background-color: white;
     padding: 20px;

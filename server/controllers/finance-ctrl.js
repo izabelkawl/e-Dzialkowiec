@@ -13,6 +13,11 @@ import validateFinanceInput from "../validation/finance.js";
       } catch (error) {
         throw new DatabaseInsertError(error.message);
       }
+      
+  return res.status(200).json({
+    success: true,
+    message: "Zoobowiązanie stworzone!",
+  });
     };
     
 const updateFinance = async (req, res) => {

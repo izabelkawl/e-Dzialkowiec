@@ -48,26 +48,39 @@ class Management extends Component {
         
         const FinancesList = () => {
             const [finances, setFinances] = useState([]);
+            const [userss, setUsers] = useState([]);
             useEffect(() => {
                 const requestFinancesList = async () => {
                     const financesList = await api.getAllFinances();
                     const { data } = financesList;
                     setFinances(data.data);
                 };
+                const userName = async () => {
+                    const userList = await api.getAllUsers()
+                    const {data } = userList
+                        
+                    setUsers(data.data);
+                    }
                 requestFinancesList();
+                userName();
             }, []);
             
-            const FinancesTable = finances.map((finance, index) => {
+            const FinancesTable = finances.slice(0).reverse().map((finance, index) => {
             const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
-            // search without id letters
-            const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
-            const search = n.includes(this.state.inputValue)
+            const username = userss.map((user, index) => {
+                const { _id, firstname, lastname } = user
+                if(_id === owner){
+                  return firstname+' ' +lastname
+                }
+              })// search without id letters
+            const n = JSON.stringify({ allotment_number,username, title, area, charge, term, status })
+            const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
             
             if(search === true){
                 return (
                     <tr key={_id}>
                         <td>{allotment_number}</td>
-                        <td>{owner}</td>
+                        <td>{username}</td>
                         <td>{title}</td>
                         <td>{area}</td>
                         <td>{charge}</td>

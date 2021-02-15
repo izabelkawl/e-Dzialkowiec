@@ -51,7 +51,7 @@ onSubmit = e => {
     <Modal
       {...rest}
       animation={false}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -83,11 +83,12 @@ onSubmit = e => {
                 onChange={this.onChange}
                 value={this.state.content}
                 error={errors.content}
-                type="text"
+                as="textarea"
                 id="content"
                 className={classnames("", {
                     invalid: errors.content
                 })}
+                rows={4}
                 />
           <Form/>
       </Modal.Body>

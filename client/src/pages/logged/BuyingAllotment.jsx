@@ -132,10 +132,11 @@ class BuyingAllotment extends Component {
             );
           }
 
-        const { number, allotment_width, allotment_length, price } = this.state;
+        const { number, allotment_width, allotment_length, price, user_id } = this.state;
         return (
             <Wrapper>
                 <Container>
+                    {user_id}
                 <Title>Kupno działki</Title>
                 <Information>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</Information>
                 <Form >

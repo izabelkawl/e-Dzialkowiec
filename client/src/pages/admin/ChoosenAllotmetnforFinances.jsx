@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import api, { insertFinance } from "../../api/index";
@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Wrapper,Span,  BlueButtonStyle, RedButtonStyle, Title } from '../constants';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 class FinancesInsert extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class FinancesInsert extends Component {
         const { id } = this.state
         const allotment = await api.getAllotmentById(id)
         const paymentdetails = await api.getPaymentdetailById('5ffa2f4e205ae300946933d7')
-
+        
         this.setState({
             number: allotment.data.data.number,
             allotment_width: allotment.data.data.allotment_width,
@@ -83,13 +84,30 @@ class FinancesInsert extends Component {
     };
 
     render() {
-        const { stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number  } = this.state;
+
+        const FinancesComponent = () => {
+            const [userss, setUsers] = useState([]);
         
-        const {  number, allotment_width, allotment_length, user_id } = this.state;
-        const { errors } = this.state;
-      
-        return (
-            <Wrapper>
+            useEffect(() => {
+              const userName = async () => {
+                  const userList = await api.getAllUsers()
+                  const {data } = userList
+                      
+                  setUsers(data.data);
+                  }
+              userName();
+          }, []);
+          const { stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number  } = this.state;
+        
+          const {  number, allotment_width, allotment_length, user_id } = this.state;
+          const { errors } = this.state;
+
+          const username = userss.map((user, index) => {
+            const { _id, firstname, lastname } = user
+            if(_id === user_id){
+           
+          return (
+            <Wrapper key={_id}>
                 <Title>Tworzenie zobowiązania</Title>
         <Form onSubmit={this.onSubmit}>
             <Form.Group>
@@ -104,6 +122,12 @@ class FinancesInsert extends Component {
             <Form.Group>
                 <Form.Label>Posiadacz: </Form.Label>
                     <Form.Control
+                        type="text"
+                        defaultValue={firstname+ ' '+ lastname}
+                        readOnly>
+                    </Form.Control>
+                    <Form.Control
+                        hidden
                         id="owner"
                         type="text"
                         defaultValue={user_id}
@@ -171,19 +195,31 @@ class FinancesInsert extends Component {
                         <option>Opłacona</option> 
                         <option>Nieopłacona</option> 
                     </Form.Control>
-            </Form.Group>
-                <Button style={BlueButtonStyle} type="submit">Wyślij</Button>{' '}
-                <Button style={RedButtonStyle} href={'/admin/finances/list'}>Zamknij</Button>
-                </Form>
+            </Form.Group><Button style={RedButtonStyle} href={'/admin/finances/list'}>Powrót</Button>
+            {' '}
+                <Button style={BlueButtonStyle} type="submit">Stwórz</Button>
+                 </Form>
             </Wrapper>
         )
+          }
+  })
+  return username
+        }
+
+        // useEffect(() => {
+        //     const userName = async () => {
+        //         const userList = await api.getAllUsers()
+        //         const {data } = userList
+        //         setUsers(data.data);
+        //         }
+
+        //     userName();
+        // }, []);
+        
+        return <FinancesComponent/>
     }
 }
 
-FinancesInsert.propTypes = {
-    insertFinance: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
     errors: state.errors

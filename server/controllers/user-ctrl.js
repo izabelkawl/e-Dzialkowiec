@@ -168,7 +168,7 @@ const updateUserAdmin = async (req, res) => {
   });
 };
 
-const updatePassword = async (req, res) => {
+const updateUserPassword = async (req, res) => {
 
   const fieldsToUpdate = { ...req.body };
   const password = req.body.password;
@@ -257,7 +257,7 @@ const getUsers = async (req, res) => {
 };
 
 export default {
-  updatePassword ,
+  updateUserPassword ,
   createUser,
   updateUserAdmin,
   loginUser,

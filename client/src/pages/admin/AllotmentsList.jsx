@@ -50,22 +50,36 @@ class AllotmentsList extends Component {
     render() {
 const Allotments = () => {
     const [allotments, setAllotments] = useState([]);
+    const [userss, setUsers] = useState([]);
     useEffect(() => {
         const requestAllotmentsList = async () => {
             const allotmentsList = await api.getAllAllotments();
             const { data } = allotmentsList;
             setAllotments(data.data);
-        };
+        }; 
+        const userName = async () => {
+            const userList = await api.getAllUsers()
+            const {data } = userList
+                
+            setUsers(data.data);
+            }
+  
         requestAllotmentsList();
+        userName();
     }, []); 
 
     const AllotmentsTable = allotments.map((allotment, index) => {
         
         const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
-
+        const username = userss.map((user, index) => {
+            const { _id, firstname, lastname } = user
+            if( _id === user_id){
+              return firstname+' ' +lastname
+            }
+          })
         // Find by number, status or User
-        const n = JSON.stringify({ number, status, user_id })
-        const search = n.includes(this.state.inputValue)
+        const n = JSON.stringify({ number, status })
+        const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
         
         if(search === true){
         return (
@@ -75,8 +89,8 @@ const Allotments = () => {
                 <td>{allotment_length}</td>
                 <td>{price}</td>
                 <td>{status}</td>
-                <td>{user_id}</td>
-                <td><UpdateAllotment id={_id} /></td>
+                <td>{user_id !== "Brak"? username : user_id }</td>
+                <td><UpdateAllotment id={_id} value={username}/></td>
                 <td><DeleteAllotment id={_id} /></td>
             </tr>
         )

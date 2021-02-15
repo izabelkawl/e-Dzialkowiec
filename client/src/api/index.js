@@ -98,6 +98,18 @@ export const updateUserByIdA = (id, payload) => dispatch => {
             })
         );
 }
+// Update user password
+export const updateUserPassword = (id, payload) => dispatch => {
+    api
+        .put(`/userpassword/${id}`, payload)
+        .then(res => window.alert(`Zaaktualizowano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 // Delete user by id
 export const deleteUserById = id => api.delete(`/user/${id}`)
 
@@ -385,6 +397,7 @@ const apis = {
     setUserLoading,
     logoutUser,
     updateUserByIdA,
+    updateUserPassword,
 
     getAllUsers,
     updateUserById,

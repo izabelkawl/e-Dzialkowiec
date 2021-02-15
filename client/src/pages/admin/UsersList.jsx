@@ -61,7 +61,7 @@ class UsersList extends Component {
         const { _id, email, firstname, lastname, address, phone, position } = user;
 
         const n = JSON.stringify({ email, firstname, lastname, address, phone, position })
-        const search = n.includes(this.state.inputValue)
+        const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
         
         if(search === true){
         return (

@@ -41,8 +41,8 @@ class Management extends Component {
             const logged = this.props.auth.user.id
             // search without id letters
             const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
-            const search = n.includes(this.state.inputValue)
-            
+            const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
+ 
             if(search === true && owner === logged){
             return (
                 <tr key={_id}>

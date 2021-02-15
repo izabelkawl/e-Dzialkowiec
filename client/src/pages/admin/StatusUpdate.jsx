@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -58,8 +58,24 @@ class StatusUpdate extends Component {
         }
         
     render() {
+        const FinancesComponent = () => {
+            const [userss, setUsers] = useState([]);
+        
+            useEffect(() => {
+              const userName = async () => {
+                  const userList = await api.getAllUsers()
+                  const {data } = userList
+                      
+                  setUsers(data.data);
+                  }
+              userName();
+          }, []);
+
+          const username = userss.map((user, index) => {
+            const { _id, firstname, lastname } = user
+            if(_id === this.state.owner){
         return (
-            <Wrapper>
+            <Wrapper key={_id}>
                 <Title>Zmień status</Title>
                  <Form >
             <Form.Group as={Row}>
@@ -78,7 +94,7 @@ class StatusUpdate extends Component {
                  <Form.Label column sm="4">Właściciel działki: </Form.Label>
                     <Col sm="8"> <Form.Control
                         onChange={this.onChange}
-                        value={this.state.owner}
+                        value={firstname+ ' '+ lastname}
                         id="owner"
                         type="text"
                         readOnly
@@ -163,14 +179,21 @@ class StatusUpdate extends Component {
             </Form.Control>
             </Col>
             </Form.Group>
-            <Button  style={RedButtonStyle} href={'/admin/finances/list'}>Zamknij</Button>{' '}
+            <Button  style={RedButtonStyle} href={'/admin/finances/list'}>Powrót</Button>{' '}
            
         <Button style={BlueButtonStyle} onClick={this.handleUpdateFinance}>Zapisz</Button>
         </Form>
         </Wrapper>
         )
+          }
+  })
+  return username
+        }
+                
+        return <FinancesComponent/>
     }
 }
+
 
 StatusUpdate.propTypes = {
     updateFinanceById: PropTypes.func.isRequired,

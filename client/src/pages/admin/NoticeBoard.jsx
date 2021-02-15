@@ -83,6 +83,7 @@ updateInputValue = (evt) => {
 
 const NoticeBoard = () => {
     const [tables, setNoticeboards] = useState([]);
+    const [userss, setUsers] = useState([]);
 
     useEffect(() => {
         const requestNoticeboardsList = async () => {
@@ -90,15 +91,28 @@ const NoticeBoard = () => {
             const { data } = tablesList;
             setNoticeboards(data.data);
         };
-
+        const userName = async () => {
+          const userList = await api.getAllUsers()
+          const {data } = userList
+              
+          setUsers(data.data);
+          }
         requestNoticeboardsList();
+        userName();
     }, []);
 
     const NoticeboardList = tables.map((table) => {
         const { _id, title, user_id, advertisement, image} = table;
+        const username = userss.map((user, index) => {
+          const { _id, firstname, lastname } = user
+          if(_id === user_id){
+            return firstname+' ' +lastname
+          }
+        })
         // Find by number, status or User
-        const n = JSON.stringify({ title, user_id, advertisement })
-        const search = n.includes(this.state.inputValue)
+        const n = JSON.stringify({ title, username, advertisement })
+        const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
+
         // Date
         const timestamp = _id.toString().substring(0,8);
         const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
@@ -112,7 +126,7 @@ const NoticeBoard = () => {
                   <Content>{advertisement}</Content>
                   <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
                 <UserSection>
-                  <Form.Text muted>{user_id}</Form.Text>
+                  <Form.Text muted>{username}</Form.Text>
                   </UserSection><FooterButton>
                   <DeleteNoticeboard id={_id}/>
                 </FooterButton>

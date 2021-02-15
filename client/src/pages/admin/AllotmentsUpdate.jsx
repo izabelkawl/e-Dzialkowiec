@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,6 +7,7 @@ import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 import UsersID from './UsersID';
 import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
+import GetUserName from '../../components/accountEditing/GetUserName';
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -58,6 +59,19 @@ class AllotmentsUpdate extends Component {
     }
 
     render() {
+
+        const Allotments = () => {
+            const [userss, setUsers] = useState([]);
+            useEffect(() => {
+                const userName = async () => {
+                    const userList = await api.getAllUsers()
+                    const {data } = userList
+                        
+                    setUsers(data.data);
+                    }
+                userName();
+            }, []); 
+
         const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
         
         return (
@@ -138,10 +152,22 @@ class AllotmentsUpdate extends Component {
                         as="select"
                         className={classnames("", {
                         invalid: errors.user_id
-                        })}>
-                        <option hidden >{user_id}</option>
-                        <option >Brak</option>
-                        <UsersID/>
+                        })}
+                        
+                        >
+                        {status === "Wolna" ? <option>Brak</option> :
+                    userss.map((option) => {
+                        const {_id, firstname, lastname } = option
+                        if( user_id === _id){
+                            return <option  key={_id} value={_id} hidden>{firstname+' '+ lastname }</option>
+                        } 
+                    })}
+                     {status === "Wolna" ? <option hidden>Brak</option> :
+                    userss.map((option) => {
+                        const {_id, firstname, lastname } = option
+                    return <option  key={_id} value={_id} >{firstname+' '+ lastname }</option>
+                    }) 
+                }
                     </Form.Control>
                     <br></br>
                     <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
@@ -149,6 +175,8 @@ class AllotmentsUpdate extends Component {
                     <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
             </Wrapper>
         )
+                }
+                return <Allotments/>
     }
 }
 

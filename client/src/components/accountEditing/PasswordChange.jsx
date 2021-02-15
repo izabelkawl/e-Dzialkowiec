@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById } from '../../api';
+import api, { updateUserById, updateUserPassword } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ const Span = styled.span.attrs({
 })`
     color: red;
 `
-class EmailChange extends Component {
+class PasswordChange extends Component {
     constructor(props) {
         super(props)
 
@@ -60,12 +60,13 @@ class EmailChange extends Component {
     handleUpdateUser = e => {
 
         e.preventDefault();
-        const { id, email, firstname, lastname, address, phone, password } = this.state
-        const payload = { email, firstname, lastname, address, phone, password }
+        const { id, email, firstname, lastname, address, phone } = this.state
+        const payload = { email, firstname, lastname, address, phone }
 
         this.props.updateUserById(id, payload)
 
     }
+    
     // onSubmit = e => {
     //     const { id } = this.state
     //     e.preventDefault();
@@ -78,7 +79,7 @@ class EmailChange extends Component {
     //         password: this.state.passwordchanged,
     //         password2: this.state.passwordchanged2
     //     };
-    //     this.props.updateUserById(id, payload)
+    //     this.props.updateUserPassword(id, payload)
     // };
 
     render() {
@@ -137,8 +138,9 @@ class EmailChange extends Component {
             );
         }
     }
-EmailChange.propTypes = {
+PasswordChange.propTypes = {
     updateUserById: PropTypes.func.isRequired,
+    updateUserPassword: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -150,5 +152,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, updateUserById }
-)(EmailChange);
+    { logoutUser, updateUserById, updateUserPassword }
+)(PasswordChange);

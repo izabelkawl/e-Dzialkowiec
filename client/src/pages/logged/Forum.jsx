@@ -9,7 +9,6 @@ import Wrapper from '../../components/Wrapper/Wrapper'
 import  {RedButtonStyle, BlueButtonStyle } from '../constants'
 import Title from '../../components/Title'
 import AddThread from '../../components/modal/AddThread';
-import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Container = styled.div`
     background-color: white;
@@ -101,36 +100,49 @@ class Forum  extends Component {
 
     const [swt, setSwt] = React.useState(true);
     const [forums, setForums] = useState([]);
-   
+    const [userss, setUsers] = useState([]);
+
     useEffect(() => {
       const requestForumsList = async () => {
           const forumsList = await api.getAllForums();
           const { data } = forumsList;
           setForums(data.data);
       };
-
+      const userName = async () => {
+          const userList = await api.getAllUsers()
+          const {data } = userList
+              
+          setUsers(data.data);
+          }
       requestForumsList();
+      userName();
   }, []);
 
   const ForumsList = forums.slice(0).reverse().map((forum) => {
       const { _id, title, user_id, content } = forum;
 
+      const username = userss.map((user, index) => {
+        const { _id, firstname, lastname } = user
+        if(_id === user_id){
+          return firstname+' ' +lastname
+        }
+      })
       // Find by number, status or User
-      const n = JSON.stringify({ title, user_id, content })
-      const search = n.includes(this.state.inputValue)
+      const n = JSON.stringify({ title, username, content })
+      const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
 
       const timestamp = _id.toString().substring(0,8);
       const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
       
       
       if(search === true){
-      if( swt===false && user_id === this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname){
+      if( swt===false && user_id === this.props.auth.user.id){
       return (
         <Container key={_id}>
            <TitleSection>{title}</TitleSection>
             <Content>{content}</Content>
             <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
-            <UserSection><Form.Text muted><GetUserName id={user_id}/></Form.Text></UserSection>
+            <UserSection><Form.Text muted>{username}</Form.Text></UserSection>
             <FooterButton>
               <DeleteForum id={_id}/>{' '}
               <UpdateForum id={_id}/>
@@ -143,7 +155,7 @@ class Forum  extends Component {
                 <TitleSection>{title}</TitleSection>
                 <Content>{content}</Content>
                 <DateSection><Form.Text muted>{date}</Form.Text></DateSection>
-                <UserSection><Form.Text muted><GetUserName id={user_id}/></Form.Text></UserSection>
+                <UserSection><Form.Text muted>{username}</Form.Text></UserSection>
                 <FooterButton>
                   <UpdateForum id={_id}/>
                 </FooterButton>
