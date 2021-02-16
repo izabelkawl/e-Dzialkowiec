@@ -8,6 +8,7 @@ import validateRegisterInput from "../validation/register.js";
 import validateLoginInput from "../validation/login.js";
 import validatePassword from  "../validation/password.js";
 import validateUpdateUser from "../validation/updateUser.js";
+
 import isEmpty from "is-empty";
 //same
 
@@ -168,51 +169,78 @@ const updateUserAdmin = async (req, res) => {
   });
 };
 
-const updateUserPassword = async (req, res) => {
+const updateUserEmail = async (req, res) => {
 
   const fieldsToUpdate = { ...req.body };
   const password = req.body.password;
   const processedUser = await User.findOne({ _id: req.params.id });
+
   const isPasswordValid = await comparePassword(
     password,
     processedUser.password
   );
 
-  if (!isPasswordValid)
+  fieldsToUpdate.password = await hashPassword( fieldsToUpdate.password );
+  
+  if (!isPasswordValid){
     return res
       .status(400)
-      .json({ passwordincorrect: "*Nieprawidłowe hasło" });
-
-  const isPasswordPassed =
-    !!fieldsToUpdate?.password1?.length && fieldsToUpdate?.password2?.length;
-  const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
-
-  if (isPasswordPassed)
-    fieldsToUpdate.password1 = await hashPassword1(fieldsToUpdate.password1);
-  else {
-    fieldsToUpdate.password1 = processedUser.password2;
-    delete fieldsToUpdate.password2;
+      .json({ passwordincorrectemail: "*Nieprawidłowe hasło" });
   }
-
+      
   for (const field in fieldsToUpdate)
-    processedUser[field] = fieldsToUpdate[field];
-
-  try {
-    await processedUser.save();
-  } catch (error) {
-    console.log(error);
-
-    return res.status(400).json({
-      success: false,
-      id: processedUser._id,
-      message: "*Aktualizacja nie powiodła się!",
-    });
-  }
-
+  processedUser[field] = fieldsToUpdate[field];
+  
+    try {
+      processedUser.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
   return res.status(200).json({
     success: true,
     id: processedUser._id,
-    message: "*Aktualizacja powiodła się!",
+    message: "*Aktualizacja powiodła się!"
+  });
+};
+
+const updateUserPassword = async (req, res) => {
+ 
+  const fieldsToUpdate = { ...req.body };
+  const password = req.body.password;
+  const passwordchange = req.body.passwordchange;
+  const passwordchange2 = req.body.passwordchange2;
+
+  const { errors, isValid } = validatePassword(fieldsToUpdate);
+  
+  const processedUser = await User.findOne({ _id: req.params.id });
+
+  if (!isValid) return res.status(400).json(errors);
+
+  const isPasswordValid = await comparePassword(
+    password,
+    processedUser.password
+  );
+
+  fieldsToUpdate.password = await hashPassword( passwordchange );
+  
+  if (!isPasswordValid){
+    return res
+      .status(400)
+      .json({ passwordincorrectpassword: "*Nieprawidłowe hasło" });
+  }
+      
+  for (const field in fieldsToUpdate)
+  processedUser[field] = fieldsToUpdate[field];
+  
+    try {
+      processedUser.save();
+    } catch (error) {
+      throw new DatabaseInsertError(error.message);
+    }
+  return res.status(200).json({
+    success: true,
+    id: processedUser._id,
+    message: "*Aktualizacja powiodła się!"
   });
 };
 
@@ -257,6 +285,7 @@ const getUsers = async (req, res) => {
 };
 
 export default {
+  updateUserEmail,
   updateUserPassword ,
   createUser,
   updateUserAdmin,

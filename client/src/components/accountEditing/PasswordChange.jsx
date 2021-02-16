@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById, updateUserPassword } from '../../api';
+import api, { updateUserPassword } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -26,12 +26,16 @@ class PasswordChange extends Component {
         this.state = {
             id: this.props.auth.user.id,
             password: '',
-            passwordchanged: '',
-            passwordchanged2: '',
+            passwordchange: '',
+            passwordchange2: '',
             errors: {}
         }
     }
     
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+  
     componentDidMount = async () => {
         const { id } = this.state
         const user = await api.getUserById(id)
@@ -58,88 +62,81 @@ class PasswordChange extends Component {
     };
 
     handleUpdateUser = e => {
-
+        const { id } = this.state
         e.preventDefault();
-        const { id, email, firstname, lastname, address, phone } = this.state
-        const payload = { email, firstname, lastname, address, phone }
-
-        this.props.updateUserById(id, payload)
+        const userData = {
+            
+            password: this.state.password,
+            passwordchange: this.state.passwordchange,
+            passwordchange2: this.state.passwordchange2
+        };
+        
+        console.log('1: '+this.state.password)
+        console.log('1: '+this.state.passwordchange)
+        console.log('1: '+this.state.passwordchange2)
+        this.props.updateUserPassword(id, userData)
 
     }
-    
-    // onSubmit = e => {
-    //     const { id } = this.state
-    //     e.preventDefault();
-    //     const payload = {
-    //         email: this.state.email,
-    //         firstname: this.state.firstname,
-    //         lastname: this.state.lastname,
-    //         address: this.state.address,
-    //         phone: this.state.phone,
-    //         password: this.state.passwordchanged,
-    //         password2: this.state.passwordchanged2
-    //     };
-    //     this.props.updateUserPassword(id, payload)
-    // };
 
     render() {
-        const { errors} = this.state;
+        const { errors } = this.state;
         return (
                 <Container>
-                    <Title>Zmiana hasła</Title>
+                      <Title>Zmiana hasła</Title>
                         <Form>
                         <Form.Group>
                             <Form.Label htmlFor="password">Obecne Hasło: </Form.Label >
                             <Span> {errors.password}
-                                {errors.passwordincorrect}
+                                {errors.passwordincorrectpassword}
                             </Span>
                             <Form.Control
                                 onChange={this.onChange}
                                 id="password"
                                 type="password"
                                 className={classnames("", {
-                                    invalid:  errors.passwordincorrect
+                                    invalid:  errors.password,
+                                    invalid: errors.passwordincorrectpassword
                                 })}
                             />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label htmlFor="password1">Nowe hasło:</Form.Label>
+                            <Form.Label htmlFor="passwordchange">Nowe hasło:</Form.Label>
                             <Span>
-                                    {errors.password1}
+                                    {errors.passwordchange}
                                 </Span>
                                 <Form.Control
                                     onChange={this.onChange}
-                                    error={errors.password1}
-                                    id="password1"
+                                    error={errors.passwordchange}
+                                    id="passwordchange"
                                     type="password"
                                     className={classnames("", {
-                                        invalid: errors.password1
+                                        invalid: errors.passwordchange
                                     })}
                                 />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label htmlFor="password2">Powtórz hasło:</Form.Label>
+                            <Form.Label htmlFor="passwordchange2">Powtórz hasło:</Form.Label>
                             <Span>
-                                    {errors.password2}
+                                    {errors.passwordchange2}
                                 </Span>
                                 <Form.Control
                                     onChange={this.onChange}
-                                    error={errors.password2}
-                                    id="password2"
+                                    error={errors.passwordchange2}
+                                    id="passwordchange2"
                                     type="password"
                                     className={classnames("", {
-                                        invalid: errors.password2
+                                        invalid: errors.passwordchange2
                                     })}
                                 />
+                                
                         </Form.Group>
-                        <Button type="submit" style={BlueButtonStyle} onClick={this.handleUpdateUser} className="float-right">Zapisz</Button>
+                        <Button style={BlueButtonStyle} type="submit"  className="float-right" onClick={this.handleUpdateUser} >Zapisz</Button>
                     </Form>
                 </Container>
-            );
-        }
+        );
     }
+}
 PasswordChange.propTypes = {
-    updateUserById: PropTypes.func.isRequired,
     updateUserPassword: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -152,5 +149,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, updateUserById, updateUserPassword }
+    { logoutUser, updateUserPassword }
 )(PasswordChange);

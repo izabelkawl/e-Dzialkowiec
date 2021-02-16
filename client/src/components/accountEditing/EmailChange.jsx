@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateUserById } from '../../api';
+import api, { updateUserEmail } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -31,6 +31,10 @@ class EmailChange extends Component {
         }
     }
     
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+  
     componentDidMount = async () => {
         const { id } = this.state
         const user = await api.getUserById(id)
@@ -40,8 +44,10 @@ class EmailChange extends Component {
             firstname: user.data.data.firstname,
             lastname: user.data.data.lastname,
             address: user.data.data.address,
-            phone: user.data.data.phone
+            phone: user.data.data.phone,
+            password: user.data.data.password
         })
+        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -57,12 +63,15 @@ class EmailChange extends Component {
     };
 
     handleUpdateUser = e => {
-
+        const { id } = this.state
         e.preventDefault();
-        const { id, email, firstname, lastname, address, phone, password} = this.state
-        const payload = { email, firstname, lastname, address, phone, password}
+        const userData = {
+            
+            email: this.state.email,
+            password: this.state.password
+        };
 
-        this.props.updateUserById(id, payload)
+        this.props.updateUserEmail(id, userData)
 
     }
 
@@ -91,14 +100,14 @@ class EmailChange extends Component {
                         <Form.Group>
                             <Form.Label htmlFor="password">Hasło: </Form.Label >
                             <Span>
-                                {errors.passwordincorrect}
+                                {errors.passwordincorrectemail}
                             </Span>
                             <Form.Control
                                 onChange={this.onChange}
                                 id="password"
                                 type="password"
                                 className={classnames("", {
-                                    invalid: errors.passwordincorrect
+                                    invalid: errors.passwordincorrectemail
                                 })}
                             />
                         </Form.Group>
@@ -109,7 +118,7 @@ class EmailChange extends Component {
     }
 }
 EmailChange.propTypes = {
-    updateUserById: PropTypes.func.isRequired,
+    updateUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -121,5 +130,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, updateUserById }
+    { logoutUser, updateUserEmail }
 )(EmailChange);
