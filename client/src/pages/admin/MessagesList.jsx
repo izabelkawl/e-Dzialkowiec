@@ -70,7 +70,7 @@ class ShowMessages extends Component {
         if( isDupuplicate[index] !== 'undefined'){
           return <ShowMessages id={isDupuplicate[index]} key={index}>{isDupuplicate[index]}</ShowMessages>
         }else{
-          return console.log()
+          return null
       }
     })
 

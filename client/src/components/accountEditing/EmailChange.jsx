@@ -76,7 +76,7 @@ class EmailChange extends Component {
     }
 
     render() {
-        const { errors, email } = this.state;
+        const { errors } = this.state;
         return (
                 <Container>
                     <Title>Zmiana adresu email</Title>

@@ -42,7 +42,7 @@ const ActList = () => {
   const ActsTable = acts.slice(0).reverse().map((act) => {
       const { _id, name, actfile} = act;
       return <tr key={_id}> 
-        <td><a href={'http://localhost:3000/'+actfile} target="_blank">{name}</a></td>
+        <td><a href={'http://localhost:3000/'+actfile} target="_blank" rel="noopener noreferrer">{name}</a></td>
         <td><DeleteAct id={_id} /></td>
       </tr>
   

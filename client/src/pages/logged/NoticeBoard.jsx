@@ -134,7 +134,7 @@ class NoticeBoard extends Component {
           const { _id, firstname, lastname } = user
           if(_id === user_id){
             return firstname+' ' +lastname
-          }
+          }else {return null}
         })
         
       const n = JSON.stringify({ title, username, advertisement })

@@ -73,7 +73,7 @@ function generateTooltipContent(provinceName) {
 				const { _id, firstname, lastname } = user
 				if(_id === ob.Właściciel){
 					return html = `<p>Powierzchnia: <b>`+ob.Wymiary +`</b></p><p>Status: <b>`+ob.Status +`</b></p><p>Właściciel: <b>`+firstname + ' '+ lastname +`</b></p>`
-				}
+				}else {return null}
 			})
 				
 		  }

@@ -2,11 +2,9 @@ import React, { useState, useEffect, Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import api, { insertFinance } from "../../api/index";
-import PropTypes from "prop-types";
 import { Form }from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Wrapper,Span,  BlueButtonStyle, RedButtonStyle, Title } from '../constants';
-import GetUserName from '../../components/accountEditing/GetUserName';
 
 class FinancesInsert extends Component {
     constructor(props) {
@@ -202,6 +200,7 @@ class FinancesInsert extends Component {
             </Wrapper>
         )
           }
+          else {return null}
   })
   return username
         }

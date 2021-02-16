@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
-import UsersID from './UsersID';
 import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
-import GetUserName from '../../components/accountEditing/GetUserName';
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -160,7 +158,7 @@ class AllotmentsUpdate extends Component {
                         const {_id, firstname, lastname } = option
                         if( user_id === _id){
                             return <option  key={_id} value={_id} hidden>{firstname+' '+ lastname }</option>
-                        } 
+                        } else {return null}
                     })}
                      {status === "Wolna" ? <option hidden>Brak</option> :
                     userss.map((option) => {

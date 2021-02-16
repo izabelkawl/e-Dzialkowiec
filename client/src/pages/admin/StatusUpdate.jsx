@@ -185,7 +185,7 @@ class StatusUpdate extends Component {
         </Form>
         </Wrapper>
         )
-          }
+          }else {return null}
   })
   return username
         }

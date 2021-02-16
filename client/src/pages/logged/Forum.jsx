@@ -125,7 +125,7 @@ class Forum  extends Component {
         const { _id, firstname, lastname } = user
         if(_id === user_id){
           return firstname+' ' +lastname
-        }
+        }else {return null}
       })
       // Find by number, status or User
       const n = JSON.stringify({ title, username, content })

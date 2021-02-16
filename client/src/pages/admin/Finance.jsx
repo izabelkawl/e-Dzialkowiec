@@ -72,6 +72,7 @@ class Management extends Component {
                 if(_id === owner){
                   return firstname+' ' +lastname
                 }
+                else {return null}
               })// search without id letters
             const n = JSON.stringify({ allotment_number,username, title, area, charge, term, status })
             const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())

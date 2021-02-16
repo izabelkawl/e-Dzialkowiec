@@ -68,7 +68,7 @@ class Management extends Component {
                 </tr>
             );
         }else{
-            return ""
+            return null
         }
         })
         return (
@@ -81,12 +81,10 @@ class Management extends Component {
                 <th>Należność</th>
                 <th>Termin</th>
                 <th>Status</th>
-                <th></th>
+                <th>Faktura</th>
             </tr>
         </thead>
-        <tbody>
-                {FinancesTable}
-        </tbody>
+        <tbody>{FinancesTable}</tbody>
     </Table>)
     }
         return ( <> 

@@ -91,8 +91,7 @@ class PasswordChange extends Component {
                                 id="password"
                                 type="password"
                                 className={classnames("", {
-                                    invalid:  errors.password,
-                                    invalid: errors.passwordincorrectpassword
+                                    invalid:  errors.password
                                 })}
                             />
                         </Form.Group>

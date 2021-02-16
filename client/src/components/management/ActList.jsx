@@ -1,29 +1,6 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../../api";
-import { Button, Form, Table } from 'react-bootstrap';
-import { BlueButtonStyle, RedButtonStyle, Span } from '../../pages/constants';
-import axios from 'axios';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  width: 50%;
-`
-class DeleteAct extends Component {
-  deleteAct = event => {
-      event.preventDefault()
-      if (
-          window.confirm(
-              `Czy na pewno chcesz usunąć tą ustawę?`,
-          )
-      ) {
-          api.deleteActById(this.props.id)
-          window.location.reload()
-      }
-  }
-  render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteAct}>Usuń</Button>
-  }
-}
+import { Table } from 'react-bootstrap';
 
 const ActList = () => {
     
@@ -42,7 +19,7 @@ const ActList = () => {
   const ActsTable = acts.slice(0).reverse().map((act) => {
       const { _id, name, actfile} = act;
       return <tr key={_id}> 
-        <td><a href={'http://localhost:3000/'+actfile} target="_blank">{name}</a></td>
+        <td><a href={'http://localhost:3000/'+actfile} target="_blank" rel="noopener noreferrer">{name}</a></td>
       </tr>
   
   });
