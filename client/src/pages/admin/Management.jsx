@@ -8,7 +8,7 @@ import AddAnnouncementAdmin from '../../components/modal/AddAnnouncementAdmin';
 import EditAddress from '../../components/management/EditAddress'
 import EditDescription from "../../components/management/EditDescription";
 import EditRodo from '../../components/management/EditRodo'
-
+import EditAct from '../../components/management/EditAct'
 const Wrapper = styled.div`
     width: 80%;
     margin: 0 auto;
@@ -47,6 +47,9 @@ class Management extends Component {
                             <ListGroup.Item action href="#link3" >
                                 Ogłoszenia zarządu
                                 </ListGroup.Item>
+                            <ListGroup.Item action href="#link6" >
+                                Ustawy
+                                </ListGroup.Item>
                             <ListGroup.Item action href="#link4">
                                 RODO
                                 </ListGroup.Item>
@@ -79,6 +82,10 @@ class Management extends Component {
                                 <Tab.Pane eventKey="#link5">
                                     <Title>Adres</Title>
                                         <EditAddress/>
+                                            </Tab.Pane>
+                                <Tab.Pane eventKey="#link6">
+                                    <Title>Ustawy</Title>
+                                        <EditAct/>
                                             </Tab.Pane>
                             </Tab.Content>
                         </Col>

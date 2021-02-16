@@ -94,7 +94,6 @@ class EmailChange extends Component {
                                 className={classnames("", {
                                     invalid: errors.email
                                 })}
-                                value={email}
                                 />
                         </Form.Group>
                         <Form.Group>

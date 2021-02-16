@@ -400,8 +400,25 @@ export const insertImage = (imageData, history) => dispatch => {
             })
         );
 };
+// Act
+export const insertAct = (actData, history) => dispatch => {
+    api
+        .post("/act", actData)
+        .then(res => window.alert(`Dodano pomyślnie!`))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                message: err.response.data.errors,
+            })
+        );
+};
+export const getAllActs = () => api.get(`/acts`)
+export const deleteActById = id => api.delete(`/act/${id}`)
 const apis = {
     insertImage,
+    insertAct,
+    getAllActs,
+    deleteActById,
     
     registerUser,
     loginUser,

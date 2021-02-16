@@ -8,6 +8,7 @@ import AdRodo from '../../components/management/AdRodo'
 import Title from '../../components/Title'
 import { Tab, Tabs, CardColumns } from 'react-bootstrap';
 import ManagementList from '../../components/management/ManagementList';
+import ActList from '../../components/management/ActList';
 
 const Wrapper = styled.div` 
     width: 70vw;
@@ -32,6 +33,12 @@ class Dashboard extends Component {
                    <AdList/>
                 </Container>
               </Tab>
+              <Tab eventKey="link5" title="Ustawy">
+                <Container>
+                  <Title>Ustawy</Title>
+                  <ActList/>
+              </Container>
+              </Tab>
               <Tab eventKey="link2" title="O nas">
               <Container>
               <Title>O nas</Title>
@@ -53,12 +60,7 @@ class Dashboard extends Component {
                   <AdRodo/>
               </Container>
               </Tab>
-              <Tab eventKey="link5" title="Ustawy">
-                <Container>
-                  <Title>Ustawy</Title>
-                  <i>Upload ustaw</i>
-              </Container>
-              </Tab>
+              
           </Tabs>
             </Wrapper >
         );

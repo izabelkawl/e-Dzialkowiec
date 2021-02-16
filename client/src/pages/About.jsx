@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup,  CardColumns } from 'react-bootstrap';
 import NavBar from '../components/navigation/NavBar';
-import Title from '../components/Title'
+import Title from '../components/Title';
 import ManagementList from '../components/management/ManagementList';
-import AdList from '../components/management/AdList'
+import AdList from '../components/management/AdList';
 import AdDescription from '../components/management/AdDescription'
-import AdRodo from '../components/management/AdRodo'
+import AdRodo from '../components/management/AdRodo';
+import ActList from '../components/management/ActList';
+
 const Wrapper = styled.div`
   min-width: 100vh;
 `;
@@ -28,7 +30,10 @@ const About = () => {
                 <ListGroup >
                 <ListGroup.Item action href="#link1">
                     Aktualności
-              </ListGroup.Item>
+                      </ListGroup.Item>
+              <ListGroup.Item action href="#link5" >
+                    Ustawy
+                  </ListGroup.Item>
                   <ListGroup.Item action href="#link2"  >
                     O nas
               </ListGroup.Item>
@@ -61,6 +66,10 @@ const About = () => {
                     <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>
                   <AdRodo/>
                   </Tab.Pane>
+                  <Tab.Pane eventKey="#link5">
+                    <Title>Ustawy</Title>
+                        <ActList/>
+                            </Tab.Pane>
                 </Tab.Content>
               </Col>
             </Row>

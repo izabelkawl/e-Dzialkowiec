@@ -71,9 +71,6 @@ class PasswordChange extends Component {
             passwordchange2: this.state.passwordchange2
         };
         
-        console.log('1: '+this.state.password)
-        console.log('1: '+this.state.passwordchange)
-        console.log('1: '+this.state.passwordchange2)
         this.props.updateUserPassword(id, userData)
 
     }
