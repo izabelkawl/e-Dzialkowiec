@@ -20,8 +20,8 @@ class UsersUpdate extends Component {
             phone: '',
             position: '',
             errors: {}
-        }
-    }
+        };
+    };
 
     componentDidMount = async () => {
         const { id } = this.state
@@ -34,16 +34,16 @@ class UsersUpdate extends Component {
             address: user.data.data.address,
             phone: user.data.data.phone,
             position: user.data.data.position,
-        })
-    }
+        });
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
+        };
+    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -56,16 +56,14 @@ class UsersUpdate extends Component {
         const payload = { email, firstname, lastname, address, phone, position }
 
         this.props.updateUserByIdA(id, payload)
-
-    }
-
+    };
 
     render() {
         const { errors, email, firstname, lastname, address, phone, position } = this.state;
+
         return (
             <Wrapper>
                 <Title>Edycja</Title>
-
                 <Form.Group >
                     <Form.Label htmlFor="email" >Email: </Form.Label >
                     <Span>{errors.email}</Span>
@@ -150,24 +148,23 @@ class UsersUpdate extends Component {
                         className={classnames("", {
                             invalid: errors.position
                         })}
-                    defaultChecked={position}
-                    >
-                    <option>Działkowiec</option>
-                    <option>Członek</option>
-                    <option>Skarbnik</option>
-                    <option>Sekretarz</option>
-                    <option>Wiceprezes Ogrodu</option>
-                    <option>Prezes Ogrodu</option>
+                        defaultChecked={position}
+                        >
+                        <option>Działkowiec</option>
+                        <option>Członek</option>
+                        <option>Skarbnik</option>
+                        <option>Sekretarz</option>
+                        <option>Wiceprezes Ogrodu</option>
+                        <option>Prezes Ogrodu</option>
                     </Form.Control>
                 </Form.Group>
 
                 <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Aktualizuj</Button>{' '}
                 <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>
             </Wrapper>
-        )
-    }
-}
-
+        );
+    };
+};
 
 UsersUpdate.propTypes = {
     updateUserByIdA: PropTypes.func.isRequired,

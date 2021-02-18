@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Form, Button } from 'react-bootstrap';
-import { BlueButtonStyle } from '../constants';
+import { BlueButtonStyle, blueColor } from '../constants';
 import AddComment from '../../components/modal/AddComment'
 import styled from 'styled-components';
 import GetUserName from '../../components/accountEditing/GetUserName';
@@ -18,7 +18,7 @@ const Content = styled.div`
   box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
 `
 const Person = styled.p`
-    color: #0071BC;
+    color: ${blueColor};
 `
 
 class ForumThread extends Component {

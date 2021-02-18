@@ -1,39 +1,32 @@
 import React, { Component } from "react";
-import { Tab, ListGroup,Button, Row, Col, CardColumns } from 'react-bootstrap';
-import styled from "styled-components";
-import {  Title, BlueButtonStyle } from '../constants';
-import ManagementList from "../../components/management/ManagementList"
-import AnnouncementList from "../../components/management/AnnouncementList"
+import ManagementList from "../../components/management/ManagementList";
+import AnnouncementList from "../../components/management/AnnouncementList";
 import AddAnnouncementAdmin from '../../components/modal/AddAnnouncementAdmin';
-import EditAddress from '../../components/management/EditAddress'
+import EditAddress from '../../components/management/EditAddress';
 import EditDescription from "../../components/management/EditDescription";
-import EditRodo from '../../components/management/EditRodo'
-import EditAct from '../../components/management/EditAct'
-const Wrapper = styled.div`
-    width: 80%;
-    margin: 0 auto;
-    padding:50px;
-    margin-top: 50px;
-    background-color: white; 
-`;
+import EditRodo from '../../components/management/EditRodo';
+import EditAct from '../../components/management/EditAct';
+import { Title, BlueButtonStyle, List } from '../constants';
+import { Tab, ListGroup,Button, Row, Col, CardColumns } from 'react-bootstrap';
 
 class Management extends Component {
 
     render() {
         const Announcements = () => {
-        const [modalShow, setModalShow] = React.useState(false);
-            return <>
-                 <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj nowe ogłoszenie</Button>
-                <AddAnnouncementAdmin show={modalShow} onHide={() => setModalShow(false)}
-                />
-                <br></br>
-                <br></br>
-                 <AnnouncementList/>
-            </>
-        }
+            const [modalShow, setModalShow] = React.useState(false);
+                return (
+                    <>
+                        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj nowe ogłoszenie</Button>
+                        <AddAnnouncementAdmin show={modalShow} onHide={() => setModalShow(false)}/>
+                        <br></br>
+                        <br></br>
+                        <AnnouncementList/>
+                    </>
+                );
+        };
 
-        return (
-        <Wrapper>
+    return (
+        <List>
             <Row className="justify-content-md-center" >
                 <Tab.Container transition={false} id="list-group-tabs-example" defaultActiveKey="#link1" >
                     <Col align="center" xs={3}>
@@ -59,41 +52,40 @@ class Management extends Component {
                         </ListGroup>
                     </Col>
                     <Col xs={9}>
-                            <Tab.Content>
-                                <Tab.Pane eventKey="#link1">
-                                    <Title>O nas</Title>
-                                        <EditDescription/>
-                                            </Tab.Pane>
-                                <Tab.Pane eventKey="#link2">
-                                    <Title>Zarząd</Title>
-                                        <CardColumns>
-                                            <ManagementList/>
-                                                </CardColumns>
-                                            {/* <Button style={BlueButtonStyle} href={"/admin/users/list"}>Edytuj</Button> */}
+                        <Tab.Content>
+                            <Tab.Pane eventKey="#link1">
+                                <Title>O nas</Title>
+                                    <EditDescription/>
+                                        </Tab.Pane>
+                            <Tab.Pane eventKey="#link2">
+                                <Title>Zarząd</Title>
+                                    <CardColumns>
+                                        <ManagementList/>
+                                            </CardColumns>
                                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link3">
-                                    <Title>Ogłoszenia</Title>
-                                        <Announcements/>
-                                            </Tab.Pane>
-                                <Tab.Pane eventKey="#link4">
-                                    <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title> 
-                                        <EditRodo/>
-                                            </Tab.Pane>
-                                <Tab.Pane eventKey="#link5">
-                                    <Title>Adres</Title>
-                                        <EditAddress/>
-                                            </Tab.Pane>
-                                <Tab.Pane eventKey="#link6">
-                                    <Title>Ustawy</Title>
-                                        <EditAct/>
-                                            </Tab.Pane>
-                            </Tab.Content>
-                        </Col>
+                            <Tab.Pane eventKey="#link3">
+                                <Title>Ogłoszenia</Title>
+                                    <Announcements/>
+                                        </Tab.Pane>
+                            <Tab.Pane eventKey="#link4">
+                                <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title> 
+                                    <EditRodo/>
+                                        </Tab.Pane>
+                            <Tab.Pane eventKey="#link5">
+                                <Title>Adres</Title>
+                                    <EditAddress/>
+                                        </Tab.Pane>
+                            <Tab.Pane eventKey="#link6">
+                                <Title>Ustawy</Title>
+                                    <EditAct/>
+                                        </Tab.Pane>
+                        </Tab.Content>
+                    </Col>
                 </Tab.Container>
             </Row>
-        </Wrapper>
-        )
-    }
+        </List>
+        );
+    };
 };
 
 export default Management

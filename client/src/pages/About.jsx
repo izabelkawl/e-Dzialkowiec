@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Tab, Col, Row, ListGroup,  CardColumns } from 'react-bootstrap';
 import NavBar from '../components/navigation/NavBar';
-import Title from '../components/Title';
+import {Title} from '../pages/constants';
 import ManagementList from '../components/management/ManagementList';
 import AdList from '../components/management/AdList';
 import AdDescription from '../components/management/AdDescription'

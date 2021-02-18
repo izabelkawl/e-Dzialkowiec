@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api'
-import styled from 'styled-components';
-
-const Description = styled.div`
-  background-color: white;
-  padding: 1.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-`
+import { WhiteContainer } from '../../pages/constants'
 
 class AdDescription extends Component {
   constructor(props) {
@@ -32,7 +26,7 @@ class AdDescription extends Component {
   render() {
     const { description } = this.state
 
-    return <Description>{description}</Description>
+    return <WhiteContainer>{description}</WhiteContainer>
   }
 }
 

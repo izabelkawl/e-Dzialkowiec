@@ -5,9 +5,9 @@ import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
-import Title from '../components/Title'
+import { Title, blueColor}  from '../pages/constants';
 import { loginUser } from "../api/index";
-import NavBar from '../components/navigation/NavBar'
+import NavBar from '../components/navigation/NavBar';
 
 import bg from './img/bgo.svg';
 
@@ -30,7 +30,7 @@ const Span = styled.span`
     font-size: 80%;
 `
 const Link = styled.a`
-    color: #0071BC;
+    color: ${blueColor};
 `
 const Label = styled(Form.Label)`
     padding-bottom: 10px;

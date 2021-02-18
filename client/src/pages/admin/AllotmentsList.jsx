@@ -8,11 +8,11 @@ class UpdateAllotment extends Component {
         event.preventDefault()
 
         window.location.href = `/admin/allotments/update/${this.props.id}`
-    }
+    };
     render() {
         return <Button style={BlueButtonStyle} onClick={this.updateAllotment}>Edytuj</Button>
-    }
-}
+    };
+};
 
 class DeleteAllotment extends Component {
     deleteAllotment = event => {
@@ -26,80 +26,84 @@ class DeleteAllotment extends Component {
             window.location.reload()
         }else{
             return ""
-        }
-    }
+        };
+    };
+
     render() {
         return <Button style={RedButtonStyle} onClick={this.deleteAllotment}>Usuń</Button>
-    }
-}
+    };
+};
 
 class AllotmentsList extends Component {
     constructor(){
         super()
         this.state = {
             inputValue: '',
-        }
-    }
+        };
+    };
    
     updateInputValue = (evt) => {
         this.setState({
           inputValue: evt.target.value
         });
-      }
+    };
 
     render() {
-const Allotments = () => {
-    const [allotments, setAllotments] = useState([]);
-    const [userss, setUsers] = useState([]);
-    useEffect(() => {
-        const requestAllotmentsList = async () => {
-            const allotmentsList = await api.getAllAllotments();
-            const { data } = allotmentsList;
-            setAllotments(data.data);
-        }; 
-        const userName = async () => {
-            const userList = await api.getAllUsers()
-            const {data } = userList
-                
-            setUsers(data.data);
+
+    const Allotments = () => {
+        const [allotments, setAllotments] = useState([]);
+        const [userss, setUsers] = useState([]);
+        useEffect(() => {
+            const requestAllotmentsList = async () => {
+                const allotmentsList = await api.getAllAllotments();
+                const { data } = allotmentsList;
+                setAllotments(data.data);
+            }; 
+
+            const userName = async () => {
+                const userList = await api.getAllUsers()
+                const {data } = userList
+                setUsers(data.data);
+            };
+    
+            requestAllotmentsList();
+            userName();
+        }, []); 
+
+        const AllotmentsTable = allotments.map((allotment, index) => {
+            const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
+            const username = userss.map((user, index) => {
+                const { _id, firstname, lastname } = user
+                if( _id === user_id){
+                    return firstname+' ' +lastname
+                } else {
+                    return null
+                }
+            });
+            // Find by number, status or User
+            const n = JSON.stringify({ number, status });
+            const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase());
+            
+            if(search === true){
+                return (
+                    <tr key={_id}>
+                        <td>{number}</td>
+                        <td>{allotment_width}</td>
+                        <td>{allotment_length}</td>
+                        <td>{price}</td>
+                        <td>{status}</td>
+                        <td>{user_id !== "Brak"? username : user_id }</td>
+                        <td><UpdateAllotment id={_id} value={username}/></td>
+                        <td><DeleteAllotment id={_id} /></td>
+                    </tr>
+                )
+            } else {
+                return ""
             }
-  
-        requestAllotmentsList();
-        userName();
-    }, []); 
+        });
 
-    const AllotmentsTable = allotments.map((allotment, index) => {
-        
-        const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
-        const username = userss.map((user, index) => {
-            const { _id, firstname, lastname } = user
-            if( _id === user_id){
-              return firstname+' ' +lastname
-            }else {return null}
-          })
-        // Find by number, status or User
-        const n = JSON.stringify({ number, status })
-        const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
-        
-        if(search === true){
-        return (
-            <tr key={_id}>
-                <td>{number}</td>
-                <td>{allotment_width}</td>
-                <td>{allotment_length}</td>
-                <td>{price}</td>
-                <td>{status}</td>
-                <td>{user_id !== "Brak"? username : user_id }</td>
-                <td><UpdateAllotment id={_id} value={username}/></td>
-                <td><DeleteAllotment id={_id} /></td>
-            </tr>
-        )
-        }else{
-            return ""
-          }
-    });
-
-    return  <Table striped bordered hover size="sm" responsive>
+    return (
+        <Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
                     <th>Numer</th>
@@ -108,7 +112,6 @@ const Allotments = () => {
                     <th>Cena</th>
                     <th>Status</th>
                     <th>Użytkownik</th>
-
                     <th></th>
                     <th></th>
                 </tr>
@@ -117,13 +120,17 @@ const Allotments = () => {
                 {AllotmentsTable}
             </tbody>
         </Table>
-}
-return <List>
+    )};
+
+    return (
+        <List>
             <Row>
-            <Col>
-                <Button style={BlueButtonStyle} href="/admin/allotments/create" >Dodaj działkę</Button>
-            </Col>
-            <Col>
+                <Col>
+                    <Button style={BlueButtonStyle} href="/admin/allotments/create">
+                        Dodaj działkę
+                    </Button>
+                </Col>
+                <Col>
                     <Form.Control
                         value={this.state.inputValue}
                         onChange={this.updateInputValue}
@@ -133,9 +140,9 @@ return <List>
                 </Col>   
             </Row>
             <br></br>
-        <Allotments/>
+            <Allotments/>
         </List>
-}
-}
+    )};
+};
 
 export default AllotmentsList;

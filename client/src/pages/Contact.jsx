@@ -2,8 +2,7 @@ import React  from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bgo.svg';
-import Title from '../components/Title'
-import { BlueButtonStyle } from './constants';
+import { BlueButtonStyle, Title } from './constants';
 import emailjs from 'emailjs-com';
 import { Button, Form , Row, Col} from 'react-bootstrap';
 import Address from '../components/management/Address';

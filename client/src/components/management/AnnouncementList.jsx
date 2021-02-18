@@ -23,13 +23,13 @@ class DeleteAnnouncement extends Component {
             )
         ) {
             api.deleteAnnouncementById(this.props.id)
-            window.location.reload()
-        }
-    }
+            window.location.reload();
+        };
+    };
     render() {
         return <Button style={RedButtonStyle} onClick={this.deleteAnnouncement}>Usuń</Button>
-    }
-}
+    };
+};
 
 const AnnouncementsList = () => {
     const [ads, setAnnouncements] = useState([]);
@@ -55,7 +55,7 @@ const AnnouncementsList = () => {
         );
     });
 
-    return <Table striped bordered hover size="sm" responsive>
+    return (<Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
                     <th>Tytuł</th>
@@ -68,6 +68,7 @@ const AnnouncementsList = () => {
                 {AnnouncementsTable}
             </tbody>
         </Table>
+        )
 };
 
 export default AnnouncementsList;

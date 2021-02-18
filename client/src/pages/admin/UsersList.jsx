@@ -1,8 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button, Form, Row, Col } from 'react-bootstrap';
-import { List, RedButtonStyle, BlueButtonStyle } from '../constants';
-import Title from '../../components/Title';
+import { List, RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 
 class DeleteUser extends Component {
     deleteUser = event => {
@@ -14,35 +13,38 @@ class DeleteUser extends Component {
         ) {
             api.deleteUserById(this.props.id)
             window.location.reload()
-        }
-    }
+        };
+    };
+
     render() {
         return <Button style={RedButtonStyle} onClick={this.deleteUser}>Usuń</Button>
-    }
-}
+    };
+};
+
 class UpdateUser extends Component {
     updateUser = event => {
         event.preventDefault()
-
         window.location.href = `/admin/users/update/${this.props.id}`
     }
     render() {
         return <Button style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>
-    }
-}
+    };
+};
+
 class UsersList extends Component {
     constructor(){
         super()
+
         this.state = {
             inputValue: '',
-        }
-    }
+        };
+    };
    
     updateInputValue = (evt) => {
         this.setState({
           inputValue: evt.target.value
         });
-      }
+      };
 
     render() {
 
@@ -64,25 +66,26 @@ class UsersList extends Component {
         const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
         
         if(search === true){
-        return (
-            <tr key={_id}>
-                <td>{index + 1}</td>
-                <td>{email}</td>
-                <td>{firstname}</td>
-                <td>{lastname}</td>
-                <td>{address}</td>
-                <td>{phone}</td>
-                <td>{position}</td>
-                <td><DeleteUser id={_id} /></td>
-                <td><UpdateUser id={_id} /></td>
-            </tr>
-            )
-        }else{
+            return (
+                <tr key={_id}>
+                    <td>{index + 1}</td>
+                    <td>{email}</td>
+                    <td>{firstname}</td>
+                    <td>{lastname}</td>
+                    <td>{address}</td>
+                    <td>{phone}</td>
+                    <td>{position}</td>
+                    <td><DeleteUser id={_id} /></td>
+                    <td><UpdateUser id={_id} /></td>
+                </tr>
+                )
+        }else {
             return ""
         }
     });
 
-    return   <Table striped bordered hover size="sm"  responsive>
+    return (
+        <Table striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
                     <th>Lp</th>
@@ -100,24 +103,27 @@ class UsersList extends Component {
                 {UsersTable}
             </tbody>
         </Table>
-   
-    }
-    return <List><Row>
-    <Col>
-        <Title>Lista użytkowników</ Title>
-    </Col>
-    <Col>
-            <Form.Control
-                value={this.state.inputValue}
-                onChange={this.updateInputValue}
-                id="inputValue"
-                placeholder="Filtruj.."
-            />
-        </Col>   
-    </Row>
-                    <br></br>
-                <UsersPanel/>
-            </List>
-    }
-}
+    )};
+
+    return (
+        <List>
+            <Row>
+                <Col>
+                    <Title>Lista użytkowników</ Title>
+                </Col>
+                <Col>
+                    <Form.Control
+                        value={this.state.inputValue}
+                        onChange={this.updateInputValue}
+                        id="inputValue"
+                        placeholder="Filtruj.."
+                        />
+                </Col>   
+            </Row>
+            <br></br>
+            <UsersPanel/>
+        </List>
+    )};
+};
+
 export default UsersList;

@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 import api, { updateAllotmentById } from '../../api';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import  {RedButtonStyle, BlueButtonStyle } from '../constants'
+import  {RedButtonStyle, BlueButtonStyle, Title } from '../constants'
 import classnames from "classnames";
-import Wrapper from '../../components/Wrapper/Wrapper'
-import Title from '../../components/Title'
+import Wrapper from '../../components/Wrapper/Wrapper';
 
 const Container = styled.div`
     width: 70%;

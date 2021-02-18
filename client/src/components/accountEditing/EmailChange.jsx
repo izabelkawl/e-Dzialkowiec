@@ -1,24 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import classnames from "classnames";
 import api, { updateUserEmail } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
-import styled from 'styled-components';
-import Title from '../Title';
-import classnames from "classnames";
-import {BlueButtonStyle} from '../../pages/constants.jsx';
+import {BlueButtonStyle, Title, Span} from '../../pages/constants.jsx';
 
-const Container = styled.div.attrs({
-    className: 'form-group',
-})`
-   
-`
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 class EmailChange extends Component {
     constructor(props) {
         super(props)
@@ -47,7 +35,6 @@ class EmailChange extends Component {
             phone: user.data.data.phone,
             password: user.data.data.password
         })
-        
     }
 
     componentWillReceiveProps(nextProps) {
@@ -72,13 +59,12 @@ class EmailChange extends Component {
         };
 
         this.props.updateUserEmail(id, userData)
-
     }
 
     render() {
         const { errors } = this.state;
         return (
-                <Container>
+                <>
                     <Title>Zmiana adresu email</Title>
                     <Form>
                         <Form.Group>
@@ -112,10 +98,11 @@ class EmailChange extends Component {
                         </Form.Group>
                         <Button style={BlueButtonStyle} type="submit"  className="float-right" onClick={this.handleUpdateUser} >Zapisz</Button>
                     </Form>
-                </Container>
+                </>
         );
     }
 }
+
 EmailChange.propTypes = {
     updateUserEmail: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,

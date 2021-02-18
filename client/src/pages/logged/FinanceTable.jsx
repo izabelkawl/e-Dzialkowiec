@@ -2,11 +2,9 @@ import React, { useState, useEffect, Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import api from "../../api";
-import { Table, Button, Form, Row, Col } from 'react-bootstrap';
-import {  BlueButtonStyle } from '../constants';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import MyDocument from './pdf.jsx';
-import Title from '../../components/Title';
+import { Table, Form, Row, Col } from 'react-bootstrap';
+import { Title } from '../constants';
+import PdfButton from './PdfButton.jsx';
 
 class Management extends Component {
     constructor(){
@@ -35,14 +33,11 @@ class Management extends Component {
             }, []);
 
         const FinancesTable = finances.map((finance, index) => {
-            const { _id, allotment_number,owner,  title, area, charge, term, status, account } = finance;
-            // const timestamp = _id.toString().substring(0,8);
-            // const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+            const { _id, allotment_number,owner, title, area, charge, term, status } = finance;
             const logged = this.props.auth.user.id
-            // search without id letters
             const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
             const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
- 
+        
             if(search === true && owner === logged){
             return (
                 <tr key={_id}>
@@ -53,18 +48,7 @@ class Management extends Component {
                     <td>{term}</td>
                     <td>{status}</td>
                     <td>
-                        <PDFDownloadLink 
-                        id={_id} 
-                        document={MyDocument({ number: allotment_number,
-                                               owner: this.props.auth.user.firstname+ ' '+ this.props.auth.user.lastname,
-                                               title: title,
-                                               charge: charge,
-                                               term: term,
-                                               account: account,
-                                            }) } 
-                        fileName="faktura.pdf">
-      {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button id={_id} style={BlueButtonStyle}>Pobierz</Button>)}
-    </PDFDownloadLink></td>
+                    <PdfButton id={_id}/></td>
                 </tr>
             );
         }else{

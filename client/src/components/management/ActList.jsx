@@ -3,7 +3,6 @@ import api from "../../api";
 import { Table } from 'react-bootstrap';
 
 const ActList = () => {
-    
   const [acts, setActs] = useState([]);
 
   useEffect(() => {
@@ -18,21 +17,24 @@ const ActList = () => {
 
   const ActsTable = acts.slice(0).reverse().map((act) => {
       const { _id, name, actfile} = act;
-      return <tr key={_id}> 
-        <td><a href={'http://localhost:3000/'+actfile} target="_blank" rel="noopener noreferrer">{name}</a></td>
-      </tr>
-  
+      return (
+            <tr key={_id}> 
+                <td>
+                    <a href={'http://localhost:3000/'+actfile} target="_blank" rel="noopener noreferrer">
+                        {name}
+                    </a>
+                </td>
+            </tr>
+      )
   });
-  return (<>
-          <Table striped bordered hover  responsive>
-             
+
+  return (
+          <Table striped bordered hover responsive>
              <tbody>
-             {ActsTable}
+                {ActsTable}
              </tbody>
          </Table>
-          </>
     );      
 };
-
 
 export default ActList

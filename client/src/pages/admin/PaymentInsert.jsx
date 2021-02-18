@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import classnames from "classnames";
 import { insertPaymentdetail } from "../../api/index";
 import { Form, Button }from 'react-bootstrap';
-import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
-import classnames from "classnames";
+import { Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
 
 class PaymentdetailsInsert extends Component {
     constructor() {
@@ -22,16 +22,16 @@ class PaymentdetailsInsert extends Component {
             payment_date: '',
             account_number: '',
             errors: {}
-        }
-    }
+        };
+    };
     
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
+        };
+    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -57,6 +57,7 @@ class PaymentdetailsInsert extends Component {
 
     render() {
         const { errors } = this.state;
+
         return (
             <Wrapper>
                 <Title>Przelicznik</Title>
@@ -73,7 +74,7 @@ class PaymentdetailsInsert extends Component {
                         className={classnames("", {
                             invalid: errors.stable_price
                         })}
-                    ></Form.Control>
+                        ></Form.Control>
 
                     <Label htmlFor="membership_fee">Składka członkowska: </Label>
                     <Span>{errors.membership_fee}</Span>
@@ -86,7 +87,7 @@ class PaymentdetailsInsert extends Component {
                         className={classnames("", {
                             invalid: errors.membership_fee
                         })}
-                    ></Form.Control>
+                        ></Form.Control>
 
                     <Label htmlFor="water_advance">Zaliczka wodna (działka bez wodomierza): </Label>
                     <Span>{errors.water_advance}</Span>
@@ -100,6 +101,7 @@ class PaymentdetailsInsert extends Component {
                             invalid: errors.water_advance
                         })}
                         ></Form.Control>
+
                     <Label htmlFor="water_charge">Opłata wodna: </Label>
                     <Span>{errors.water_charge}</Span>
                     <Form.Control
@@ -112,6 +114,7 @@ class PaymentdetailsInsert extends Component {
                             invalid: errors.water_charge
                         })}
                         ></Form.Control>
+
                     <Label htmlFor="energy_charge">Opłata energetyczna: </Label>
                     <Span>{errors.energy_charge}</Span>
                     <Form.Control
@@ -122,7 +125,7 @@ class PaymentdetailsInsert extends Component {
                         className={classnames("", {
                             invalid: errors.energy_charge
                         })}>
-                    </Form.Control>
+                        </Form.Control>
 
                     <Label htmlFor="garbage">Śmieci: </Label>
                     <Span>{errors.garbage}</Span>
@@ -133,10 +136,10 @@ class PaymentdetailsInsert extends Component {
                         id="garbage"
                         className={classnames("", {
                         invalid: errors.garbage
-                    })}>
+                        })}>
+                        </Form.Control>
 
-                    </Form.Control>
-                        <Label htmlFor="transfer_title">Tytuł opłaty: </Label>
+                    <Label htmlFor="transfer_title">Tytuł opłaty: </Label>
                     <Span>{errors.transfer_title}</Span>
                     <Form.Control
                         onChange={this.onChange}
@@ -148,6 +151,7 @@ class PaymentdetailsInsert extends Component {
                             invalid: errors.transfer_title
                         })}
                         ></Form.Control>
+
                     <Label htmlFor="payment_date">Termin płatności: </Label>
                     <Span>{errors.payment_date}</Span>
                     <Form.Control
@@ -160,6 +164,7 @@ class PaymentdetailsInsert extends Component {
                             invalid: errors.payment_date
                         })}
                         ></Form.Control>
+
                     <Label htmlFor="account_number">Konto: </Label>
                     <Span>{errors.account_number}</Span>
                     <Form.Control
@@ -172,14 +177,15 @@ class PaymentdetailsInsert extends Component {
                             invalid: errors.water_charge
                         })}
                         ></Form.Control>
+
                     <br></br>
                     <Button style={RedButtonStyle} href={'/admin/finances/list'}>Zamknij</Button>{' '}
                     <Button style={BlueButtonStyle} type="submit">Dodaj</Button>
-                    </Form>
+                </Form>
             </Wrapper>
-        )
-    }
-}
+        );
+    };
+};
 
 PaymentdetailsInsert.propTypes = {
     insertPaymentdetail: PropTypes.func.isRequired,

@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 import api from '../../api';
 import styled from 'styled-components';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import Wrapper from '../../components/Wrapper/Wrapper'
-import  {RedButtonStyle, BlueButtonStyle } from '../constants'
-import Title from '../../components/Title'
+import Wrapper from '../../components/Wrapper/Wrapper';
+import  {RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 import AddThread from '../../components/modal/AddThread';
 
 const Container = styled.div`

@@ -4,21 +4,9 @@ import { connect } from "react-redux";
 import api, { updateUserPassword } from '../../api';
 import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
-import styled from 'styled-components';
-import Title from '../Title';
 import classnames from "classnames";
-import {BlueButtonStyle} from '../../pages/constants.jsx';
+import {BlueButtonStyle, Title, Span} from '../../pages/constants.jsx';
 
-const Container = styled.div.attrs({
-    className: 'form-group',
-})`
-   
-`
-const Span = styled.span.attrs({
-    className: `red-text`,
-})`
-    color: red;
-`
 class PasswordChange extends Component {
     constructor(props) {
         super(props)
@@ -78,7 +66,7 @@ class PasswordChange extends Component {
     render() {
         const { errors } = this.state;
         return (
-                <Container>
+                <>
                       <Title>Zmiana hasła</Title>
                         <Form>
                         <Form.Group>
@@ -128,7 +116,7 @@ class PasswordChange extends Component {
                         </Form.Group>
                         <Button style={BlueButtonStyle} type="submit"  className="float-right" onClick={this.handleUpdateUser} >Zapisz</Button>
                     </Form>
-                </Container>
+                </>
         );
     }
 }

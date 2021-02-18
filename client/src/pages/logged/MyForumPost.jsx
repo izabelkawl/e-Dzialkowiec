@@ -4,8 +4,7 @@ import api from '../../api';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper'
-import  {RedButtonStyle, BlueButtonStyle } from '../constants'
-import Title from '../../components/Title'
+import  {RedButtonStyle, BlueButtonStyle, Title } from '../constants'
 import AddThread from './AddThread'
 
 const Container = styled.div`

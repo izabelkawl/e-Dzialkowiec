@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import api from "../../api";
 
 const AllotmentsID = () => {
-    
     const [allotments, setAllotments] = useState([]);
 
     useEffect(() => {
@@ -19,7 +18,7 @@ const AllotmentsID = () => {
         const { _id, number, status } = allotment;
         if( status === "Zajęta"){
         return  number + '.' + _id
-        }
+        };
     });
     return AllotmentsTable        
 };

@@ -1,13 +1,9 @@
 import React, { useState, useEffect, Component } from "react";
+import axios from 'axios';
 import api from "../../api";
 import { Button, Form, Table } from 'react-bootstrap';
 import { BlueButtonStyle, RedButtonStyle, Span } from '../../pages/constants';
-import axios from 'axios';
-import styled from 'styled-components';
 
-const Container = styled.div`
-  width: 50%;
-`
 class DeleteAct extends Component {
   deleteAct = event => {
       event.preventDefault()
@@ -22,11 +18,10 @@ class DeleteAct extends Component {
   }
   render() {
       return <Button style={RedButtonStyle} onClick={this.deleteAct}>Usuń</Button>
-  }
-}
+  };
+};
 
 const ActList = () => {
-    
   const [acts, setActs] = useState([]);
 
   useEffect(() => {
@@ -47,10 +42,7 @@ const ActList = () => {
       </tr>
   
   });
-
   return ActsTable
-          
-           
 };
 
     const ActUpload = () => {
@@ -81,7 +73,6 @@ const ActList = () => {
       name: '',
     });
 
-
     axios
       .post('http://localhost:3000/api/act', formData)
       .then((res) => {
@@ -108,32 +99,34 @@ const ActList = () => {
       
   };
   return (<>
-  <Container>
-  <Span>{error.message}</Span> 
-   <Form.Group className='custom-file mb-3'>
-          <Form.Control
-            type='file'
-            className='custom-file-input'
-            id='inputGroupFile04'
-            aria-describedby='inputGroupFileAddon04'
-            onChange={upload}
-          />
-          
-          <Form.Label className='custom-file-label' htmlFor='inputGroupFile04'>
-            {info.name === '' ? 'Wybierz plik': info.name}
-          </Form.Label>
-          <br></br>
-          <Button onClick={handleSubmit} style={BlueButtonStyle}>
-          Dodaj
-        </Button>
-       </Form.Group>
-  </Container>
+          <div style={{ width: '50%' }}>
+            <Span>{error.message}</Span> 
+            <Form.Group className='custom-file mb-3'>
+              <Form.Control
+                type='file'
+                className='custom-file-input'
+                id='inputGroupFile04'
+                aria-describedby='inputGroupFileAddon04'
+                onChange={upload}
+              />
+              <Form.Label
+                className='custom-file-label'
+                htmlFor='inputGroupFile04'
+              >
+                {info.name === '' ? 'Wybierz plik': info.name}
+              </Form.Label>
+
+              <br></br>
+              <Button onClick={handleSubmit} style={BlueButtonStyle}>
+                Dodaj
+              </Button>
+              </Form.Group>
+          </div>
   
         <br></br>
         <hr></hr>
       
-        <Table striped bordered hover size="sm"  responsive>
-           
+        <Table striped bordered hover size="sm" responsive>
            <thead>
              <tr> 
                 <th>Ustawy</th>
@@ -141,7 +134,7 @@ const ActList = () => {
              </tr>
            </thead>
            <tbody>
-           <ActList/>
+            <ActList/>
            </tbody>
        </Table>
         </>

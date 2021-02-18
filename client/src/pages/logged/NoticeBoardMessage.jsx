@@ -9,9 +9,8 @@ import classnames from "classnames";
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
-import Title from '../../components/Title';
 // Button Style
-import { RedButtonStyle, BlueButtonStyle, Span } from '../constants';
+import { RedButtonStyle, BlueButtonStyle, Span, Title } from '../constants';
 import axios from 'axios';
 
 const MessageContentn = styled.div`

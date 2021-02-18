@@ -20,8 +20,9 @@ class StatusUpdate extends Component {
             term: '',
             account: '',
             status: ''
-        }
-    }
+        };
+    };
+
     componentDidMount = async () => {
         const { id } = this.state
         const finance= await api.getFinanceById(id)
@@ -35,32 +36,34 @@ class StatusUpdate extends Component {
             term: finance.data.data.term,
             account: finance.data.data.account,
             status: finance.data.data.status,
-        })
-    }
+        });
+    };
     
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
-        onChange = e => {
-            this.setState({ [e.target.id]: e.target.value });
         };
-        handleUpdateFinance = e => {
+    };
 
-            e.preventDefault();
-            const { id, allotment_number, title,owner, area, charge, term, account, status  } = this.state
-            const payload = { allotment_number, title,owner, area, charge, term, account, status  }
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
 
-            this.props.updateFinanceById(id, payload)
-        }
+    handleUpdateFinance = e => {
+
+        e.preventDefault();
+        const { id, allotment_number, title,owner, area, charge, term, account, status  } = this.state
+        const payload = { allotment_number, title,owner, area, charge, term, account, status  }
+
+        this.props.updateFinanceById(id, payload)
+    };
         
     render() {
+
         const FinancesComponent = () => {
             const [userss, setUsers] = useState([]);
-        
             useEffect(() => {
               const userName = async () => {
                   const userList = await api.getAllUsers()
@@ -71,129 +74,136 @@ class StatusUpdate extends Component {
               userName();
           }, []);
 
-          const username = userss.map((user, index) => {
+          const username = userss.map((user) => {
             const { _id, firstname, lastname } = user
             if(_id === this.state.owner){
-        return (
-            <Wrapper key={_id}>
-                <Title>Zmień status</Title>
-                 <Form >
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4" >Tytuł: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        onChange={this.onChange}
-                        value={this.state.title}
-                        id="title"
-                        type="text"
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Właściciel działki: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        onChange={this.onChange}
-                        value={firstname+ ' '+ lastname}
-                        id="owner"
-                        type="text"
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Numer działki: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        onChange={this.onChange}
-                        value={this.state.allotment_number}
-                        id="allotment_number"
-                        type="text"
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Powierzchnia: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                    id="area"
-                    value={this.state.area}
-                        type="text"
-                        onChange={this.onChange}
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Należność: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        id="charge"
-                        type="text"
-                        value={this.state.charge}
-                        onChange={this.onChange}
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Termin zapłaty: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        id="term"
-                        type="date"
-                        value={this.state.term}
-                        onChange={this.onChange}
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-                 <Form.Label column sm="4">Konto: </Form.Label>
-                    <Col sm="8"> <Form.Control
-                        id="account"
-                        type="text"
-                        value={this.state.account}
-                        onChange={this.onChange}
-                        readOnly
-                        >
-                        </Form.Control>
-                        </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-            <Form.Label column sm="4" htmlFor="number">Status:</Form.Label>
-                <Col sm="8">
-                <Form.Control
-                onChange={this.onChange}
-                value={this.state.status}
-                as="select"
-                className="mr-sm-2"
-                id="status"
-            >
-                <option hidden >Wybierz..</option>
-                <option >Opłacona</option>
-                <option >Nieopłacona</option>
-            </Form.Control>
-            </Col>
-            </Form.Group>
-            <Button  style={RedButtonStyle} href={'/admin/finances/list'}>Powrót</Button>{' '}
-           
-        <Button style={BlueButtonStyle} onClick={this.handleUpdateFinance}>Zapisz</Button>
-        </Form>
-        </Wrapper>
-        )
-          }else {return null}
-  })
-  return username
-        }
-                
-        return <FinancesComponent/>
-    }
-}
+                return (
+                    <Wrapper key={_id}>
+                        <Title>Zmień status</Title>
+                        <Form>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4" >Tytuł: </Form.Label>
+                                <Col sm="8">
+                                    <Form.Control
+                                        onChange={this.onChange}
+                                        value={this.state.title}
+                                        id="title"
+                                        type="text"
+                                        readOnly
+                                        >
+                                    </Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Właściciel działki: </Form.Label>
+                                <Col sm="8">
+                                    <Form.Control
+                                        onChange={this.onChange}
+                                        value={firstname+ ' '+ lastname}
+                                        id="owner"
+                                        type="text"
+                                        readOnly
+                                        >
+                                    </Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Numer działki: </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            onChange={this.onChange}
+                                            value={this.state.allotment_number}
+                                            id="allotment_number"
+                                            type="text"
+                                            readOnly
+                                            >
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Powierzchnia: </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            id="area"
+                                            value={this.state.area}
+                                            type="text"
+                                            onChange={this.onChange}
+                                            readOnly
+                                            >
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Należność: </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            id="charge"
+                                            type="text"
+                                            value={this.state.charge}
+                                            onChange={this.onChange}
+                                            readOnly
+                                            >
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Termin zapłaty: </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            id="term"
+                                            type="date"
+                                            value={this.state.term}
+                                            onChange={this.onChange}
+                                            readOnly
+                                            >
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4">Konto: </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            id="account"
+                                            type="text"
+                                            value={this.state.account}
+                                            onChange={this.onChange}
+                                            readOnly
+                                            >
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm="4" htmlFor="number">Status:</Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control
+                                            onChange={this.onChange}
+                                            value={this.state.status}
+                                            as="select"
+                                            className="mr-sm-2"
+                                            id="status"
+                                            >
+                                            <option hidden >Wybierz..</option>
+                                            <option >Opłacona</option>
+                                            <option >Nieopłacona</option>
+                                        </Form.Control>
+                                    </Col>
+                            </Form.Group>
+                        <Button  style={RedButtonStyle} href={'/admin/finances/list'}>Powrót</Button>{' '}
+                        <Button style={BlueButtonStyle} onClick={this.handleUpdateFinance}>Zapisz</Button>
+                    </Form>
+                </Wrapper>
+                );
+          }else {
+              return null
+            }
+        });
 
+        return username
+    };
+                
+    return <FinancesComponent/>
+    };
+};
 
 StatusUpdate.propTypes = {
     updateFinanceById: PropTypes.func.isRequired,

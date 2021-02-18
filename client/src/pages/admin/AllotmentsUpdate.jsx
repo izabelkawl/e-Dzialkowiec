@@ -2,10 +2,10 @@ import React, { useState, useEffect, Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { updateAllotmentById } from '../../api';
 import classnames from "classnames";
+import api, { updateAllotmentById } from '../../api';
 import { Form, Button } from 'react-bootstrap';
-import {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span} from '../constants';
+import  {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -20,8 +20,9 @@ class AllotmentsUpdate extends Component {
             status: '',
             user_id: '',
             errors: {}
-        }
-    }
+        };
+    };
+
     componentDidMount = async () => {
         const { id } = this.state
         const allotment = await api.getAllotmentById(id)
@@ -33,16 +34,16 @@ class AllotmentsUpdate extends Component {
             price: allotment.data.data.price,
             status: allotment.data.data.status,
             user_id: allotment.data.data.user_id,
-        })
-    }
+        });
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
+        };
+    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -54,7 +55,7 @@ class AllotmentsUpdate extends Component {
         const { id, number, allotment_width, allotment_length, price, status, user_id } = this.state
         const payload = { number, allotment_width, allotment_length, price, status, user_id }
         this.props.updateAllotmentById(id, payload)
-    }
+    };
 
     render() {
 
@@ -75,6 +76,7 @@ class AllotmentsUpdate extends Component {
         return (
             <Wrapper>
                 <Title>Edycja działki</Title>
+                <Form.Group>
                     <Label htmlFor="number">Numer:</Label>
                     <Form.Control 
                         onChange={this.onChange}
@@ -87,7 +89,8 @@ class AllotmentsUpdate extends Component {
                         value={number}
                         readOnly
                     />
-
+                </Form.Group>
+                <Form.Group>
                     <Label htmlFor="allotment_width">Szerokość: </Label>
                     <Span>{errors.allotment_width}</Span>
                     <Form.Control
@@ -100,7 +103,8 @@ class AllotmentsUpdate extends Component {
                         })}
                         value={allotment_width}
                     />
-
+                </Form.Group>
+                <Form.Group>
                     <Label htmlFor="allotment_length">Długość: </Label>
                     <Span>{errors.allotment_length}</Span>
                     <Form.Control
@@ -113,6 +117,8 @@ class AllotmentsUpdate extends Component {
                         })}
                         value={allotment_length}
                     />
+                </Form.Group>
+                <Form.Group>
                     <Label htmlFor="price">Cena: </Label>
                     <Span>{errors.price}</Span>
                     <Form.Control
@@ -125,6 +131,8 @@ class AllotmentsUpdate extends Component {
                         })}
                         value={price}
                     />
+                </Form.Group>
+                <Form.Group>
                     <Label htmlFor="status" >Status: </Label>
                     <Span>{errors.status}</Span>
                     <Form.Control
@@ -141,6 +149,8 @@ class AllotmentsUpdate extends Component {
                         <option >Na sprzedaż</option> 
                         <option >Rezerwacja</option> 
                     </Form.Control>
+                </Form.Group>
+                <Form.Group>
                     <Label htmlFor="user_id">Użytkownik: </Label>
                     <Span>{errors.user_id}</Span>
                     <Form.Control
@@ -151,32 +161,37 @@ class AllotmentsUpdate extends Component {
                         className={classnames("", {
                         invalid: errors.user_id
                         })}
-                        
                         >
-                        {status === "Wolna" ? <option>Brak</option> :
-                    userss.map((option) => {
-                        const {_id, firstname, lastname } = option
-                        if( user_id === _id){
-                            return <option  key={_id} value={_id} hidden>{firstname+' '+ lastname }</option>
-                        } else {return null}
-                    })}
-                     {status === "Wolna" ? <option hidden>Brak</option> :
-                    userss.map((option) => {
-                        const {_id, firstname, lastname } = option
-                    return <option  key={_id} value={_id} >{firstname+' '+ lastname }</option>
-                    }) 
-                }
+                        { status === "Wolna" ? <option>Brak</option> 
+                            :
+                            userss.map((option) => {
+                                const {_id, firstname, lastname } = option
+                                if( user_id === _id){
+                                    return <option  key={_id} value={_id} hidden>{firstname+' '+ lastname }</option>
+                                } else {
+                                    return null
+                                }
+                            })
+                        }
+                        { status === "Wolna" ? <option hidden>Brak</option>
+                            :
+                            userss.map((option) => {
+                                const {_id, firstname, lastname } = option
+                                return <option  key={_id} value={_id}>{firstname+' '+ lastname }</option>
+                            }) 
+                        }
                     </Form.Control>
-                    <br></br>
-                    <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
-                    {' '}
-                    <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
+                </Form.Group>
+                <br></br>
+                <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
+                {' '}
+                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
             </Wrapper>
-        )
-                }
-                return <Allotments/>
-    }
-}
+        );
+    };
+        return <Allotments/>
+    };
+};
 
 AllotmentsUpdate.propTypes = {
     updateAllotmentById: PropTypes.func.isRequired,

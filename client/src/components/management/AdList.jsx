@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Card } from 'react-bootstrap';
 import api from "../../api";
-import styled from "styled-components";
-
-const Footer = styled.footer`
-    color: #007bff;
-`
+import { Card } from 'react-bootstrap';
+import { blueColor } from '../../pages/constants';
 
 const AdList = () => {
     const [ads, setAnnouncements] = useState([]);
@@ -25,20 +21,20 @@ const AdList = () => {
         return (
             <div  key={_id}>
               <Card>
-            <Card.Header>{title}</Card.Header>
-              <Card.Body>
-                <blockquote className="blockquote mb-0">
-                  <p>{' '+ content +' '} </p>
-                  <Footer className="blockquote-footer">
-                   {date}
-                  </Footer>
-                </blockquote>
-              </Card.Body>
-      </Card><br></br>
-      </div>
-            
-        );
-    });
+                <Card.Header>{title}</Card.Header>
+                <Card.Body>
+                  <blockquote className="blockquote mb-0">
+                    <p>{' '+ content +' '} </p>
+                    <footer className="blockquote-footer" style={{ color: blueColor }}>
+                      {date}
+                    </footer>
+                  </blockquote>
+                </Card.Body>
+              </Card>
+              <br></br>
+            </div>
+          );
+      });
 
     return AnnouncementsTable
 };

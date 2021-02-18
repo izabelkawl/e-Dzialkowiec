@@ -12,8 +12,9 @@ class StatusUpdateBtn extends Component {
     }
     render() {
         return <Button style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
-    }
-}
+    };
+};
+
 class StatusDeleteBtn extends Component {
     deleteFinance = event => {
         event.preventDefault()
@@ -28,21 +29,22 @@ class StatusDeleteBtn extends Component {
     }
     render() {
         return <Button style={RedButtonStyle} onClick={this.deleteFinance}>Usuń</Button>
-    }
-}
+    };
+};
+
 class Management extends Component {
     constructor(){
         super()
         this.state = {
             inputValue: '',
-        }
-    }
+        };
+    };
    
     updateInputValue = (evt) => {
         this.setState({
           inputValue: evt.target.value
         });
-      }
+    };
 
     render() {
         
@@ -65,15 +67,17 @@ class Management extends Component {
                 userName();
             }, []);
             
-            const FinancesTable = finances.slice(0).reverse().map((finance, index) => {
+            const FinancesTable = finances.slice(0).reverse().map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
-            const username = userss.map((user, index) => {
+            
+            const username = userss.map((user) => {
                 const { _id, firstname, lastname } = user
                 if(_id === owner){
                   return firstname+' ' +lastname
                 }
                 else {return null}
-              })// search without id letters
+            })
+            // search without id letters
             const n = JSON.stringify({ allotment_number,username, title, area, charge, term, status })
             const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
             
@@ -91,35 +95,35 @@ class Management extends Component {
                         <td><StatusDeleteBtn id={_id}/></td>
                     </tr>
                 );
-                }else{
-                    return ""
-                }
-                
-        })
+            } else {
+                return ""
+            };
+        });
     
         return (
-        <Table striped bordered hover size="sm" responsive>
-        <thead>
-            <tr>
-                <th>Działka</th>
-                <th>Właściciel</th>
-                <th>Tytuł</th>
-                <th>Powierzchnia</th>
-                <th>Należność</th>
-                <th>Termin</th>
-                <th>Status</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-                {FinancesTable}
-        </tbody>
-    </Table>)
-    }
-        return (
+            <Table striped bordered hover size="sm" responsive>
+                <thead>
+                    <tr>
+                        <th>Działka</th>
+                        <th>Właściciel</th>
+                        <th>Tytuł</th>
+                        <th>Powierzchnia</th>
+                        <th>Należność</th>
+                        <th>Termin</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {FinancesTable}
+                </tbody>
+            </Table>)
+        };
+
+    return (
         <List>
-           <PaymentdetailsUpdate/>
+            <PaymentdetailsUpdate/>
             <hr></hr>
             <Row>
                 <Col>
@@ -137,12 +141,12 @@ class Management extends Component {
             <br></br>
             <Row>
                 <Col>
-            <FinancesList/>
-        </Col>
-        </Row>
+                    <FinancesList/>
+                </Col>
+            </Row>
         </List>
-        )
-    }
+        );
+    };
 };
 
 export default Management

@@ -5,10 +5,9 @@ import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { BlueButtonStyle } from './constants';
+import { BlueButtonStyle, Title, blueColor } from './constants';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
-import Title from '../components/Title'
 import bg from './img/bgo.svg';
 
 const Wrapper = styled.div`
@@ -33,7 +32,7 @@ const Label = styled(Form.Label)`
     padding-bottom: 10px;
 `
 const Link = styled.a`
-    color: #0071BC;
+    color: ${blueColor};
 `
 class Register extends Component {
     constructor() {
@@ -234,10 +233,12 @@ class Register extends Component {
                             />
 
                         </Form.Group>
-                        <Form.Text ><Link href={'/dashboard'} className="float-right">Masz konto? Zaloguj się</Link></Form.Text>
+                        
                         <Button style={ BlueButtonStyle } variant="info" block  type="submit" >Rejestracja</Button>
                         
-                        
+
+                        <Form.Text ><Link href={'/dashboard'}>Powrót do logowania</Link></Form.Text>
+                        <br></br>
                     </Form>
                 </Container>
             </Wrapper>

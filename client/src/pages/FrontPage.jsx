@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bg.svg';
 import logo from './img/logo.svg';
+import { blueColor } from './constants.jsx'
 
 const Wrapper = styled.div.attrs({
 })`
@@ -26,8 +27,8 @@ const Image = styled.img.attrs({
 const Button = styled.button`
     padding: 0 20px;
     color: white;
-    background: #0071BC;
-    border: 20px solid #0071BC;
+    background: ${blueColor};
+    border: 20px solid ${blueColor};
     border-radius: 30px;
 `
 const H5 = styled.h5`

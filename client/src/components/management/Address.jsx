@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../api'
-import styled from 'styled-components';
-
-const AdressContainer = styled.div`
-  padding: 20px;
-  text-align: center
-`;
+import api from '../../api';
+import { AdressContainer } from '../../pages/constants';
 
 class Address extends Component {
   constructor(props) {
@@ -19,8 +14,9 @@ class Address extends Component {
         address: '',
         phone: '',
         errors: {}
-    }
-  }
+    };
+  };
+
   componentDidMount = async () => {
     const { id } = this.state
     const management = await api.getManagementById(id)
@@ -31,13 +27,13 @@ class Address extends Component {
       city: management.data.data.city,
       address: management.data.data.address,
       phone: management.data.data.phone,
-    })
-  }
+    });
+  };
 
   render() {
     const { title, name, city, address, phone } = this.state
 
-    return <AdressContainer>
+    return (<AdressContainer>
             <p>{title}</p>
             <h4><b>{name}</b></h4>
             <p>{city}</p>
@@ -45,7 +41,7 @@ class Address extends Component {
             <br></br>
             <p ><i>{phone}</i></p>
           </AdressContainer>
-  }
-}
+    )};
+};
 
 export default Address

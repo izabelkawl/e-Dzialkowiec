@@ -42,7 +42,9 @@ const validatePaymentdetailInput = (data) => {
   }
   if (Validator.isEmpty(data.account_number)) {
     errors.account_number = " *Podaj numer konta";
-  } 
+  } else if (!Validator.isLength(data.account_number, { min: 26, max: 26 })) {
+    errors.account_number = " *Numer konta skada się z 26 cyfr";
+  }
   return {
     errors,
     isValid: isEmpty(errors),

@@ -3,8 +3,8 @@ import api from "../../api";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
-import {Form,  Row, Col, Button  } from 'react-bootstrap';
-import { List,Title, BlueButtonStyle } from '../constants';
+import { Form,  Row, Col, Button } from 'react-bootstrap';
+import { List, Title, BlueButtonStyle } from '../constants';
 
 const AdminData = () => {
     const [users, setUsers] = useState([]);
@@ -38,21 +38,24 @@ const AdminData = () => {
                 wol++
             }
             return wol
-        },)  
+        },);
+
     const resultZaj = allotments.map((allotment, index) => {
             const { status } = allotment;
                 if (status === "Zajęta"){
                     zaj++
                 }
                 return zaj
-            })  
+            }) ;
+
     const resultRez = allotments.map((allotment, index) => {
         const { status } = allotment;
         if (status === "Rezerwacja"){
                 rez++
             }
             return rez
-        })  
+        }) ;
+
     return ( 
         <Form>
             <Form.Group>
@@ -115,40 +118,42 @@ const AdminData = () => {
                 </Row>
             </Form.Group>
     </Form>
-    )
-        
-}
+    );
+};
 
 class Admin extends Component {
 
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
-    }
+    };
+
     render() {
         const { user } = this.props.auth;
         if (user.position !== "Działkowiec") {
             return (
-                <List >
+                <List>
                     <Title>Panel Adminstratora</Title>
-                        <AdminData/>
+                    <AdminData/>
                     <Title>Dane zalogowanego</Title>
                     <Row>
-                        <Col><p>Email: <b> {user.email}  </b></p>
-                            <p>Administrator: <b> {user.firstname+ ' ' +user.lastname}  </b></p></Col>
+                        <Col>
+                            <p>Email: <b>{user.email}</b></p>
+                            <p>Administrator: <b>{user.firstname+ ' ' +user.lastname}</b></p>
+                        </Col>
                         <Col>
                             <Button style={BlueButtonStyle} onClick={this.onLogoutClick} >Wyloguj</Button>
                         </Col>
                     </Row>
                         <br></br>
                     <Row>
-                    <Button style={BlueButtonStyle} href={'/dashboard'}>E-działkowiec</Button>
+                        <Button style={BlueButtonStyle} href={'/dashboard'}>E-działkowiec</Button>
                     </Row>
                 </List>
             );
-    }
-  }
-}
+        };
+    };
+};
 
 Admin.propTypes = {
     logoutUser: PropTypes.func.isRequired,
