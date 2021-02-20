@@ -5,9 +5,24 @@ import { logoutUser } from "../../api/index";
 import EmailChange from '../../components/accountEditing/EmailChange';
 import DataChange from '../../components/accountEditing/DataChange';
 import PasswordChange from '../../components/accountEditing/PasswordChange';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { Tab, Col, Row, ListGroup, Button } from 'react-bootstrap';
 import { BlueButtonStyle, Title } from '../constants';
+import styled from 'styled-components';
+
+const Wrapper = styled.div` 
+    padding: 20px;
+    @media(min-width: 992px){
+        // padding: 100px;
+    }
+    @media(min-width: 1366px){
+        width: 70vw;
+        padding: 100px;
+    }
+`;
+
+const Container = styled.div`
+  padding-top: 30px;
+`
 
 class Account extends Component {
 
@@ -24,13 +39,13 @@ class Account extends Component {
                         <Title>Konto</Title>
                             </Col>
                     <Col>
-                        <Button style={BlueButtonStyle} className="float-right" onClick={this.onLogoutClick} >Wyloguj</Button>
+                        <Button size="sm"style={BlueButtonStyle} className="float-right" onClick={this.onLogoutClick} >Wyloguj</Button>
                             </Col>
                 </Row>
                 <hr></hr>
                 <Tab.Container transition={false} defaultActiveKey="#link1">
                     <Row>
-                        <Col sm={{ span: 3 }} align="center">
+                        <Col lg={{ span: 3 }} align="center">
                             <ListGroup>
                                 <ListGroup.Item action href="#link1">
                                     Twoje dane
@@ -43,17 +58,23 @@ class Account extends Component {
                                         </ListGroup.Item>
                             </ListGroup>
                         </Col>
-                        <Col sm={{ offset: 1, span: 5 }}>
+                        <Col lg={{ offset: 1, span: 5 }}>
                             <Tab.Content>
                                 <Tab.Pane eventKey="#link1">
-                                    <DataChange/>
-                                        </Tab.Pane>
+                                    <Container>
+                                        <DataChange/>
+                                            </Container>
+                                                </Tab.Pane>
                                 <Tab.Pane eventKey="#link2">
-                                    <EmailChange/>
-                                        </Tab.Pane>
+                                    <Container>
+                                        <EmailChange/>
+                                            </Container>
+                                                </Tab.Pane>
                                 <Tab.Pane eventKey="#link3">
-                                    <PasswordChange/>
-                                        </Tab.Pane>
+                                    <Container>
+                                        <PasswordChange/>
+                                            </Container>
+                                                </Tab.Pane>
                             </Tab.Content>
                         </Col>
                     </Row>

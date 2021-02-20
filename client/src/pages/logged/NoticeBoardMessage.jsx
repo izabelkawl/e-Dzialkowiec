@@ -134,9 +134,9 @@ class NoticeBoardMessage extends Component {
                         placeholder={"Treść wiadomości.."}
                     />
                  </Form.Group>
-          <Button style={RedButtonStyle} href="/dashboard/noticeboard" >Powrót</Button>
+          <Button size="sm"style={RedButtonStyle} href="/dashboard/noticeboard" >Powrót</Button>
             {' '}
-            <Button style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>
+            <Button size="sm"style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>
             
             </Wrapper>
             )

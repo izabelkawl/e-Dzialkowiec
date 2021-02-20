@@ -41,7 +41,7 @@ class PdfButton extends Component {
                                            account: account,
                                         }) }   
                     fileName="faktura.pdf">
-  {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button style={BlueButtonStyle}>Pobierz</Button>)}
+  {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button size="sm"style={BlueButtonStyle}>Pobierz</Button>)}
 </PDFDownloadLink>
         );
                                     }

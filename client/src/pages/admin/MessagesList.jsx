@@ -6,7 +6,29 @@ import { connect } from "react-redux";
 import { Button } from 'react-bootstrap';
 import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
 import GetUserName from '../../components/accountEditing/GetUserName';
-import { MessagesWrapper, MessageList, Person, BlueButtonStyle, List, Title } from '../constants';
+import { BlueButtonStyle, List, Title } from '../constants';
+import styled from 'styled-components';
+
+const MessagesWrapper = styled.div`
+  padding-top: 50px;
+  @media(min-width: 992px){
+      width: 500px;
+  }
+`;
+
+const MessageList = styled.div`
+    overflow: auto;
+    height: 300px;
+`;
+
+const Person = styled.div`
+    color: white;
+    background-color: rgb(0, 113, 188);
+    padding: 12px;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    cursor: pointer;
+`;
 
 class ShowMessages extends Component {
   getUserById = event => {
@@ -53,26 +75,25 @@ const MessagesList = () => {
   });
 
   return (
-        <List>
-          <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
-          <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}/>
-          <MessagesWrapper>
-            <Title>Lista wiadomości</Title>
-            <MessageList>
-              {Messages}
-            </MessageList>
-          </MessagesWrapper>
-        </List>
+    <List>
+      <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
+      <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}/>
+      <MessagesWrapper>
+        <Title>Lista wiadomości</Title>
+        <MessageList>
+          {Messages}
+        </MessageList>
+      </MessagesWrapper>
+    </List>
   );
 };
 
 class Messages extends Component {
-  
-  render() {
 
-  return  <MessagesList/>
-    }
+  render() {
+    return <MessagesList/>
   }
+}
 
 Messages.propTypes = {
   auth: PropTypes.object.isRequired

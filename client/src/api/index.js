@@ -305,18 +305,6 @@ export const getAllFinances = () => api.get(`/finances`)
 export const deleteFinanceById = id => api.delete(`/finance/${id}`)
 export const getFinanceById = id => api.get(`/finance/${id}`)
 
-// Paymentdetail
-export const insertPaymentdetail = (paymentdetailData, history) => dispatch => {
-    api
-        .post("/paymentdetail", paymentdetailData)
-        .then(res => window.alert(`Dodano pomyślnie!`))
-        .catch(err =>
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            })
-        );
-};
 export const updatePaymentdetailById = (id, payload) => dispatch => {
     api
         .put(`/paymentdetail/${id}`, payload)
@@ -328,8 +316,6 @@ export const updatePaymentdetailById = (id, payload) => dispatch => {
             })
         );
 }
-export const getAllPaymentdetails = () => api.get(`/paymentdetails`)
-export const deletePaymentdetailById = id => api.delete(`/paymentdetaile/${id}`)
 export const getPaymentdetailById = id => api.get(`/paymentdetail/${id}`)
 
 // Management
@@ -466,10 +452,7 @@ const apis = {
     deleteFinanceById,
     getFinanceById,
 
-    insertPaymentdetail,
-    getAllPaymentdetails,
     updatePaymentdetailById,
-    deletePaymentdetailById,
     getPaymentdetailById,
 
     insertComment,

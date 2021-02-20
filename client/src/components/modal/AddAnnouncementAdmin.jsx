@@ -96,7 +96,7 @@ class AddAnnouncementAdmin extends Component {
                 window.location.reload()
               }}>
               Zamknij</Button>
-            <Button style={BlueButtonStyle} onClick={this.onSubmit}>
+            <Button size="sm"style={BlueButtonStyle} onClick={this.onSubmit}>
               Dodaj</Button>
           </Modal.Footer>
         </Modal>

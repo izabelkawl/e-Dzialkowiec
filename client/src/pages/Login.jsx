@@ -3,38 +3,54 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
-import { BlueButtonStyle } from './constants';
 import styled from 'styled-components';
-import { Title, blueColor}  from '../pages/constants';
+import { Title, BlueButtonStyle, Span, linkColor }  from '../pages/constants';
 import { loginUser } from "../api/index";
 import NavBar from '../components/navigation/NavBar';
-
 import bg from './img/bgo.svg';
 
 const Wrapper = styled.div`
-    background-image: url(${bg});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
+    background-color: white;
+    margin: 0 auto;
     height: 100vh;
+    @media(min-width: 400px) and (max-width: 767px){
+        width: 100vw;
+    };
+    @media(min-width: 768px) and (max-width: 1364px){
+        background-color: toamto;
+        margin: 0 auto;
+    };
+    @media(min-width: 1365px){
+        background-image: url(${bg});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+    };
 `;
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    width: 30vw;
-    margin: 150px 400px;
-`
-const Span = styled.span`
-    color: red;
-    font-size: 80%;
-`
-const Link = styled.a`
-    color: ${blueColor};
-`
+    padding: 20px;
+    @media(min-width: 400px) and (max-width: 767px){
+        margin: 0 auto;
+    };
+    @media(min-width: 768px) and (max-width: 1364px){
+        width: 50vw;
+        margin: 0 auto;
+    };
+    @media(min-width: 1365px){
+        width: 30vw;
+        margin: 150px 400px;}
+    }
+`;
+
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
-`
+`;
+export const Link = styled.a`
+    color: ${linkColor};
+`;
 
 class Login extends Component {
     constructor() {
@@ -44,13 +60,14 @@ class Login extends Component {
             password: "",
             errors: {}
         };
-    }
+    };
+
     componentDidMount() {
         // If logged in and user navigates to Login page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
             this.props.history.push("/dashboard");
-        }
-    }
+        };
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
@@ -66,7 +83,7 @@ class Login extends Component {
                 errors: nextProps.errors
             });
         }
-    }
+    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -85,6 +102,7 @@ class Login extends Component {
 
     render() {
         const { errors } = this.state;
+
         return (
             <Wrapper>
                 <NavBar />
@@ -92,13 +110,11 @@ class Login extends Component {
                     <Title>Logowanie</Title>
                     <Form noValidate onSubmit={this.onSubmit}>
                         <Form.Group>
-                            <Label htmlFor="email">Email:
-                        </Label>
-                        <Span>
+                            <Label htmlFor="email">Email: </Label>
+                            <Span>
                                 {errors.email}
                                 {errors.emailnotfound}
                             </Span>
-
                             <Form.Control
                                 onChange={this.onChange}
                                 value={this.state.email}
@@ -108,7 +124,6 @@ class Login extends Component {
                                 className={classnames("", {
                                     invalid: errors.email || errors.emailnotfound
                                 })} />
-
                         </Form.Group>
                         <Form.Group>
                             <Label htmlFor="password">Hasło:</Label>
@@ -116,9 +131,6 @@ class Login extends Component {
                                 {errors.password}
                                 {errors.passwordincorrect}
                             </Span>
-                            <Form.Text style={{ float: "right" }}>
-                                <Link href="/"> Nie pamiętasz hasła?</Link>
-                            </Form.Text>
                             <Form.Control
                                 onChange={this.onChange}
                                 value={this.state.password}
@@ -131,13 +143,13 @@ class Login extends Component {
                             />
                             <Form.Text style={{ paddingTop: '10px' }}><Link href="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
                         </Form.Group>
-                        <Button  style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
+                        <Button size="sm" style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
                     </Form>
                 </Container>
             </Wrapper>
-        );
-    }
-}
+              );
+    };
+};
 
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,

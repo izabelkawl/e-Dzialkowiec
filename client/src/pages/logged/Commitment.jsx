@@ -4,6 +4,7 @@ import { Form, Row, Col } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { Title, Label } from '../constants';
 import FinancesTable from './FinanceTable';
+import Media from 'react-media';
 
 class Commitment extends Component {
 
@@ -60,9 +61,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col >
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col >
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group>
                     <Form.Group>
@@ -76,9 +75,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col>
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col >
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group>
                     <Form.Group>
@@ -92,9 +89,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col>
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col>
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group>
                     <Form.Group>
@@ -108,9 +103,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col>
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col>
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group>
                     <Form.Group>
@@ -124,9 +117,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col>
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col>
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group> 
                     <Form.Group>
@@ -140,9 +131,7 @@ class Commitment extends Component {
                                     disabled
                                 ></Form.Control>
                                     </Col>
-                            <Col sm={{ span: 1 }}>
-                                <Label>zł</Label> 
-                                    </Col>
+                                    <Media query="(min-width: 768px)" render={() => ('zł')}/>
                         </Row>
                     </Form.Group>
                     <hr></hr>

@@ -3,7 +3,64 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import api from "../../api";
 import { Button, Form, Col, Row } from 'react-bootstrap';
-import { AnnouncementField, Content, TitleSection, DateSection, RedButtonStyle, Title, FooterButton, UserSection, Image, List } from '../constants';
+import { RedButtonStyle, Title, List } from '../constants';
+import styled from 'styled-components';
+
+const AnnouncementField = styled.div`
+  margin-top: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+  -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  @media(min-width: 992px){
+    padding: 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 0.7fr 1.8fr 0.5fr;
+    grid-template-rows:  50px 2.1fr 0.4fr;
+    gap: 15px 30px;
+    grid-template-areas:
+    "Image TitleSection User"
+    "Image ContentSection ."
+    "Image DateSection  Footer";
+  }
+`;
+
+const Content = styled.div`
+  grid-area: ContentSection;
+`;
+
+const TitleSection = styled.div`
+  grid-area: TitleSection;
+  font-weight: bold;
+`;
+
+const DateSection = styled.div`
+  grid-area: DateSection;
+`;
+
+const FooterButton = styled.div`
+  grid-area: Footer;
+  text-align: right;
+`;
+
+const UserSection = styled.div`
+  grid-area: User;
+  text-align: right;
+`;
+
+const Image = styled.img`
+  grid-area: Image;
+  width: 300px;
+  padding-bottom: 20px;
+  object-fit: cover;
+  @media(min-width: 992px){
+  height: 240px;
+  width: 300px;
+  object-fit: cover;
+  }
+`;
 
 class DeleteNoticeboard extends Component {
   deleteNoticeboard = event => {
@@ -19,7 +76,7 @@ class DeleteNoticeboard extends Component {
   };
 
   render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
+      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
   };
 };
 
@@ -59,7 +116,7 @@ class NoticeBoard extends Component {
           userName();
       }, []);
 
-      const NoticeboardList = tables.map((table) => {
+      const NoticeboardList = tables.slice(0).reverse().map((table) => {
           const { _id, title, user_id, advertisement, image} = table;
           const username = userss.map((user, index) => {
             const { _id, firstname, lastname } = user
@@ -104,10 +161,10 @@ class NoticeBoard extends Component {
     return (
           <List>
             <Row>
-              <Col>
+              <Col lg={6}>
                 <Title>Tablica ogłoszeń</ Title>
                   </Col>
-              <Col>
+              <Col lg={6}>
                 <Form.Control
                     value={this.state.inputValue}
                     onChange={this.updateInputValue}
@@ -116,6 +173,7 @@ class NoticeBoard extends Component {
                     />
                   </Col>   
             </Row>
+            <br></br>
             <NoticeBoard/>
           </List>
     )};

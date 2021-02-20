@@ -4,23 +4,29 @@ import styled from "styled-components";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
 import { insertMessage } from "../../api";
 import { BlueButtonStyle } from '../constants';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { connect } from "react-redux";
 
 const Container = styled.div`
+  margin: 0 auto;
+  @media(min-width: 992px){
     width: 40vw;
-    margin: 0 auto;
-    
-  `
+  }
+`;
+
 const MessageContainer = styled.div`
-    overflow: auto;
+  overflow: auto;
+  height: 350px;
+  scroll-behavior: smooth;
+  margin-bottom: 10px;
+  padding-top: 50px;
+  @media(min-width: 768px){
     height: 500px;
-    scroll-behavior: smooth;
-    margin-bottom: 10px;
-  `
+  }
+`;
+
 const Me = styled.p.attrs({
   className: "float-right"
 })`
@@ -30,17 +36,20 @@ const Me = styled.p.attrs({
   padding: 9px;
   text-align: right;
   width: 100%;
-`
+`;
+
 const NotMe = styled.p`
   color: white;
   background-color: gray;
   border-radius: 9px;
   padding: 9px;
   float-left;
-  ` 
-  const MessageDate = styled.i`
-    font-size: 10px;
-  `
+`;
+
+const MessageDate = styled.i`
+  font-size: 10px;
+`;
+
   const MessagesList = (val) => {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
@@ -62,17 +71,19 @@ const NotMe = styled.p`
           }else{
             return ""
         }
-      
       })
+
     window.setInterval(function() {
       var elem = document.getElementById('data');
       elem.scrollTo(0, document.body.scrollHeight);
     }, 3500);
 
-    return  <MessageContainer id="data">
-    {Listka}
-  </MessageContainer>
-}
+    return (
+      <MessageContainer id="data">
+        {Listka}
+      </MessageContainer>
+    );
+  };
 
   class MessagesContent extends Component {
     constructor(props) {
@@ -82,8 +93,8 @@ const NotMe = styled.p`
         user_id: this.props.auth.user.id,
         recipient:  this.props.match.params.id,
         content: ''
-      }
-    }
+      };
+    };
   
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -99,35 +110,36 @@ const NotMe = styled.p`
       content: this.state.content,
     
     };
-    this.props.insertMessage(newMessage, this.props.history)
-
-    window.location.reload()
+    this.props.insertMessage(newMessage, this.props.history);
+    window.location.reload();
   };
 
-    render() {
-      return <Wrapper>
-        <Button style={BlueButtonStyle} href={'/dashboard/messages'}>Powrót</Button>
+  render() {
+    return (
+      <Wrapper>
+        <Button size="sm"style={BlueButtonStyle} href={'/dashboard/messages'}>Powrót</Button>
         <Container>
         <MessagesList id={this.props.match.params.id} name={this.props.auth.user.id}/>
           <InputGroup className="mb-3">
-                            <FormControl
-                            onChange={this.onChange}
-                            value={this.state.content}
-                            type="text"
-                            id="content"
-                            placeholder="Wpisz treść wiadomości.."
-                            /><InputGroup.Append><Button variant="secondary" onClick={this.onSubmit} >Wyślij</Button>
-                </InputGroup.Append>
-                
-              </InputGroup>
-              </Container>
+            <FormControl
+              onChange={this.onChange}
+              value={this.state.content}
+              type="text"
+              id="content"
+              placeholder="Wpisz treść wiadomości.."
+              />
+            <InputGroup.Append>
+              <Button size="sm"variant="secondary" onClick={this.onSubmit} >Wyślij</Button>
+            </InputGroup.Append>
+          </InputGroup>
+          </Container>
         </Wrapper> 
-    }
-  }
+    )};
+  };
 
-  MessagesContent.propTypes = {
-    auth: PropTypes.object.isRequired,
-    insertMessage: PropTypes.func.isRequired,
+MessagesContent.propTypes = {
+  auth: PropTypes.object.isRequired,
+  insertMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

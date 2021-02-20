@@ -6,6 +6,7 @@ import api, { updatePaymentdetailById } from '../../api';
 import classnames from "classnames";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import {Title, BlueButtonStyle, Span } from '../constants';
+import Media from 'react-media';
 
 class PaymentdetailsUpdate extends Component {
     constructor(props) {
@@ -68,145 +69,161 @@ class PaymentdetailsUpdate extends Component {
 
         return (
             <>
-                <Title>Opłaty</Title>
+            <Title>Opłaty</Title>
                 <Row>
-                    <Col sm={{ span: 7 }}> 
+                    <Col lg={{ span: 7 }}> 
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
-                                    <Form.Label  htmlFor="stable_price">Powierzchnia działki (m2*przelicznik):</Form.Label >
+                                <Col lg={{ span: 6 }}>
+                                    <Form.Label  htmlFor="stable_price">Opłata za m² działki:</Form.Label >
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
-                                    <Form.Control 
+                                <Col lg={{ span: 2, offset: 3 }}>
+                                    <Form.Control
                                         onChange={this.onChange}
                                         error={errors.stable_price}
                                         id="stable_price"
                                         type="text"
+                                        size="sm"
                                         className={classnames("", {
                                             invalid: errors.stable_price
                                         })}
                                         value={stable_price}
                                         ></Form.Control>
-                                </Col>zł 
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
+                                <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="membership_fee">Składka członkowska: </Form.Label >
                                     <Span>{errors.membership_fee}</Span>
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
+                                <Col lg={{ span: 2, offset: 3 }}>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.membership_fee}
                                         id="membership_fee"
                                         type="text"
+                                        size="sm"
                                         className={classnames("", {
                                             invalid: errors.membership_fee
                                         })}
                                         value={membership_fee}
                                         ></Form.Control>
-                                </Col >zł 
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
+                                <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="water_advance">Zaliczka wodna: </Form.Label >
                                     <Span>{errors.water_advance}</Span>
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
+                                <Col lg={{ span: 2, offset: 3 }}>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.water_advance}
                                         id="water_advance"
                                         type="text"
+                                        size="sm"
                                         className={classnames("", {
                                             invalid: errors.water_advance
                                         })}
                                         value={water_advance}
                                         ></Form.Control>
-                                </Col >zł   
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
+                                <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="water_charge">Opłata wodna: </Form.Label >
                                     <Span>{errors.water_charge}</Span>
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
+                                <Col lg={{ span: 2, offset: 3 }}>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.water_charge}
                                         id="water_charge"
                                         type="text"
+                                        size="sm"
                                         className={classnames("", {
                                             invalid: errors.water_charge
                                         })}
                                         value={water_charge}
                                     ></Form.Control>
-                                </Col >zł 
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
+                                <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="energy_charge">Opłata energetyczna: </Form.Label >
                                     <Span>{errors.energy_charge}</Span>
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
+                                <Col lg={{ span: 2, offset: 3 }}>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.energy_charge} 
                                         type="text"
+                                        size="sm"
                                         id="energy_charge"
                                         className={classnames("", {
                                             invalid: errors.energy_charge
                                         })}
                                         value={energy_charge}>
                                     </Form.Control>
-                                </Col >zł 
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
                         <Form.Group>
                             <Row>
-                                <Col sm={{ span: 6 }}>
+                                <Col lg={{ span: 6 }}>
                                     <Form.Label htmlFor="garbage">Śmieci: </Form.Label >
                                     <Span>{errors.garbage}</Span>
                                 </Col>
-                                <Col sm={{ span: 2, offset: 3 }}>
+                                <Col lg={{ span: 2, offset: 3 }}>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.garbage}
                                         type="text"
                                         id="garbage"
+                                        size="sm"
                                         className={classnames("", {
                                         invalid: errors.garbage
                                         })}value={garbage}>
                                     </Form.Control>
-                                </Col >zł 
+                                </Col>
+                                <Media query="(min-width: 992px)" render={() => ('zł')}/>
                             </Row>
                         </Form.Group>
-                        <br></br>
-                        <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdatePaymentdetail}>Zapisz</Button>
-                    </Col>
-                    <Col sm={{ span: 5 }}>
+                     </Col>
+                     <Media query="(max-width: 992px)" render={() =>
+                            (
+                             <Col lg={{ span: 6 }}><hr></hr></Col>
+                            )}
+                        /> 
+                    <Col lg={{ span: 5 }}>
                         <b>Dla stałej powierzchni działki 240m2:</b> 
                         <p>działka o powierzchni 240 m2 = 240 x 1,00 zł x = 240,00 zł</p>
                         <hr></hr>
                         <Form>
                             <Form.Group>
                                 <Row>
-                                    <Col sm={5}>
+                                    <Col lg={5}>
                                         <Form.Label  htmlFor="transfer_title">Tytuł opłaty: </Form.Label >
                                     </Col>
-                                    <Col sm={{ span: 6 }}>
+                                    <Col lg={{ span: 6 }}>
                                         <Form.Control
                                             onChange={this.onChange}
                                             error={errors.transfer_title}
                                             type="text"
+                                            size="sm"
                                             id="transfer_title"
                                             className={classnames("", {
                                                 invalid: errors.transfer_title
@@ -217,14 +234,15 @@ class PaymentdetailsUpdate extends Component {
                             </Form.Group>
                             <Form.Group>
                                 <Row>
-                                    <Col sm={5}>
+                                    <Col lg={5}>
                                         <Form.Label  htmlFor="payment_date">Termin płatności: </Form.Label>
                                     </Col>
-                                    <Col sm={{ span: 6 }}>
+                                    <Col lg={{ span: 6 }}>
                                         <Form.Control
                                             onChange={this.onChange}
                                             error={errors.payment_date}
                                             type="date"
+                                            size="sm"
                                             id="payment_date"
                                             className={classnames("", {
                                                 invalid: errors.payment_date
@@ -235,14 +253,15 @@ class PaymentdetailsUpdate extends Component {
                             </Form.Group>
                             <Form.Group>
                                 <Row>
-                                    <Col sm={5}>
+                                    <Col lg={5}>
                                         <Form.Label  htmlFor="account_number">Konto: </Form.Label >
                                     </Col>
-                                    <Col sm={{ span: 6 }}>
+                                    <Col lg={{ span: 6 }}>
                                         <Form.Control    
                                             onChange={this.onChange}
                                             error={errors.account_number}
                                             type="text"
+                                            size="sm"
                                             id="account_number"
                                             className={classnames("", {
                                                 invalid: errors.water_charge
@@ -251,7 +270,11 @@ class PaymentdetailsUpdate extends Component {
                                     </Col>
                                 </Row>
                             </Form.Group>
+                            <br></br>
                         </Form>
+                    </Col>
+                    <Col>
+                        <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdatePaymentdetail}>Zapisz</Button>
                     </Col>
                 </Row>
             </>

@@ -16,10 +16,11 @@ const Content = styled.div`
   -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-`
+`;
+
 const Person = styled.p`
     color: ${blueColor};
-`
+`;
 
 class ForumThread extends Component {
   constructor(props) {
@@ -30,8 +31,8 @@ class ForumThread extends Component {
         title: '',
         content: '',
         username: '',
-    }
-  }
+    };
+  };
   
   componentDidMount = async () => {
     const { id } = this.state
@@ -41,13 +42,13 @@ class ForumThread extends Component {
         user_id: form.data.data.user_id,
         title: form.data.data.title,
         content: form.data.data.content,
-    })
-  }
+    });
+  };
 
   handleChangeInputCommentContent = async event => {
       const comment_content = event.target.value
       this.setState({ comment_content })
-  }
+  };
 
   render() {
     
@@ -88,7 +89,7 @@ class ForumThread extends Component {
     });
 
     return <Wrapper>
-              <Button style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
+              <Button size="sm"style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
               <Content>
                 <h3>{title}</h3>
                 <Person><GetUserName id={user_id}/></Person>
@@ -96,7 +97,7 @@ class ForumThread extends Component {
                 <p>{content}</p>
                 <Form.Text muted>{date}</Form.Text>
               </Content>
-              <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
+              <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
               <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
               {CommentsTable}
             </Wrapper>
@@ -105,7 +106,6 @@ class ForumThread extends Component {
     return <CommentsList/>
   }
 }
-
 
 ForumThread.propTypes = {
   auth: PropTypes.object.isRequired

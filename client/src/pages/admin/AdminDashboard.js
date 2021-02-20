@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 import { Form,  Row, Col, Button } from 'react-bootstrap';
-import { List, Title, BlueButtonStyle } from '../constants';
+import { List, Title, BlueButtonStyle, RedButtonStyle } from '../constants';
 
 const AdminData = () => {
     const [users, setUsers] = useState([]);
@@ -60,11 +60,11 @@ const AdminData = () => {
         <Form>
             <Form.Group>
                 <Row>
-                    <Col sm={{ span: 3 }}>
+                    <Col md={{ span: 7, offset: 1}}>
                         <Form.Label htmlFor="email">Liczba zarejestrowanych
                             </Form.Label>
                     </Col>
-                    <Col sm={{ span: 1, offset: 3 }}>
+                    <Col md={{ span: 3 }}>
                         <Form.Control
                             type="text"
                             value={result}
@@ -75,11 +75,11 @@ const AdminData = () => {
             </Form.Group>
             <Form.Group>
                 <Row>
-                    <Col sm={3}>
+                    <Col md={{ span: 7, offset: 1}}>
                         <Form.Label htmlFor="email">Wolne działki
                             </Form.Label>
                     </Col>
-                    <Col sm={{ span: 1, offset: 3 }}>
+                    <Col md={{ span: 3 }}>
                         <Form.Control
                             type="text"
                             value={resultSum.slice(-1)}
@@ -89,11 +89,11 @@ const AdminData = () => {
             </Form.Group>
             <Form.Group>
                 <Row>
-                    <Col sm={3}>
+                    <Col md={{ span: 7, offset: 1}}>
                         <Form.Label htmlFor="email">Zajęte działki 
                             </Form.Label>
                     </Col>
-                    <Col sm={{ span: 1, offset: 3 }}>
+                    <Col md={{ span: 3 }}>
                         <Form.Control
                                 type="text"
                                 value={resultZaj.slice(-1)}
@@ -104,11 +104,11 @@ const AdminData = () => {
             </Form.Group>
             <Form.Group>
                 <Row>
-                    <Col sm={3}>
+                    <Col md={{ span: 7, offset: 1}}>
                         <Form.Label htmlFor="email">Ilość rezerwacji 
                             </Form.Label>
                     </Col>
-                    <Col sm={{ span: 1, offset: 3 }}>
+                    <Col md={{ span: 3 }}>
                         <Form.Control
                                 type="text"
                                 value={resultRez.slice(-1)}
@@ -132,24 +132,27 @@ class Admin extends Component {
         const { user } = this.props.auth;
         if (user.position !== "Działkowiec") {
             return (
-                <List>
-                    <Title>Panel Adminstratora</Title>
-                    <AdminData/>
-                    <Title>Dane zalogowanego</Title>
-                    <Row>
-                        <Col>
-                            <p>Email: <b>{user.email}</b></p>
-                            <p>Administrator: <b>{user.firstname+ ' ' +user.lastname}</b></p>
-                        </Col>
-                        <Col>
-                            <Button style={BlueButtonStyle} onClick={this.onLogoutClick} >Wyloguj</Button>
-                        </Col>
-                    </Row>
-                        <br></br>
-                    <Row>
-                        <Button style={BlueButtonStyle} href={'/dashboard'}>E-działkowiec</Button>
-                    </Row>
-                </List>
+                
+                    <List>
+                        <Title>Panel Adminstratora</Title>
+                        <AdminData/>
+                        <Title>Dane zalogowanego</Title>
+                        <Row>
+                            <Col md={{ span: 7, offset: 1}}>
+                                <p>Email: <b>{user.email}</b></p>
+                                <p>Administrator: <b>{user.firstname+ ' ' +user.lastname}</b></p>
+                                <p>Stanowisko: <b>{user.position}</b></p>
+                            </Col>
+                            <Col xl={{ span: 3 }}>
+                                <Button size="sm"style={BlueButtonStyle} block href={'/dashboard'}>E-działkowiec</Button>
+                                <Button size="sm"style={RedButtonStyle} block onClick={this.onLogoutClick} >Wyloguj</Button>
+                            </Col>
+                        </Row>
+                            <br></br>
+                        <Row>
+                            
+                        </Row>
+                    </List>
             );
         };
     };

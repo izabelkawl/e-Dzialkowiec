@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import UsersID from '../../pages/admin/UsersID';
+import UsersID from '../management/UsersID';
 import { insertMessage } from "../../api";
 import { Button, Modal, Form, FormControl, } from 'react-bootstrap';
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
@@ -58,7 +58,7 @@ class AddMessageAdminPanel extends Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Dodaj wątek
+            Wyślij wiadomość
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

@@ -5,12 +5,12 @@ import 'bootstrap/dist/js/bootstrap.js';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import logo from '../img/logo.png';
-import { blueColor } from '../../pages/constants';
+import { blueColor, hoverBlue } from '../../pages/constants';
+import Media from 'react-media';
 
 const Link = styled.a`
     margin-left: 70px;
     margin-top: 20px;
-    
 `;
 
 const NavigationItem = styled.p`
@@ -22,12 +22,25 @@ const NavigationItem = styled.p`
 `;
 
 const Contact = styled.p`
-    padding:0 20px;
-    color: white;
-    background:${blueColor};
-    background-clip: border-box;
-    border: 20px solid ${blueColor};
-    border-radius: 30px;
+    color: black;
+    :hover{
+        color: gray;
+    }
+    @media(min-width: 992px){
+        padding:0 20px;
+        color: white;
+        background:${blueColor};
+        background-clip: border-box;
+        border: 20px solid ${blueColor};
+        border-radius: 30px;
+        :hover{
+            color: white;
+            background: ${hoverBlue};
+            background-clip: border-box;
+            border: 20px solid ${hoverBlue};
+            border-radius: 30px;
+        }
+    }
 `;
 
 class NavBar extends Component {
@@ -51,9 +64,13 @@ class NavBar extends Component {
                             </Link>
                     </Nav>
                     <Nav style={{ paddingRight: '70px' }}>
-                        <NavigationItem>
-                            <img src={logo} height="60" alt="e-działkowiec"/>
+                        <Media query="(min-width: 992px)" render={() =>
+                            (
+                            <NavigationItem>
+                                <img src={logo} height="60" alt="e-działkowiec"/>
                             </NavigationItem>
+                            )}
+                        />
                     </Nav> 
                 </Navbar.Collapse>
             </Navbar>

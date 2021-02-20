@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Button, Form, Col, Row } from 'react-bootstrap';
 import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
+import Media from 'react-media';
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
@@ -10,7 +11,7 @@ class UpdateAllotment extends Component {
         window.location.href = `/admin/allotments/update/${this.props.id}`
     };
     render() {
-        return <Button style={BlueButtonStyle} onClick={this.updateAllotment}>Edytuj</Button>
+        return <Button size="sm"style={BlueButtonStyle} onClick={this.updateAllotment}>Edytuj</Button>
     };
 };
 
@@ -30,7 +31,7 @@ class DeleteAllotment extends Component {
     };
 
     render() {
-        return <Button style={RedButtonStyle} onClick={this.deleteAllotment}>Usuń</Button>
+        return <Button size="sm"style={RedButtonStyle} onClick={this.deleteAllotment}>Usuń</Button>
     };
 };
 
@@ -125,12 +126,17 @@ class AllotmentsList extends Component {
     return (
         <List>
             <Row>
-                <Col>
-                    <Button style={BlueButtonStyle} href="/admin/allotments/create">
+                <Col lg={3}>
+                    <Button size="sm"block style={BlueButtonStyle} href="/admin/allotments/create">
                         Dodaj działkę
                     </Button>
                 </Col>
-                <Col>
+                <Media query="(max-width: 992px)" render={() =>
+                            (
+                             <Col lg={{ span: 6 }}><p></p></Col>
+                            )}
+                        /> 
+                <Col lg={{ span: 6, offset: 3}}>
                     <Form.Control
                         value={this.state.inputValue}
                         onChange={this.updateInputValue}

@@ -12,7 +12,7 @@ import { Title } from '../constants';
 import { Tab, Tabs, CardColumns } from 'react-bootstrap';
 
 const Container = styled.div`
-  padding: 50px 0;
+  padding-top: 30px;
 `
 class Dashboard extends Component {
 

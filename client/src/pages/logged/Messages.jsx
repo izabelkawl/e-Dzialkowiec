@@ -4,21 +4,32 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button } from 'react-bootstrap';
-import { Title, blueColor } from '../constants';
-import Wrapper from '../../components/Wrapper/Wrapper';
+import { Title, blueColor, BlueButtonStyle } from '../constants';
 import styled from "styled-components";
-import { BlueButtonStyle}  from '../constants';
 import AddMessage from '../../components/modal/AddMessage';
 import GetUserName from '../../components/accountEditing/GetUserName';
 
-const Container = styled.div`
-    padding: 50px;
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
     width: 50vw;
-  `
+    padding: 100px;
+  }
+`;
+
+const Container = styled.div`
+  padding: 10%;
+  padding-top: 50px;
+  @media(min-width: 992px){
+    padding-top: 50px;
+  }
+`;
+
 const MessageList = styled.div`
   overflow: auto;
   height: 300px;
-`
+`;
+
 const Person = styled.div`
   color: white;
   padding: 12px;
@@ -75,14 +86,15 @@ class ShowMessages extends Component {
 
 
     return <Wrapper>
-         <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
-          <AddMessage show={modalShow} onHide={() => setModalShow(false)}/>
-          <Container>
-            <Title>Lista wiadomości</Title>
-            <MessageList>
-              {Messages}
-            </MessageList>
-            </Container>
+      
+      <Title>Lista wiadomości</Title>
+            <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
+              <AddMessage show={modalShow} onHide={() => setModalShow(false)}/>
+              <Container>
+                <MessageList>
+                  {Messages}
+                </MessageList>
+              </Container>
             </Wrapper>;
         };
 class Messages extends Component {

@@ -24,6 +24,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
+    "react-media": "^2.0.0-rc.1",
     "react-open-weather": "^0.6.3",
     "react-popper": "^2.2.3",
     "react-popper-dropdown": "^0.2.2",

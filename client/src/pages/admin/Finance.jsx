@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import { Table, Form, Col, Row, Button } from 'react-bootstrap';
-import { List,  BlueButtonStyle, RedButtonStyle } from '../constants';
+import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
 import PaymentdetailsUpdate from './PaymentdetailsUpdate';
+import Media from 'react-media';
 
 class StatusUpdateBtn extends Component {
     updateFinance = event => {
@@ -11,7 +12,7 @@ class StatusUpdateBtn extends Component {
         window.location.href = `/admin/finances/update/${this.props.id}`
     }
     render() {
-        return <Button style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
+        return <Button size="sm"style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
     };
 };
 
@@ -28,7 +29,7 @@ class StatusDeleteBtn extends Component {
         }
     }
     render() {
-        return <Button style={RedButtonStyle} onClick={this.deleteFinance}>Usuń</Button>
+        return <Button size="sm"style={RedButtonStyle} onClick={this.deleteFinance}>Usuń</Button>
     };
 };
 
@@ -87,8 +88,8 @@ class Management extends Component {
                         <td>{allotment_number}</td>
                         <td>{username}</td>
                         <td>{title}</td>
-                        <td>{area}</td>
-                        <td>{charge}</td>
+                        <td>{area} m²</td>
+                        <td>{charge} zł</td>
                         <td>{term}</td>
                         <td>{status}</td>
                         <td><StatusUpdateBtn id={_id}/></td>
@@ -126,10 +127,15 @@ class Management extends Component {
             <PaymentdetailsUpdate/>
             <hr></hr>
             <Row>
-                <Col>
-                    <Button style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
+                <Col lg={3}>
+                    <Button size="sm" block style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
                 </Col>
-                <Col>
+                <Media query="(max-width: 992px)" render={() =>
+                            (
+                             <Col lg={{ span: 6 }}><p></p></Col>
+                            )}
+                        /> 
+                <Col lg={{span: 6, offset: 3}}>
                     <Form.Control
                         value={this.state.inputValue}
                         onChange={this.updateInputValue}
@@ -140,7 +146,7 @@ class Management extends Component {
             </Row>
             <br></br>
             <Row>
-                <Col>
+                <Col lg={12}>
                     <FinancesList/>
                 </Col>
             </Row>

@@ -6,7 +6,56 @@ import api from "../../api";
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import AddAnnouncement from '../../components/modal/AddAnnouncement';
 import Wrapper from '../../components/Wrapper/Wrapper';
-import { AnnouncementField, Content, TitleSection, DateSection,  RedButtonStyle, BlueButtonStyle, Title, FooterButton, UserSection, Image } from '../constants';
+import { RedButtonStyle, BlueButtonStyle, Title } from '../constants';
+import styled from 'styled-components';
+
+const AnnouncementField = styled.div`
+    background-color: white;
+    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 0.7fr 1.8fr 0.5fr;
+    grid-template-rows:  50px 2.1fr 0.4fr;
+    gap: 15px 30px;
+    grid-template-areas:
+    "Image TitleSection User"
+    "Image ContentSection ."
+    "Image DateSection  Footer";
+`;
+
+const Content = styled.div`
+  grid-area: ContentSection;
+`;
+
+const TitleSection = styled.div`
+  grid-area: TitleSection;
+  font-weight: bold;
+`;
+
+const DateSection = styled.div`
+  grid-area: DateSection;
+`;
+
+const FooterButton = styled.div`
+  grid-area: Footer;
+  text-align: right;
+`;
+
+const UserSection = styled.div`
+  grid-area: User;
+  text-align: right;
+`;
+
+const Image = styled.img`
+  grid-area: Image;
+  height: 240px;
+  width: 300px;
+  object-fit: cover;
+`;
+
 
 class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
@@ -15,7 +64,7 @@ class MessageNoticeBoard extends Component {
       window.location.href = `/dashboard/noticeboard/${this.props.id}`
   }
   render() {
-      return <Button style={BlueButtonStyle} onClick={this.updateNoticeboard}>Wiadomość</Button>
+      return <Button size="sm"style={BlueButtonStyle} onClick={this.updateNoticeboard}>Wiadomość</Button>
   };
 };
 
@@ -32,7 +81,7 @@ class DeleteNoticeboard extends Component {
       };
   };
   render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
+      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
   };
 };
 
@@ -57,7 +106,7 @@ class NoticeBoard extends Component {
     const [modalShow, setModalShow] = React.useState(false);
     return (
           <> 
-            <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
+            <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
             <AddAnnouncement show={modalShow} onHide={() => setModalShow(false)}/>
           </>
     )

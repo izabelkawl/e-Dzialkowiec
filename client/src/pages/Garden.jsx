@@ -3,37 +3,38 @@ import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import './MapColors.css'
 import api from "../api";
-const Wrapper = styled.div`
 
-`;
 const Container = styled.div`
+padding: 20px;
+@media(min-width: 1365px){
   width: 80vw;
   margin: 0 auto;
   padding: 50px;
+}
 `;
 
 class Garden extends Component {
 
   render() {
-    const Mapka = (props) => {
-    
-  const [allotments, setAllotments] = useState([]);
-    // Tooltip
-      const tooltip = document.createElement("div");
-      tooltip.classList.add("tooltip-map");
-      tooltip.style.display = "none";
-      document.body.appendChild(tooltip);
 
-      function setTooltipPos(x, y) {
-          tooltip.style.left = x + 10 + "px";
-          tooltip.style.top = y + 25 + "px";
-          if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
-              tooltip.style.left = x - tooltip.offsetWidth - 60 + "px";
-          }
-          if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
-              tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
-          }
-      }
+    const GardenMap = () => {
+		const [allotments, setAllotments] = useState([]);
+		// Tooltip
+		const tooltip = document.createElement("div");
+		tooltip.classList.add("tooltip-map");
+		tooltip.style.display = "none";
+		document.body.appendChild(tooltip);
+
+		function setTooltipPos(x, y) {
+			tooltip.style.left = x + 10 + "px";
+			tooltip.style.top = y + 25 + "px";
+			if (parseInt(tooltip.style.left, 10) + tooltip.offsetWidth > window.innerWidth) {
+				tooltip.style.left = x - tooltip.offsetWidth - 60 + "px";
+			}
+			if (parseInt(tooltip.style.top, 10) + tooltip.offsetHeight > window.innerHeight) {
+				tooltip.style.top = y - tooltip.offsetHeight - 0 + "px";
+			}
+		}
     const tooltipData = {};
     allotments.map((allotment) => {
         const { number, allotment_width, allotment_length, price, status } = allotment;
@@ -54,16 +55,14 @@ class Garden extends Component {
        		}
 	});
 	
-    const tooltipTemplate = `
-	<p>{{number}}</p>
-     {{Content}}
-`;
-//Układ tooltipa
+    const tooltipTemplate = `<p>{{number}}</p>{{Content}}`;
+
+// Tooltip layout
 function generateTooltipContent(provinceName) {
   const ob = tooltipData[provinceName];
   let html = "";
-  if (ob !== undefined) { //jezeli nie ma takiej działki w bazie
-      if (Object.keys(ob).length !== 0 && ob.constructor === Object) { //jezeli dane tej działki nie są puste
+  if (ob !== undefined) { // if there is no such plot in the base
+      if (Object.keys(ob).length !== 0 && ob.constructor === Object) { // if the plot data is not empty
           html += "<div className=\"tooltip-map-content\">";
           for (let key in ob) {
               if (ob.hasOwnProperty(key)) {
@@ -1828,19 +1827,19 @@ function generateTooltipContent(provinceName) {
 </g>
 </svg>
 </div>
-  )
-  }
+  	)
+  };
       
     return (
-      <Wrapper>
-        <NavBar />
-        <Container>
-       		<Mapka />
-        </Container>
-      </Wrapper>
-    )
-  }
-}
+		<>
+			<NavBar />
+			<Container>
+				<GardenMap />
+			</Container>
+		</>
+    );
+  };
+};
 
 
 export default Garden

@@ -3,10 +3,10 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import UsersID from './UsersID';
+import UsersID from '../../components/management/UsersID';
 import { insertAllotment } from "../../api/index";
 import { Form, Button }from 'react-bootstrap';
-import { Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
+import { Title, List, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
 
 class AllotmentsInsert extends Component {
     constructor() {
@@ -54,8 +54,8 @@ class AllotmentsInsert extends Component {
         const { errors } = this.state;
 
         return (
-            <Wrapper>
-                <Title>Stwórz działkę</Title>
+            <List>
+                <Title>Tworzenie działki</Title>
                 <Form noValidate onSubmit={this.onSubmit}>
                     <Form.Group>
                         <Label htmlFor="number">Numer:</Label>
@@ -169,10 +169,10 @@ class AllotmentsInsert extends Component {
                     </Form.Group>
                     
                     <br></br>
-                    <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Zamknij</Button>{' '}
-                    <Button style={BlueButtonStyle} type="submit">Dodaj działkę</Button>
+                    <Button size="sm"style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>{' '}
+                    <Button size="sm"style={BlueButtonStyle} type="submit">Stwórz</Button>
                 </Form>
-            </Wrapper>
+            </List>
         );
     };
 };

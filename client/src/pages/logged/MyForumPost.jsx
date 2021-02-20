@@ -76,7 +76,7 @@ class DeleteForum extends Component {
       }
   }
   render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
+      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   }
 }
 
@@ -118,7 +118,7 @@ const [swt, setSwt] = React.useState(true);
     return (
       <Wrapper>
         <Title>Forum</ Title>
-        <Button style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
+        <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj wątek</Button>
         <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
         {swt===true ? ForumsList : MyForumsList}
         <AddThread show={modalShow} onHide={() => setModalShow(false)}

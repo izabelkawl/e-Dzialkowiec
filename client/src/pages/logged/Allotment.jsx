@@ -18,7 +18,7 @@ class MyGarden extends Component {
 	
   render() {
 	
-    const Mapka = () => {
+    const GardenMap = () => {
 		const [allotments, setAllotments] = useState([]);
 		const [userss, setUsers] = useState([]);
 		
@@ -45,7 +45,8 @@ class MyGarden extends Component {
 						'Status': status,
 					}
 				)
-			} else { 
+			} 
+			else { 
 				return(
 					tooltipData[number] = {
 						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
@@ -86,7 +87,8 @@ class MyGarden extends Component {
 					html += "</div>";
 					return html;
 				}
-			}else{ 
+			}
+			else { 
 				html = "<div className=\"tooltip-map-content\">Brak danych</div>";
 				return html;
 			}
@@ -103,10 +105,8 @@ class MyGarden extends Component {
 		const userName = async () => {
 			const userList = await api.getAllUsers()
 			const {data } = userList
-					
 			setUsers(data.data);
 			}
-
 		requestAllotmentsList();
 		userName()
 	}, []);
@@ -1911,7 +1911,7 @@ class MyGarden extends Component {
       
     return (
 		<Wrapper>
-			<Mapka />
+			<GardenMap />
 		</Wrapper>
     );
   };

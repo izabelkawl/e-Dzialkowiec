@@ -10,7 +10,7 @@ import LoggedNavBar from '../components/navigation/LoggedNavBar';
 import Dashboard from '../pages/logged/Dashboard';
 import { Forum, Account, Allotment, BuyingAllotment, MyAllotment } from '../pages';
 
-import bg from './img/bgo.svg';
+import bg from './img/bg.svg';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NoticeBoard from '../pages/logged/NoticeBoard.jsx';
@@ -21,11 +21,21 @@ import MessagesContent from '../pages/logged/MessagesContent.jsx';
 import NoticeBoardMessage from '../pages/logged/NoticeBoardMessage.jsx';
 
 const Container = styled.div`
+
+@media(min-width: 992px){
   background-image: url(${bg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  min-height: 100vh;
+  height: 100vh;
+}
+@media(min-width: 1366px){
+  background-image: url(${bg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  height: 100vh;
+}
 `;
 
 function LoggedApp() {

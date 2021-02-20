@@ -5,15 +5,14 @@ import { Provider } from "react-redux";
 import store from "../store.js";
 import { connect } from "react-redux";
 
-import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, Management, Finanse, FinancesInsert,  } from '../pages'
-import StatusUpdate from '../pages/admin/StatusUpdate'
-import PaymentInsert from '../pages/admin/PaymentInsert'
-import ChoosenAllotmetnforFinances from '../pages/admin/ChoosenAllotmetnforFinances'
-import AnnouncementUpdate from '../pages/admin/AnnouncementUpdate'
-import NoticeBoard from '../pages/admin/NoticeBoard'
-import MessagesContent from '../pages/admin/MessagesContent'
-import PrivateRoute from '../components/private-route/PrivateRoute'
-
+import { UsersList, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList, Management, Finanse } from '../pages';
+import StatusUpdate from '../pages/admin/StatusUpdate';
+import FinanceInsert from '../pages/admin/FinanceInsert';
+import AnnouncementUpdate from '../pages/admin/AnnouncementUpdate';
+import NoticeBoard from '../pages/admin/NoticeBoard';
+import MessagesContent from '../pages/admin/MessagesContent';
+import PrivateRoute from '../components/private-route/PrivateRoute';
+import AllotmentSelection from '../pages/admin/AllotmentSelection';
 import Admin from '../pages/admin/AdminDashboard';
 import AdminNavBar from '../components/navigation/AdminNavBar';
 
@@ -59,13 +58,12 @@ class AdminApp extends Component {
                 <PrivateRoute path="/admin/messages/:id" exact component={MessagesContent}/>
 
                 <PrivateRoute path="/admin/finances/list" exact component={Finanse} />
-                <PrivateRoute path="/admin/finances/create" exact component={FinancesInsert} />
-                <PrivateRoute path="/admin/finances/create/:id" exact component={ChoosenAllotmetnforFinances} />
+                <PrivateRoute path="/admin/finances/create" exact component={AllotmentSelection} />
+                <PrivateRoute path="/admin/finances/create/:id" exact component={FinanceInsert} />
                 <PrivateRoute path="/admin/finances/update/:id" exact component={StatusUpdate} />
                 <PrivateRoute path="/admin/table/" exact component={NoticeBoard} />
                
                 <PrivateRoute path="/admin/ads/update/:id" exact component={AnnouncementUpdate} />
-                <PrivateRoute path="/admin/paymentdetails/create" exact component={PaymentInsert} />
              
               </Switch>
             </Router>
@@ -75,7 +73,7 @@ class AdminApp extends Component {
     } else return (
       <ErrContainer >
         <h3>Page not found</h3>
-        <Button href={'/dashboard'}>Powrót</Button>
+        <Button size="sm"href={'/dashboard'}>Powrót</Button>
       </ErrContainer>
     );
   }

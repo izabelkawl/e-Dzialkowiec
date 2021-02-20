@@ -10,7 +10,7 @@ class UpdateAnnouncement extends Component {
         window.location.href = `/admin/ads/update/${this.props.id}`
     }
     render() {
-        return <Button style={BlueButtonStyle} onClick={this.updateAnnouncement}>Edytuj</Button>
+        return <Button size="sm"style={BlueButtonStyle} onClick={this.updateAnnouncement}>Edytuj</Button>
     }
 }
 
@@ -27,7 +27,7 @@ class DeleteAnnouncement extends Component {
         };
     };
     render() {
-        return <Button style={RedButtonStyle} onClick={this.deleteAnnouncement}>Usuń</Button>
+        return <Button size="sm"style={RedButtonStyle} onClick={this.deleteAnnouncement}>Usuń</Button>
     };
 };
 
@@ -55,7 +55,7 @@ const AnnouncementsList = () => {
         );
     });
 
-    return (<Table striped bordered hover size="sm" responsive>
+    return (<Table striped bordered hover size="md" responsive>
             <thead>
                 <tr>
                     <th>Tytuł</th>

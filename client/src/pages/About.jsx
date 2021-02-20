@@ -8,15 +8,20 @@ import AdList from '../components/management/AdList';
 import AdDescription from '../components/management/AdDescription'
 import AdRodo from '../components/management/AdRodo';
 import ActList from '../components/management/ActList';
+import Media from 'react-media';
 
 const Wrapper = styled.div`
-  min-width: 100vh;
+  min-width: 100vw;
 `;
 
 const Container = styled.div`
-  width: 80vw;
-  margin: 0 auto;
-  padding: 100px;
+  padding: 20px;
+
+  @media(min-width: 1365px){
+    width: 90vw;
+    margin: 0 auto;
+    padding: 100px;
+  }
 `;
 
 const About = () => {
@@ -25,54 +30,54 @@ const About = () => {
         <NavBar />
         <Container>
           <Tab.Container transition={false} id="list-group-tabs-example" defaultActiveKey="#link1">
-            <Row>
-              <Col sm={{ span: 2 }} align="center" >
-                <ListGroup >
-                <ListGroup.Item action href="#link1">
-                    Aktualności
-                      </ListGroup.Item>
-              <ListGroup.Item action href="#link5" >
-                    Ustawy
-                  </ListGroup.Item>
-                  <ListGroup.Item action href="#link2"  >
-                    O nas
-              </ListGroup.Item>
-                  <ListGroup.Item action href="#link3" >
-                    Skład zarządu
-              </ListGroup.Item>
-                  
-                  <ListGroup.Item action href="#link4">
-                    RODO
-              </ListGroup.Item>
-                </ListGroup>
-              </Col>
-              <Col sm={{ offset: 1, span: 9 }}>
-                <Tab.Content>
-                <Tab.Pane eventKey="#link1">
-                    <Title>Aktualności</Title>
-                    <AdList/>
-                  </Tab.Pane>
-                <Tab.Pane eventKey="#link2">
-                        <Title>O nas</Title>
-                          <AdDescription/>
-                        </Tab.Pane>
-                <Tab.Pane eventKey="#link3">
-                    <Title>Zarząd</Title>
-                    <CardColumns>
-                     <ManagementList/>
-                    </CardColumns>
-                  </Tab.Pane>
-                <Tab.Pane eventKey="#link4">
-                    <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>
-                  <AdRodo/>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="#link5">
-                    <Title>Ustawy</Title>
-                        <ActList/>
-                            </Tab.Pane>
-                </Tab.Content>
-              </Col>
-            </Row>
+              <Row>
+                <Col sm={{ span: 3 }} align="center" >
+                  <ListGroup >
+                  <ListGroup.Item action href="#link1">
+                      Aktualności
+                        </ListGroup.Item>
+                <ListGroup.Item action href="#link5" >
+                      Ustawy
+                    </ListGroup.Item>
+                    <ListGroup.Item action href="#link2"  >
+                      O nas
+                </ListGroup.Item>
+                    <ListGroup.Item action href="#link3" >
+                      Skład zarządu
+                </ListGroup.Item>
+                    
+                    <ListGroup.Item action href="#link4">
+                      RODO
+                </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+                <Col sm={{ offset: 1, span: 8 }}>
+                  <Tab.Content>
+                  <Tab.Pane eventKey="#link1">
+                      <Title>Aktualności</Title>
+                      <AdList/>
+                    </Tab.Pane>
+                  <Tab.Pane eventKey="#link2">
+                          <Title>O nas</Title>
+                            <AdDescription/>
+                          </Tab.Pane>
+                  <Tab.Pane eventKey="#link3">
+                      <Title>Zarząd</Title>
+                      <CardColumns>
+                      <ManagementList/>
+                      </CardColumns>
+                    </Tab.Pane>
+                  <Tab.Pane eventKey="#link4">
+                      <Title>INFORMACJA DOTYCZĄCA DANYCH OSOBOWYCH PRZETWARZANYCH</Title>
+                    <AdRodo/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="#link5">
+                      <Title>Ustawy</Title>
+                          <ActList/>
+                              </Tab.Pane>
+                  </Tab.Content>
+                </Col>
+              </Row>
           </Tab.Container>
         </Container>
       </Wrapper>

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import api, { updateUserByIdA } from '../../api';
 import classnames from "classnames";
 import { Form, Button } from 'react-bootstrap';
-import { Wrapper, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
+import { List, BlueButtonStyle, RedButtonStyle, Title, Span } from '../constants';
 
 class UsersUpdate extends Component {
     constructor(props) {
@@ -62,7 +62,7 @@ class UsersUpdate extends Component {
         const { errors, email, firstname, lastname, address, phone, position } = this.state;
 
         return (
-            <Wrapper>
+            <List>
                 <Title>Edycja</Title>
                 <Form.Group >
                     <Form.Label htmlFor="email" >Email: </Form.Label >
@@ -91,7 +91,6 @@ class UsersUpdate extends Component {
                             invalid: errors.firstname
                         })}
                         value={firstname}
-                        readOnly
                     />
                 </Form.Group >
                 <Form.Group >
@@ -106,7 +105,6 @@ class UsersUpdate extends Component {
                             invalid: errors.lastname
                         })}
                         value={lastname}
-                        readOnly
                     />
                 </Form.Group>
                 <Form.Group>
@@ -138,7 +136,7 @@ class UsersUpdate extends Component {
                     />
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label htmlFor="position">Rola: </Form.Label >
+                    <Form.Label htmlFor="position">Stanowisko: </Form.Label >
                     <Span>{errors.position}</Span>
                     <Form.Control
                         onChange={this.onChange}
@@ -158,10 +156,9 @@ class UsersUpdate extends Component {
                         <option>Prezes Ogrodu</option>
                     </Form.Control>
                 </Form.Group>
-
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Aktualizuj</Button>{' '}
-                <Button style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>
-            </Wrapper>
+                <Button size="sm"style={RedButtonStyle} href={'/admin/users/list'}>Powrót</Button>{' '}
+                <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdateUser}>Aktualizuj</Button>
+            </List>
         );
     };
 };

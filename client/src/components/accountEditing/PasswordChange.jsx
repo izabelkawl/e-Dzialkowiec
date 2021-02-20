@@ -114,7 +114,7 @@ class PasswordChange extends Component {
                                 />
                                 
                         </Form.Group>
-                        <Button style={BlueButtonStyle} type="submit"  className="float-right" onClick={this.handleUpdateUser} >Zapisz</Button>
+                        <Button size="sm"style={BlueButtonStyle} type="submit"  className="float-right" onClick={this.handleUpdateUser} >Zapisz</Button>
                     </Form>
                 </>
         );

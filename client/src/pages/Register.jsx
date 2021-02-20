@@ -5,35 +5,45 @@ import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { BlueButtonStyle, Title, blueColor } from './constants';
+import { BlueButtonStyle, Title, Span, Link } from './constants';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bgo.svg';
 
 const Wrapper = styled.div`
-    background-image: url(${bg});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    height: 100vh;
+    min-height: 100vh;
+
+    @media(min-width: 1365px){
+        background-image: url(${bg});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
+        height: 100%;
+    }
 `;
 
 const Container = styled.div.attrs({
     className: 'form-group',
 })` 
-    width: 40vw;
-    margin: 50px 300px;
-`
-const Span = styled.span`
-    color: red;
-    font-size: 80%;
-`
+    padding: 20px;
+    @media(min-width: 400px) and (max-width: 767px){
+        margin: 0 auto;
+    };
+    @media(min-width: 768px) and (max-width: 1364px){
+        width: 80vw;
+        margin: 0 auto;
+    };
+    @media(min-width: 1365px){
+        width: 50vw;
+        margin: 50px 200px 0;
+    }
+`;
+
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
-`
-const Link = styled.a`
-    color: ${blueColor};
-`
+`;
+
 class Register extends Component {
     constructor() {
         super();
@@ -48,14 +58,14 @@ class Register extends Component {
             password2: '',
             errors: {}
         };
-    }
+    };
 
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
             this.props.history.push("/login");
         }
-    }
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -63,7 +73,7 @@ class Register extends Component {
                 errors: nextProps.errors
             });
         }
-    }
+    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -94,9 +104,7 @@ class Register extends Component {
                 <NavBar />
                 <Container>
                     <Title>Rejestracja</Title>
-
                     <Form noValidate onSubmit={this.onSubmit}>
-
                         <Form.Group >
                             <Label htmlFor="email">Adres email: </Label>
                             <Span>
@@ -113,15 +121,11 @@ class Register extends Component {
                                 })}
                                 placeholder="jankowal@gmail.com"
                             />
-
                         </Form.Group>
-
                         <Form.Group >
                             <Row>
                                 <Col>
-                                    <Label htmlFor="firstname">Imię:
-                                </Label>
-
+                                    <Label htmlFor="firstname">Imię:</Label>
                                     <Span>
                                         {errors.firstname}
                                     </Span>
@@ -153,11 +157,9 @@ class Register extends Component {
                                         })}
                                         placeholder="Kowalski"
                                     />
-
                                 </Col>
                             </Row>
                         </Form.Group>
-
                         <Form.Group >
                             <Label htmlFor="address">Adres:</Label>
                             <Span>
@@ -174,9 +176,7 @@ class Register extends Component {
                                 })}
                                 placeholder="ul. Wspólna 2, Warszawa 00-000"
                             />
-
                         </Form.Group>
-
                         <Form.Group >
                             <Label htmlFor="phone">Telefon:</Label>
                             <Span>
@@ -193,9 +193,7 @@ class Register extends Component {
                                 })}
                                 placeholder="123 456 789"
                             />
-
                         </Form.Group>
-
                         <Form.Group >
                             <Label htmlFor="password">Hasło:</Label>
                             <Span>
@@ -212,9 +210,7 @@ class Register extends Component {
                                 })}
                                 placeholder="********"
                             />
-
                         </Form.Group>
-
                         <Form.Group>
                             <Label htmlFor="password2">Powtórz hasło:</Label>
                             <Span>
@@ -231,21 +227,22 @@ class Register extends Component {
                                 })}
                                 placeholder="********"
                             />
-
                         </Form.Group>
-                        
-                        <Button style={ BlueButtonStyle } variant="info" block  type="submit" >Rejestracja</Button>
-                        
-
+                        <Button
+                            style={ BlueButtonStyle }
+                            variant="info" block
+                            type="submit"
+                            >
+                            Rejestracja
+                        </Button>   
                         <Form.Text ><Link href={'/dashboard'}>Powrót do logowania</Link></Form.Text>
                         <br></br>
                     </Form>
                 </Container>
             </Wrapper>
-        )
-    }
-}
-
+        );
+    };
+};
 
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,

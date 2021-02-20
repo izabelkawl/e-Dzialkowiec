@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { insertMessage } from "../../api";
-import UsersID from '../../pages/admin/UsersID';
+import UsersID from '../management/UsersID';
 import { Button, Modal, Form, FormControl, } from 'react-bootstrap';
 import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
 

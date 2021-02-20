@@ -5,8 +5,50 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { insertMessage } from "../../api";
 import { List, BlueButtonStyle } from '../constants';
-import { Button,  FormControl, InputGroup } from 'react-bootstrap';
-import { MessagesWrapper, MessageContainer, MyMessages, NotMyMessages, MessageDate } from '../constants';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const MessagesWrapper = styled.div`
+  padding-top: 50px;
+  margin: 0 auto;
+  @media(min-width: 992px){
+      width: 50%;
+  }
+`;
+
+const MessageContainer = styled.div`
+  overflow: auto;
+  height: 350px;
+  scroll-behavior: smooth;
+  margin-bottom: 10px;
+    @media(min-width: 768px){
+      height: 500px;
+    }
+   
+`;
+
+const MyMessages = styled.p.attrs({
+    className: "float-right"
+})`
+    color: white;
+    background-color: rgb(0, 113, 188);
+    border-radius: 9px;
+    padding: 9px;
+    text-align: right;
+    width: 100%;
+`;
+
+const NotMyMessages = styled.p`
+    color: white;
+    background-color: gray;
+    border-radius: 9px;
+    padding: 9px;
+    float-left;
+`;
+
+const MessageDate = styled.i`
+    font-size: 10px;
+`;
 
 const MessagesList = (val) => {
   const [messages, setMessages] = useState([]);
@@ -75,7 +117,7 @@ class MessagesInsert extends Component {
   render() {
     return (
         <List>
-          <Button style={BlueButtonStyle} href={'/admin/messages/list'}>Powrót</Button>
+          <Button size="sm"style={BlueButtonStyle} href={'/admin/messages/list'}>Powrót</Button>
           <MessagesWrapper>
             <MessagesList id={this.props.match.params.id}/>
             <InputGroup className="mb-3">
@@ -87,7 +129,7 @@ class MessagesInsert extends Component {
                 placeholder="Wpisz treść wiadomości.."
                 />
               <InputGroup.Append>
-                <Button variant="secondary" onClick={this.onSubmit}>Wyślij</Button>
+                <Button size="sm"variant="secondary" onClick={this.onSubmit}>Wyślij</Button>
               </InputGroup.Append>
             </InputGroup>
           </MessagesWrapper>

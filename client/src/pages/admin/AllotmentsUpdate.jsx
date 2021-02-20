@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import api, { updateAllotmentById } from '../../api';
 import { Form, Button } from 'react-bootstrap';
-import  {Title, Wrapper, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
+import { Title, List, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -74,7 +74,7 @@ class AllotmentsUpdate extends Component {
         const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
         
         return (
-            <Wrapper>
+            <List>
                 <Title>Edycja działki</Title>
                 <Form.Group>
                     <Label htmlFor="number">Numer:</Label>
@@ -183,10 +183,10 @@ class AllotmentsUpdate extends Component {
                     </Form.Control>
                 </Form.Group>
                 <br></br>
-                <Button style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
+                <Button size="sm"style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
                 {' '}
-                <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
-            </Wrapper>
+                <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
+            </List>
         );
     };
         return <Allotments/>

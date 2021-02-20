@@ -137,7 +137,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
               </Form.Label>
 
               <br></br>
-              <Button onClick={handleSubmit} style={BlueButtonStyle}>
+              <Button size="sm"onClick={handleSubmit} style={BlueButtonStyle}>
                 Załaduj
               </Button>
             </Form.Group>
@@ -189,7 +189,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
             <ImageUpload/>
           </Modal.Body>
           <Modal.Footer>
-            <Button 
+            <Button size="sm"
               style={RedButtonStyle} 
               onClick={() => {
                 this.props.onHide()
@@ -198,7 +198,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
             >
               Zamknij
             </Button>
-            <Button style={BlueButtonStyle} onClick={this.onSubmit}>
+            <Button size="sm"style={BlueButtonStyle} onClick={this.onSubmit}>
               Dodaj
             </Button>
           </Modal.Footer>

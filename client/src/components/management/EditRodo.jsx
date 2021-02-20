@@ -74,7 +74,7 @@ class EditRodo extends Component {
               />
             </Form.Group>
             <br></br>
-            <Button style={BlueButtonStyle} type="submit" onClick={this.handleUpdateManagement}>
+            <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdateManagement}>
               Zapisz
             </Button>
           </Form>

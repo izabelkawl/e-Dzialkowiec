@@ -17,7 +17,7 @@ class DeleteUser extends Component {
     };
 
     render() {
-        return <Button style={RedButtonStyle} onClick={this.deleteUser}>Usuń</Button>
+        return <Button size="sm"style={RedButtonStyle} onClick={this.deleteUser}>Usuń</Button>
     };
 };
 
@@ -27,7 +27,7 @@ class UpdateUser extends Component {
         window.location.href = `/admin/users/update/${this.props.id}`
     }
     render() {
-        return <Button style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>
+        return <Button size="sm"style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>
     };
 };
 
@@ -75,8 +75,8 @@ class UsersList extends Component {
                     <td>{address}</td>
                     <td>{phone}</td>
                     <td>{position}</td>
-                    <td><DeleteUser id={_id} /></td>
                     <td><UpdateUser id={_id} /></td>
+                    <td><DeleteUser id={_id} /></td>
                 </tr>
                 )
         }else {
@@ -108,10 +108,10 @@ class UsersList extends Component {
     return (
         <List>
             <Row>
-                <Col>
+                <Col lg={6}>
                     <Title>Lista użytkowników</ Title>
                 </Col>
-                <Col>
+                <Col lg={6}>
                     <Form.Control
                         value={this.state.inputValue}
                         onChange={this.updateInputValue}

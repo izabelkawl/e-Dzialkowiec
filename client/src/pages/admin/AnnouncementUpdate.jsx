@@ -91,8 +91,8 @@ class AnnouncementsUpdate extends Component {
                         </Col>
                     </Form.Group>
                     <br></br>
-                    <Button style={BlueButtonStyle} href={'/admin/management#link3'}>Zamknij</Button>{' '}
-                    <Button style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>
+                    <Button size="sm"style={BlueButtonStyle} href={'/admin/management#link3'}>Zamknij</Button>{' '}
+                    <Button size="sm"style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>
                 </Form>
         </Wrapper>
         );

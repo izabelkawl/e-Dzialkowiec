@@ -17,7 +17,7 @@ class DeleteAct extends Component {
       }
   }
   render() {
-      return <Button style={RedButtonStyle} onClick={this.deleteAct}>Usuń</Button>
+      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteAct}>Usuń</Button>
   };
 };
 
@@ -99,7 +99,6 @@ const ActList = () => {
       
   };
   return (<>
-          <div style={{ width: '50%' }}>
             <Span>{error.message}</Span> 
             <Form.Group className='custom-file mb-3'>
               <Form.Control
@@ -117,12 +116,11 @@ const ActList = () => {
               </Form.Label>
 
               <br></br>
-              <Button onClick={handleSubmit} style={BlueButtonStyle}>
+              <Button size="sm"onClick={handleSubmit} style={BlueButtonStyle}>
                 Dodaj
               </Button>
               </Form.Group>
-          </div>
-  
+         
         <br></br>
         <hr></hr>
       
