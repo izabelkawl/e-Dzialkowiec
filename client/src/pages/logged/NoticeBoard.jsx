@@ -5,15 +5,37 @@ import { connect } from "react-redux";
 import api from "../../api";
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import AddAnnouncement from '../../components/modal/AddAnnouncement';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 import styled from 'styled-components';
+import Media from 'react-media';
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+padding: 20px;
+@media(min-width: 992px){
+    padding: 100px;
+    background-image: url(${bg});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    }
+`;
+
+const Container = styled.div`
+  @media(min-width: 992px){
+      width: 60vw;
+  }
+`;
 
 const AnnouncementField = styled.div`
-    background-color: white;
-    -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-    -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-    box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+  @media(min-width: 1366px){
     padding: 20px;
     margin-top: 20px;
     display: grid;
@@ -22,8 +44,9 @@ const AnnouncementField = styled.div`
     gap: 15px 30px;
     grid-template-areas:
     "Image TitleSection User"
-    "Image ContentSection ."
+    "Image ContentSection ContentSection"
     "Image DateSection  Footer";
+  }
 `;
 
 const Content = styled.div`
@@ -51,11 +74,15 @@ const UserSection = styled.div`
 
 const Image = styled.img`
   grid-area: Image;
-  height: 240px;
   width: 300px;
+  padding-bottom: 20px;
   object-fit: cover;
+  @media(min-width: 992px){
+    height: 240px;
+    width: 300px;
+    object-fit: cover;
+  }
 `;
-
 
 class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
@@ -81,7 +108,7 @@ class DeleteNoticeboard extends Component {
       };
   };
   render() {
-      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
+      return <Button size="sm" style={RedButtonStyle} onClick={this.deleteNoticeboard}>Usuń</Button>
   };
 };
 
@@ -106,7 +133,7 @@ class NoticeBoard extends Component {
     const [modalShow, setModalShow] = React.useState(false);
     return (
           <> 
-            <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
+            <Button size="sm" style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj ogłoszenie</Button>
             <AddAnnouncement show={modalShow} onHide={() => setModalShow(false)}/>
           </>
     )
@@ -197,19 +224,25 @@ class NoticeBoard extends Component {
     return (
           <>
             <br></br>
-            <Form.Check type="switch"  id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
+            <Form.Check type="switch" id="custom-switch" label="Moje ogłoszenia" onClick={() => setSwt(!swt)}/>
             {NoticeboardList}
           </>
     )};
   
     return (
       <Wrapper>
+        <Container>
         <Title>Tablica ogłoszeń</ Title>
         <Row>
-          <Col>
+          <Col lg={6}>
             <ButtonNoticeboard/>
           </Col>
-          <Col>
+          <Media query="(max-width: 992px)" render={() =>
+                            (
+                             <Col lg={{ span: 6 }}><p></p></Col>
+                            )}
+                        /> 
+          <Col lg={6}>
             <Form.Control
                 value={this.state.inputValue}
                 onChange={this.updateInputValue}
@@ -219,6 +252,7 @@ class NoticeBoard extends Component {
           </Col>   
         </Row>
         <NoticeBoard/>
+        </Container>
       </Wrapper>
     );
   };

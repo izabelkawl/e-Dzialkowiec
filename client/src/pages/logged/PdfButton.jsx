@@ -44,7 +44,7 @@ class PdfButton extends Component {
   {({ blob, url, loading, error }) => (loading ? 'Ładowanie...' :  <Button size="sm"style={BlueButtonStyle}>Pobierz</Button>)}
 </PDFDownloadLink>
         );
-                                    }
+        }else return null
 
         })
         return FinancesTable

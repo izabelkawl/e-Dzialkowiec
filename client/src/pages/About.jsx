@@ -8,7 +8,6 @@ import AdList from '../components/management/AdList';
 import AdDescription from '../components/management/AdDescription'
 import AdRodo from '../components/management/AdRodo';
 import ActList from '../components/management/ActList';
-import Media from 'react-media';
 
 const Wrapper = styled.div`
   min-width: 100vw;

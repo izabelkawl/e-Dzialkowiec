@@ -22,18 +22,12 @@ import NoticeBoardMessage from '../pages/logged/NoticeBoardMessage.jsx';
 
 const Container = styled.div`
 
-@media(min-width: 992px){
-  background-image: url(${bg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  height: 100vh;
-}
 @media(min-width: 1366px){
   background-image: url(${bg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
+  background-attachment: fixed;
   height: 100vh;
 }
 `;

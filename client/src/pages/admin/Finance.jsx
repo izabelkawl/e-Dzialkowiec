@@ -68,6 +68,7 @@ class Management extends Component {
                 userName();
             }, []);
             
+            let isEmpty = true;
             const FinancesTable = finances.slice(0).reverse().map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
             
@@ -94,14 +95,16 @@ class Management extends Component {
                         <td>{status}</td>
                         <td><StatusUpdateBtn id={_id}/></td>
                         <td><StatusDeleteBtn id={_id}/></td>
+                        {isEmpty = false}
                     </tr>
                 );
             } else {
-                return ""
+                return isEmpty = true
             };
         });
     
         return (
+            <>
             <Table striped bordered hover size="sm" responsive>
                 <thead>
                     <tr>
@@ -119,7 +122,11 @@ class Management extends Component {
                 <tbody>
                     {FinancesTable}
                 </tbody>
-            </Table>)
+            </Table>
+            
+            {isEmpty === true ? <p>*Brak zoobowiązań.</p> : ''}
+            </>
+            )
         };
 
     return (

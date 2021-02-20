@@ -25,7 +25,6 @@ const Section = styled.section`
 
     @media(min-width: 1365px){
         width: 50vw;
-        margin-top: 30px;
         padding: 100px;
         text-align: left;
     }

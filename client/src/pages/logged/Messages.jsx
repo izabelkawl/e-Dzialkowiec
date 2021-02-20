@@ -11,7 +11,7 @@ import GetUserName from '../../components/accountEditing/GetUserName';
 
 const Wrapper = styled.div` 
   padding: 20px;
-  @media(min-width: 992px){
+  @media(min-width: 1366px){
     width: 50vw;
     padding: 100px;
   }
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   padding: 10%;
   padding-top: 50px;
-  @media(min-width: 992px){
+  @media(min-width: 1366px){
     padding-top: 50px;
   }
 `;

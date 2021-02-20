@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,6 +6,7 @@ import classnames from "classnames";
 import api, { updateAllotmentById } from '../../api';
 import { Form, Button } from 'react-bootstrap';
 import { Title, List, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
+import UsersID from '../../components/management/UsersID';
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -19,6 +20,8 @@ class AllotmentsUpdate extends Component {
             price: '',
             status: '',
             user_id: '',
+
+            name: '',
             errors: {}
         };
     };
@@ -35,6 +38,13 @@ class AllotmentsUpdate extends Component {
             status: allotment.data.data.status,
             user_id: allotment.data.data.user_id,
         });
+        if(this.state.user_id !== "Brak"){
+            const user = await api.getUserById(allotment.data.data.user_id)
+            this.setState({
+                name: user.data.data.firstname + ' ' + user.data.data.lastname,
+            });
+        }
+        
     };
 
     componentWillReceiveProps(nextProps) {
@@ -59,20 +69,8 @@ class AllotmentsUpdate extends Component {
 
     render() {
 
-        const Allotments = () => {
-            const [userss, setUsers] = useState([]);
-            useEffect(() => {
-                const userName = async () => {
-                    const userList = await api.getAllUsers()
-                    const {data } = userList
-                        
-                    setUsers(data.data);
-                    }
-                userName();
-            }, []); 
+        const { errors, number, allotment_width, allotment_length, price, status, user_id, name } = this.state;
 
-        const { errors, number, allotment_width, allotment_length, price, status, user_id } = this.state;
-        
         return (
             <List>
                 <Title>Edycja działki</Title>
@@ -142,7 +140,7 @@ class AllotmentsUpdate extends Component {
                         as="select"
                         className={classnames("", {
                             invalid: errors.status
-                        })} value={this.state.value}>
+                        })} >
                         <option hidden>{status}</option>
                         <option >Wolna</option> 
                         <option >Zajęta</option> 
@@ -153,6 +151,21 @@ class AllotmentsUpdate extends Component {
                 <Form.Group>
                     <Label htmlFor="user_id">Użytkownik: </Label>
                     <Span>{errors.user_id}</Span>
+                    {status === "Wolna" ? 
+                    <Form.Control
+                        onChange={this.onChange}
+                        error={errors.user_id}
+                        id="user_id"
+                        as="select"
+                        className={classnames("", {
+                        invalid: errors.user_id
+                        })}
+                        defaultChecked="Brak"
+                        >
+                        {this.state.user_id = "Brak"}
+                        <option value="Brak">Brak</option>
+                    </Form.Control>
+                    :
                     <Form.Control
                         onChange={this.onChange}
                         error={errors.user_id}
@@ -162,34 +175,19 @@ class AllotmentsUpdate extends Component {
                         invalid: errors.user_id
                         })}
                         >
-                        { status === "Wolna" ? <option>Brak</option> 
-                            :
-                            userss.map((option) => {
-                                const {_id, firstname, lastname } = option
-                                if( user_id === _id){
-                                    return <option  key={_id} value={_id} hidden>{firstname+' '+ lastname }</option>
-                                } else {
-                                    return null
-                                }
-                            })
-                        }
-                        { status === "Wolna" ? <option hidden>Brak</option>
-                            :
-                            userss.map((option) => {
-                                const {_id, firstname, lastname } = option
-                                return <option  key={_id} value={_id}>{firstname+' '+ lastname }</option>
-                            }) 
-                        }
+                        {this.state.user_id = user_id}
+                        {name !== '' ? <option>{name}</option> : <option>Brak</option> }
+                        <UsersID/>
                     </Form.Control>
+    }
                 </Form.Group>
                 <br></br>
+                
                 <Button size="sm"style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
                 {' '}
                 <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
             </List>
         );
-    };
-        return <Allotments/>
     };
 };
 

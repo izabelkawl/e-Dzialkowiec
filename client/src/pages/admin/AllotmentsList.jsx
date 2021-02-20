@@ -71,7 +71,10 @@ class AllotmentsList extends Component {
             userName();
         }, []); 
 
-        const AllotmentsTable = allotments.map((allotment, index) => {
+        const SortedAllotments = [].concat(allotments)
+        .sort((a, b) => a.number > b.number ? 1 : -1)
+
+        const AllotmentsTable = SortedAllotments.map((allotment, index) => {
             const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;
             const username = userss.map((user, index) => {
                 const { _id, firstname, lastname } = user
@@ -94,7 +97,7 @@ class AllotmentsList extends Component {
                         <td>{price}</td>
                         <td>{status}</td>
                         <td>{user_id !== "Brak"? username : user_id }</td>
-                        <td><UpdateAllotment id={_id} value={username}/></td>
+                        <td><UpdateAllotment id={_id} name={username}/></td>
                         <td><DeleteAllotment id={_id} /></td>
                     </tr>
                 )

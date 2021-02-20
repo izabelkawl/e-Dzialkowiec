@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Table, Button, Form, Row, Col } from 'react-bootstrap';
 import { List, RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 
@@ -75,8 +77,15 @@ class UsersList extends Component {
                     <td>{address}</td>
                     <td>{phone}</td>
                     <td>{position}</td>
-                    <td><UpdateUser id={_id} /></td>
-                    <td><DeleteUser id={_id} /></td>
+                    { this.props.auth.user.position === "Prezes Ogrodu" || this.props.auth.user.position === "Wiceprezes Ogrodu"
+                        ? 
+                        <>
+                            <td><UpdateUser id={_id} /></td>
+                            <td><DeleteUser id={_id} /></td>
+                        </> 
+                        : 
+                        null }
+                   
                 </tr>
                 )
         }else {
@@ -95,8 +104,14 @@ class UsersList extends Component {
                     <th>Adres</th>
                     <th>Telefon</th>
                     <th>Stanowisko</th>
-                    <th></th>
-                    <th></th>
+                    { this.props.auth.user.position === "Prezes Ogrodu" || this.props.auth.user.position === "Wiceprezes Ogrodu"
+                        ?
+                        <>
+                            <th></th>
+                            <th></th>
+                        </>
+                        :
+                        null}
                 </tr>
             </thead>
             <tbody>
@@ -126,4 +141,14 @@ class UsersList extends Component {
     )};
 };
 
-export default UsersList;
+UsersList.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+    mapStateToProps,
+)(UsersList);

@@ -8,13 +8,12 @@ import styled from 'styled-components';
 
 const AnnouncementField = styled.div`
   margin-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
   background-color: white;
   -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
   @media(min-width: 992px){
-    padding: 20px;
     margin-top: 20px;
     display: grid;
     grid-template-columns: 0.7fr 1.8fr 0.5fr;

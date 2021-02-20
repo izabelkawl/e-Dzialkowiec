@@ -33,14 +33,16 @@ class Management extends Component {
                 requestFinancesList();
             }, []);
 
-        const FinancesTable = finances.map((finance, index) => {
+        let isEmpty = true;
+        const FinancesTable = finances.map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status } = finance;
             const logged = this.props.auth.user.id
             const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })
             const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase())
-        
+            
             if(search === true && owner === logged){
-                return (
+                
+                return ( 
                     <tr key={_id}>
                         <td>{allotment_number}</td>
                         <td>{title}</td>
@@ -50,13 +52,15 @@ class Management extends Component {
                         <td>{status}</td>
                         <td>
                         <PdfButton id={_id}/></td>
+                        {isEmpty = false}
                     </tr>
                 );
             }else{
-                return null
+                return isEmpty = true
             };
         });
             return (
+                <>
                 <Table striped bordered hover size="sm" responsive>
                 <thead>
                     <tr>
@@ -69,8 +73,12 @@ class Management extends Component {
                         <th>Faktura</th>
                     </tr>
                 </thead>
-                <tbody>{FinancesTable}</tbody>
+                <tbody>
+                    {FinancesTable}
+                </tbody>
             </Table>
+            {isEmpty === true ? <p>*Brak zoobowiązań.</p> : ''}
+            </>
             )
         };
 

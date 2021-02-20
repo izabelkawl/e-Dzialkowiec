@@ -30,7 +30,7 @@ class ForumThread extends Component {
         user_id: '',
         title: '',
         content: '',
-        username: '',
+        name: '',
     };
   };
   
@@ -43,6 +43,10 @@ class ForumThread extends Component {
         title: form.data.data.title,
         content: form.data.data.content,
     });
+    const user = await api.getUserById(form.data.data.user_id)
+    this.setState({
+        name: user.data.data.firstname + ' ' + user.data.data.lastname,
+    });
   };
 
   handleChangeInputCommentContent = async event => {
@@ -52,24 +56,24 @@ class ForumThread extends Component {
 
   render() {
     
-  const { id, user_id, title, content} = this.state
-  const timestamp = id.toString().substring(0,8);
-  const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
+    const { id, user_id, title, content, name} = this.state
+    const timestamp = id.toString().substring(0,8);
+    const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
 
-  const CommentsList = () => {
-    const [comments, setComments] = useState([]);
-    const [modalShow, setModalShow] = React.useState(false);
-   
-    useEffect(() => {
-        const requestCommentsList = async () => {
-            const commentsList = await api.getAllComments();
-            const { data } = commentsList;
-            setComments(data.data);
-        };
-        requestCommentsList();
-    }, []);
+    const CommentsList = () => {
+      const [comments, setComments] = useState([]);
+      const [modalShow, setModalShow] = React.useState(false);
+    
+      useEffect(() => {
+          const requestCommentsList = async () => {
+              const commentsList = await api.getAllComments();
+              const { data } = commentsList;
+              setComments(data.data);
+          };
+          requestCommentsList();
+      }, []);
 
-    const CommentsTable = comments.map((comment, index) => {
+    const CommentsTable = comments.map((comment) => {
 
       const { _id, commenter, comment_content, forum_id } = comment;
       const timestamp = _id.toString().substring(0,8);
@@ -88,24 +92,25 @@ class ForumThread extends Component {
       }
     });
 
-    return <Wrapper>
-              <Button size="sm"style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
-              <Content>
-                <h3>{title}</h3>
-                <Person><GetUserName id={user_id}/></Person>
-                <hr></hr>
-                <p>{content}</p>
-                <Form.Text muted>{date}</Form.Text>
-              </Content>
-              <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
-              <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
-              {CommentsTable}
-            </Wrapper>
+  return (
+      <Wrapper>
+        <Button size="sm"style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
+        <Content>
+          <h3>{title}</h3>
+          <Person>{name}</Person>
+          <hr></hr>
+          <p>{content}</p>
+          <Form.Text muted>{date}</Form.Text>
+        </Content>
+        <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
+        <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
+        {CommentsTable}
+      </Wrapper>
+      )
     }
-  
     return <CommentsList/>
-  }
-}
+  };
+};
 
 ForumThread.propTypes = {
   auth: PropTypes.object.isRequired

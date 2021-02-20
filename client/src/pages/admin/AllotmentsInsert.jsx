@@ -147,8 +147,8 @@ class AllotmentsInsert extends Component {
                                 className={classnames("", {
                                 invalid: errors.user_id
                                 })}
-                                defaultChecked="Brak"
                                 >
+                                {this.state.user_id = "Brak"}
                                 <option>Brak</option>
                             </Form.Control>
                         : 

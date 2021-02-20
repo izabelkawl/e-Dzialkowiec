@@ -15,7 +15,7 @@ class LoggedNavBar extends Component {
         return (
             <Navbar collapseOnSelect expand="lg" sticky="top" style={{ background: '#f8f9fa' }} >
                 
-                <Media query="(min-width: 991px)" render={() =>
+                <Media query="(min-width: 1366px)" render={() =>
                             (
                                 <Navbar.Brand href="/dashboard" >
                                 <img

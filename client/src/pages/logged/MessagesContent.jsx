@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 const Container = styled.div`
   margin: 0 auto;
-  @media(min-width: 992px){
+  @media(min-width: 1366px){
     width: 40vw;
   }
 `;

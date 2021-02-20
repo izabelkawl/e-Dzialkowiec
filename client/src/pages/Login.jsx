@@ -32,6 +32,7 @@ const Container = styled.div.attrs({
     className: 'form-group',
 })` 
     padding: 20px;
+    padding-top: 100px;
     @media(min-width: 400px) and (max-width: 767px){
         margin: 0 auto;
     };
@@ -39,9 +40,15 @@ const Container = styled.div.attrs({
         width: 50vw;
         margin: 0 auto;
     };
-    @media(min-width: 1365px){
+    @media(min-width: 1365px) and (max-width: 1919px){
+        padding-top: 0px;
         width: 30vw;
-        margin: 150px 400px;}
+        margin: 10vh 20vw;}
+    }
+    @media(min-width: 1920px){
+        padding-top: 0px;
+        width: 30vw;
+        margin: 20vh 20vw;}
     }
 `;
 

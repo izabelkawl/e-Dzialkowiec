@@ -57,6 +57,8 @@ class AllotmentSelection extends Component {
             };
             requestAllotmentsList();
         }, []);
+    
+    const { id } = this.state
 
         return (
             <List>
@@ -65,7 +67,7 @@ class AllotmentSelection extends Component {
                 <Form.Control
                     id="allotment_number"
                     as="select"
-                    value={this.state.id}
+                    value={id}
                     onChange={this.handleChange}
                     >
                     <option hidden>Wybierz..</option>
@@ -81,7 +83,8 @@ class AllotmentSelection extends Component {
                     })}
                 </Form.Control>
                 <br></br>
-                <SelectAllotment id={this.state.id} style={BlueButtonStyle} type="submit"/>
+                {id === 'Wybierz' ? '' : 
+                <SelectAllotment id={this.state.id} style={BlueButtonStyle} type="submit"/>}
             </List>
             );
         };

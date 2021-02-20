@@ -8,14 +8,16 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import { RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 import AddThread from '../../components/modal/AddThread';
+import Media from 'react-media';
 
 const Container = styled.div`
-  background-color: white;
-  -webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-  box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin-top: 20px;
+margin-top: 20px;
+padding: 20px;
+background-color: white;
+-webkit-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+-moz-box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
+@media(min-width: 1366px){
   display: grid;
   grid-template-columns: 1.8fr 0.5fr;
   grid-template-rows: 50px 2.1fr 0.4fr;
@@ -24,6 +26,7 @@ const Container = styled.div`
   " TitleSection User"
   " ContentSection ."
   " DateSection  Footer";
+}
 `;
 
 const Content = styled.div`
@@ -186,10 +189,15 @@ class Forum  extends Component {
       <Wrapper>
         <Title>Forum</ Title>
         <Row>
-          <Col>
+          <Col lg={6}>
             <ButtonNoticeboard/>
           </Col>
-          <Col>
+          <Media query="(max-width: 992px)" render={() =>
+                            (
+                             <Col lg={{ span: 6 }}><p></p></Col>
+                            )}
+                        /> 
+          <Col lg={6}>
             <Form.Control
                 value={this.state.inputValue}
                 onChange={this.updateInputValue}
