@@ -44,12 +44,13 @@
     "use-state-if-mounted": "^1.0.4"
   },
   "scripts": {
-    "start": "set PORT=8000 && react-scripts start",
+    "start": "set PUBLIC_URL=https://e-dzialkowiec.000webhostapp.com&&npm run build",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8000",
+  "homepage": "/",
+  "proxy": "http://localhost:3000/",
   "eslintConfig": {
     "extends": "react-app"
   },

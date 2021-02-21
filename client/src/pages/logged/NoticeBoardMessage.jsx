@@ -133,7 +133,7 @@ class NoticeBoardMessage extends Component {
                   <Title>Napisz wiadomość</Title>
                   <MessageContentn>
                       
-                      <Image id="myImg" src={`http://localhost:3000/${image}`} />
+                      <Image id="myImg" src={`http://localhost:3000//${image}`} />
                       <ContentSection>
                           <br></br>
                           <b>{title}</b>

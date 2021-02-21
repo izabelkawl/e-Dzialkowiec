@@ -180,7 +180,7 @@ class NoticeBoard extends Component {
       if( swt===false && user_id === this.props.auth.user.id){
         return (
             <AnnouncementField key={_id}>
-              <Image  src={`http://localhost:3000/${image}`}/>
+              <Image  src={`http://localhost:3000//${image}`}/>
               <TitleSection>{title}</TitleSection>
               <Content>{advertisement}</Content>
               <DateSection>
@@ -199,7 +199,7 @@ class NoticeBoard extends Component {
         else if( swt===true){
           return (
             <AnnouncementField key={_id}>
-              <Image id="exampleImage" src={`http://localhost:3000/${image}`}/>
+              <Image id="exampleImage" src={`http://localhost:3000//${image}`}/>
               <TitleSection>{title}</TitleSection>
               <Content>{advertisement}</Content>
               <DateSection>
