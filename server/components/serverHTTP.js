@@ -22,6 +22,7 @@ import actRouter from "../routes/act-router.js";
 
 const app = express();
 
+app.use(express.static('./public'));
 app.use('/uploads', express.static('uploads'));
 
 // Middlewares definition
@@ -44,15 +45,6 @@ app.use('/api', paymentdetailRouter);
 app.use('/api', managementRouter);
 app.use('/api', announcementRouter);
 app.use('/api', actRouter);
-
-// Serve static assets if in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  const path = require("path");
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 
 export const startHTTPServer = async () =>
   app.listen(keys.httpPort, (error) => {

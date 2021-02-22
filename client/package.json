@@ -44,7 +44,7 @@
     "use-state-if-mounted": "^1.0.4"
   },
   "scripts": {
-    "start": "set PUBLIC_URL=https://e-dzialkowiec.000webhostapp.com&&npm run build",
+    "start": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
