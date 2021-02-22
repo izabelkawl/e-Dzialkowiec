@@ -235,7 +235,7 @@ class Register extends Component {
                             >
                             Rejestracja
                         </Button>   
-                        <Form.Text ><Link href={'/dashboard'}>Powrót do logowania</Link></Form.Text>
+                        <Form.Text ><Link to={'/dashboard'}>Powrót do logowania</Link></Form.Text>
                         <br></br>
                     </Form>
                 </Container>

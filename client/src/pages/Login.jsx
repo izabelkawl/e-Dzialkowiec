@@ -148,7 +148,7 @@ class Login extends Component {
                                     invalid: errors.password || errors.passwordincorrect
                                 })}
                             />
-                            <Form.Text style={{ paddingTop: '10px' }}><Link href="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
+                            <Form.Text style={{ paddingTop: '10px' }}><Link to="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
                         </Form.Group>
                         <Button size="sm" style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
                     </Form>

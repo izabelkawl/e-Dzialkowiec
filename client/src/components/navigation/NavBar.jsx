@@ -7,11 +7,7 @@ import styled from 'styled-components';
 import logo from '../img/logo.png';
 import { blueColor, hoverBlue } from '../../pages/constants';
 import Media from 'react-media';
-
-const Link = styled.a`
-    margin-left: 70px;
-    margin-top: 20px;
-`;
+import { Link } from "react-router-dom";
 
 const NavigationItem = styled.p`
     border-top: 20px solid rgba(0, 0, 0, 0);
@@ -49,18 +45,18 @@ class NavBar extends Component {
             <Navbar collapseOnSelect expand="lg">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" className="nav-link"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Link href="/" className="nav-link">
-                            <NavigationItem>Strona główna</NavigationItem>
+                <Nav className="mr-auto">
+                        <Link to="/" className="nav-link">
+                            Strona główna
                                 </Link>
-                        <Link href="/about" className="nav-link">
-                            <NavigationItem>Zarząd</NavigationItem>
+                        <Link to="/about" className="nav-link">
+                            Zarząd
                                 </Link>
-                        <Link href="/garden" className="nav-link">
-                            <NavigationItem>Plan ogrodu</NavigationItem>
+                        <Link to="/garden" className="nav-link">
+                            Plan ogrodu
                                 </Link>
-                        <Link href="/contact" className="nav-link">
-                            <Contact>Kontakt</Contact>
+                        <Link to="/contact" className="nav-link">
+                           Kontakt
                             </Link>
                     </Nav>
                     <Nav style={{ paddingRight: '70px' }}>

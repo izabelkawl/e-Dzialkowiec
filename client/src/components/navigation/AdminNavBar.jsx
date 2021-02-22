@@ -4,7 +4,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import logo from '../img/img.svg';
-import { NavLink } from '../../pages/constants';
+import { Link } from "react-router-dom";
 
 class AdminNavBar extends Component {
     render() {
@@ -22,27 +22,27 @@ class AdminNavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"></Nav>
                     <Nav>
-                        <NavLink href="/admin" className="nav-link ">
+                        <Link to="/admin" className="nav-link ">
                             Panel
-                            </NavLink>
-                        <NavLink href="/admin/management" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/management" className="nav-link ">
                             Zarząd
-                            </NavLink>
-                        <NavLink href="/admin/users/list" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/users/list" className="nav-link ">
                             Użytkownicy
-                            </NavLink>
-                        <NavLink href="/admin/allotments/list" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/allotments/list" className="nav-link ">
                             Działki
-                            </NavLink>
-                        <NavLink href="/admin/table" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/table" className="nav-link ">
                             Tablica ogłoszeń
-                            </NavLink>
-                        <NavLink href="/admin/messages/list" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/messages/list" className="nav-link ">
                             Wiadomości
-                            </NavLink>
-                        <NavLink href="/admin/finances/list" className="nav-link ">
+                            </Link>
+                        <Link to="/admin/finances/list" className="nav-link ">
                             Finanse
-                            </NavLink>
+                            </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

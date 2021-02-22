@@ -5,8 +5,8 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import { Navbar, Nav, } from 'react-bootstrap';
-import { NavLink } from '../../pages/constants';
 import Media from 'react-media';
+import { Link } from "react-router-dom";
 
 class LoggedNavBar extends Component {
     render() {
@@ -32,28 +32,28 @@ class LoggedNavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
                     <Nav>
-                        {user.position !== "Działkowiec" ? <NavLink href="/admin/" className="nav-link "> Admin </NavLink>: null }
-                        <NavLink href="/dashboard/" className="nav-link ">
+                        {user.position !== "Działkowiec" ? <Link to="/admin/" className="nav-link "> Admin </Link>: null }
+                        <Link to="/dashboard/" className="nav-link ">
                             Aktualności
-                            </NavLink>
-                        <NavLink href="/dashboard/allotments" className="nav-link ">
+                            </Link>
+                        <Link to="/dashboard/allotments" className="nav-link ">
                             Działka
-                            </NavLink>
-                        <NavLink href="/dashboard/noticeboard" className="nav-link">
+                            </Link>
+                        <Link to="/dashboard/noticeboard" className="nav-link">
                             Tablica ogłoszeń
-                            </NavLink>
-                        <NavLink href="/dashboard/messages" className="nav-link ">
+                            </Link>
+                        <Link to="/dashboard/messages" className="nav-link ">
                             Wiadomości
-                            </NavLink>
-                        <NavLink href="/dashboard/forums" className="nav-link">
+                            </Link>
+                        <Link to="/dashboard/forums" className="nav-link">
                             Forum
-                            </NavLink>
-                        <NavLink href="/dashboard/commitment" className="nav-link">
+                            </Link>
+                        <Link to="/dashboard/commitment" className="nav-link">
                             Zobowiązania
-                            </NavLink>
-                        <NavLink href="/dashboard/account" className="nav-link">
+                            </Link>
+                        <Link to="/dashboard/account" className="nav-link">
                             Konto
-                            </NavLink>
+                            </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
