@@ -5,7 +5,7 @@ dotenv.config();
 const keys = {
   mongoURI: process.env.DB_CONNECTION,
   secretOrKey: process.env.DB_SECRET,
-  httpPort: parseInt(process.env.HTTP_PORT),
+  httpPort: parseInt(process.env.PORT) || 3000,
   saltRounds: parseInt(process.env.HASH_SALT_ROUNDS),
   loggerMode: process.env.LOGGER_MODE,
   tokenExpireTime: parseInt(process.env.TOKEN_EXPIRE_TIME),
