@@ -19,14 +19,14 @@ import paymentdetailRouter from "../routes/paymentdetail-router.js";
 import managementRouter from "../routes/management-router.js";
 import announcementRouter from "../routes/announcement-router.js";
 import actRouter from "../routes/act-router.js";
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 app.use('/uploads', express.static('uploads'));
 
