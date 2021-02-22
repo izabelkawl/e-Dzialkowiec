@@ -47,8 +47,7 @@
     "start": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "eject": "react-scripts eject"
   },
   "engines": { "node" : "v14.15.1" },
   "proxy": "http://localhost:8000",
