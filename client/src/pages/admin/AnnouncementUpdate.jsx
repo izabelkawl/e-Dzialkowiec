@@ -6,6 +6,7 @@ import classnames from "classnames";
 import api, { updateAnnouncementById } from '../../api';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import {Title, Wrapper, BlueButtonStyle, RedButtonStyle,  Span} from '../constants';
+import { Link } from "react-router-dom";
 
 class AnnouncementsUpdate extends Component {
     constructor(props) {
@@ -91,8 +92,11 @@ class AnnouncementsUpdate extends Component {
                         </Col>
                     </Form.Group>
                     <br></br>
-                    <Button size="sm"style={BlueButtonStyle} href={'/admin/management#link3'}>Zamknij</Button>{' '}
-                    <Button size="sm"style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>
+                    <Link to={'/admin/management#link3'}>
+                        <Button size="sm" style={BlueButtonStyle}>Zamknij</Button>
+                    </Link>
+                    {' '}
+                    <Button size="sm" style={RedButtonStyle} type="submit" onClick={this.handleUpdateAnnouncement}>Aktualizuj</Button>
                 </Form>
         </Wrapper>
         );

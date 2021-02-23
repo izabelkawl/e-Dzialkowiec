@@ -28,7 +28,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
-  height: 100vh;
+  min-height: 100vh;
 }
 `;
 

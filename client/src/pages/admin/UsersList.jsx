@@ -26,7 +26,7 @@ class DeleteUser extends Component {
 class UpdateUser extends Component {
     updateUser = event => {
         event.preventDefault()
-        window.location.href = `/admin/users/update/${this.props.id}`
+        window.location.href = `/#/admin/users/update/${this.props.id}`
     }
     render() {
         return <Button size="sm"style={BlueButtonStyle} onClick={this.updateUser}>Edytuj</Button>

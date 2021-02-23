@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateUserPassword } from '../../api';
-import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
 import classnames from "classnames";
 import {BlueButtonStyle, Title, Span} from '../../pages/constants.jsx';
@@ -133,5 +132,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, updateUserPassword }
+    { updateUserPassword }
 )(PasswordChange);

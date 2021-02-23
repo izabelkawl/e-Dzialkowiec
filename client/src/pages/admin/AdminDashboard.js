@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../api/index";
 import { Form,  Row, Col, Button } from 'react-bootstrap';
 import { List, Title, BlueButtonStyle, RedButtonStyle } from '../constants';
+import { Link } from "react-router-dom";
 
 const AdminData = () => {
     const [users, setUsers] = useState([]);
@@ -144,7 +145,10 @@ class Admin extends Component {
                                 <p>Stanowisko: <b>{user.position}</b></p>
                             </Col>
                             <Col xl={{ span: 3 }}>
-                                <Button size="sm"style={BlueButtonStyle} block href={'/dashboard'}>E-działkowiec</Button>
+                                <Link to={'/dashboard'}>
+                                    <Button size="sm" style={BlueButtonStyle} block>E-działkowiec</Button>
+                                </Link>
+                                <br></br>
                                 <Button size="sm"style={RedButtonStyle} block onClick={this.onLogoutClick} >Wyloguj</Button>
                             </Col>
                         </Row>

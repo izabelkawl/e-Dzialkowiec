@@ -7,7 +7,7 @@ class UpdateAnnouncement extends Component {
     updateAnnouncement = event => {
         event.preventDefault()
 
-        window.location.href = `/admin/ads/update/${this.props.id}`
+        window.location.href = `/#/admin/ads/update/${this.props.id}`
     }
     render() {
         return <Button size="sm"style={BlueButtonStyle} onClick={this.updateAnnouncement}>Edytuj</Button>

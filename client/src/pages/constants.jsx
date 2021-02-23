@@ -57,7 +57,6 @@ export const AdressContainer = styled.div`
 `;
 
 export const Container60 = styled.div`
-    margin: 0 auto;
     @media(min-width: 992px){
         width: 60%;
     }

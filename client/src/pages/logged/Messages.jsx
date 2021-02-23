@@ -48,7 +48,7 @@ class ShowMessages extends Component {
   getUserById = event => {
       event.preventDefault()
 
-      window.location.href = `/dashboard/messages/${this.props.id}`
+      window.location.href = `/#/dashboard/messages/${this.props.id}`
   }
   render() {
       return <Person className={element} onClick={this.getUserById}>{this.props.id==="Zarząd" ? this.props.id : <GetUserName id={this.props.id}/>}</Person>

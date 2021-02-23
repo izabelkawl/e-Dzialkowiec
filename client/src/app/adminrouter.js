@@ -19,6 +19,7 @@ import AdminNavBar from '../components/navigation/AdminNavBar';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     background-color: #f2f4f5;
@@ -73,7 +74,9 @@ class AdminApp extends Component {
     } else return (
       <ErrContainer >
         <h3>Page not found</h3>
-        <Button size="sm"href={'/dashboard'}>Powrót</Button>
+        <Link to={'/dashboard'}>
+          <Button size="sm">Powrót</Button>
+        </Link>
       </ErrContainer>
     );
   }

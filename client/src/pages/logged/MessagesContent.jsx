@@ -8,6 +8,7 @@ import { insertMessage } from "../../api";
 import { BlueButtonStyle } from '../constants';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -72,11 +73,13 @@ const MessageDate = styled.i`
             return ""
         }
       })
-
-    window.setInterval(function() {
-      var elem = document.getElementById('data');
-      elem.scrollTo(0, document.body.scrollHeight);
-    }, 3500);
+      
+      window.setInterval(function() {
+        if(document.getElementById('data')){
+          var elem = document.getElementById('data');
+          elem.scrollTo(0, document.body.scrollHeight);
+        }
+      }, 3500);
 
     return (
       <MessageContainer id="data">
@@ -117,7 +120,9 @@ const MessageDate = styled.i`
   render() {
     return (
       <Wrapper>
-        <Button size="sm"style={BlueButtonStyle} href={'/dashboard/messages'}>Powrót</Button>
+        <Link to={'/dashboard/messages'}>
+          <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
+        </Link>
         <Container>
         <MessagesList id={this.props.match.params.id} name={this.props.auth.user.id}/>
           <InputGroup className="mb-3">

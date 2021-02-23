@@ -8,6 +8,7 @@ import { BlueButtonStyle, blueColor } from '../constants';
 import AddComment from '../../components/modal/AddComment'
 import styled from 'styled-components';
 import GetUserName from '../../components/accountEditing/GetUserName';
+import { Link } from "react-router-dom";
 
 const Content = styled.div`
   background-color: white;
@@ -94,7 +95,9 @@ class ForumThread extends Component {
 
   return (
       <Wrapper>
-        <Button size="sm"style={BlueButtonStyle} href="/dashboard/forums">Powrót</Button>
+        <Link to={'/dashboard/forums'}>
+          <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
+        </Link>
         <Content>
           <h3>{title}</h3>
           <Person>{name}</Person>

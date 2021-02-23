@@ -6,14 +6,11 @@ import { connect } from "react-redux";
 import { Button } from 'react-bootstrap';
 import AddMessageAdminPanel from '../../components/modal/AddMessageAdminPanel';
 import GetUserName from '../../components/accountEditing/GetUserName';
-import { BlueButtonStyle, List, Title } from '../constants';
+import { BlueButtonStyle, List, Title, Container60 } from '../constants';
 import styled from 'styled-components';
 
 const MessagesWrapper = styled.div`
   padding-top: 50px;
-  @media(min-width: 992px){
-      width: 500px;
-  }
 `;
 
 const MessageList = styled.div`
@@ -34,7 +31,7 @@ class ShowMessages extends Component {
   getUserById = event => {
       event.preventDefault()
 
-      window.location.href = `/admin/messages/${this.props.id}`
+      window.location.href = `/#/admin/messages/${this.props.id}`
   }
   render() {
       return <Person onClick={this.getUserById}>{this.props.id==="Zarząd" ? this.props.id : <GetUserName id={this.props.id}/>}</Person>
@@ -75,6 +72,7 @@ const MessagesList = () => {
   });
 
   return (
+    <Container60>
     <List>
       <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
       <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}/>
@@ -85,6 +83,7 @@ const MessagesList = () => {
         </MessageList>
       </MessagesWrapper>
     </List>
+    </Container60>
   );
 };
 

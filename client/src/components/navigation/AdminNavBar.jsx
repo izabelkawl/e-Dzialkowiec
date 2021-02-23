@@ -10,14 +10,16 @@ class AdminNavBar extends Component {
     render() {
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-                <Navbar.Brand href="/admin" >
-                    <img
-                        src={logo}
-                        height="30"
-                        className="d-inline-block align-top"
-                        alt="e-działkowiec"
-                    />
-                </Navbar.Brand>
+               <Link to="/admin" className="nav-link ">
+                    <Navbar.Brand>
+                        <img
+                            src={logo}
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="e-działkowiec"
+                        />
+                    </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" className="nav-link "/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"></Nav>

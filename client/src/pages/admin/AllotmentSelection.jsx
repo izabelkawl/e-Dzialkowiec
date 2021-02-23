@@ -23,7 +23,7 @@ class SelectAllotment extends Component {
     createFinance = event => {
         event.preventDefault()
 
-        window.location.href = `/admin/finances/create/${this.props.id}`
+        window.location.href = `/#/admin/finances/create/${this.props.id}`
     }
     render() {
         return <Button size="sm"style={BlueButtonStyle} onClick={this.createFinance}>Dalej</Button>

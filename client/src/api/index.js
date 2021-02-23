@@ -9,8 +9,9 @@ import {
 } from "./types";
 
 const api = axios.create({
-    baseURL: `http://localhost:${process.env.PORT || 3000}/api`,
+    baseURL: '/api'
 })
+console.log(process.env.PORT)
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     api

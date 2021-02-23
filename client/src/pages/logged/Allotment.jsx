@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import '../MapColors.css';
 import api from "../../api";
 import Wrapper from '../../components/Wrapper/Wrapper';
+import { useHistory } from 'react-router-dom';
 
 class MyGarden extends Component {
 	constructor() {
@@ -29,9 +30,9 @@ class MyGarden extends Component {
 		document.body.appendChild(tooltip);
 
 		function setTooltipPos(x, y) {
-			tooltip.style.left = x + 10 + "px";
-			tooltip.style.top = y + 25 + "px";
-		};
+			tooltip.style.left = x + 20 + "px";
+    		tooltip.style.top = y + 20 + "px";
+    }
 
         const tooltipData = {};
 
@@ -87,8 +88,7 @@ class MyGarden extends Component {
 					html += "</div>";
 					return html;
 				}
-			}
-			else { 
+			}else { 
 				html = "<div className=\"tooltip-map-content\">Brak danych</div>";
 				return html;
 			}
@@ -110,7 +110,7 @@ class MyGarden extends Component {
 		requestAllotmentsList();
 		userName()
 	}, []);
-
+	const history = useHistory()
     const paths = document.querySelectorAll('.st6');
   	for (const path of paths) {
 
@@ -122,7 +122,12 @@ class MyGarden extends Component {
 				path.onclick = function MyGarden(event) {
 					event.preventDefault()
 					const test = allotments.find(allotment => +path.id === allotment.number)
-					window.location.href = `/dashboard/allotments/mygarden/${test._id}`
+					var x = document.getElementsByClassName("tooltip-map");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						x[i].style.display = 'none';
+					}
+					history.push(`/dashboard/allotments/mygarden/${test._id}`)
 				}
 				path.style.cursor="pointer";
 			} else if((json[key]) === "Wolna") {
@@ -130,7 +135,12 @@ class MyGarden extends Component {
 				path.onclick = function updateAllotment(event) {
 				event.preventDefault()
 				const test = allotments.find(allotment => +path.id === allotment.number)
-				window.location.href = `/dashboard/allotments/update/${test._id}`
+				var x = document.getElementsByClassName("tooltip-map");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						x[i].style.display = 'none';
+					}
+				history.push(`/dashboard/allotments/update/${test._id}`)
 				}
 				path.style.cursor="pointer";
 			} else if((json[key]) === "Zajęta") {
@@ -140,7 +150,12 @@ class MyGarden extends Component {
 				path.onclick = function updateAllotment(event) {
 					event.preventDefault()
 					const test = allotments.find(allotment => +path.id === allotment.number)
-					window.location.href = `/dashboard/allotments/update/${test._id}`
+					var x = document.getElementsByClassName("tooltip-map");
+					var i;
+					for (i = 0; i < x.length; i++) {
+						x[i].style.display = 'none';
+					}
+					history.push(`/#/dashboard/allotments/update/${test._id}`)
 				}
 				path.style.cursor="pointer";
 			} else if((json[key]) === "") {

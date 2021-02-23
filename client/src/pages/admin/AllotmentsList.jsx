@@ -3,12 +3,13 @@ import api from "../../api";
 import { Table, Button, Form, Col, Row } from 'react-bootstrap';
 import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
 import Media from 'react-media';
+import { Link } from "react-router-dom";
 
 class UpdateAllotment extends Component {
     updateAllotment = event => {
         event.preventDefault()
 
-        window.location.href = `/admin/allotments/update/${this.props.id}`
+        window.location.href = `/#/admin/allotments/update/${this.props.id}`
     };
     render() {
         return <Button size="sm"style={BlueButtonStyle} onClick={this.updateAllotment}>Edytuj</Button>
@@ -130,9 +131,11 @@ class AllotmentsList extends Component {
         <List>
             <Row>
                 <Col lg={3}>
-                    <Button size="sm"block style={BlueButtonStyle} href="/admin/allotments/create">
-                        Dodaj działkę
-                    </Button>
+                    <Link to={'/admin/allotments/create'}>
+                        <Button size="sm" block style={BlueButtonStyle}>
+                            Dodaj działkę
+                        </Button>
+                    </Link>
                 </Col>
                 <Media query="(max-width: 992px)" render={() =>
                             (

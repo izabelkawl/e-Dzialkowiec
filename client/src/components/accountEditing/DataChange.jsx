@@ -36,20 +36,11 @@ class DataChange extends Component {
         const { email, lastname, firstname, address, phone } = this.state;
         return (
             <>
-                <Title>Twoje dane</Title>
+                <Title>Twoje dane osobowe</Title>
                 <Information>*Jeżeli Twoje dane osobowe uległy zmianie, zwróć się do Zarządu w wiadomości prywatnej.</Information>
-                <Form >
+                <Form>
                     <Form.Group >
-                        <Form.Label htmlFor="email">Adres email:</Form.Label>
-                        <Form.Control
-                            id="email"
-                            type="text"
-                            value={email}
-                            readOnly
-                        />
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label htmlFor="firstname">Imie:</Form.Label>
+                        <Form.Label htmlFor="firstname">Imię:</Form.Label>
                         <Form.Control
                             id="firstname"
                             type="text"

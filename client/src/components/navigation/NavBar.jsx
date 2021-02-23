@@ -10,18 +10,15 @@ import Media from 'react-media';
 import { Link } from "react-router-dom";
 
 const NavigationItem = styled.p`
+    margin-left: 70px;
+    margin-top: 20px;
     border-top: 20px solid rgba(0, 0, 0, 0);
-    color: black;
-    :hover{
-        color: gray;
-    }
 `;
 
 const Contact = styled.p`
-    color: black;
-    :hover{
-        color: gray;
-    }
+    margin-left: 70px;
+    margin-top: 20px;
+    border-top: 20px solid rgba(0, 0, 0, 0);
     @media(min-width: 992px){
         padding:0 20px;
         color: white;
@@ -47,16 +44,16 @@ class NavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                         <Link to="/" className="nav-link">
-                            Strona główna
+                            <NavigationItem>Strona główna</NavigationItem>
                                 </Link>
                         <Link to="/about" className="nav-link">
-                            Zarząd
+                            <NavigationItem>Zarząd</NavigationItem>
                                 </Link>
                         <Link to="/garden" className="nav-link">
-                            Plan ogrodu
+                            <NavigationItem>Plan ogrodu</NavigationItem>
                                 </Link>
                         <Link to="/contact" className="nav-link">
-                           Kontakt
+                            <Contact>Kontakt</Contact>
                             </Link>
                     </Nav>
                     <Nav style={{ paddingRight: '70px' }}>

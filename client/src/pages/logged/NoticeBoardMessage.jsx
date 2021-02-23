@@ -11,6 +11,7 @@ import { Form, Button } from 'react-bootstrap';
 import bg from '../../app/img/bg.svg';
 // Button Style
 import { RedButtonStyle, BlueButtonStyle, Span, Title } from '../constants';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div` 
   @media(min-width: 1366px){
@@ -133,7 +134,7 @@ class NoticeBoardMessage extends Component {
                   <Title>Napisz wiadomość</Title>
                   <MessageContentn>
                       
-                      <Image id="myImg" src={`http://localhost:3000//${image}`} />
+                      <Image id="myImg" src={`/${image}`} />
                       <ContentSection>
                           <br></br>
                           <b>{title}</b>
@@ -156,8 +157,12 @@ class NoticeBoardMessage extends Component {
                   placeholder={"Treść wiadomości.."}
               />
             </Form.Group>
-    <Button size="sm"style={RedButtonStyle} href="/dashboard/noticeboard" >Powrót</Button>
-      {' '}
+            <Link to={'/dashboard/noticeboard'}>
+              <Button size="sm" style={BlueButtonStyle}>
+                  Dodaj działkę
+              </Button>
+            </Link>
+            {' '}
       <Button size="sm"style={BlueButtonStyle} onClick={this.onSubmit} >Wyślij</Button>
       </Container>
       </Wrapper>

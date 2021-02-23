@@ -4,12 +4,13 @@ import { Table, Form, Col, Row, Button } from 'react-bootstrap';
 import { List, BlueButtonStyle, RedButtonStyle } from '../constants';
 import PaymentdetailsUpdate from './PaymentdetailsUpdate';
 import Media from 'react-media';
+import { Link } from "react-router-dom";
 
 class StatusUpdateBtn extends Component {
     updateFinance = event => {
         event.preventDefault()
 
-        window.location.href = `/admin/finances/update/${this.props.id}`
+        window.location.href = `/#/admin/finances/update/${this.props.id}`
     }
     render() {
         return <Button size="sm"style={BlueButtonStyle} onClick={this.updateFinance}>Zmień status</Button>
@@ -68,7 +69,6 @@ class Management extends Component {
                 userName();
             }, []);
             
-            let isEmpty = true;
             const FinancesTable = finances.slice(0).reverse().map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status  } = finance;
             
@@ -95,12 +95,9 @@ class Management extends Component {
                         <td>{status}</td>
                         <td><StatusUpdateBtn id={_id}/></td>
                         <td><StatusDeleteBtn id={_id}/></td>
-                        {isEmpty = false}
                     </tr>
                 );
-            } else {
-                return isEmpty = true
-            };
+            }
         });
     
         return (
@@ -123,8 +120,6 @@ class Management extends Component {
                     {FinancesTable}
                 </tbody>
             </Table>
-            
-            {isEmpty === true ? <p>*Brak zoobowiązań.</p> : ''}
             </>
             )
         };
@@ -135,7 +130,9 @@ class Management extends Component {
             <hr></hr>
             <Row>
                 <Col lg={3}>
-                    <Button size="sm" block style={RedButtonStyle} href="/admin/finances/create">Dodaj płatność</Button>
+                <Link to={'/admin/finances/create'}>
+                    <Button size="sm" block style={RedButtonStyle}>Dodaj płatność</Button>
+                </Link>
                 </Col>
                 <Media query="(max-width: 992px)" render={() =>
                             (

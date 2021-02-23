@@ -10,10 +10,7 @@ const validateUpdateUser = (data) => {
   data.lastname = !isEmpty(data.lastname) ? data.lastname : "";
   data.address = !isEmpty(data.address) ? data.address : "";
   data.phone = !isEmpty(data.phone) ? data.phone : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
 
-  data.position = !isEmpty(data.position) ? data.position : "";
-  
   // Email checks
   if (isEmpty(data.email)) errors.email = " *Podaj adres email";
   else if (!Validator.isEmail(data.email)) {
@@ -44,16 +41,6 @@ const validateUpdateUser = (data) => {
     if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
       errors.phone = " *Telefon musi mieć 9 cyfr";
     }
-  }
-
-  // Password checks
-  if (isEmpty(data.password)) errors.password = " *Pole nie może być puste";
-
-  if (!isEmpty(data.password)) {
-
-    if (!Validator.isLength(data.password, { min: 8, max: 30 }))
-      errors.password = " *Hasło minimum 8 znaków";
-
   }
 
   return {

@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import api, { updateFinanceById } from '../../api';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { List, BlueButtonStyle, RedButtonStyle, Title } from '../constants';
+import { List, BlueButtonStyle, RedButtonStyle, Title, Container60 } from '../constants';
+import { Link } from "react-router-dom";
 
 class StatusUpdate extends Component {
     constructor(props) {
@@ -78,7 +79,8 @@ class StatusUpdate extends Component {
             const { _id, firstname, lastname } = user
             if(_id === this.state.owner){
                 return (
-                    <List key={_id}>
+                    <Container60 key={_id}>
+                    <List>
                         <Title>Zmień status</Title>
                         <Form>
                             <Form.Group as={Row}>
@@ -188,10 +190,14 @@ class StatusUpdate extends Component {
                                         </Form.Control>
                                     </Col>
                             </Form.Group>
-                        <Button size="sm"style={RedButtonStyle} href={'/admin/finances/list'}>Powrót</Button>{' '}
+                        <Link to={'/admin/finances/list'}>
+                            <Button size="sm"style={RedButtonStyle}>Powrót</Button>
+                        </Link>
+                        {' '}
                         <Button size="sm"style={BlueButtonStyle} onClick={this.handleUpdateFinance}>Aktualizuj</Button>
                     </Form>
                 </List>
+                </Container60>
                 );
           }else {
               return null

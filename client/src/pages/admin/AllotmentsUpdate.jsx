@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import api, { updateAllotmentById } from '../../api';
-import { Form, Button } from 'react-bootstrap';
-import { Title, List, BlueButtonStyle, RedButtonStyle, Label, Span } from '../constants';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Title, List, BlueButtonStyle, RedButtonStyle, Span, Container60 } from '../constants';
 import UsersID from '../../components/management/UsersID';
+import { Link } from "react-router-dom";
 
 class AllotmentsUpdate extends Component {
     constructor(props) {
@@ -72,121 +73,138 @@ class AllotmentsUpdate extends Component {
         const { errors, number, allotment_width, allotment_length, price, status, user_id, name } = this.state;
 
         return (
+            <Container60>
             <List>
                 <Title>Edycja działki</Title>
-                <Form.Group>
-                    <Label htmlFor="number">Numer:</Label>
-                    <Form.Control 
-                        onChange={this.onChange}
-                        error={errors.number}
-                        id="number"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.number
-                        })}
-                        value={number}
-                        readOnly
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Label htmlFor="allotment_width">Szerokość: </Label>
-                    <Span>{errors.allotment_width}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.allotment_width}
-                        id="allotment_width"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.allotment_width
-                        })}
-                        value={allotment_width}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Label htmlFor="allotment_length">Długość: </Label>
-                    <Span>{errors.allotment_length}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.allotment_length}
-                        id="allotment_length"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.allotment_length
-                        })}
-                        value={allotment_length}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Label htmlFor="price">Cena: </Label>
-                    <Span>{errors.price}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.price}
-                        id="price"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.price
-                        })}
-                        value={price}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Label htmlFor="status" >Status: </Label>
-                    <Span>{errors.status}</Span>
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.status} 
-                        id="status"
-                        as="select"
-                        className={classnames("", {
-                            invalid: errors.status
-                        })} >
-                        <option hidden>{status}</option>
-                        <option >Wolna</option> 
-                        <option >Zajęta</option> 
-                        <option >Na sprzedaż</option> 
-                        <option >Rezerwacja</option> 
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <Label htmlFor="user_id">Użytkownik: </Label>
-                    <Span>{errors.user_id}</Span>
-                    {status === "Wolna" ? 
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.user_id}
-                        id="user_id"
-                        as="select"
-                        className={classnames("", {
-                        invalid: errors.user_id
-                        })}
-                        defaultChecked="Brak"
-                        >
-                        {this.state.user_id = "Brak"}
-                        <option value="Brak">Brak</option>
-                    </Form.Control>
-                    :
-                    <Form.Control
-                        onChange={this.onChange}
-                        error={errors.user_id}
-                        id="user_id"
-                        as="select"
-                        className={classnames("", {
-                        invalid: errors.user_id
-                        })}
-                        >
-                        {this.state.user_id = user_id}
-                        {name !== '' ? <option>{name}</option> : <option>Brak</option> }
-                        <UsersID/>
-                    </Form.Control>
-    }
-                </Form.Group>
+                <Form>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="number">Numer:</Form.Label>
+                        <Col sm="8">
+                            <Form.Control 
+                                onChange={this.onChange}
+                                error={errors.number}
+                                id="number"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.number
+                                })}
+                                value={number}
+                                readOnly
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="allotment_width">Szerokość: </Form.Label>
+                        <Span>{errors.allotment_width}</Span>
+                        <Col sm="8">
+                            <Form.Control
+                                onChange={this.onChange}
+                                error={errors.allotment_width}
+                                id="allotment_width"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.allotment_width
+                                })}
+                                value={allotment_width}
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="allotment_length">Długość: </Form.Label>
+                        <Col sm="8">
+                            <Span>{errors.allotment_length}</Span>
+                            <Form.Control
+                                onChange={this.onChange}
+                                error={errors.allotment_length}
+                                id="allotment_length"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.allotment_length
+                                })}
+                                value={allotment_length}
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="price">Cena: </Form.Label>
+                        <Col sm="8">
+                            <Span>{errors.price}</Span>
+                            <Form.Control
+                                onChange={this.onChange}
+                                error={errors.price}
+                                id="price"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.price
+                                })}
+                                value={price}
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="status" >Status: </Form.Label>
+                        <Col sm="8">
+                            <Span>{errors.status}</Span>
+                            <Form.Control
+                                onChange={this.onChange}
+                                error={errors.status} 
+                                id="status"
+                                as="select"
+                                className={classnames("", {
+                                    invalid: errors.status
+                                })} >
+                                <option hidden>{status}</option>
+                                <option >Wolna</option> 
+                                <option >Zajęta</option> 
+                                <option >Na sprzedaż</option> 
+                                <option >Rezerwacja</option> 
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="4" htmlFor="user_id">Użytkownik: </Form.Label>
+                        <Col sm="8">
+                            <Span>{errors.user_id}</Span>
+                            {status === "Wolna" ? 
+                                <Form.Control
+                                    onChange={this.onChange}
+                                    error={errors.user_id}
+                                    id="user_id"
+                                    as="select"
+                                    className={classnames("", {
+                                    invalid: errors.user_id
+                                    })}
+                                    defaultChecked="Brak"
+                                    >
+                                    {this.state.user_id = "Brak"}
+                                    <option value="Brak">Brak</option>
+                                </Form.Control>
+                            :
+                                <Form.Control
+                                    onChange={this.onChange}
+                                    error={errors.user_id}
+                                    id="user_id"
+                                    as="select"
+                                    className={classnames("", {
+                                    invalid: errors.user_id
+                                    })}
+                                    >
+                                    {this.state.user_id = user_id}
+                                    {name !== '' ? <option>{name}</option> : <option>Brak</option> }
+                                    <UsersID/>
+                                </Form.Control>
+                            }
+                        </Col>
+                    </Form.Group>
+                </Form>
                 <br></br>
-                
-                <Button size="sm"style={RedButtonStyle} href={'/admin/allotments/list'}>Powrót</Button>
+                <Link to={'/admin/allotments/list'}>
+                    <Button size="sm"style={RedButtonStyle}>Powrót</Button>
+                </Link>
                 {' '}
                 <Button size="sm"style={BlueButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Aktualizuj</Button>
             </List>
+        </Container60>
         );
     };
 };

@@ -20,7 +20,7 @@ const ActList = () => {
       return (
             <tr key={_id}> 
                 <td>
-                    <a href={'http://localhost:3000//'+actfile} target="_blank" rel="noopener noreferrer">
+                    <a href={'/'+actfile} target="_blank" rel="noopener noreferrer">
                         {name}
                     </a>
                 </td>

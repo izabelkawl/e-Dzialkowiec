@@ -19,7 +19,7 @@ background-color: white;
 box-shadow: 0px 8px 18px -8px rgba(0,0,0,0.1);
 @media(min-width: 1366px){
   display: grid;
-  grid-template-columns: 1.8fr 0.5fr;
+  grid-template-columns: 1.5fr 1fr;
   grid-template-rows: 50px 2.1fr 0.4fr;
   gap: 15px 30px;
   grid-template-areas:
@@ -55,10 +55,10 @@ const UserSection = styled.div`
 class UpdateForum extends Component {
   updateForum = event => {
       event.preventDefault()
-      window.location.href = `/dashboard/forums/${this.props.id}`
+      window.location.href = `/#/dashboard/forums/${this.props.id}`
   }
   render() {
-      return <Button size="sm"style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
+      return <Button size="lg"style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
   }
 };
 
@@ -75,7 +75,7 @@ class DeleteForum extends Component {
     }
   }
   render() {
-      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
+      return <Button size="lg"style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   };
 };
 

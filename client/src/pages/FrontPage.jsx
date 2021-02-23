@@ -5,6 +5,7 @@ import bg from './img/bg.svg';
 import edzialkowiec from './img/logo.svg';
 import { blueColor, lightGray } from './constants.jsx';
 import logo from '../components/img/logoBlack.png';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
     min-height: 100vh;
@@ -103,9 +104,9 @@ class FrontPage extends Component {
                         <br></br>To wszystko bez wychodzenia z domu!
                     </H5>
                     <br /><br />
-                    <a href="/users/login">
+                    <Link to="/users/login">
                         <Button>Dołącz do nas </Button>
-                    </a>
+                    </Link>
                 </Section>
                 <Footer>Copyright © IW <a href="http://www.freepik.com">BG Designed by Freepik</a></Footer>
             </Wrapper>

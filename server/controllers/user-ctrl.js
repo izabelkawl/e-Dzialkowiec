@@ -133,9 +133,13 @@ const updateUser = async (req, res) => {
 };
 
 const updateUserAdmin = async (req, res) => {
-
   const fieldsToUpdate = { ...req.body };
+  
+  const { errors, isValid } = validateUpdateUser(fieldsToUpdate);
   const processedUser = await User.findOne({ _id: req.params.id });
+  
+  if (!isValid) return res.status(400).json(errors);
+  
   if (isEmpty(fieldsToUpdate))
     return res.status(400).json({
       success: false,

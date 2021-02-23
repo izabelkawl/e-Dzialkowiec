@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import api, { updateUserEmail } from '../../api';
-import { logoutUser } from "../../api/index";
 import { Form, Button } from 'react-bootstrap';
 import {BlueButtonStyle, Title, Span} from '../../pages/constants.jsx';
 
@@ -83,13 +82,13 @@ class EmailChange extends Component {
                                 />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label htmlFor="password">Hasło: </Form.Label >
+                            <Form.Label htmlFor="passwordemail">Hasło: </Form.Label >
                             <Span>
                                 {errors.passwordincorrectemail}
                             </Span>
                             <Form.Control
                                 onChange={this.onChange}
-                                id="password"
+                                id="passwordemail"
                                 type="password"
                                 className={classnames("", {
                                     invalid: errors.passwordincorrectemail
@@ -116,5 +115,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, updateUserEmail }
+    { updateUserEmail }
 )(EmailChange);

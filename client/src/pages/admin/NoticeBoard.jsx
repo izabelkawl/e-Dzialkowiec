@@ -135,7 +135,7 @@ class NoticeBoard extends Component {
           if(search === true){
             return (
                 <AnnouncementField key={_id}>
-                    <Image  src={`http://localhost:3000//${image}`}/>
+                    <Image  src={`/${image}`}/>
                       <TitleSection>{title}</TitleSection>
                       <Content>{advertisement}</Content>
                       <DateSection>

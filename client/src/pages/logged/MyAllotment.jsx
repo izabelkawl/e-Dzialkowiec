@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import  {RedButtonStyle, BlueButtonStyle, Title } from '../constants'
 import classnames from "classnames";
 import Wrapper from '../../components/Wrapper/Wrapper';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 70%;
@@ -144,8 +145,11 @@ class MyAllotment extends Component {
                             <Error>{errors.status}</Error>
                         </Col>     
                     </Form.Group>
-                        <Button size="sm"style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '} 
-                        <Button size="sm"style={RedButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>
+                    <Link to={'/dashboard/allotments'}>
+                        <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
+                    </Link>
+                    {' '}
+                    <Button size="sm"style={RedButtonStyle} type="submit" onClick={this.handleUpdateAllotment}>Zapisz zmiany</Button>
                 </Form>
             </Container>
         </Wrapper>

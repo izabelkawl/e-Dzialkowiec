@@ -4,16 +4,14 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { insertMessage } from "../../api";
-import { List, BlueButtonStyle } from '../constants';
+import { List, BlueButtonStyle, Container60 } from '../constants';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const MessagesWrapper = styled.div`
   padding-top: 50px;
   margin: 0 auto;
-  @media(min-width: 992px){
-      width: 50%;
-  }
 `;
 
 const MessageContainer = styled.div`
@@ -75,8 +73,10 @@ const MessagesList = (val) => {
   });
 
   window.setInterval(function() {
-    var elem = document.getElementById('data');
-    elem.scrollTo(0, document.body.scrollHeight);
+    if(document.getElementById('data')){
+      var elem = document.getElementById('data');
+      elem.scrollTo(0, document.body.scrollHeight);
+    }
   }, 3500);
 
   return (
@@ -116,8 +116,11 @@ class MessagesInsert extends Component {
 
   render() {
     return (
+      <Container60>
         <List>
-          <Button size="sm"style={BlueButtonStyle} href={'/admin/messages/list'}>Powrót</Button>
+          <Link to={'/admin/messages/list'}>
+            <Button size="sm" style={BlueButtonStyle}>Powrót</Button>
+          </Link>
           <MessagesWrapper>
             <MessagesList id={this.props.match.params.id}/>
             <InputGroup className="mb-3">
@@ -134,6 +137,7 @@ class MessagesInsert extends Component {
             </InputGroup>
           </MessagesWrapper>
         </List>
+        </Container60>
       );
     };
   };

@@ -91,7 +91,7 @@ import { RedButtonStyle, BlueButtonStyle, Span } from '../../pages/constants';
         });
 
       axios
-        .post('http://localhost:3000//api/category', formData)
+        .post('/api/category', formData)
         .then((res) => {
           console.log(info.name)
           this.setState({

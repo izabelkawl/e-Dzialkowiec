@@ -17,14 +17,16 @@ class LoggedNavBar extends Component {
                 
                 <Media query="(min-width: 1366px)" render={() =>
                             (
-                                <Navbar.Brand href="/dashboard" >
+                            <Link to="/dashboard" className="nav-link ">
+                                <Navbar.Brand>
                                 <img
                                     src={logo}
                                     height="30"
                                     className="d-inline-block align-top"
                                     alt="e-działkowiec"
                                 />
-                            </Navbar.Brand>
+                                </Navbar.Brand>
+                            </Link>
                             )}
                         />
                 

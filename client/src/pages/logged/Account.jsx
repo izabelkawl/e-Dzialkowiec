@@ -5,7 +5,7 @@ import { logoutUser } from "../../api/index";
 import EmailChange from '../../components/accountEditing/EmailChange';
 import DataChange from '../../components/accountEditing/DataChange';
 import PasswordChange from '../../components/accountEditing/PasswordChange';
-import { Tab, Col, Row, ListGroup, Button } from 'react-bootstrap';
+import { Tab, Col, Row, Nav, Button } from 'react-bootstrap';
 import { BlueButtonStyle, Title } from '../constants';
 import styled from 'styled-components';
 
@@ -32,6 +32,9 @@ class Account extends Component {
     };
 
     render() {
+
+        const { path } = this.props.match;
+
         return (
             <Wrapper>
                 <Row>
@@ -43,34 +46,41 @@ class Account extends Component {
                             </Col>
                 </Row>
                 <hr></hr>
-                <Tab.Container transition={false} defaultActiveKey="#link1">
+                
+                <Tab.Container transition={false} defaultActiveKey="link1">
                     <Row>
                         <Col lg={{ span: 3 }} align="center">
-                            <ListGroup>
-                                <ListGroup.Item action href="#link1">
-                                    Twoje dane
-                                        </ListGroup.Item>
-                                <ListGroup.Item action href="#link2">
-                                    Zmień e-mail
-                                        </ListGroup.Item>
-                                <ListGroup.Item action href="#link3">
-                                    Zmień hasło
-                                        </ListGroup.Item>
-                            </ListGroup>
+                            <Nav variant="pills" className="flex-column">
+                                <Nav.Item>
+                                    <Nav.Link eventKey="link1">
+                                        Twoje dane 
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="link2">
+                                        Zmień e-mail
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="link3">
+                                        Zmień hasło
+                                    </Nav.Link>
+                                </Nav.Item>
+                            </Nav>
                         </Col>
                         <Col lg={{ offset: 1, span: 5 }}>
                             <Tab.Content>
-                                <Tab.Pane eventKey="#link1">
+                                <Tab.Pane eventKey="link1">
                                     <Container>
                                         <DataChange/>
                                             </Container>
                                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link2">
+                                <Tab.Pane eventKey="link2">
                                     <Container>
                                         <EmailChange/>
                                             </Container>
                                                 </Tab.Pane>
-                                <Tab.Pane eventKey="#link3">
+                                <Tab.Pane eventKey="link3">
                                     <Container>
                                         <PasswordChange/>
                                             </Container>

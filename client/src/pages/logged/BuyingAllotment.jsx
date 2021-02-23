@@ -5,7 +5,16 @@ import { connect } from "react-redux";
 import api, { buyAllotmentById, insertFinance } from '../../api';
 import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
 import Wrapper from '../../components/Wrapper/Wrapper';
-import { RedButtonStyle, BlueButtonStyle, Information, Title, Container60 } from '../constants';
+import { RedButtonStyle, BlueButtonStyle, Information, Title } from '../constants';
+import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    margin: 0 auto;
+    @media(min-width: 992px){
+        width: 60%;
+    }
+`;
 
 class BuyingAllotment extends Component {
     constructor(props) {
@@ -88,7 +97,10 @@ class BuyingAllotment extends Component {
             return (
                 <>
                     <br></br>
-                    <Button size="sm"style={BlueButtonStyle} href={'/dashboard/allotments'}>Powrót</Button>{' '}
+                    <Link to={'/dashboard/allotments'}>
+                        <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
+                    </Link>
+                    {' '}
                     <Button size="sm"style={RedButtonStyle} onClick={() => setModalShow(true)}>Kupuję</Button>
 
                         <Modal 
@@ -126,7 +138,7 @@ class BuyingAllotment extends Component {
 
         return (
             <Wrapper>
-                <Container60>
+                <Container>
                     <Title>Kupno działki</Title>
                     <Information>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</Information>
                     <Form>
@@ -182,7 +194,7 @@ class BuyingAllotment extends Component {
                         </Form.Group>
                         <ConfirmModal/>
                     </Form>
-                </Container60>
+                </Container>
             </Wrapper>
         );
     };

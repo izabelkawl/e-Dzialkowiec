@@ -88,7 +88,7 @@ class MessageNoticeBoard extends Component {
   updateNoticeboard = event => {
       event.preventDefault()
 
-      window.location.href = `/dashboard/noticeboard/${this.props.id}`
+      window.location.href = `/#/dashboard/noticeboard/${this.props.id}`
   }
   render() {
       return <Button size="sm"style={BlueButtonStyle} onClick={this.updateNoticeboard}>Wiadomość</Button>
@@ -180,7 +180,7 @@ class NoticeBoard extends Component {
       if( swt===false && user_id === this.props.auth.user.id){
         return (
             <AnnouncementField key={_id}>
-              <Image  src={`http://localhost:3000//${image}`}/>
+              <Image  src={`/${image}`}/>
               <TitleSection>{title}</TitleSection>
               <Content>{advertisement}</Content>
               <DateSection>
@@ -199,7 +199,7 @@ class NoticeBoard extends Component {
         else if( swt===true){
           return (
             <AnnouncementField key={_id}>
-              <Image id="exampleImage" src={`http://localhost:3000//${image}`}/>
+              <Image id="exampleImage" src={`/${image}`}/>
               <TitleSection>{title}</TitleSection>
               <Content>{advertisement}</Content>
               <DateSection>
