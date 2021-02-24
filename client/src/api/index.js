@@ -15,7 +15,8 @@ const api = axios.create({
 export const registerUser = (userData, history) => dispatch => {
     api
         .post("/register", userData)
-        .then(res => window.alert(`Rejestracja powiodła się!`))
+        .then(res => {history.push("/users/login")
+         window.alert(`Rejestracja powiodła się!`)})
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

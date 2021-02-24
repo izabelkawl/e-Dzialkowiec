@@ -38,7 +38,7 @@ class Management extends Component {
                     <Nav variant="pills" className="flex-column">
                         <Nav.Item>
                             <Nav.Link eventKey="link1">
-                                Aktualności
+                            Ogłoszenia
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -70,7 +70,7 @@ class Management extends Component {
                     </Col>
                     <Col lg={9}>
                         <Tab.Content>
-                            <Tab.Pane eventKey="link1">
+                            <Tab.Pane eventKey="link2">
                                 <Container>
                                     <Title>Zarząd</Title>
                                         <CardColumns>
@@ -79,7 +79,7 @@ class Management extends Component {
                                                     </Container>
                                                         <Information>*Skład członków zarządu można zmienić w zakładce "Użytkownicy".</Information>
                                                             </Tab.Pane>
-                            <Tab.Pane eventKey="link2">
+                            <Tab.Pane eventKey="link1">
                                 <Container>
                                     <Title>Ogłoszenia</Title>
                                         <Announcements/>
