@@ -18,22 +18,40 @@ const validatePaymentdetailInput = (data) => {
 
   if (Validator.isEmpty(data.stable_price)) {
     errors.stable_price = " *Podaj przelicznik";
+  } 
+  if (!Validator.isNumeric(data.stable_price)) {
+    errors.stable_price = " *Zły format";
   }
   if (Validator.isEmpty(data.membership_fee)) {
     errors.membership_fee = " *Podaj wysokość składki";
   }
-  if (Validator.isEmpty(data.water_advance)) {
+   if (!Validator.isNumeric(data.membership_fee)) {
+    errors.membership_fee = " *Zły format";
+  }
+  if (Validator.isEmpty(data.water_charge)) {
     errors.water_advance = " *Podaj zaliczkę wodną";
+  }
+   if (!Validator.isNumeric(data.water_charge)) {
+    errors.water_charge = " *Zły format";
   }
   if (Validator.isEmpty(data.water_charge)) {
     errors.water_charge = " *Podaj opłatę wodną";
   }
+   if (!Validator.isNumeric(data.water_charge)) {
+    errors.water_charge = " *Zły format";
+  }
   if (Validator.isEmpty(data.energy_charge)) {
     errors.energy_charge = " *Podaj opłatę energetyczną";
+  }
+   if (!Validator.isNumeric(data.energy_charge)) {
+    errors.energy_charge = " *Zły format";
   }
   if (Validator.isEmpty(data.garbage)) {
     errors.garbage = " *Podaj opłątę śmieciową";
   } 
+   if (!Validator.isNumeric(data.garbage)) {
+    errors.garbage = " *Zły format";
+  }
   if (Validator.isEmpty(data.transfer_title)) {
     errors.transfer_title = " *Podaj tytuł przelewu";
   }
@@ -42,9 +60,14 @@ const validatePaymentdetailInput = (data) => {
   }
   if (Validator.isEmpty(data.account_number)) {
     errors.account_number = " *Podaj numer konta";
-  } else if (!Validator.isLength(data.account_number, { min: 26, max: 26 })) {
+  }
+  if (!Validator.isLength(data.account_number, { min: 26, max: 26 })) {
     errors.account_number = " *Numer konta skada się z 26 cyfr";
   }
+  if (!Validator.isNumeric(data.account_number)) {
+    errors.account_number = " *Zły format";
+  }
+
   return {
     errors,
     isValid: isEmpty(errors),

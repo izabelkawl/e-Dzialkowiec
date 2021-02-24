@@ -2,13 +2,31 @@ import React, { useState, useEffect, Component } from "react";
 import api from '../../api';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { Form, Button } from 'react-bootstrap';
 import { BlueButtonStyle, blueColor } from '../constants';
 import AddComment from '../../components/modal/AddComment'
 import styled from 'styled-components';
 import GetUserName from '../../components/accountEditing/GetUserName';
 import { Link } from "react-router-dom";
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+  }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 const Content = styled.div`
   background-color: white;
@@ -95,6 +113,7 @@ class ForumThread extends Component {
 
   return (
       <Wrapper>
+        <WrapperContainer>
         <Link to={'/dashboard/forums'}>
           <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
         </Link>
@@ -108,6 +127,7 @@ class ForumThread extends Component {
         <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Dodaj komentarz</Button>
         <AddComment show={modalShow} onHide={() => setModalShow(false)}/>
         {CommentsTable}
+        </WrapperContainer>
       </Wrapper>
       )
     }

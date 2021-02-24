@@ -78,6 +78,7 @@ class PaymentdetailsUpdate extends Component {
                                     <Form.Label  htmlFor="stable_price">Opłata za m² działki:</Form.Label >
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                    <Span>{errors.stable_price}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.stable_price}
@@ -97,9 +98,10 @@ class PaymentdetailsUpdate extends Component {
                             <Row>
                                 <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="membership_fee">Składka członkowska: </Form.Label >
-                                    <Span>{errors.membership_fee}</Span>
+                                    
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                <Span>{errors.membership_fee}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.membership_fee}
@@ -119,9 +121,10 @@ class PaymentdetailsUpdate extends Component {
                             <Row>
                                 <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="water_advance">Zaliczka wodna: </Form.Label >
-                                    <Span>{errors.water_advance}</Span>
+                                    
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                <Span>{errors.water_advance}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.water_advance}
@@ -141,9 +144,10 @@ class PaymentdetailsUpdate extends Component {
                             <Row>
                                 <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="water_charge">Opłata wodna: </Form.Label >
-                                    <Span>{errors.water_charge}</Span>
+                                    
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                <Span>{errors.water_charge}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.water_charge}
@@ -163,9 +167,10 @@ class PaymentdetailsUpdate extends Component {
                             <Row>
                                 <Col lg={{ span: 6 }}>
                                     <Form.Label  htmlFor="energy_charge">Opłata energetyczna: </Form.Label >
-                                    <Span>{errors.energy_charge}</Span>
+                                   
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                <Span>{errors.energy_charge}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.energy_charge} 
@@ -185,9 +190,10 @@ class PaymentdetailsUpdate extends Component {
                             <Row>
                                 <Col lg={{ span: 6 }}>
                                     <Form.Label htmlFor="garbage">Śmieci: </Form.Label >
-                                    <Span>{errors.garbage}</Span>
+                                    
                                 </Col>
                                 <Col lg={{ span: 2, offset: 3 }}>
+                                <Span>{errors.garbage}</Span>
                                     <Form.Control
                                         onChange={this.onChange}
                                         error={errors.garbage}
@@ -257,6 +263,7 @@ class PaymentdetailsUpdate extends Component {
                                         <Form.Label  htmlFor="account_number">Konto: </Form.Label >
                                     </Col>
                                     <Col lg={{ span: 6 }}>
+                                    <Span>{errors.account_number}</Span>
                                         <Form.Control    
                                             onChange={this.onChange}
                                             error={errors.account_number}

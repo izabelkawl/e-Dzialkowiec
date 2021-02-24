@@ -15,18 +15,26 @@ const validateAllotmentInput = (data) => {
   // Number checks
   if (Validator.isEmpty(data.number)) {
     errors.number = " *Podaj numer działki";
+  }else if (!Validator.isNumeric(data.number)) {
+    errors.phone = " *Zły format";
   }
   // Width checks
   if (Validator.isEmpty(data.allotment_width)) {
     errors.allotment_width = " *Podaj szerokość";
+  }else if (!Validator.isNumeric(data.allotment_width)) {
+    errors.allotment_width = " *Zły format";
   }
   // Length checks
   if (Validator.isEmpty(data.allotment_length)) {
     errors.allotment_length = " *Długość jest wymagana";
+  }else if (!Validator.isNumeric(data.allotment_length)) {
+    errors.allotment_length = " *Zły format";
   }
   // Price checks
   if (Validator.isEmpty(data.price)) {
     errors.price = " *Cena jest wymagana";
+  }else if (!Validator.isNumeric(data.price)) {
+    errors.price = " *Zły format";
   }
   // Status checks
   if (Validator.isEmpty(data.status)) {

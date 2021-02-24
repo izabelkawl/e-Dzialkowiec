@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const Allotment = new Schema({
 
-  number: { type: Number, required: true },
-  allotment_width: { type: Number, required: true },
-  allotment_length: { type: Number, required: true },
-  price: { type: Number, require: true },
+  number: { type: String, required: true },
+  allotment_width: { type: String, required: true },
+  allotment_length: { type: String, required: true },
+  price: { type: String, require: true },
   status: { type: String, required: true },
   user_id: { type: String, required: true },
   // user_id: { type: Schema.Types.ObjectId, ref: "User"},

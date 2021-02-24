@@ -2,12 +2,30 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import api, { buyAllotmentById, insertFinance } from '../../api';
+import api, { buyAllotmentById, insertFinanceFromBuy } from '../../api';
 import { Form, Button, Row, Col, Modal } from 'react-bootstrap';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { RedButtonStyle, BlueButtonStyle, Information, Title } from '../constants';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+  }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 export const Container = styled.div`
     margin: 0 auto;
@@ -89,7 +107,7 @@ class BuyingAllotment extends Component {
             account: this.state.account_number,
             status: "Nieopłacona"
         };
-        this.props.insertFinance(newFinance, this.props.history)
+        this.props.insertFinanceFromBuy(newFinance, this.props.history)
     };
 
     render() {
@@ -139,6 +157,7 @@ class BuyingAllotment extends Component {
 
         return (
             <Wrapper>
+                <WrapperContainer>
                 <Container>
                     <Title>Kupno działki</Title>
                     <Information>*Kupiona działka zostaje zarezerwowana, status zostanie zmieniony po uregulowaniu należności.</Information>
@@ -196,6 +215,7 @@ class BuyingAllotment extends Component {
                         <ConfirmModal/>
                     </Form>
                 </Container>
+                </WrapperContainer>
             </Wrapper>
         );
     };
@@ -203,7 +223,7 @@ class BuyingAllotment extends Component {
 
 BuyingAllotment.propTypes = {
     buyAllotmentById: PropTypes.func.isRequired,
-    insertFinance: PropTypes.func.isRequired,
+    insertFinanceFromBuy: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
 
@@ -213,5 +233,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { buyAllotmentById, insertFinance }
+    { buyAllotmentById, insertFinanceFromBuy }
 )(withRouter( BuyingAllotment));

@@ -5,10 +5,28 @@ import { connect } from "react-redux";
 import api from '../../api';
 import styled from 'styled-components';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { RedButtonStyle, BlueButtonStyle, Title } from '../constants';
 import AddThread from '../../components/modal/AddThread';
 import Media from 'react-media';
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+  }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 const Container = styled.div`
 margin-top: 20px;
@@ -187,6 +205,7 @@ class Forum  extends Component {
 
     return (
       <Wrapper>
+        <WrapperContainer>
         <Title>Forum</ Title>
         <Row>
           <Col lg={6}>
@@ -207,6 +226,7 @@ class Forum  extends Component {
           </Col>   
         </Row>
         <ForumComponent/>
+        </WrapperContainer>
       </Wrapper>
     );
   };

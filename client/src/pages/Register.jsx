@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
     min-height: 100vh;
-
+    
     @media(min-width: 1365px){
         background-image: url(${bg});
         background-repeat: no-repeat;
@@ -68,7 +68,7 @@ class Register extends Component {
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/login");
+            this.props.history.push("/users/login");
         }
     };
 

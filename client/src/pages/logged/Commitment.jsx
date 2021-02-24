@@ -1,10 +1,29 @@
 import React, { Component } from "react";
 import api from '../../api';
 import { Form, Row, Col } from 'react-bootstrap';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { Title, Label } from '../constants';
 import FinancesTable from './FinanceTable';
 import Media from 'react-media';
+import styled from 'styled-components';
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+    padding: 20px;
+    @media(min-width: 992px){
+        padding: 100px;
+        background-image: url(${bg});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
+    }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 class Commitment extends Component {
 
@@ -47,6 +66,7 @@ class Commitment extends Component {
         
     return (
             <Wrapper>
+                <WrapperContainer>
                 <Title>Jak obliczana jest składka roczna</Title>
                 <hr></hr>
                 <Form>
@@ -138,6 +158,7 @@ class Commitment extends Component {
                 </Form>
                 <FinancesTable/>
                 <p>*Status zostanie zmieniony po weryfikacji płatności</p>
+                </WrapperContainer>
             </Wrapper>
         );
     };

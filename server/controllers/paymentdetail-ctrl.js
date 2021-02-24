@@ -21,19 +21,22 @@ const createPaymentdetail = async (req, res) => {
 
 const updatePaymentdetail = async (req, res) => {
   const body = req.body;
+  const { errors, isValid } = validatePaymentdetailInput(body);
 
   if (!body) {
     return res.status(400).json({
       success: false,
-      error: "You must provide a body to update",
+      error: "*Wypełnij puste komórki.",
     });
   }
 
+  if (!isValid) return res.status(400).json(errors);
+  
   Paymentdetail.findOne({ _id: req.params.id }, (err, paymentdetail) => {
     if (err) {
       return res.status(404).json({
         err,
-        message: "paymentdetail not found!",
+        message: "Nie znaleziono!",
       });
     }
     paymentdetail.stable_price = body.stable_price;
@@ -52,13 +55,13 @@ const updatePaymentdetail = async (req, res) => {
         return res.status(200).json({
           success: true,
           id: paymentdetail._id,
-          message: "paymentdetail updated!",
+          message: "Pomyślnie zaaktualizowano!",
         });
       })
       .catch((error) => {
         return res.status(404).json({
           error,
-          message: "paymentdetail not updated!",
+          message: "Aktualizacja nie powiodłą się!",
         });
       }); 
   });

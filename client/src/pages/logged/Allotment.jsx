@@ -121,7 +121,7 @@ class MyGarden extends Component {
 				path.style.fill="#ffc107";
 				path.onclick = function MyGarden(event) {
 					event.preventDefault()
-					const test = allotments.find(allotment => +path.id === allotment.number)
+					const test = allotments.find(allotment => +path.id === +allotment.number)
 					var x = document.getElementsByClassName("tooltip-map");
 					var i;
 					for (i = 0; i < x.length; i++) {
@@ -134,12 +134,14 @@ class MyGarden extends Component {
 				path.style.fill="#7FBC5E";
 				path.onclick = function updateAllotment(event) {
 				event.preventDefault()
-				const test = allotments.find(allotment => +path.id === allotment.number)
+				const test = allotments.find(allotment => +path.id === +allotment.number)
+				
 				var x = document.getElementsByClassName("tooltip-map");
 					var i;
 					for (i = 0; i < x.length; i++) {
 						x[i].style.display = 'none';
 					}
+					
 				history.push(`/dashboard/allotments/update/${test._id}`)
 				}
 				path.style.cursor="pointer";
@@ -149,13 +151,13 @@ class MyGarden extends Component {
 				path.style.fill="#CC0033";
 				path.onclick = function updateAllotment(event) {
 					event.preventDefault()
-					const test = allotments.find(allotment => +path.id === allotment.number)
+					const test = allotments.find(allotment => +path.id === +allotment.number)
 					var x = document.getElementsByClassName("tooltip-map");
 					var i;
 					for (i = 0; i < x.length; i++) {
 						x[i].style.display = 'none';
 					}
-					history.push(`/#/dashboard/allotments/update/${test._id}`)
+					history.push(`/dashboard/allotments/update/${test._id}`)
 				}
 				path.style.cursor="pointer";
 			} else if((json[key]) === "") {

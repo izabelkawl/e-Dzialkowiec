@@ -14,8 +14,8 @@ const validatePassword = (data) => {
   }
   if (Validator.isEmpty(data.passwordchange)) {
     errors.passwordchange = " *Podaj nowe hasło";
-  } else if (!Validator.isLength(data.passwordchange, { min: 8, max: 30 })) {
-    errors.passwordchange = " *Hasło minimum 8 znaków";
+  } else if (!Validator.isStrongPassword(data.password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0 })) {
+    errors.password = " *Hasło minimum 8 znaków, wymagane duże i małe litery oraz cyfry";
   }
   if (Validator.isEmpty(data.passwordchange2)) {
       errors.passwordchange2 = " *Potwierdź hasło";

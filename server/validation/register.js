@@ -34,14 +34,16 @@ const validateRegisterInput = (data) => {
   // Phone checks
   if (Validator.isEmpty(data.phone)) {
     errors.phone = " *Telefon jest wymagany";
-  } else if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
+  }else if (!Validator.isLength(data.phone, { min: 9, max: 9 })) {
     errors.phone = " *Telefon musi mieć 9 cyfr";
+  }else if (!Validator.isNumeric(data.phone)) {
+    errors.phone = " *Zły format";
   }
   // Password checks
   if (Validator.isEmpty(data.password)) {
     errors.password = " *Podaj hasło";
-  } else if (!Validator.isLength(data.password, { min: 8, max: 30 })) {
-    errors.password = " *Hasło minimum 8 znaków";
+  } else if (!Validator.isStrongPassword(data.password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0 })) {
+    errors.password = " *Hasło minimum 8 znaków, wymagane duże i małe litery oraz cyfry";
   }
   if (Validator.isEmpty(data.password2)) {
     errors.password2 = " *Potwierdź hasło";

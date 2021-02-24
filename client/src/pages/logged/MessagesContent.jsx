@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import api from "../../api";
 import styled from "styled-components";
-import Wrapper from "../../components/Wrapper/Wrapper";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { insertMessage } from "../../api";
@@ -9,10 +8,29 @@ import { BlueButtonStyle } from '../constants';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+  }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 const Container = styled.div`
   margin: 0 auto;
-  @media(min-width: 1366px){
+  @media(min-width: 992px){
     width: 40vw;
   }
 `;
@@ -120,6 +138,7 @@ const MessageDate = styled.i`
   render() {
     return (
       <Wrapper>
+        <WrapperContainer>
         <Link to={'/dashboard/messages'}>
           <Button size="sm"style={BlueButtonStyle}>Powrót</Button>
         </Link>
@@ -138,6 +157,7 @@ const MessageDate = styled.i`
             </InputGroup.Append>
           </InputGroup>
           </Container>
+          </WrapperContainer>
         </Wrapper> 
     )};
   };

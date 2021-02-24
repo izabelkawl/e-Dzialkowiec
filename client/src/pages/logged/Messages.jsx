@@ -8,13 +8,23 @@ import { Title, blueColor, BlueButtonStyle } from '../constants';
 import styled from "styled-components";
 import AddMessage from '../../components/modal/AddMessage';
 import GetUserName from '../../components/accountEditing/GetUserName';
+import bg from '../../app/img/bg.svg';
 
 const Wrapper = styled.div` 
   padding: 20px;
-  @media(min-width: 1366px){
-    width: 50vw;
-    padding: 100px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
   }
+`;
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
 `;
 
 const Container = styled.div`
@@ -86,7 +96,7 @@ class ShowMessages extends Component {
 
 
     return <Wrapper>
-      
+      <WrapperContainer>
       <Title>Lista wiadomości</Title>
             <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
               <AddMessage show={modalShow} onHide={() => setModalShow(false)}/>
@@ -95,6 +105,7 @@ class ShowMessages extends Component {
                   {Messages}
                 </MessageList>
               </Container>
+              </WrapperContainer>
             </Wrapper>;
         };
 class Messages extends Component {

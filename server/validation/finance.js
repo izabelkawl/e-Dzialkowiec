@@ -16,6 +16,8 @@ const validateFinanceInput = (data) => {
   }
   if (Validator.isEmpty(data.charge)) {
     errors.charge = " *Pokaj kwotę";
+  }else if (!Validator.isNumeric(data.charge)) {
+    errors.charge = " *Zły format";
   }
   if (Validator.isEmpty(data.term)) {
     errors.term = " *Wybierz termin płatności";

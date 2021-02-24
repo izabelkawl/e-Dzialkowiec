@@ -11,14 +11,12 @@ import bg from './img/bgo.svg';
 import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
-    background-color: white;
     margin: 0 auto;
     height: 100vh;
     @media(min-width: 400px) and (max-width: 767px){
         width: 100vw;
     };
     @media(min-width: 768px) and (max-width: 1364px){
-        background-color: toamto;
         margin: 0 auto;
     };
     @media(min-width: 1365px){

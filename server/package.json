@@ -8,7 +8,9 @@
     "start": "node index.js",
     "test": "jest"
   },
-  "engines": { "node" : "v14.15.1" },
+  "engines": {
+    "node": "v14.15.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -31,7 +33,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-fs": "0.0.0",
-    "validator": "^13.1.17"
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

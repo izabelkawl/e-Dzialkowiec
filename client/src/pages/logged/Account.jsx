@@ -8,17 +8,25 @@ import PasswordChange from '../../components/accountEditing/PasswordChange';
 import { Tab, Col, Row, Nav, Button } from 'react-bootstrap';
 import { BlueButtonStyle, Title } from '../constants';
 import styled from 'styled-components';
+import bg from '../../app/img/bg.svg';
 
 const Wrapper = styled.div` 
     padding: 20px;
     @media(min-width: 992px){
-        // padding: 100px;
-    }
-    @media(min-width: 1366px){
-        width: 70vw;
         padding: 100px;
+        background-image: url(${bg});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: fixed;
     }
 `;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`
 
 const Container = styled.div`
   padding-top: 30px;
@@ -37,6 +45,7 @@ class Account extends Component {
 
         return (
             <Wrapper>
+                <WrapperContainer>
                 <Row>
                     <Col>
                         <Title>Konto</Title>
@@ -89,6 +98,7 @@ class Account extends Component {
                         </Col>
                     </Row>
                 </Tab.Container>
+                </WrapperContainer>
             </Wrapper >
         );
     };

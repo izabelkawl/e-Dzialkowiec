@@ -289,6 +289,15 @@ export const insertFinance = (financeData, history) => dispatch => {
                 payload: err.response.data
             })
         );
+};export const insertFinanceFromBuy = (financeData, history) => dispatch => {
+    api
+        .post("/finance", financeData)
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
 };
 export const insertAllFinance = (financeData, history) => dispatch => {
     api
@@ -458,6 +467,7 @@ const apis = {
 
 
     insertFinance,
+    insertFinanceFromBuy,
     insertAllFinance,
     getAllFinances,
     updateFinanceById,

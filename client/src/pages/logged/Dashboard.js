@@ -7,9 +7,27 @@ import AdDescription from '../../components/management/AdDescription'
 import AdRodo from '../../components/management/AdRodo';
 import ManagementList from '../../components/management/ManagementList';
 import ActList from '../../components/management/ActList';
-import Wrapper from '../../components/Wrapper/Wrapper';
 import { Title } from '../constants';
 import { Tab, Tabs, CardColumns } from 'react-bootstrap';
+import bg from '../../app/img/bg.svg';
+
+const Wrapper = styled.div` 
+  padding: 20px;
+  @media(min-width: 992px){
+      padding: 100px;
+      background-image: url(${bg});
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+  }
+`;
+
+const WrapperContainer = styled.div`
+    @media(min-width: 992px){
+        width: 60vw;
+}
+`;
 
 const Container = styled.div`
   padding-top: 30px;
@@ -24,6 +42,7 @@ class Dashboard extends Component {
     render() {
       return (
           <Wrapper>
+            <WrapperContainer>
               <Tabs transition={false} defaultActiveKey="link1" id="uncontrolled-tab-example">
                 <Tab eventKey="link1" title="Aktualności" >
                   <Container>
@@ -58,6 +77,7 @@ class Dashboard extends Component {
                       </Container>
                 </Tab>
             </Tabs>
+            </WrapperContainer>
           </Wrapper >
     );
   };

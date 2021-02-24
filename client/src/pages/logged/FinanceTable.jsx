@@ -33,7 +33,6 @@ class Management extends Component {
                 requestFinancesList();
             }, []);
 
-        let isEmpty = true;
         const FinancesTable = finances.map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status } = finance;
             const logged = this.props.auth.user.id
@@ -52,12 +51,9 @@ class Management extends Component {
                         <td>{status}</td>
                         <td>
                         <PdfButton id={_id}/></td>
-                        {isEmpty = false}
                     </tr>
                 );
-            }else{
-                return isEmpty = true
-            };
+            }
         });
             return (
                 <>
@@ -76,9 +72,7 @@ class Management extends Component {
                 <tbody>
                     {FinancesTable}
                 </tbody>
-            </Table>
-            {isEmpty === true ? <p>*Brak zoobowiązań.</p> : ''}
-            </>
+            </Table> </>
             )
         };
 

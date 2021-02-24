@@ -42,7 +42,7 @@ class LoggedNavBar extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
                     <Nav>
-                        {user.position !== "Działkowiec" ? <Link to="/admin/" className="nav-link " style={{ color: blueColor }}> Admin </Link>: null }
+                        {user.position !== "Działkowiec" ? <Link to="/admin/" className="nav-link " style={{ color: blueColor }}> <LinkItem>Admin</LinkItem> </Link>: null }
                         <Link to="/dashboard/" className="nav-link ">
                             <LinkItem>Aktualności</LinkItem>
                                 </Link>

@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const Paymentdetail = new Schema({
 
-  stable_price: { type: Number, required: true },
-  membership_fee: { type: Number, required: true },
-  water_advance:{ type: Number, required: true },
-  water_charge: { type: Number, required: true },
-  energy_charge: { type: Number, required: true },
-  garbage:{ type: Number, required: true },
+  stable_price: { type: String, required: true },
+  membership_fee: { type: String, required: true },
+  water_advance:{ type: String, required: true },
+  water_charge: { type: String, required: true },
+  energy_charge: { type: String, required: true },
+  garbage:{ type: String, required: true },
 
   transfer_title: { type: String, required: true },
   payment_date: { type: String, required: true },

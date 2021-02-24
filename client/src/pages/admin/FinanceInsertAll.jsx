@@ -88,14 +88,12 @@ class FinanceInsertAll extends Component {
             account: this.state.account,
             status: this.state.status
         };
-        console.log(this.state.number+'.1')
-        console.log(this.state.allotment_number+'.2')
         this.props.insertAllFinance(newFinance, this.props.history)
     };
 
     render() {
 
-        const {  stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number, number, allotment_width, allotment_length, user_id } = this.state;
+        const { transfer_title,  payment_date, account_number } = this.state;
         
         const FinancesList = () => {
             const [allotments, setAllotments] = useState([]);
@@ -110,7 +108,6 @@ class FinanceInsertAll extends Component {
             }, []); 
             
             const length = allotments.length;
-
             const CreateFinances = () => {
                     for (let i = 0; i < length; i++) {
                         if(allotments[i].status === "Zajęta"){
@@ -119,7 +116,7 @@ class FinanceInsertAll extends Component {
                     this.state.owner= allotments[i].user_id
                     this.state.title= transfer_title
                     this.state.area= allotments[i].allotment_width * allotments[i].allotment_length
-                    this.state.charge= ( allotments[i].allotment_width * allotments[i].allotment_length*stable_price) + membership_fee  + water_advance + water_charge + energy_charge + garbage
+                    this.state.charge= `${(( +allotments[i].allotment_width * +allotments[i].allotment_length * +this.state.stable_price ) + +this.state.membership_fee  + +this.state.water_advance + +this.state.water_charge + +this.state.energy_charge + +this.state.garbage)}`
                     this.state.term= payment_date
                     this.state.account= account_number
                     this.state.status= "Nieopłacona"
@@ -135,8 +132,6 @@ class FinanceInsertAll extends Component {
                     return <><AllotmentNumber key={_id}>{number}</AllotmentNumber>,</>
                 }
             })
-            console.log(typeof GardenList)
-            console.log(GardenList)
         return (
             <Container60>
                 <List >
