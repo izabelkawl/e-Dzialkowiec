@@ -15,6 +15,7 @@ import PrivateRoute from '../components/private-route/PrivateRoute';
 import AllotmentSelection from '../pages/admin/AllotmentSelection';
 import Admin from '../pages/admin/AdminDashboard';
 import AdminNavBar from '../components/navigation/AdminNavBar';
+import FinanceInsertAll from '../pages/admin/FinanceInsertAll';
 
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -60,6 +61,7 @@ class AdminApp extends Component {
 
                 <PrivateRoute path="/admin/finances/list" exact component={Finanse} />
                 <PrivateRoute path="/admin/finances/create" exact component={AllotmentSelection} />
+                <PrivateRoute path="/admin/finances/createall" exact component={FinanceInsertAll} />
                 <PrivateRoute path="/admin/finances/create/:id" exact component={FinanceInsert} />
                 <PrivateRoute path="/admin/finances/update/:id" exact component={StatusUpdate} />
                 <PrivateRoute path="/admin/table/" exact component={NoticeBoard} />

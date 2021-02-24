@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import './MapColors.css'
 import api from "../api";
+import { Information }  from '../pages/constants';
 
 const Container = styled.div`
 padding: 20px;
 @media(min-width: 1365px){
   width: 80vw;
   margin: 0 auto;
-  padding: 50px;
+  padding: 0 50px;
 }
 `;
 
@@ -1835,6 +1836,7 @@ function generateTooltipContent(provinceName) {
 			<NavBar />
 			<Container>
 				<GardenMap />
+				<Information style={{ textAlign: 'center' }}>*Stwórz konto, aby uzyskac więcej informacji!</Information>
 			</Container>
 		</>
     );

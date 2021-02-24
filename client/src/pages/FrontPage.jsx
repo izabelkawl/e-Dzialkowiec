@@ -23,10 +23,10 @@ const Wrapper = styled.div`
 const Section = styled.section` 
     text-align: center;
     padding: 5vw;
-
-    @media(min-width: 1365px){
+    
+    @media(min-width: 1366px){
         width: 50vw;
-        padding: 100px;
+        padding: 50px 100px;
         text-align: left;
     }
     @media(min-width: 1920px){

@@ -129,17 +129,21 @@ class Management extends Component {
             <PaymentdetailsUpdate/>
             <hr></hr>
             <Row>
-                <Col lg={3}>
-                <Link to={'/admin/finances/create'}>
-                    <Button size="sm" block style={RedButtonStyle}>Dodaj płatność</Button>
-                </Link>
+                <Col lg={5}>
+                    <Link to={'/admin/finances/createall'}>
+                        <Button size="sm" style={RedButtonStyle}>Wyślij roczne zoobowiazania</Button>
+                    </Link>
+                    {' '}
+                    <Link to={'/admin/finances/create'}>
+                        <Button size="sm" style={BlueButtonStyle}>Dodaj płatność</Button>
+                    </Link>
                 </Col>
                 <Media query="(max-width: 992px)" render={() =>
                             (
                              <Col lg={{ span: 6 }}><p></p></Col>
                             )}
                         /> 
-                <Col lg={{span: 6, offset: 3}}>
+                <Col lg={{ span: 6 , offset: 1}}>
                     <Form.Control
                         value={this.state.inputValue}
                         onChange={this.updateInputValue}

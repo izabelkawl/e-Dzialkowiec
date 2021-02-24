@@ -8,6 +8,7 @@ import { Title, BlueButtonStyle, Span, linkColor }  from '../pages/constants';
 import { loginUser } from "../api/index";
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bgo.svg';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
     background-color: white;
@@ -55,7 +56,8 @@ const Container = styled.div.attrs({
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
 `;
-export const Link = styled.a`
+
+const LinkItem = styled.a`
     color: ${linkColor};
 `;
 
@@ -148,7 +150,7 @@ class Login extends Component {
                                     invalid: errors.password || errors.passwordincorrect
                                 })}
                             />
-                            <Form.Text style={{ paddingTop: '10px' }}><Link to="/users/register">Nie masz konta? Zarejestruj się </Link></Form.Text>
+                            <Form.Text style={{ paddingTop: '10px' }}><Link to="/users/register"><LinkItem>Nie masz konta? Zarejestruj się </LinkItem></Link></Form.Text>
                         </Form.Group>
                         <Button size="sm" style={BlueButtonStyle} className="float-right" type="submit" >Zaloguj</Button>
                     </Form>

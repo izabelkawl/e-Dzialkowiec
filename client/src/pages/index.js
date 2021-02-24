@@ -16,7 +16,7 @@ import Message from './logged/Messages';
 import Management from './admin/Management';
 import UsersList from './admin/UsersList';
 import UsersUpdate from './admin/UsersUpdate';
-
+import FinanceInsertAll from './admin/FinanceInsertAll';
 import AllotmentsList from './admin/AllotmentsList';
 import AllotmentsUpdate from './admin/AllotmentsUpdate';
 import AllotmentsInsert from './admin/AllotmentsInsert';
@@ -27,4 +27,4 @@ import Finanse from './admin/Finance';
 import AllotmentSelection from './admin/AllotmentSelection';
 import AnnouncementUpdate from './admin/AnnouncementUpdate';
 
-export { FrontPage, Management, About, AnnouncementUpdate, Contact, Messages, ForumThread, Message, Finanse, AllotmentSelection, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList }
+export { FrontPage, Management, About, FinanceInsertAll, AnnouncementUpdate, Contact, Messages, ForumThread, Message, Finanse, AllotmentSelection, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList }

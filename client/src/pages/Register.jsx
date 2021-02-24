@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { registerUser } from "../api/index";
 import classnames from "classnames";
 import { Form, Row, Col, Button } from 'react-bootstrap';
-import { BlueButtonStyle, Title, Span, Link } from './constants';
+import { BlueButtonStyle, Title, Span, linkColor } from './constants';
 import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bgo.svg';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
     min-height: 100vh;
@@ -42,6 +43,10 @@ const Container = styled.div.attrs({
 
 const Label = styled(Form.Label)`
     padding-bottom: 10px;
+`;
+
+const LinkItem = styled.a`
+    color: ${linkColor};
 `;
 
 class Register extends Component {
@@ -191,7 +196,7 @@ class Register extends Component {
                                 className={classnames("", {
                                     invalid: errors.phone
                                 })}
-                                placeholder="123 456 789"
+                                placeholder="123 456 124"
                             />
                         </Form.Group>
                         <Form.Group >
@@ -208,7 +213,6 @@ class Register extends Component {
                                 className={classnames("", {
                                     invalid: errors.password
                                 })}
-                                placeholder="********"
                             />
                         </Form.Group>
                         <Form.Group>
@@ -225,7 +229,6 @@ class Register extends Component {
                                 className={classnames("", {
                                     invalid: errors.password2
                                 })}
-                                placeholder="********"
                             />
                         </Form.Group>
                         <Button
@@ -235,7 +238,7 @@ class Register extends Component {
                             >
                             Rejestracja
                         </Button>   
-                        <Form.Text ><Link to={'/dashboard'}>Powrót do logowania</Link></Form.Text>
+                        <Form.Text ><Link to={'/users/login'}><LinkItem>Powrót do logowania</LinkItem></Link></Form.Text>
                         <br></br>
                     </Form>
                 </Container>

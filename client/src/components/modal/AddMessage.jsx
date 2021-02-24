@@ -99,6 +99,7 @@ class AddMessage extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            size="sm"
             style={RedButtonStyle}
             onClick={() => {
               this.props.onHide()
@@ -107,6 +108,7 @@ class AddMessage extends Component {
             Zamknij
           </Button>
           <Button
+            size="sm"
             style={BlueButtonStyle}
             onClick={this.onSubmit}
             >

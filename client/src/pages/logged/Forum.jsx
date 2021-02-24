@@ -58,7 +58,7 @@ class UpdateForum extends Component {
       window.location.href = `/#/dashboard/forums/${this.props.id}`
   }
   render() {
-      return <Button size="lg"style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
+      return <Button size="sm"style={BlueButtonStyle} onClick={this.updateForum}>Otwórz</Button>
   }
 };
 
@@ -75,7 +75,7 @@ class DeleteForum extends Component {
     }
   }
   render() {
-      return <Button size="lg"style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
+      return <Button size="sm"style={RedButtonStyle} onClick={this.deleteForum}>Usuń</Button>
   };
 };
 

@@ -5,6 +5,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import logo from '../img/img.svg';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const LinkItem = styled.p`
+    margin: 0 ;
+    margin-left: 30px;
+`;
 
 class AdminNavBar extends Component {
     render() {
@@ -25,26 +31,26 @@ class AdminNavBar extends Component {
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                         <Link to="/admin" className="nav-link ">
-                            Panel
-                            </Link>
+                            <LinkItem>Panel</LinkItem>
+                                </Link>
                         <Link to="/admin/management" className="nav-link ">
-                            Zarząd
-                            </Link>
+                            <LinkItem>Zarząd</LinkItem>
+                                </Link>
                         <Link to="/admin/users/list" className="nav-link ">
-                            Użytkownicy
-                            </Link>
+                            <LinkItem>Użytkownicy</LinkItem>
+                                </Link>
                         <Link to="/admin/allotments/list" className="nav-link ">
-                            Działki
-                            </Link>
+                            <LinkItem>Działki</LinkItem>
+                                </Link>
                         <Link to="/admin/table" className="nav-link ">
-                            Tablica ogłoszeń
-                            </Link>
+                            <LinkItem>Tablica ogłoszeń</LinkItem>
+                                </Link>
                         <Link to="/admin/messages/list" className="nav-link ">
-                            Wiadomości
-                            </Link>
+                            <LinkItem>Wiadomości</LinkItem>
+                                </Link>
                         <Link to="/admin/finances/list" className="nav-link ">
-                            Finanse
-                            </Link>
+                            <LinkItem>Finanse</LinkItem>
+                                </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

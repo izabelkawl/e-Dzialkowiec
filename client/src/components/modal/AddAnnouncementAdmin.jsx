@@ -90,6 +90,7 @@ class AddAnnouncementAdmin extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button
+            size="sm"
               style={RedButtonStyle}
               onClick={() => {
                 this.props.onHide()

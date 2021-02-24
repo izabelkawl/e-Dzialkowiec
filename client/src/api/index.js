@@ -11,7 +11,6 @@ import {
 const api = axios.create({
     baseURL: '/api'
 })
-console.log(process.env.PORT)
 // Register User
 export const registerUser = (userData, history) => dispatch => {
     api
@@ -291,6 +290,17 @@ export const insertFinance = (financeData, history) => dispatch => {
             })
         );
 };
+export const insertAllFinance = (financeData, history) => dispatch => {
+    api
+        .post("/finance", financeData)
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
 export const updateFinanceById = (id, payload) => dispatch => {
     api
         .put(`/finance/${id}`, payload)
@@ -448,6 +458,7 @@ const apis = {
 
 
     insertFinance,
+    insertAllFinance,
     getAllFinances,
     updateFinanceById,
     deleteFinanceById,

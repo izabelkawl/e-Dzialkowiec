@@ -158,8 +158,8 @@ class NoticeBoardMessage extends Component {
               />
             </Form.Group>
             <Link to={'/dashboard/noticeboard'}>
-              <Button size="sm" style={BlueButtonStyle}>
-                  Dodaj działkę
+              <Button size="sm" style={RedButtonStyle}>
+                  Powrót
               </Button>
             </Link>
             {' '}

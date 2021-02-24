@@ -22,7 +22,7 @@ const Person = styled.div`
     color: white;
     background-color: rgb(0, 113, 188);
     padding: 12px;
-    border-radius: 9px;
+    border-radius: 12px;
     margin-bottom: 10px;
     cursor: pointer;
 `;
@@ -72,7 +72,7 @@ const MessagesList = () => {
   });
 
   return (
-    <Container60>
+    <Container60 style={{ margin: '0 auto' }}>
     <List>
       <Button size="sm"style={BlueButtonStyle} onClick={() => setModalShow(true)}>Nowa wiadomość</Button>
       <AddMessageAdminPanel show={modalShow} onHide={() => setModalShow(false)}/>

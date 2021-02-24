@@ -78,10 +78,10 @@ class FinancesInsert extends Component {
             
             allotment_number: this.state.number,
             owner: this.state.user_id,
-            title: this.state.transfer_title,
+            title: this.state.title,
             area: this.state.allotment_width * this.state.allotment_length,
-            charge: ( this.state.allotment_width * this.state.allotment_length*this.state.stable_price) + this.state.membership_fee  + this.state.water_advance + this.state.water_charge + this.state.energy_charge + this.state.garbage,
-            term: this.state.payment_date,
+            charge: this.state.charge,
+            term: this.state.term,
             account: this.state.account_number,
             status: this.state.status
         };
@@ -90,8 +90,8 @@ class FinancesInsert extends Component {
 
     render() {
 
-        const {  errors, name, stable_price, membership_fee, water_advance, water_charge, energy_charge, garbage,transfer_title,  payment_date, account_number, number, allotment_width, allotment_length, user_id } = this.state;
-        const newCharge = ( allotment_width * allotment_length*stable_price ) + membership_fee +  water_advance +water_charge + energy_charge + garbage
+        const {  errors, name,transfer_title, account_number, number, allotment_width, allotment_length, user_id } = this.state;
+        
         return (
             <Container60>
             <List >
@@ -128,12 +128,11 @@ class FinancesInsert extends Component {
                     <Form.Group as={Row}>
                         <Form.Label column sm="4" htmlFor="title" >Tytuł: </Form.Label>
                         <Col sm="8">
+                        <Span>{errors.title}</Span>
                             <Form.Control
                                 onChange={this.onChange}
-                                value={transfer_title}
                                 id="title"
                                 type="text"
-                                readOnly
                             ></Form.Control>
                         </Col>
                     </Form.Group>
@@ -151,11 +150,10 @@ class FinancesInsert extends Component {
                     <Form.Group as={Row}>
                         <Form.Label column sm="4">Należność: </Form.Label>
                         <Col sm="8">
+                        <Span>{errors.charge}</Span>
                             <Form.Control
                                 id="charge"
                                 type="text"
-                                value={newCharge}
-                                readOnly 
                                 onChange={this.onChange}
                             ></Form.Control>
                         </Col>
@@ -163,12 +161,11 @@ class FinancesInsert extends Component {
                     <Form.Group as={Row}>
                         <Form.Label column sm="4">Termin zapłaty: </Form.Label>
                         <Col sm="8">
+                            <Span>{errors.term}</Span>
                             <Form.Control
                                 id="term"
                                 type="date"
-                                value={payment_date}
                                 onChange={this.onChange}
-                                readOnly
                             ></Form.Control>
                         </Col>
                     </Form.Group>

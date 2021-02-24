@@ -6,7 +6,7 @@ import classnames from "classnames";
 import UsersID from '../../components/management/UsersID';
 import { insertAllotment } from "../../api/index";
 import { Form, Button, Row, Col }from 'react-bootstrap';
-import { Title, List, BlueButtonStyle, RedButtonStyle, Label, Span, Container60 } from '../constants';
+import { Title, List, BlueButtonStyle, RedButtonStyle, Span, Container60 } from '../constants';
 import { Link } from "react-router-dom";
 
 class AllotmentsInsert extends Component {

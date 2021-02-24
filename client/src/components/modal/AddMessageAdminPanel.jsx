@@ -97,6 +97,7 @@ class AddMessageAdminPanel extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            size="sm"
             style={RedButtonStyle}
             onClick={() => {
               this.props.onHide()
@@ -105,6 +106,7 @@ class AddMessageAdminPanel extends Component {
             Zamknij
           </Button>
           <Button
+            size="sm"
             style={BlueButtonStyle}
             onClick={this.onSubmit}
             >

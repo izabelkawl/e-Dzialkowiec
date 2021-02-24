@@ -77,6 +77,7 @@ class BuyingAllotment extends Component {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear()
         const dataa = yyyy+'-'+mm+'-'+dd
+        
         const newFinance = {
 
             allotment_number: this.state.number,

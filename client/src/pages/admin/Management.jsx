@@ -43,7 +43,7 @@ class Management extends Component {
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="link2">
-                                Ustawy
+                                Skład zarządu
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -53,7 +53,7 @@ class Management extends Component {
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="link4">
-                                Skład zarządu
+                                Ustawy
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -77,7 +77,7 @@ class Management extends Component {
                                             <ManagementList/>
                                                 </CardColumns>
                                                     </Container>
-                                                        <Information>*Skład zarządu można zmienić podczas edycji użytkownika</Information>
+                                                        <Information>*Skład członków zarządu można zmienić w zakładce "Użytkownicy".</Information>
                                                             </Tab.Pane>
                             <Tab.Pane eventKey="link2">
                                 <Container>

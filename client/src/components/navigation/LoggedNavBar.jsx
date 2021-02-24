@@ -4,9 +4,16 @@ import { connect } from "react-redux";
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { Navbar, Nav, } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import Media from 'react-media';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { blueColor }  from '../../pages/constants';
+
+const LinkItem = styled.p`
+    margin: 0 ;
+    margin-left: 30px;
+`;
 
 class LoggedNavBar extends Component {
     render() {
@@ -31,31 +38,32 @@ class LoggedNavBar extends Component {
                         />
                 
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"  className="nav-link"/>
+
                 <Navbar.Collapse id="responsive-navbar-nav" >
                 <Nav className="mr-auto"></Nav>
                     <Nav>
-                        {user.position !== "Działkowiec" ? <Link to="/admin/" className="nav-link "> Admin </Link>: null }
+                        {user.position !== "Działkowiec" ? <Link to="/admin/" className="nav-link " style={{ color: blueColor }}> Admin </Link>: null }
                         <Link to="/dashboard/" className="nav-link ">
-                            Aktualności
-                            </Link>
+                            <LinkItem>Aktualności</LinkItem>
+                                </Link>
                         <Link to="/dashboard/allotments" className="nav-link ">
-                            Działka
-                            </Link>
+                            <LinkItem>Działka</LinkItem>
+                                </Link>
                         <Link to="/dashboard/noticeboard" className="nav-link">
-                            Tablica ogłoszeń
-                            </Link>
+                            <LinkItem>Tablica ogłoszeń</LinkItem>
+                                </Link>
                         <Link to="/dashboard/messages" className="nav-link ">
-                            Wiadomości
-                            </Link>
+                            <LinkItem>Wiadomości</LinkItem>
+                                </Link>
                         <Link to="/dashboard/forums" className="nav-link">
-                            Forum
-                            </Link>
+                            <LinkItem>Forum</LinkItem>
+                                </Link>
                         <Link to="/dashboard/commitment" className="nav-link">
-                            Zobowiązania
-                            </Link>
+                            <LinkItem>Zobowiązania</LinkItem>
+                                </Link>
                         <Link to="/dashboard/account" className="nav-link">
-                            Konto
-                            </Link>
+                            <LinkItem>Konto</LinkItem>
+                                </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

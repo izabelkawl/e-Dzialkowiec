@@ -116,7 +116,7 @@ class MessagesInsert extends Component {
 
   render() {
     return (
-      <Container60>
+      <Container60 style={{ margin: '0 auto' }}>
         <List>
           <Link to={'/admin/messages/list'}>
             <Button size="sm" style={BlueButtonStyle}>Powrót</Button>
