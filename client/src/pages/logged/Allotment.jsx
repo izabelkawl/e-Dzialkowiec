@@ -33,29 +33,20 @@ class MyGarden extends Component {
 			tooltip.style.left = x + 20 + "px";
     		tooltip.style.top = y + 20 + "px";
     }
+	
 
         const tooltipData = {};
 
-        allotments.map((allotment) => {
+		allotments.map((allotment) => {
 			const { number, allotment_width, allotment_length, price, status, user_id } = allotment;
-			if( status === "Wolna" ){
 				return(
 					tooltipData[number] = {
 						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
 						'Cena': price,
 						'Status': status,
+						'Właściciel': user_id,
 					}
 				)
-			} 
-			else { 
-				return(
-					tooltipData[number] = {
-						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-						'Status': status,
-						'Właściciel': user_id
-					}
-				)
-			}
 		});
 		const tooltipTemplate = `<p>{{number}}</p>{{Content}}`;
 
@@ -67,18 +58,18 @@ class MyGarden extends Component {
 			if (ob !== undefined) { // if there is no such plot in the base
 				if (Object.keys(ob).length !== 0 && ob.constructor === Object) { // if the plot data is empty
 					html += "<div className=\"tooltip-map-content\">";
-					if(ob.Cena!==undefined){
+					if(ob.Status==="Wolna" || ob.Status==="Na sprzedaż"){
 						html += `<p>Powierzchnia: <b>` + ob.Wymiary +
 								`</b></p><p>Cena: <b>` + ob.Cena +
-								`</b></p><p>Status: <b>` + ob.Status + 
+								` zł</b></p><p>Status: <b>` + ob.Status + 
 								`</b></p><p><i>Kliknij aby zarezerwować.</i></p>`
 					}else{
 						userss.map((user) => {
 							const { _id, firstname, lastname } = user
 							if(_id === ob.Właściciel){
 								return html = `<p>Powierzchnia: <b>` + ob.Wymiary + 
-											  `</b></p><p>Status: <b>` + ob.Status + 
-											  `</b></p><p>Właściciel: <b>` + firstname + ' '+ lastname +`</b></p>`
+											  `</b></p><p>Właściciel: <b>` + firstname + ' '+ lastname +
+											  `</b></p><p>Status: <b>` + ob.Status +`</b></p>`
 							}else {
 								return null
 							}
@@ -142,7 +133,7 @@ class MyGarden extends Component {
 						x[i].style.display = 'none';
 					}
 					
-				history.push(`/dashboard/allotments/update/${test._id}`)
+				history.push(`/dashboard/allotments/new/${test._id}`)
 				}
 				path.style.cursor="pointer";
 			} else if((json[key]) === "Zajęta") {

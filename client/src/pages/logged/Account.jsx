@@ -41,8 +41,6 @@ class Account extends Component {
 
     render() {
 
-        const { path } = this.props.match;
-
         return (
             <Wrapper>
                 <WrapperContainer>

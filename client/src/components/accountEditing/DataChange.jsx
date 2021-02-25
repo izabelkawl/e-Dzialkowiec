@@ -33,7 +33,7 @@ class DataChange extends Component {
     }
 
     render() {
-        const { email, lastname, firstname, address, phone } = this.state;
+        const { lastname, firstname, address, phone } = this.state;
         return (
             <>
                 <Title>Twoje dane osobowe</Title>

@@ -73,7 +73,7 @@ class AllotmentsList extends Component {
         }, []); 
 
         const SortedAllotments = [].concat(allotments)
-        .sort((a, b) => a.number > b.number ? 1 : -1)
+        .sort((a, b) => +a.number > +b.number ? 1 : -1)
 
         const AllotmentsTable = SortedAllotments.map((allotment, index) => {
             const { _id,number, allotment_width, allotment_length, price, status, user_id } = allotment;

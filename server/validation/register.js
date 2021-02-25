@@ -42,7 +42,13 @@ const validateRegisterInput = (data) => {
   // Password checks
   if (Validator.isEmpty(data.password)) {
     errors.password = " *Podaj hasło";
-  } else if (!Validator.isStrongPassword(data.password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0 })) {
+  } else if (!Validator.isStrongPassword(data.password, { 
+        minLength: 8,
+        minLowercase: 1, 
+        minUppercase: 1, 
+        minNumbers: 1, 
+        minSymbols: 0 })) 
+        {
     errors.password = " *Hasło minimum 8 znaków, wymagane duże i małe litery oraz cyfry";
   }
   if (Validator.isEmpty(data.password2)) {

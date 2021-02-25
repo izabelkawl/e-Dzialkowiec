@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NavBar from '../components/navigation/NavBar';
 import bg from './img/bg.svg';
 import edzialkowiec from './img/logo.svg';
-import { blueColor, lightGray } from './constants.jsx';
+import { blueColor } from './constants.jsx';
 import logo from '../components/img/logoBlack.png';
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const Section = styled.section`
         padding: 0px 100px 100px;
     }
     @media(min-width: 1920px){
-        width: 60vw;
+        width: 50vw;
         margin-top: 30px;
         padding: 100px;
     }
@@ -52,15 +52,19 @@ const Image = styled.img`
     width: 88vw;
     margin-bottom: 5vw;
     @media(min-width: 768px){
-        width: 50vw;
+        width: 40vw;
         margin-bottom: 50px;
     }
 `;
 const TextTitle = styled.p`
     font-weight: bold;
+    @media(min-width: 1366px){
+        font-size: 35px;
+    }
 `;
-const TextSpan= styled.p`
-    
+const TextSpan= styled.h4`
+    font-weight: 500;
+    line-height: 1.7;
 `;
 
 const Button = styled.button`
@@ -104,8 +108,8 @@ class FrontPage extends Component {
                     <TextTitle>Kupno • Sprzedaż • Opłaty • Aktualności • Tablica ogłoszeń</TextTitle>
                     <br />
                     <TextSpan>Aplikacja pozwoli Ci zarządzać swoim ogrodem działkowym na odległość. 
-                        <br></br>Możesz kupić / sprzedać działkę, opłacić rachunki, integrować się z działkowacami.
-                        <br></br>To wszystko bez wychodzenia z domu!
+                        Możesz kupić lub sprzedać działkę, zintegrować się z działkowacami, zobaczyć aktualne opłaty.
+                        To wszystko bez wychodzenia z domu!
                     </TextSpan>
                     <br />
                     <Link to="/users/login">

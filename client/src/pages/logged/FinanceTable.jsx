@@ -33,7 +33,7 @@ class Management extends Component {
                 requestFinancesList();
             }, []);
 
-        const FinancesTable = finances.map((finance) => {
+        const FinancesTable = finances.slice(0).reverse().map((finance) => {
             const { _id, allotment_number,owner, title, area, charge, term, status } = finance;
             const logged = this.props.auth.user.id
             const n = JSON.stringify({ allotment_number,owner, title, area, charge, term, status })

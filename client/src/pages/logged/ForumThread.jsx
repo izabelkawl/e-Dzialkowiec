@@ -75,7 +75,7 @@ class ForumThread extends Component {
 
   render() {
     
-    const { id, user_id, title, content, name} = this.state
+    const { id, title, content, name} = this.state
     const timestamp = id.toString().substring(0,8);
     const date = new Date(parseInt(timestamp ,16)*1000).toLocaleDateString();
 

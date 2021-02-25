@@ -90,7 +90,7 @@ class FinancesInsert extends Component {
 
     render() {
 
-        const {  errors, name,transfer_title, account_number, number, allotment_width, allotment_length, user_id } = this.state;
+        const {  errors, name, account_number, number, allotment_width, allotment_length, user_id } = this.state;
         
         return (
             <Container60>

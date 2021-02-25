@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import api, { insertAllFinance } from "../../api/index";
 import { Button } from 'react-bootstrap';
-import { List, BlueButtonStyle, RedButtonStyle, Title, Container60, Information, lightGray } from '../constants';
+import { List, BlueButtonStyle, RedButtonStyle, Title, Container60, Information } from '../constants';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 

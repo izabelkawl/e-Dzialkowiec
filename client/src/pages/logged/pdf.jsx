@@ -25,7 +25,7 @@ const MyDocument = ({number,owner, title, area, charge, term, account}) => (
       <Page size="A4" style={styles.page} >
         
         <View style={styles.section}>
-        <Text style={{ textAlign: 'center', marginBottom: 40,}}>Faktura{"\n"}</Text>
+        <Text style={{ textAlign: 'center', marginBottom: 40,}}>Rachunek{"\n"}</Text>
     
         <Text>Tytuł:</Text>
         <Text >Numer działki:</Text>

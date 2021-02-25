@@ -105,7 +105,7 @@ class BuyingAllotment extends Component {
             charge: this.state.price,
             term: dataa,
             account: this.state.account_number,
-            status: "Nieopłacona"
+            status: "Rezerwacja"
         };
         this.props.insertFinanceFromBuy(newFinance, this.props.history)
     };

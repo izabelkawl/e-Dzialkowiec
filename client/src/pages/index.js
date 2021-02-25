@@ -21,10 +21,10 @@ import AllotmentsList from './admin/AllotmentsList';
 import AllotmentsUpdate from './admin/AllotmentsUpdate';
 import AllotmentsInsert from './admin/AllotmentsInsert';
 import Messages from './logged/Messages';
-
+import BuyingAllotmentSell from "./logged/BuyingAllotmentSell";
 import MessagesList from './admin/MessagesList';
 import Finanse from './admin/Finance';
 import AllotmentSelection from './admin/AllotmentSelection';
 import AnnouncementUpdate from './admin/AnnouncementUpdate';
 
-export { FrontPage, Management, About, FinanceInsertAll, AnnouncementUpdate, Contact, Messages, ForumThread, Message, Finanse, AllotmentSelection, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList }
+export { FrontPage, Management, About, FinanceInsertAll, AnnouncementUpdate, BuyingAllotmentSell, Contact, Messages, ForumThread, Message, Finanse, AllotmentSelection, Commitment, Login, Garden, BuyingAllotment, Forum, Account, Allotment, MyAllotment, UsersList, Register, UsersUpdate, AllotmentsList, AllotmentsInsert, AllotmentsUpdate, MessagesList }

@@ -39,11 +39,11 @@ class Garden extends Component {
     const tooltipData = {};
     allotments.map((allotment) => {
         const { number, allotment_width, allotment_length, price, status } = allotment;
-			if( status === "Wolna" ){
+			if( status === "Wolna" || status === "Na sprzedaż" ){
 				return(
 					tooltipData[number] = {
 						'Wymiary': allotment_length + ' x ' +allotment_width + ' m',
-						'Cena': price,
+						'Cena': price+' zł',
 						'Status': status,
 				})
 			}
