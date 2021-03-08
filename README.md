@@ -5,8 +5,6 @@
 ~
 <p>Dla właściciela ogrodu - uproszczenie przekazywania informacji dla działkowiczów, prosty wgląd i weryfikacja finansów oraz zarządzanie ogrodami działkowymi
  </p></em> 
- <img src="screen.png" width="500">
- <img src="map.png" width="1000">
  
  <hr>
  
@@ -16,4 +14,6 @@
 Database name:
 <b>database</b>
   
-
+Uruchomienie: 
+<b>cd server</b>
+<b>npm run start<b/>

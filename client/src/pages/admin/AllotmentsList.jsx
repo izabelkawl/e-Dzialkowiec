@@ -86,7 +86,7 @@ class AllotmentsList extends Component {
                 }
             });
             // Find by number, status or User
-            const n = JSON.stringify({ number, status });
+            const n = JSON.stringify({ number, status, username });
             const search = n.toLowerCase().includes(this.state.inputValue.toLowerCase());
             
             if(search === true){

@@ -162,6 +162,7 @@ class UsersUpdate extends Component {
                                 })}
                                 defaultChecked={position}
                                 >
+                                <option hidden>{position}</option>
                                 <option>Działkowiec</option>
                                 <option>Członek</option>
                                 <option>Skarbnik</option>

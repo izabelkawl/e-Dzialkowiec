@@ -225,6 +225,7 @@ class PaymentdetailsUpdate extends Component {
                                         <Form.Label  htmlFor="transfer_title">Tytuł opłaty: </Form.Label >
                                     </Col>
                                     <Col lg={{ span: 6 }}>
+                                        <Span>{errors.title}</Span>
                                         <Form.Control
                                             onChange={this.onChange}
                                             error={errors.transfer_title}

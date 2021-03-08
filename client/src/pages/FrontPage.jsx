@@ -28,8 +28,8 @@ const Section = styled.section`
         width: 70vw;
     }
     @media(min-width: 1366px){
-        width: 50vw;
-        padding: 0px 100px 100px;
+        width: 55vw;
+        padding: 0px 0px 0px 100px;
     }
     @media(min-width: 1920px){
         width: 50vw;
@@ -58,13 +58,22 @@ const Image = styled.img`
 `;
 const TextTitle = styled.p`
     font-weight: bold;
-    @media(min-width: 1366px){
+    @media(min-width: 768px){
+        font-size: 18px;
+    }
+    @media(min-width: 1920px){
         font-size: 35px;
     }
 `;
 const TextSpan= styled.h4`
+
+    font-size: 15px;
+    line-height: 2;
+
+@media(min-width: 1366px){
     font-weight: 500;
     line-height: 1.7;
+}
 `;
 
 const Button = styled.button`

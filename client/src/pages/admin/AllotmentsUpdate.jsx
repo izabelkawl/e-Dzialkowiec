@@ -95,8 +95,8 @@ class AllotmentsUpdate extends Component {
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Form.Label column sm="4" htmlFor="allotment_width">Szerokość: </Form.Label>
-                        <Span>{errors.allotment_width}</Span>
                         <Col sm="8">
+                        <Span>{errors.allotment_width}</Span>
                             <Form.Control
                                 onChange={this.onChange}
                                 error={errors.allotment_width}

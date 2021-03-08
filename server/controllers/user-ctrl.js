@@ -184,6 +184,12 @@ const updateUserEmail = async (req, res) => {
     processedUser.password
   );
 
+  if (isEmpty(fieldsToUpdate))
+  return res.status(400).json({
+    success: false,
+    message: "*Wypełnij puste komórki.",
+  });
+  
   fieldsToUpdate.password = await hashPassword( fieldsToUpdate.password );
   
   if (!isPasswordValid){
