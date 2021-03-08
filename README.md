@@ -1,9 +1,9 @@
 <h1>Aplikacja e-Działkowiec</h1> 
  <em> 
 
-<p>Pozwala użytkownikowi zarządzać swoim ogrodem działkowym na odległość. Umożliwia kupno i sprzedaż działki, opłacanie rachunków, kontakt z zarządem oraz integrację z innymi działkowcami. </p>
+<p>Pozwala użytkownikowi zarządzać swoim ogrodem działkowym na odległość. Wesprze swobodną wymianę myśli między działkowcami i promocję swoich produktów poprzez forum, tablicę ogłoszeń, a także wiadomości prywatne, umożliwiając również kontakt z administracją. Aplikacja zapewni prosty wgląd w swoje zobowiązania w dogodnym momencie. </p>
 ~
-<p>Dla właściciela ogrodu - uproszczenie przekazywania informacji dla działkowiczów, prosty wgląd i weryfikacja finansów oraz zarządzanie ogrodami działkowymi
+<p>Dla właściciela ogrodu(zarządu) - uproszczenie przekazywania informacji dla działkowiczów, prosty wgląd i weryfikacja finansów, zarządzanie ogrodami działkowymi, weryfikacja użytkowników i moderator tablicy ogłoszeń.
  </p></em> 
  
  <hr>
@@ -12,8 +12,11 @@
 
 <br>
 Database name:
+<br>
 <b>database</b>
   
 Uruchomienie: 
+<br>
 <b>cd server</b>
-<b>npm run start<b/>
+<br>
+<b>npm run start</b>
