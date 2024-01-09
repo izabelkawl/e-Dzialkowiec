@@ -20,3 +20,6 @@ Uruchomienie:
 <b>cd server</b>
 <br>
 <b>npm run start</b>
+
+![image](https://github.com/izabelkawl/e-Dzialkowiec/assets/37289552/6cb82a27-dd59-4325-ac78-14a91b49ffa1)
+![image](https://github.com/izabelkawl/e-Dzialkowiec/assets/37289552/17282611-f390-407e-a14e-673ce453e090)
